@@ -5,7 +5,7 @@ using MoonSharp.Interpreter;
 
 public class LuaCutsceneContext : LuaContext {
 
-    private static readonly string DefinesPath = "Assets/Resources/Lua/cutscene_defines.lua";
+    private static readonly string DefinesPath = "Lua/CutsceneDefines";
 
     public override IEnumerator RunRoutine(LuaScript script) {
         if (Global.Instance().Maps.avatar != null) {

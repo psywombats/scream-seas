@@ -20,7 +20,7 @@ public class BattleAnimationPlayer : AnimationPlayer {
         GetComponent<LuaContext>().SetGlobal("battle", defender);
     }
 
-    public IEnumerator PlayAnimationRoutine(LuaAnimation anim, CharaAnimationTarget attacker, CharaAnimationTarget defender) {
+    public IEnumerator PlayAnimationRoutine(LuaSerializedScript anim, CharaAnimationTarget attacker, CharaAnimationTarget defender) {
         this.attacker = attacker;
         this.defender = defender;
         yield return PlayAnimationRoutine(anim);

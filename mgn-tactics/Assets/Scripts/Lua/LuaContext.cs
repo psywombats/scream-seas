@@ -6,10 +6,13 @@ using System;
 using UnityEngine.Assertions;
 using System.IO;
 
-// a wrapper around Script that represents an environment where a script can execute
+/**
+ * A wrapper around Script that represents an environment where a script can execute. Only one
+ * script can execute within a given context at a time.
+ */
 public class LuaContext : MonoBehaviour {
 
-    private static readonly string DefinesPath = "Assets/Resources/Lua/global_defines.lua";
+    private static readonly string DefinesPath = "Lua/GlobalDefines";
     private static string defines;
 
     private Script _lua;
@@ -104,9 +107,8 @@ public class LuaContext : MonoBehaviour {
     }
 
     protected void LoadDefines(string path) {
-        StreamReader reader = new StreamReader(path);
-        lua.DoStream(reader.BaseStream);
-        reader.Close();
+        LuaSerializedScript script = Resources.Load<LuaSerializedScript>(path);
+        lua.DoString(script.luaString);
     }
 
     // === LUA CALLABLE ============================================================================

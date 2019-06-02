@@ -6,7 +6,7 @@ using System.Collections;
 public class AnimationPlayer : MonoBehaviour {
     
     public AnimationTarget target;
-    public LuaAnimation anim;
+    public LuaSerializedScript anim;
 
     public bool isPlayingAnimation { get; private set; }
 
@@ -22,7 +22,7 @@ public class AnimationPlayer : MonoBehaviour {
         isPlayingAnimation = false;
     }
 
-    public IEnumerator PlayAnimationRoutine(LuaAnimation anim) {
+    public IEnumerator PlayAnimationRoutine(LuaSerializedScript anim) {
         this.anim = anim;
         yield return PlayAnimationRoutine();
     }

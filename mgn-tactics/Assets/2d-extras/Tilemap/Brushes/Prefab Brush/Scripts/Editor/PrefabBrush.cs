@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 namespace UnityEditor
@@ -19,8 +18,6 @@ namespace UnityEditor
 
         public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position)
         {
-            Transform itemInCell = GetObjectInCell(grid, brushTarget.transform, new Vector3Int(position.x, position.y, m_Z));
-            if (itemInCell != null) return;
             if (position == prev_position)
                     {
                         return;
