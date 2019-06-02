@@ -54,7 +54,7 @@ public class MapEventEditor : Editor {
         Vector3 newPosition = Handles.PositionHandle(mapEvent.transform.position, Quaternion.identity);
         if (EditorGUI.EndChangeCheck()) {
             Undo.RegisterCompleteObjectUndo(mapEvent.transform, "Drag " + mapEvent);
-            Undo.RegisterCompleteObjectUndo(mapEvent, "Tile move " + mapEvent);
+            Undo.RegisterCompleteObjectUndo(mapEvent, "Drag " + mapEvent);
             mapEvent.transform.localPosition = newPosition;
         }
         
