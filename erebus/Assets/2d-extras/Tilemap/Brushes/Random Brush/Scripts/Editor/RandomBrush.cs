@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -72,6 +73,7 @@ namespace UnityEditor
         public RandomTileSet[] randomTileSets;
 
         public bool pickRandomTiles;
+        public bool addToRandomTiles;
 
         public override void Paint(GridLayout grid, GameObject brushTarget, Vector3Int position)
         {
@@ -100,11 +102,9 @@ namespace UnityEditor
 
         public override void Pick(GridLayout gridLayout, GameObject brushTarget, BoundsInt bounds, Vector3Int pickStart)
         {
+            base.Pick(gridLayout, brushTarget, bounds, pickStart);
             if (!pickRandomTiles)
-            {
-                base.Pick(gridLayout, brushTarget, bounds, pickStart);
                 return;
-            }
 
             Tilemap tilemap = brushTarget.GetComponent<Tilemap>();
             if (tilemap == null)
@@ -114,7 +114,13 @@ namespace UnityEditor
             int count = ((bounds.size.x + randomTileSetSize.x - 1) / randomTileSetSize.x)
                         * ((bounds.size.y + randomTileSetSize.y - 1) / randomTileSetSize.y)
                         * ((bounds.size.z + randomTileSetSize.z - 1) / randomTileSetSize.z);
-            Array.Resize<RandomTileSet>(ref randomTileSets, count);
+            if (addToRandomTiles)
+            {
+                i = randomTileSets.Length;
+                count += i;
+            }
+            Array.Resize(ref randomTileSets, count);
+
             foreach (var startLocation in new SizeEnumerator(bounds.min, bounds.max, randomTileSetSize))
             {
                 randomTileSets[i].randomTiles = new TileBase[randomTileSetSize.x * randomTileSetSize.y * randomTileSetSize.z];
@@ -143,7 +149,6 @@ namespace UnityEditor
             if (randomBrush.randomTileSets != null && randomBrush.randomTileSets.Length > 0)
             {
                 base.PaintPreview(grid, null, position);
-                
                 if (brushTarget == null)
                     return;
 
@@ -192,6 +197,10 @@ namespace UnityEditor
         {
             EditorGUI.BeginChangeCheck();
             randomBrush.pickRandomTiles = EditorGUILayout.Toggle("Pick Random Tiles", randomBrush.pickRandomTiles);
+            using (new EditorGUI.DisabledScope(!randomBrush.pickRandomTiles))
+            {
+                randomBrush.addToRandomTiles = EditorGUILayout.Toggle("Add To Random Tiles", randomBrush.addToRandomTiles);
+            }
 
             EditorGUI.BeginChangeCheck();
             randomBrush.randomTileSetSize = EditorGUILayout.Vector3IntField("Tile Set Size", randomBrush.randomTileSetSize);
@@ -209,7 +218,7 @@ namespace UnityEditor
                 randomTileSetCount = 0;
             if (randomBrush.randomTileSets == null || randomBrush.randomTileSets.Length != randomTileSetCount)
             {
-                Array.Resize<RandomBrush.RandomTileSet>(ref randomBrush.randomTileSets, randomTileSetCount);
+                Array.Resize(ref randomBrush.randomTileSets, randomTileSetCount);
                 for (int i = 0; i < randomBrush.randomTileSets.Length; ++i)
                 {
                     int sizeCount = randomBrush.randomTileSetSize.x * randomBrush.randomTileSetSize.y *

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.Tilemaps;
 
-[CustomEditor(typeof(GridSelection))]
+[CustomEditor(typeof(UnityEditor.Tilemaps.GridSelection))]
 public class GridSelectionEditor : Editor {
 
     private static readonly string PrefabPath = "Assets/Resources/Prefabs/MapEvent2D.prefab";
