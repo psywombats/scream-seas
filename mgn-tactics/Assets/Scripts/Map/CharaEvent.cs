@@ -163,16 +163,16 @@ public class CharaEvent : MonoBehaviour {
             yield return parent.LinearStepRoutine(dir);
         } else if (targetPx.y > startPx.y) {
             // jump up routine routine
-            float duration = (targetPx - startPx).magnitude / parent.CalcTilesPerSecond() / 2.0f * JumpHeightUpMult;
+            float duration = (targetPx - startPx).magnitude / parent.GetTilesPerSecond() / 2.0f * JumpHeightUpMult;
             yield return JumpRoutine(startPx, targetPx, duration);
             overrideBodySprite = FrameBySlot(0, facing.Ordinal()); // "prone" frame
-            yield return CoUtils.Wait(1.0f / parent.CalcTilesPerSecond() / 2.0f);
+            yield return CoUtils.Wait(1.0f / parent.GetTilesPerSecond() / 2.0f);
             overrideBodySprite = null;
         } else {
             // jump down routine
             float elapsed = 0.0f;
             float walkRatio = 0.65f;
-            float walkDuration = walkRatio / parent.CalcTilesPerSecond();
+            float walkDuration = walkRatio / parent.GetTilesPerSecond();
             while (true) {
                 float t = elapsed / walkDuration;
                 elapsed += Time.deltaTime;
@@ -191,7 +191,7 @@ public class CharaEvent : MonoBehaviour {
             yield return JumpRoutine(parent.transform.position, targetPx, jumpDuration, isBigDrop);
             if (isBigDrop) {
                 overrideBodySprite = FrameBySlot(2, facing.Ordinal()); // "prone" frame
-                yield return CoUtils.Wait(JumpHeightDownMult / parent.CalcTilesPerSecond() / 2.0f);
+                yield return CoUtils.Wait(JumpHeightDownMult / parent.GetTilesPerSecond() / 2.0f);
                 overrideBodySprite = null;
             }
         }

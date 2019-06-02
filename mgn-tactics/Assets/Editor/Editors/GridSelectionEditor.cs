@@ -19,10 +19,14 @@ public class GridSelectionEditor : Editor {
                 Map map = parent.GetComponent<Map>();
                 GameObjectUtility.SetParentAndAlign(mapEvent.gameObject, map.objectLayer.gameObject);
                 Undo.RegisterCreatedObjectUndo(mapEvent, "Create " + mapEvent.name);
-                mapEvent.SetLocation(MapEvent2D.GridLocationTileCoords(GridSelection.position));
+                mapEvent.SetLocation(GridLocationTileCoords(GridSelection.position));
                 Selection.activeObject = mapEvent.gameObject;
             }
         }
 
+    }
+
+    private static Vector2Int GridLocationTileCoords(BoundsInt gridPosition) {
+        return new Vector2Int(gridPosition.x, -1 * (gridPosition.y + 1));
     }
 }

@@ -3,14 +3,14 @@
 [ExecuteInEditMode]
 public class MapEvent3D : MapEvent {
 
-    public override Vector3 TileToWorldCoords(Vector2Int position) {
-        return new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
-    }
-
-    public static Vector2Int WorldPositionTileCoords(Vector3 pos) {
+    public override Vector2Int WorldCoordsToTile(Vector3 pos) {
         return new Vector2Int(
             Mathf.RoundToInt(pos.x) * OrthoDir.East.Px3DX(),
             Mathf.RoundToInt(pos.z) * OrthoDir.North.Px3DZ());
+    }
+
+    public override Vector3 TileToWorldCoords(Vector2Int position) {
+        return new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
     }
 
     public override Vector2Int OffsetForTiles(OrthoDir dir) {
@@ -20,6 +20,14 @@ public class MapEvent3D : MapEvent {
     public override void SetScreenPositionToMatchTilePosition() {
         transform.localPosition = new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
         positionPx = transform.localPosition;
+    }
+
+    public override void SetTilePositionToMatchScreenPosition() {
+        SetLocation(WorldCoordsToTile(transform.localPosition));
+        Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
+        size = new Vector2Int(
+            Mathf.RoundToInt(sizeDelta.x),
+            Mathf.RoundToInt(sizeDelta.y));
     }
 
     public override Vector3 InternalPositionToDisplayPosition(Vector3 position) {
@@ -36,20 +44,8 @@ public class MapEvent3D : MapEvent {
         }
     }
 
-    public override float CalcTilesPerSecond() {
+    public override float GetTilesPerSecond() {
         return tilesPerSecond;
-    }
-
-    public override void Update() {
-        base.Update();
-        if (!Application.isPlaying) {
-            position = WorldPositionTileCoords(transform.localPosition);
-            Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
-            size = new Vector2Int(
-                Mathf.RoundToInt(sizeDelta.x),
-                Mathf.RoundToInt(sizeDelta.y));
-        }
-        SetDepth();
     }
 
     public override OrthoDir DirectionTo(Vector2Int position) {

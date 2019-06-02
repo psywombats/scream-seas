@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 
 /**
- * The generic "thing on the map" class for MGNE2. Usually comes from Tiled.
+ * The generic "thing on the map" class for MGNT.
  */
 [RequireComponent(typeof(Dispatch))]
 [RequireComponent(typeof(LuaCutsceneContext))]
@@ -24,7 +24,7 @@ public abstract class MapEvent : MonoBehaviour {
     public const string EventMove = "move";
 
     // Editor properties
-    [HideInInspector] public Vector2Int position = new Vector2Int(0, 0);
+    public Vector2Int position = new Vector2Int(0, 0);
     [HideInInspector] public Vector2Int size = new Vector2Int(1, 1);
     [Space]
     [Header("Movement")]
@@ -49,50 +49,38 @@ public abstract class MapEvent : MonoBehaviour {
             transform.localPosition = InternalPositionToDisplayPosition(_internalPosition);
         }
     }
-
-    private Map _parent;
+    
     public Map parent {
         get {
-            // this is wiped in update but we'll cache it across frames anyway
-            if (_parent != null) {
-                return _parent;
-            }
             GameObject parentObject = gameObject;
             while (parentObject.transform.parent != null) {
                 parentObject = parentObject.transform.parent.gameObject;
                 Map map = parentObject.GetComponent<Map>();
                 if (map != null) {
-                    _parent = map;
                     return map;
                 }
             }
             return null;
         }
     }
-
-    private ObjectLayer _layer;
+    
     public ObjectLayer layer {
         get {
-            if (_layer == null) {
-                GameObject parent = gameObject;
-                do {
-                    parent = parent.transform.parent.gameObject;
-                    ObjectLayer objLayer = parent.GetComponent<ObjectLayer>();
-                    if (objLayer != null) {
-                        _layer = objLayer;
-                        break;
-                    }
-                } while (parent.transform.parent != null);
+            GameObject parent = gameObject;
+            while (parent.transform.parent != null) {
+                parent = parent.transform.parent.gameObject;
+                ObjectLayer objLayer = parent.GetComponent<ObjectLayer>();
+                if (objLayer != null) {
+                    return objLayer;
+                }
             }
-            return _layer;
+            return null;
         }
     }
 
     private bool _switchEnabled = true;
     public bool switchEnabled {
-        get {
-            return _switchEnabled;
-        }
+        get { return _switchEnabled; }
         set {
             if (value != _switchEnabled) {
                 GetComponent<Dispatch>().Signal(EventEnabled, value);
@@ -101,16 +89,30 @@ public abstract class MapEvent : MonoBehaviour {
         }
     }
 
+    // convert from tile coordinates to that spot in world space
     public abstract Vector3 TileToWorldCoords(Vector2Int location);
+    public abstract Vector2Int WorldCoordsToTile(Vector3 location);
 
+    // if this event were to move in a direction, how would that affect coordinates?
     public abstract Vector2Int OffsetForTiles(OrthoDir dir);
 
     // perform any pixel-perfect rounding needed for a pixel position
     public abstract Vector3 InternalPositionToDisplayPosition(Vector3 position);
 
+    // what's the direction from this event towards that position?
     public abstract OrthoDir DirectionTo(Vector2Int position);
 
-    public abstract float CalcTilesPerSecond();
+    // how many world units does this event move per second?
+    public abstract float GetTilesPerSecond();
+
+    // we have a solid TileX/TileY, please move the doll to the correct screen space
+    public abstract void SetScreenPositionToMatchTilePosition();
+    public abstract void SetTilePositionToMatchScreenPosition();
+
+    // set the one xyz coordinate not controlled by arrow keys
+    public abstract void SetDepth();
+
+    protected abstract void DrawGizmoSelf();
 
     public void Awake() {
         luaObject = new LuaMapEvent(this);
@@ -214,14 +216,6 @@ public abstract class MapEvent : MonoBehaviour {
         SetDepth();
     }
 
-    // we have a solid TileX/TileY, please move the doll to the correct screen space
-    public abstract void SetScreenPositionToMatchTilePosition();
-
-    // set the one xyz coordinate not controlled by arrow keys
-    public abstract void SetDepth();
-
-    protected abstract void DrawGizmoSelf();
-
     // called when the avatar stumbles into us
     // before the step if impassable, after if passable
     private void OnCollide(AvatarEvent avatar) {
@@ -277,10 +271,10 @@ public abstract class MapEvent : MonoBehaviour {
         tracking = true;
         targetPositionPx = TileToWorldCoords(position);
         while (true) {
-            if (CalcTilesPerSecond() > 0) {
+            if (GetTilesPerSecond() > 0) {
                 positionPx = Vector3.MoveTowards(positionPx,
                     targetPositionPx,
-                    CalcTilesPerSecond() * Time.deltaTime);
+                    GetTilesPerSecond() * Time.deltaTime);
             } else {
                 // indicates warp speed, cap'n
                 positionPx = targetPositionPx;

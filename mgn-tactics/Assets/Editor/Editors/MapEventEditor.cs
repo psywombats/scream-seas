@@ -31,6 +31,8 @@ public class MapEventEditor : Editor {
             GUILayout.Space(25.0f);
         }
 
+        Vector2Int originalPosition = mapEvent.position;
+
         Vector2Int newPosition = EditorGUILayout.Vector2IntField("Tiles position", mapEvent.position);
         if (newPosition != mapEvent.position) {
             mapEvent.SetLocation(newPosition);
@@ -41,11 +43,21 @@ public class MapEventEditor : Editor {
             mapEvent.SetSize(newSize);
         }
 
+        mapEvent.SetTilePositionToMatchScreenPosition();
+
         base.OnInspectorGUI();
     }
 
     public void OnSceneGUI() {
-        ((MapEvent)target).transform.position = Handles.PositionHandle(((MapEvent)target).transform.position, Quaternion.identity);
+        MapEvent mapEvent = (MapEvent)target;
+        EditorGUI.BeginChangeCheck();
+        Vector3 newPosition = Handles.PositionHandle(mapEvent.transform.position, Quaternion.identity);
+        if (EditorGUI.EndChangeCheck()) {
+            Undo.RegisterCompleteObjectUndo(mapEvent.transform, "Drag " + mapEvent);
+            Undo.RegisterCompleteObjectUndo(mapEvent, "Tile move " + mapEvent);
+            mapEvent.transform.localPosition = newPosition;
+        }
+        
     }
 
     public void OnEnable() {
