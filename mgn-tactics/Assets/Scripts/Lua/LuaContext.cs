@@ -11,8 +11,8 @@ using System.IO;
  * script can execute within a given context at a time.
  */
 public class LuaContext : MonoBehaviour {
-
-    private static readonly string DefinesPath = "Lua/GlobalDefines";
+    
+    private static readonly string DefinesPath = "Lua/Defines/GlobalDefines";
     private static string defines;
 
     private Script _lua;

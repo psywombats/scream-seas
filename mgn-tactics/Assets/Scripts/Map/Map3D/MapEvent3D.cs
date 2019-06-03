@@ -18,8 +18,10 @@ public class MapEvent3D : MapEvent {
     }
 
     public override void SetScreenPositionToMatchTilePosition() {
-        transform.localPosition = new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
-        positionPx = transform.localPosition;
+        if (parent != null) {
+            transform.localPosition = new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
+            positionPx = transform.localPosition;
+        }
     }
 
     public override void SetTilePositionToMatchScreenPosition() {
