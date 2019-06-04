@@ -38,6 +38,10 @@ public class LuaContext : MonoBehaviour {
         lua.Globals[key] = luaObject;
     }
 
+    public bool IsRunningScript() {
+        return activeScript != null;
+    }
+
     public DynValue CreateObject() {
         return lua.DoString("return {}");
     }
@@ -51,7 +55,7 @@ public class LuaContext : MonoBehaviour {
             DynValue scriptFunction = lua.DoString(fullScript);
             return lua.CreateCoroutine(scriptFunction).Coroutine;
         } catch (SyntaxErrorException e) {
-            Debug.LogError("bad script: " + fullScript);
+            Debug.LogError("bad script: " + fullScript + "\n\nerror:\n" + e.DecoratedMessage);
             throw e;
         }
     }
@@ -82,13 +86,19 @@ public class LuaContext : MonoBehaviour {
         return lua.LoadString(luaChunk);
     }
 
+    // kills the current script, useful for debug only
+    public void ForceTerminate() {
+        activeScript = null;
+        blockingRoutines = 0;
+    }
+
     public virtual IEnumerator RunRoutine(LuaScript script) {
         Assert.IsNull(activeScript);
         activeScript = script;
         try {
             script.scriptRoutine.Resume();
         } catch (Exception e) {
-            Debug.Log("Exception during script: " + script);
+            Debug.Log("Exception during script: " + script + "\n\nerror:\n" + e.Message);
             throw e;
         }
         while (script.scriptRoutine.State != CoroutineState.Dead) {

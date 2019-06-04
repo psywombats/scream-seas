@@ -25,9 +25,8 @@ public class CharaEvent : MonoBehaviour {
     public SpriteRenderer mainLayer;
     public SpriteRenderer armsLayer;
     public SpriteRenderer itemLayer;
-    public float desaturation = 0.0f;
     public bool alwaysAnimates = false;
-    public bool dynamicFacing = false;
+    public bool cameraRelativeFacing = false;
 
     private Dictionary<string, Sprite> sprites;
     private Vector2 lastPosition;
@@ -44,6 +43,7 @@ public class CharaEvent : MonoBehaviour {
     public ItemMode itemMode { get; set; }
     public bool jumping { get; set; }
     public bool stepping { get; set; }
+    public float desaturation { get; set; }
 
     [SerializeField]
     [HideInInspector]
@@ -270,7 +270,7 @@ public class CharaEvent : MonoBehaviour {
 
     private OrthoDir DirectionRelativeToCamera() {
         MapCamera cam = Application.isPlaying ? Global.Instance().Maps.camera : FindObjectOfType<MapCamera>();
-        if (!cam || !dynamicFacing) {
+        if (!cam || !cameraRelativeFacing) {
             return facing;
         }
 

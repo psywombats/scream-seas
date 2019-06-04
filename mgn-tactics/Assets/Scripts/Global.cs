@@ -46,6 +46,8 @@ public class Global : MonoBehaviour {
     }
 
     private void InstantiateManagers() {
+        gameObject.AddComponent<LuaCutsceneContext>();
+
         Settings = gameObject.AddComponent<SettingsCollection>();
         Input = gameObject.AddComponent<InputManager>();
         Maps = gameObject.AddComponent<MapManager>();

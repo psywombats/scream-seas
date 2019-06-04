@@ -2,7 +2,7 @@
 using UnityEditor;
 
 [CustomEditor(typeof(AnimationPlayer), true)]
-public class AnimationPlayerDrawer : Editor {
+public class AnimationPlayerEditor : Editor {
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();

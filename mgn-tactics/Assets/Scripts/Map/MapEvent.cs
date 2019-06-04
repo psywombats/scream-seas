@@ -24,7 +24,7 @@ public abstract class MapEvent : MonoBehaviour {
     public const string EventMove = "move";
 
     // Editor properties
-    public Vector2Int position = new Vector2Int(0, 0);
+    [HideInInspector] public Vector2Int position = new Vector2Int(0, 0);
     [HideInInspector] public Vector2Int size = new Vector2Int(1, 1);
     [Space]
     [Header("Movement")]
@@ -272,7 +272,7 @@ public abstract class MapEvent : MonoBehaviour {
         if (tilesPerSecond == 0) {
             transform.localPosition = targetPositionPx;
         } else {
-            var tween = transform.DOLocalMove(targetPositionPx, tilesPerSecond, true);
+            var tween = transform.DOLocalMove(targetPositionPx, 1.0f / tilesPerSecond, true);
             tween.SetEase(Ease.Linear);
             yield return CoUtils.RunTween(tween);
         }
