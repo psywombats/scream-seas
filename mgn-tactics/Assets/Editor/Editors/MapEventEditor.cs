@@ -47,7 +47,9 @@ public class MapEventEditor : Editor {
             mapEvent.SetSize(newSize);
         }
 
-        mapEvent.SetTilePositionToMatchScreenPosition();
+        if (!Application.IsPlaying(mapEvent)) {
+            mapEvent.SetTilePositionToMatchScreenPosition();
+        }
 
         base.OnInspectorGUI();
     }
@@ -55,11 +57,14 @@ public class MapEventEditor : Editor {
     public void OnSceneGUI() {
         MapEvent mapEvent = (MapEvent)target;
         EditorGUI.BeginChangeCheck();
-        Vector3 newPosition = Handles.PositionHandle(mapEvent.transform.position, Quaternion.identity);
+        Vector3 newPosition = Handles.PositionHandle(mapEvent.GetHandlePosition(), Quaternion.identity);
+        newPosition += (mapEvent.transform.position - mapEvent.GetHandlePosition());
         if (EditorGUI.EndChangeCheck()) {
             Undo.RegisterCompleteObjectUndo(mapEvent.transform, "Drag " + mapEvent);
-            Undo.RegisterCompleteObjectUndo(mapEvent, "Drag " + mapEvent);
             mapEvent.transform.localPosition = newPosition;
+            mapEvent.SetTilePositionToMatchScreenPosition();
+            serializedObject.FindProperty("position").vector2IntValue = mapEvent.position;
+            serializedObject.ApplyModifiedProperties();
         }
         
     }

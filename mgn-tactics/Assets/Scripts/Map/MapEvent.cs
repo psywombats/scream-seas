@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 
 /**
@@ -40,14 +40,9 @@ public abstract class MapEvent : MonoBehaviour {
     public LuaMapEvent luaObject { get; private set; }
     public Vector3 targetPositionPx { get; set; }
     public bool tracking { get; private set; }
-
-    private Vector3 _internalPosition;
+    
     public Vector3 positionPx {
-        get { return _internalPosition; }
-        set {
-            _internalPosition = value;
-            transform.localPosition = InternalPositionToDisplayPosition(_internalPosition);
-        }
+        get { return transform.localPosition; }
     }
     
     public Map parent {
@@ -102,15 +97,15 @@ public abstract class MapEvent : MonoBehaviour {
     // what's the direction from this event towards that position?
     public abstract OrthoDir DirectionTo(Vector2Int position);
 
-    // how many world units does this event move per second?
-    public abstract float GetTilesPerSecond();
-
     // we have a solid TileX/TileY, please move the doll to the correct screen space
     public abstract void SetScreenPositionToMatchTilePosition();
     public abstract void SetTilePositionToMatchScreenPosition();
 
     // set the one xyz coordinate not controlled by arrow keys
     public abstract void SetDepth();
+
+    // where should is the internal origin of this event?
+    public abstract Vector3 GetHandlePosition();
 
     protected abstract void DrawGizmoSelf();
 
@@ -121,8 +116,6 @@ public abstract class MapEvent : MonoBehaviour {
     public void Start() {
         if (Application.isPlaying) {
             GenerateLua();
-
-            positionPx = transform.localPosition;
 
             GetComponent<Dispatch>().RegisterListener(EventCollide, (object payload) => {
                 OnCollide((AvatarEvent)payload);
@@ -276,22 +269,13 @@ public abstract class MapEvent : MonoBehaviour {
     public IEnumerator LinearStepRoutine(OrthoDir dir) {
         tracking = true;
         targetPositionPx = TileToWorldCoords(position);
-        while (true) {
-            if (GetTilesPerSecond() > 0) {
-                positionPx = Vector3.MoveTowards(positionPx,
-                    targetPositionPx,
-                    GetTilesPerSecond() * Time.deltaTime);
-            } else {
-                // indicates warp speed, cap'n
-                positionPx = targetPositionPx;
-            }
-
-            if (positionPx == targetPositionPx) {
-                tracking = false;
-                break;
-            } else {
-                yield return null;
-            }
+        if (tilesPerSecond == 0) {
+            transform.localPosition = targetPositionPx;
+        } else {
+            var tween = transform.DOLocalMove(targetPositionPx, tilesPerSecond, true);
+            tween.SetEase(Ease.Linear);
+            yield return CoUtils.RunTween(tween);
         }
+        tracking = false;
     }
 }

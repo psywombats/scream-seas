@@ -19,7 +19,6 @@ public class MapEvent3D : MapEvent {
     public override void SetScreenPositionToMatchTilePosition() {
         if (parent != null) {
             transform.localPosition = new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
-            positionPx = transform.localPosition;
         }
     }
 
@@ -45,8 +44,8 @@ public class MapEvent3D : MapEvent {
         }
     }
 
-    public override float GetTilesPerSecond() {
-        return tilesPerSecond;
+    public override Vector3 GetHandlePosition() {
+        return transform.position;
     }
 
     public override OrthoDir DirectionTo(Vector2Int position) {

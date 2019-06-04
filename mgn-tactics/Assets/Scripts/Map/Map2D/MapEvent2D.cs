@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[ExecuteInEditMode]
 public class MapEvent2D : MapEvent {
 
     public override Vector2Int WorldCoordsToTile(Vector3 pos) {
@@ -37,7 +36,7 @@ public class MapEvent2D : MapEvent {
         Vector2 transform = new Vector2(Map.TileSizePx, Map.TileSizePx);
         transform.x = transform.x * OrthoDir.East.Px2DX();
         transform.y = transform.y * OrthoDir.North.Px2DY();
-        positionPx = Vector2.Scale(position, transform);
+        this.transform.localPosition = Vector2.Scale(position, transform);
         GetComponent<RectTransform>().sizeDelta = new Vector2(
             size.x * Map.TileSizePx / Map.UnityUnitScale, 
             size.y * Map.TileSizePx / Map.UnityUnitScale);
@@ -57,8 +56,8 @@ public class MapEvent2D : MapEvent {
         }
     }
 
-    public override float GetTilesPerSecond() {
-        return (tilesPerSecond * Map.TileSizePx / Map.UnityUnitScale);
+    public override Vector3 GetHandlePosition() {
+        return transform.position + new Vector3(0, -16, 0);
     }
 
     protected override void DrawGizmoSelf() {
