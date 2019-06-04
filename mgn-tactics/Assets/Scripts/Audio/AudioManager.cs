@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour, MemoryPopulater {
         bgmVolumeSetting = Global.Instance().Settings.GetFloatSetting(SettingsConstants.BGMVolume);
 
         gameObject.AddComponent<WaveSource>();
+        gameObject.AddComponent<AudioListener>();
     }
 
     public void Update() {

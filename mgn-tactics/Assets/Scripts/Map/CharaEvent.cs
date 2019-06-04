@@ -35,7 +35,6 @@ public class CharaEvent : MonoBehaviour {
     private List<KeyValuePair<float, Vector3>> afterimageHistory;
     private Vector3 targetPx;
     private float moveTime;
-    private bool stepping;
 
     public MapEvent parent { get { return GetComponent<MapEvent>(); } }
     public Map map { get { return parent.parent; } }
@@ -44,6 +43,7 @@ public class CharaEvent : MonoBehaviour {
     public ArmMode armMode { get; set; }
     public ItemMode itemMode { get; set; }
     public bool jumping { get; set; }
+    public bool stepping { get; set; }
 
     [SerializeField]
     [HideInInspector]
@@ -64,17 +64,29 @@ public class CharaEvent : MonoBehaviour {
         get { return _facing; }
         set {
             _facing = value;
-            if (facing == OrthoDir.North) {
-                armsLayer.sortingOrder = -1;
-            } else {
-                armsLayer.sortingOrder = 1;
+            if (armsLayer != null) {
+                if (facing == OrthoDir.North) {
+                    armsLayer.sortingOrder = -1;
+                } else {
+                    armsLayer.sortingOrder = 1;
+                }
             }
             UpdateAppearance();
         }
     }
 
-    private SpriteRenderer[] renderers {
-        get { return new SpriteRenderer[] { mainLayer, armsLayer, itemLayer }; }
+    private List<SpriteRenderer> _renderers;
+    protected List<SpriteRenderer> renderers {
+        get {
+            if (_renderers == null) {
+                _renderers = new List<SpriteRenderer>();
+                Debug.Assert(mainLayer != null);
+                _renderers.Add(mainLayer);
+                if (armsLayer != null) _renderers.Add(armsLayer);
+                if (itemLayer != null) _renderers.Add(itemLayer);
+            }
+            return _renderers;
+        }
     }
 
     public static string NameForFrame(string sheetName, int x, int y) {
@@ -96,13 +108,12 @@ public class CharaEvent : MonoBehaviour {
 
     public void Update() {
         CopyShaderValues();
-        
+
         bool steppingThisFrame = IsSteppingThisFrame();
         stepping = steppingThisFrame || wasSteppingLastFrame;
-        if (steppingThisFrame != wasSteppingLastFrame) {
+        if (!steppingThisFrame && !wasSteppingLastFrame) {
             moveTime = 0.0f;
-        }
-        if (stepping) {
+        } else {
             moveTime += Time.deltaTime;
         }
         wasSteppingLastFrame = steppingThisFrame;
@@ -117,10 +128,10 @@ public class CharaEvent : MonoBehaviour {
                 LoadSpritesheetData();
             }
             mainLayer.sprite = SpriteForMain();
-            armsLayer.sprite = SpriteForArms();
-            itemLayer.sprite = SpriteForItem();
+            if (armsLayer != null) armsLayer.sprite = SpriteForArms();
+            if (itemLayer != null) itemLayer.sprite = SpriteForItem();
 
-            if (itemLayer.sprite != null) {
+            if (itemLayer != null && itemLayer.sprite != null) {
                 itemLayer.transform.localPosition = new Vector3(
                     (float)armMode.ItemAnchor().x / Map.TileSizePx,
                     (float)armMode.ItemAnchor().y / Map.TileSizePx, 
@@ -232,7 +243,8 @@ public class CharaEvent : MonoBehaviour {
     private bool IsSteppingThisFrame() {
         Vector2 position = transform.position;
         Vector2 delta = position - lastPosition;
-        return alwaysAnimates || (delta.sqrMagnitude > 0 && delta.sqrMagnitude < Map.TileSizePx) || parent.tracking;
+        return alwaysAnimates || (delta.sqrMagnitude > 0 && delta.sqrMagnitude < Map.TileSizePx) || parent.tracking ||
+            (GetComponent<AvatarEvent>() && GetComponent<AvatarEvent>().wantsToTrack);
     }
 
     private void LoadSpritesheetData() {

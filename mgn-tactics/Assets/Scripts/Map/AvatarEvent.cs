@@ -6,8 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharaEvent))]
 public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
 
+    public bool wantsToTrack { get; private set; }
+
     private int pauseCount;
-    public bool InputPaused {
+    public bool inputPaused {
         get {
             return pauseCount > 0;
         }
@@ -21,8 +23,12 @@ public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
         pauseCount = 0;
     }
 
+    public virtual void Update() {
+        wantsToTrack = false;
+    }
+
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType) {
-        if (GetComponent<MapEvent>().tracking || InputPaused) {
+        if (GetComponent<MapEvent>().tracking || inputPaused) {
             return true;
         }
         switch (eventType) {
@@ -117,6 +123,7 @@ public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
         }
 
         if (passable) {
+            wantsToTrack = true;
             StartCoroutine(CoUtils.RunWithCallback(GetComponent<MapEvent>().StepRoutine(dir), () => {
                 foreach (MapEvent targetEvent in toCollide) {
                     if (targetEvent.switchEnabled) {

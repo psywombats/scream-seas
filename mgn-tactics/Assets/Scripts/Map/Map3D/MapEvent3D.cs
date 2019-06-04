@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[ExecuteInEditMode]
 public class MapEvent3D : MapEvent {
 
     public override Vector2Int WorldCoordsToTile(Vector3 pos) {

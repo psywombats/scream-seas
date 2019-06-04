@@ -120,9 +120,7 @@ public abstract class MapEvent : MonoBehaviour {
 
     public void Start() {
         if (Application.isPlaying) {
-            luaObject.Set(PropertyCollide, luaOnCollide);
-            luaObject.Set(PropertyInteract, luaOnInteract);
-            luaObject.Set(PropertyCondition, luaCondition);
+            GenerateLua();
 
             positionPx = transform.localPosition;
 
@@ -177,9 +175,11 @@ public abstract class MapEvent : MonoBehaviour {
                 return false;
             }
         }
-        foreach (MapEvent mapEvent in parent.GetEventsAt(loc)) {
-            if (!mapEvent.IsPassableBy(this)) {
-                return false;
+        if (!passable) {
+            foreach (MapEvent mapEvent in parent.GetEventsAt(loc)) {
+                if (!mapEvent.IsPassableBy(this)) {
+                    return false;
+                }
             }
         }
 
@@ -214,6 +214,12 @@ public abstract class MapEvent : MonoBehaviour {
         this.size = size;
         SetScreenPositionToMatchTilePosition();
         SetDepth();
+    }
+
+    public void GenerateLua() {
+        luaObject.Set(PropertyCollide, luaOnCollide);
+        luaObject.Set(PropertyInteract, luaOnInteract);
+        luaObject.Set(PropertyCondition, luaCondition);
     }
 
     // called when the avatar stumbles into us

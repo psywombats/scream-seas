@@ -31,6 +31,10 @@ public class MapEventEditor : Editor {
             GUILayout.Space(25.0f);
         }
 
+        if (Application.IsPlaying(target) && GUILayout.Button("Regenerate Lua")) {
+            mapEvent.GenerateLua();
+        }
+
         Vector2Int originalPosition = mapEvent.position;
 
         Vector2Int newPosition = EditorGUILayout.Vector2IntField("Tiles position", mapEvent.position);
