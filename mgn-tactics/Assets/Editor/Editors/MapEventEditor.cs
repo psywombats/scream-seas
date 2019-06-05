@@ -39,11 +39,13 @@ public class MapEventEditor : Editor {
 
         Vector2Int newPosition = EditorGUILayout.Vector2IntField("Tiles position", mapEvent.position);
         if (newPosition != mapEvent.position) {
+            Undo.RecordObject(mapEvent, "Reposition event");
             mapEvent.SetLocation(newPosition);
         }
 
         Vector2Int newSize = EditorGUILayout.Vector2IntField("Size", mapEvent.size);
         if (newSize != mapEvent.size) {
+            Undo.RecordObject(mapEvent, "Resize event");
             mapEvent.SetSize(newSize);
         }
 

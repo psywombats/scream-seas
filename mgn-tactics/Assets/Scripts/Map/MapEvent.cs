@@ -15,8 +15,7 @@ using UnityEngine.Tilemaps;
 public abstract class MapEvent : MonoBehaviour {
     
     private const string PropertyCondition = "show";
-    private const string PropertyInteract = "onInteract";
-    private const string PropertyCollide = "onCollide";
+    private const string PropertyBody = "body";
 
     public const string EventEnabled = "enabled";
     public const string EventCollide = "collide";
@@ -24,6 +23,7 @@ public abstract class MapEvent : MonoBehaviour {
     public const string EventMove = "move";
 
     public enum EventTriggerType {
+        Collide,
         Interact,
         Autostart,
         Parallel,
@@ -31,17 +31,16 @@ public abstract class MapEvent : MonoBehaviour {
 
     // Editor properties
     [HideInInspector] public Vector2Int position = new Vector2Int(0, 0);
-    public Vector2Int size = new Vector2Int(1, 1);
+    [HideInInspector] public Vector2Int size = new Vector2Int(1, 1);
     [Space]
     [Header("Movement")]
     public float tilesPerSecond = 2.0f;
     public bool passable = true;
     [Space]
     [Header("Lua scripting")]
-    public EventTriggerType triggerType = EventTriggerType.Interact;
     public string luaCondition;
-    [TextArea(3, 6)] public string luaOnInteract;
-    [TextArea(3, 6)] public string luaOnCollide;
+    [TextArea(8, 16)] public string luaBody;
+    public EventTriggerType triggerType = EventTriggerType.Collide;
 
     // Properties
     public LuaMapEvent luaObject { get; private set; }
@@ -118,9 +117,6 @@ public abstract class MapEvent : MonoBehaviour {
 
     public void Awake() {
         luaObject = new LuaMapEvent(this);
-        GetComponent<Dispatch>().RegisterListener(EventEnabled, (object payload) => {
-            CheckAutostart();
-        });
     }
 
     public void Start() {
@@ -132,15 +128,17 @@ public abstract class MapEvent : MonoBehaviour {
         GetComponent<Dispatch>().RegisterListener(EventInteract, (object payload) => {
             OnInteract((AvatarEvent)payload);
         });
+        GetComponent<Dispatch>().RegisterListener(EventEnabled, (object payload) => {
+            CheckAutostart((bool)payload);
+        });
 
         CheckEnabled();
-        CheckAutostart();
     }
 
     public virtual void Update() {
         CheckEnabled();
         if (triggerType == EventTriggerType.Parallel && switchEnabled && !GetComponent<LuaContext>().IsRunning()) {
-            GetComponent<LuaContext>().RunRoutine(luaOnInteract);
+            luaObject.Run(PropertyBody);
         }
     }
 
@@ -220,17 +218,16 @@ public abstract class MapEvent : MonoBehaviour {
     }
 
     public void GenerateLua() {
-        luaObject.Set(PropertyCollide, luaOnCollide);
-        luaObject.Set(PropertyInteract, luaOnInteract);
         luaObject.Set(PropertyCondition, luaCondition);
+        luaObject.Set(PropertyBody, luaBody);
     }
 
-    private void CheckAutostart() {
+    private void CheckAutostart(bool enabled) {
         LuaContext context = GetComponent<LuaContext>();
-        if (triggerType == EventTriggerType.Autostart && switchEnabled && !context.IsRunning()) {
-            context.RunRoutine(luaOnInteract);
+        if (triggerType == EventTriggerType.Autostart && enabled && !context.IsRunning()) {
+            luaObject.Run(PropertyBody);
         }
-        if (triggerType == EventTriggerType.Parallel && !switchEnabled && context.IsRunning()) {
+        if (triggerType == EventTriggerType.Parallel && !enabled && context.IsRunning()) {
             context.ForceTerminate();
         }
     }
@@ -238,16 +235,17 @@ public abstract class MapEvent : MonoBehaviour {
     // called when the avatar stumbles into us
     // before the step if impassable, after if passable
     private void OnCollide(AvatarEvent avatar) {
-        luaObject.Run(PropertyCollide);
+        if (triggerType == EventTriggerType.Collide) {
+            luaObject.Run(PropertyBody);
+        }
     }
 
     // called when the avatar stumbles into us
     // facing us if impassable, on top of us if passable
     private void OnInteract(AvatarEvent avatar) {
-        if (GetComponent<CharaEvent>() != null) {
-            GetComponent<CharaEvent>().facing = DirectionTo(avatar.GetComponent<MapEvent>());
+        if (triggerType == EventTriggerType.Interact) {
+            luaObject.Run(PropertyBody);
         }
-        luaObject.Run(PropertyInteract);
     }
 
     private LuaScript ParseScript(string lua) {

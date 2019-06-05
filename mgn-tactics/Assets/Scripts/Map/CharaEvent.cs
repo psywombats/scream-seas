@@ -104,6 +104,9 @@ public class CharaEvent : MonoBehaviour {
                 renderer.enabled = enabled;
             }
         });
+        GetComponent<Dispatch>().RegisterListener(MapEvent.EventInteract, (object payload) => {
+            facing = parent.DirectionTo(Global.Instance().Maps.avatar.GetComponent<MapEvent>());
+        });
     }
 
     public void Update() {

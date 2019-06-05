@@ -27,6 +27,7 @@ public class LuaContext : MonoBehaviour {
 
     private LuaScript activeScript;
     private int blockingRoutines;
+    private bool forceKilled;
 
     public virtual void Awake() {
         LoadDefines(DefinesPath);
@@ -62,15 +63,18 @@ public class LuaContext : MonoBehaviour {
 
     // all coroutines that are meant to block execution of the script should go through here
     public virtual void RunRoutineFromLua(IEnumerator routine) {
-        if (activeScript == null) {
+        if (forceKilled) {
             // leave the old instance infinitely suspended
             return;
         }
         blockingRoutines += 1;
         Global.Instance().StartCoroutine(CoUtils.RunWithCallback(routine, () => {
             blockingRoutines -= 1;
-            if (blockingRoutines == 0) {
-                activeScript.scriptRoutine.Resume();
+            if (blockingRoutines <= 0) {
+                blockingRoutines = 0;
+                if (activeScript != null && !forceKilled) {
+                    activeScript.scriptRoutine.Resume();
+                }
             }
         }));
     }
@@ -92,8 +96,8 @@ public class LuaContext : MonoBehaviour {
 
     // kills the current script, useful for debug only
     public void ForceTerminate() {
-        activeScript = null;
         blockingRoutines = 0;
+        forceKilled = true;
     }
 
     public IEnumerator RunRoutine(string luaString) {
@@ -104,13 +108,14 @@ public class LuaContext : MonoBehaviour {
     public virtual IEnumerator RunRoutine(LuaScript script) {
         Assert.IsNull(activeScript);
         activeScript = script;
+        forceKilled = false;
         try {
             script.scriptRoutine.Resume();
         } catch (Exception e) {
             Debug.Log("Exception during script: " + script + "\n\nerror:\n" + e.Message);
             throw e;
         }
-        while (script.scriptRoutine.State != CoroutineState.Dead) {
+        while (script.scriptRoutine.State != CoroutineState.Dead && !forceKilled) {
             yield return null;
         }
         activeScript = null;
