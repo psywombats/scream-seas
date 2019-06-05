@@ -2,13 +2,13 @@
 
 public class MapEvent3D : MapEvent {
 
-    public override Vector2Int WorldCoordsToTile(Vector3 pos) {
+    public override Vector2Int OwnWorldToTile(Vector3 pos) {
         return new Vector2Int(
             Mathf.RoundToInt(pos.x) * OrthoDir.East.Px3DX(),
             Mathf.RoundToInt(pos.z) * OrthoDir.North.Px3DZ());
     }
 
-    public override Vector3 TileToWorldCoords(Vector2Int position) {
+    public override Vector3 OwnTileToWorld(Vector2Int position) {
         return new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
     }
 
@@ -23,7 +23,7 @@ public class MapEvent3D : MapEvent {
     }
 
     public override void SetTilePositionToMatchScreenPosition() {
-        SetLocation(WorldCoordsToTile(transform.localPosition));
+        SetLocation(OwnWorldToTile(transform.localPosition));
         Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
         size = new Vector2Int(
             Mathf.RoundToInt(sizeDelta.x),

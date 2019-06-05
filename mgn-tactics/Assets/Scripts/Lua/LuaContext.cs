@@ -38,7 +38,7 @@ public class LuaContext : MonoBehaviour {
         lua.Globals[key] = luaObject;
     }
 
-    public bool IsRunningScript() {
+    public bool IsRunning() {
         return activeScript != null;
     }
 
@@ -62,6 +62,10 @@ public class LuaContext : MonoBehaviour {
 
     // all coroutines that are meant to block execution of the script should go through here
     public virtual void RunRoutineFromLua(IEnumerator routine) {
+        if (activeScript == null) {
+            // leave the old instance infinitely suspended
+            return;
+        }
         blockingRoutines += 1;
         Global.Instance().StartCoroutine(CoUtils.RunWithCallback(routine, () => {
             blockingRoutines -= 1;
@@ -90,6 +94,11 @@ public class LuaContext : MonoBehaviour {
     public void ForceTerminate() {
         activeScript = null;
         blockingRoutines = 0;
+    }
+
+    public IEnumerator RunRoutine(string luaString) {
+        LuaScript script = new LuaScript(this, luaString);
+        yield return RunRoutine(script);
     }
 
     public virtual IEnumerator RunRoutine(LuaScript script) {

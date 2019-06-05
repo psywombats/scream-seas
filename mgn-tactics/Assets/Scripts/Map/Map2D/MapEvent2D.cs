@@ -2,30 +2,35 @@
 
 public class MapEvent2D : MapEvent {
 
-    public override Vector2Int WorldCoordsToTile(Vector3 pos) {
+    public static Vector2Int WorldToTile(Vector3 pos) {
         return new Vector2Int(
             Mathf.RoundToInt(pos.x / Map.TileSizePx) * OrthoDir.East.Px2DX(),
             Mathf.RoundToInt(pos.y / Map.TileSizePx) * OrthoDir.North.Px2DY());
     }
 
+    public static Vector3 TileToWorld(Vector2Int position) {
+        return new Vector3(
+            position.x * Map.TileSizePx / Map.UnityUnitScale * OrthoDir.East.Px2DX(),
+            position.y * Map.TileSizePx / Map.UnityUnitScale * OrthoDir.North.Px2DY(),
+            0);
+    }
+
+    public override Vector2Int OwnWorldToTile(Vector3 pos) {
+        return WorldToTile(pos);
+    }
+
+    public override Vector3 OwnTileToWorld(Vector2Int position) {
+        Vector3 baseCoords = TileToWorld(position);
+        return new Vector3(baseCoords.x, baseCoords.y, DepthForPositionPx(baseCoords.y));
+    }
+
     public override void SetTilePositionToMatchScreenPosition() {
-        SetLocation(WorldCoordsToTile(transform.localPosition));
+        SetLocation(OwnWorldToTile(transform.localPosition));
         Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
-        size = new Vector2Int(
-            Mathf.RoundToInt(sizeDelta.x),
-            Mathf.RoundToInt(sizeDelta.y));
     }
 
     public override OrthoDir DirectionTo(Vector2Int position) {
         return OrthoDirExtensions.DirectionOf2D(position - this.position);
-    }
-
-    public override Vector3 TileToWorldCoords(Vector2Int position) {
-        float y = position.y * Map.TileSizePx / Map.UnityUnitScale * OrthoDir.North.Px2DY();
-        return new Vector3(
-            position.x * Map.TileSizePx / Map.UnityUnitScale * OrthoDir.East.Px2DX(),
-            y,
-            DepthForPositionPx(y));
     }
 
     public override Vector2Int OffsetForTiles(OrthoDir dir) {

@@ -15,7 +15,7 @@ public class LuaContextEditor : Editor {
         if (Application.IsPlaying(context)) {
             GUILayout.Space(12);
 
-            if (!context.IsRunningScript()) {
+            if (!context.IsRunning()) {
                 EditorGUILayout.LabelField("Lua debug prompt!");
             } else {
                 EditorGUILayout.LabelField("Running...");
@@ -25,7 +25,7 @@ public class LuaContextEditor : Editor {
             customLua = EditorGUILayout.TextArea(customLua, new GUILayoutOption[] { GUILayout.Height(120) });
             GUILayout.Space(12);
 
-            if (!context.IsRunningScript()) {
+            if (!context.IsRunning()) {
                 if (GUILayout.Button("Run")) {
                     LuaScript script = new LuaScript(context, customLua);
                     context.StartCoroutine(script.RunRoutine());
@@ -42,6 +42,6 @@ public class LuaContextEditor : Editor {
 
     public override bool RequiresConstantRepaint() {
         LuaContext context = (LuaContext)target;
-        return base.RequiresConstantRepaint() || context.IsRunningScript();
+        return base.RequiresConstantRepaint() || context.IsRunning();
     }
 }

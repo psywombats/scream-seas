@@ -23,15 +23,22 @@ public abstract class MapEvent : MonoBehaviour {
     public const string EventInteract = "interact";
     public const string EventMove = "move";
 
+    public enum EventTriggerType {
+        Interact,
+        Autostart,
+        Parallel,
+    }
+
     // Editor properties
     [HideInInspector] public Vector2Int position = new Vector2Int(0, 0);
-    [HideInInspector] public Vector2Int size = new Vector2Int(1, 1);
+    public Vector2Int size = new Vector2Int(1, 1);
     [Space]
     [Header("Movement")]
     public float tilesPerSecond = 2.0f;
     public bool passable = true;
     [Space]
     [Header("Lua scripting")]
+    public EventTriggerType triggerType = EventTriggerType.Interact;
     public string luaCondition;
     [TextArea(3, 6)] public string luaOnInteract;
     [TextArea(3, 6)] public string luaOnCollide;
@@ -85,8 +92,8 @@ public abstract class MapEvent : MonoBehaviour {
     }
 
     // convert from tile coordinates to that spot in world space
-    public abstract Vector3 TileToWorldCoords(Vector2Int location);
-    public abstract Vector2Int WorldCoordsToTile(Vector3 location);
+    public abstract Vector3 OwnTileToWorld(Vector2Int location);
+    public abstract Vector2Int OwnWorldToTile(Vector3 location);
 
     // if this event were to move in a direction, how would that affect coordinates?
     public abstract Vector2Int OffsetForTiles(OrthoDir dir);
@@ -111,26 +118,29 @@ public abstract class MapEvent : MonoBehaviour {
 
     public void Awake() {
         luaObject = new LuaMapEvent(this);
+        GetComponent<Dispatch>().RegisterListener(EventEnabled, (object payload) => {
+            CheckAutostart();
+        });
     }
 
     public void Start() {
-        if (Application.isPlaying) {
-            GenerateLua();
+        GenerateLua();
 
-            GetComponent<Dispatch>().RegisterListener(EventCollide, (object payload) => {
-                OnCollide((AvatarEvent)payload);
-            });
-            GetComponent<Dispatch>().RegisterListener(EventInteract, (object payload) => {
-                OnInteract((AvatarEvent)payload);
-            });
+        GetComponent<Dispatch>().RegisterListener(EventCollide, (object payload) => {
+            OnCollide((AvatarEvent)payload);
+        });
+        GetComponent<Dispatch>().RegisterListener(EventInteract, (object payload) => {
+            OnInteract((AvatarEvent)payload);
+        });
 
-            CheckEnabled();
-        }
+        CheckEnabled();
+        CheckAutostart();
     }
 
     public virtual void Update() {
-        if (Application.IsPlaying(this)) {
-            CheckEnabled();
+        CheckEnabled();
+        if (triggerType == EventTriggerType.Parallel && switchEnabled && !GetComponent<LuaContext>().IsRunning()) {
+            GetComponent<LuaContext>().RunRoutine(luaOnInteract);
         }
     }
 
@@ -215,6 +225,16 @@ public abstract class MapEvent : MonoBehaviour {
         luaObject.Set(PropertyCondition, luaCondition);
     }
 
+    private void CheckAutostart() {
+        LuaContext context = GetComponent<LuaContext>();
+        if (triggerType == EventTriggerType.Autostart && switchEnabled && !context.IsRunning()) {
+            context.RunRoutine(luaOnInteract);
+        }
+        if (triggerType == EventTriggerType.Parallel && !switchEnabled && context.IsRunning()) {
+            context.ForceTerminate();
+        }
+    }
+
     // called when the avatar stumbles into us
     // before the step if impassable, after if passable
     private void OnCollide(AvatarEvent avatar) {
@@ -268,7 +288,7 @@ public abstract class MapEvent : MonoBehaviour {
 
     public IEnumerator LinearStepRoutine(OrthoDir dir) {
         tracking = true;
-        targetPositionPx = TileToWorldCoords(position);
+        targetPositionPx = OwnTileToWorld(position);
         if (tilesPerSecond == 0) {
             transform.localPosition = targetPositionPx;
         } else {

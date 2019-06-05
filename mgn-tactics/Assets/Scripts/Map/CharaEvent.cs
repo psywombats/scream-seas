@@ -169,7 +169,7 @@ public class CharaEvent : MonoBehaviour {
         facing = dir;
         Vector2Int offset = parent.OffsetForTiles(dir);
         Vector3 startPx = parent.positionPx;
-        targetPx = parent.TileToWorldCoords(parent.position);
+        targetPx = parent.OwnTileToWorld(parent.position);
         if (targetPx.y == startPx.y || GetComponent<MapEvent3D>() == null) {
             yield return parent.LinearStepRoutine(dir);
         } else if (targetPx.y > startPx.y) {
@@ -275,7 +275,7 @@ public class CharaEvent : MonoBehaviour {
         }
 
         Vector3 ourScreen = cam.GetCameraComponent().WorldToScreenPoint(transform.position);
-        Vector3 targetWorld = ((MapEvent3D)parent).TileToWorldCoords(parent.position + facing.XY3D());
+        Vector3 targetWorld = ((MapEvent3D)parent).OwnTileToWorld(parent.position + facing.XY3D());
         targetWorld.y = parent.transform.position.y;
         Vector3 targetScreen = cam.GetCameraComponent().WorldToScreenPoint(targetWorld);
         Vector3 delta = targetScreen - ourScreen;
