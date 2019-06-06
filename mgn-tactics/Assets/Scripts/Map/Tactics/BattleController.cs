@@ -110,7 +110,7 @@ public class BattleController : MonoBehaviour {
 
     public Cursor SpawnCursor(Vector2Int location) {
         cursor.gameObject.SetActive(true);
-        cursor.GetComponent<MapEvent>().SetLocation(location);
+        cursor.GetComponent<MapEvent>().SetPosition(location);
         return cursor;
     }
 
@@ -130,6 +130,6 @@ public class BattleController : MonoBehaviour {
 
     public void MoveCursorToDefaultUnit() {
         BattleUnit defaultHero = battle.GetFaction(Alignment.Hero).NextMoveableUnit();
-        cursor.GetComponent<MapEvent>().SetLocation(defaultHero.location);
+        cursor.GetComponent<MapEvent>().SetPosition(defaultHero.position);
     }
 }

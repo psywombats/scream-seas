@@ -23,7 +23,7 @@ public class MapEvent3D : MapEvent {
     }
 
     public override void SetTilePositionToMatchScreenPosition() {
-        SetLocation(OwnWorldToTile(transform.localPosition));
+        SetPosition(OwnWorldToTile(transform.localPosition));
         Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
         size = new Vector2Int(
             Mathf.RoundToInt(sizeDelta.x),

@@ -69,7 +69,7 @@ public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
     }
 
     public void PopulateFromMemory(Memory memory) {
-        GetComponent<MapEvent>().SetLocation(memory.position);
+        GetComponent<MapEvent>().SetPosition(memory.position);
         GetComponent<CharaEvent>().facing = memory.facing;
     }
 

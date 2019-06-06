@@ -26,7 +26,7 @@ public class DirectionCursor : MonoBehaviour, InputListener {
         List<OrthoDir> dirs = new List<OrthoDir>();
         Map map = actingUnit.battle.controller.map;
         foreach (OrthoDir dir in Enum.GetValues(typeof(OrthoDir))) {
-            Vector2Int loc = actingUnit.location + dir.XY3D();
+            Vector2Int loc = actingUnit.position + dir.XY3D();
             BattleEvent doll = map.GetEventAt<BattleEvent>(loc);
             if (doll != null && rule(doll.unit)) {
                 dirs.Add(dir);
@@ -35,7 +35,7 @@ public class DirectionCursor : MonoBehaviour, InputListener {
         if (dirs.Count > 0) {
             Result<OrthoDir> dirResult = new Result<OrthoDir>();
             yield return SelectTargetDirRoutine(dirResult, actingUnit, dirs, canCancel);
-            Vector2Int loc = actingUnit.location + dirResult.value.XY3D();
+            Vector2Int loc = actingUnit.position + dirResult.value.XY3D();
             result.value = map.GetEventAt<BattleEvent>(loc).unit;
         } else {
             Debug.Assert(false, "No valid directions");
@@ -55,8 +55,8 @@ public class DirectionCursor : MonoBehaviour, InputListener {
 
         SelectionGrid grid = actingUnit.controller.SpawnSelectionGrid();
         TacticsTerrainMesh terrain = actingUnit.controller.map.terrain;
-        grid.ConfigureNewGrid(actingUnit.location, 1, terrain, (Vector2Int loc) => {
-            return (loc.x + loc.y + actingUnit.location.x + actingUnit.location.y) % 2 == 1;
+        grid.ConfigureNewGrid(actingUnit.position, 1, terrain, (Vector2Int loc) => {
+            return (loc.x + loc.y + actingUnit.position.x + actingUnit.position.y) % 2 == 1;
         });
         AttemptSetDirection(allowedDirs[0]);
 
@@ -133,6 +133,6 @@ public class DirectionCursor : MonoBehaviour, InputListener {
     private void SetDirection(OrthoDir dir) {
         currentDir = dir;
         actor.GetComponent<CharaEvent>().facing = dir;
-        GetComponent<MapEvent>().SetLocation(actor.location + dir.XY3D());
+        GetComponent<MapEvent>().SetPosition(actor.position + dir.XY3D());
     }
 }

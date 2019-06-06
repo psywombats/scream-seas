@@ -90,7 +90,7 @@ public class MapManager : MonoBehaviour, MemoryPopulater {
         Destroy(activeMap.gameObject);
         activeMap = map;
         activeMap.OnTeleportTo();
-        avatar.GetComponent<MapEvent>().SetLocation(location);
+        avatar.GetComponent<MapEvent>().SetPosition(location);
     }
 
     private Map InstantiateMap(string mapName) {

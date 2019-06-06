@@ -22,12 +22,11 @@ public class BattleEvent : MonoBehaviour {
         }
     }
 
-    public Vector2Int location { get { return unit.location; } }
+    public Vector2Int position { get { return GetComponent<MapEvent>().position; } }
 
     public void Setup(BattleController controller, BattleUnit unit) {
         this.unit = unit;
         this.controller = controller;
-        SetScreenPositionToMatchTilePosition();
     }
 
     public void PopulateWithUnitData(Unit unitData) {
@@ -36,10 +35,6 @@ public class BattleEvent : MonoBehaviour {
             GetComponent<CharaEvent>().spritesheet = unitData.appearance;
             gameObject.name = unitData.unitName;
         }
-    }
-
-    public void SetScreenPositionToMatchTilePosition() {
-        GetComponent<MapEvent>().SetLocation(unit.location);
     }
 
     public IEnumerator PostActionRoutine() {

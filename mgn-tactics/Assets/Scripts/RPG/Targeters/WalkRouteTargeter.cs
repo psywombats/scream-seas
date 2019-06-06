@@ -7,11 +7,11 @@ public class WalkRouteTargeter : Targeter {
     private Vector2Int targetLocation;
 
     protected override IEnumerator InternalExecuteRoutine(Effector effect, Result<bool> result) {
-        Cursor cursor = controller.SpawnCursor(actor.location);
+        Cursor cursor = controller.SpawnCursor(actor.position);
         SelectionGrid grid = controller.SpawnSelectionGrid();
         int range = (int)actor.Get(StatTag.MOVE);
         Func<Vector2Int, bool> rule = (Vector2Int loc) => {
-            if (loc == actor.location) {
+            if (loc == actor.position) {
                 return false;
             }
             return map.FindPath(mapEvent, loc, range + 1) != null;
@@ -19,7 +19,7 @@ public class WalkRouteTargeter : Targeter {
         Vector2Int origin = new Vector2Int(
             (int)mapEvent.positionPx.x - range,
             (int)mapEvent.positionPx.z - range);
-        grid.ConfigureNewGrid(actor.location, range, map.terrain, rule);
+        grid.ConfigureNewGrid(actor.position, range, map.terrain, rule);
 
         Result<Vector2Int> locResult = new Result<Vector2Int>();
         while (!locResult.finished) {

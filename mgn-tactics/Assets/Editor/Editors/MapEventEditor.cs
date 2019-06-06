@@ -40,7 +40,7 @@ public class MapEventEditor : Editor {
         Vector2Int newPosition = EditorGUILayout.Vector2IntField("Tiles position", mapEvent.position);
         if (newPosition != mapEvent.position) {
             Undo.RecordObject(mapEvent, "Reposition event");
-            mapEvent.SetLocation(newPosition);
+            mapEvent.SetPosition(newPosition);
         }
 
         Vector2Int newSize = EditorGUILayout.Vector2IntField("Size", mapEvent.size);

@@ -69,7 +69,7 @@ public class ObjectLayerEditor : Editor {
         MapEvent2D mapEvent = Instantiate(prefab).GetComponent<MapEvent2D>();
         mapEvent.name = "Event" + Random.Range(1000000, 9999999);
         GameObjectUtility.SetParentAndAlign(mapEvent.gameObject, map.objectLayer.gameObject);
-        mapEvent.SetLocation(lastMouseTiles);
+        mapEvent.SetPosition(lastMouseTiles);
         Selection.activeObject = mapEvent.gameObject;
         Undo.RegisterCreatedObjectUndo(mapEvent, "Create " + mapEvent.name);
     }

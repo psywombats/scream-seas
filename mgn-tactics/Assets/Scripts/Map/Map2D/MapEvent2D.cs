@@ -25,7 +25,7 @@ public class MapEvent2D : MapEvent {
     }
 
     public override void SetTilePositionToMatchScreenPosition() {
-        SetLocation(OwnWorldToTile(transform.localPosition));
+        SetPosition(OwnWorldToTile(transform.localPosition));
         Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
     }
 

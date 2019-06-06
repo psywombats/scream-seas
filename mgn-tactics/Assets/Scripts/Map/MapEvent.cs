@@ -207,7 +207,7 @@ public abstract class MapEvent : MonoBehaviour {
         return loc.x >= pos1.x && loc.x < pos2.x && loc.y >= pos1.y && loc.y < pos2.y;
     }
 
-    public void SetLocation(Vector2Int location) {
+    public void SetPosition(Vector2Int location) {
         position = location;
         SetScreenPositionToMatchTilePosition();
         SetDepth();

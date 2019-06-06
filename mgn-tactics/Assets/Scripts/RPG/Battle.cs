@@ -42,7 +42,7 @@ public class Battle {
     // if we see someone with Malu's unit, we should add the Malu instance, eg
     public BattleUnit AddUnitFromSerializedUnit(Unit unit, Vector2Int startingLocation) { 
         Unit instance = Global.Instance().Party.LookUpUnit(unit.name);
-        BattleUnit battleUnit = new BattleUnit(unit, this, startingLocation);
+        BattleUnit battleUnit = new BattleUnit(unit, this);
 
         AddUnit(battleUnit);
 

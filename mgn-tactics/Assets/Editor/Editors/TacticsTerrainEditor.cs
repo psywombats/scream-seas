@@ -571,7 +571,7 @@ public class TacticsTerrainEditor : Editor {
         Map map = terrain.GetComponent<Map>();
         GameObjectUtility.SetParentAndAlign(mapEvent.gameObject, map.objectLayer.gameObject);
         Undo.RegisterCreatedObjectUndo(mapEvent, "Create " + mapEvent.name);
-        mapEvent.SetLocation(new Vector2Int((int)primarySelection.pos.x, (int)primarySelection.pos.z));
+        mapEvent.SetPosition(new Vector2Int((int)primarySelection.pos.x, (int)primarySelection.pos.z));
         Selection.activeObject = mapEvent.gameObject;
     }
 

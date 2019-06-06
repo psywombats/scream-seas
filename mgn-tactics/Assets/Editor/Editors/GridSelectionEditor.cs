@@ -18,7 +18,7 @@ public class GridSelectionEditor : Editor {
                 Map map = parent.GetComponent<Map>();
                 GameObjectUtility.SetParentAndAlign(mapEvent.gameObject, map.objectLayer.gameObject);
                 Undo.RegisterCreatedObjectUndo(mapEvent, "Create " + mapEvent.name);
-                mapEvent.SetLocation(GridLocationTileCoords(GridSelection.position));
+                mapEvent.SetPosition(GridLocationTileCoords(GridSelection.position));
                 Selection.activeObject = mapEvent.gameObject;
             }
         }
