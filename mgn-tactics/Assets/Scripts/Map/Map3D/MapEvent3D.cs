@@ -69,4 +69,8 @@ public class MapEvent3D : MapEvent {
                 transform.position.z + size.y * OrthoDir.North.Px3DZ() / 2.0f),
             new Vector3((size.x - 0.1f), 0.002f, (size.y - 0.1f)));
     }
+
+    protected override bool UsesSnap() {
+        return false;
+    }
 }

@@ -113,6 +113,8 @@ public abstract class MapEvent : MonoBehaviour {
     // where should is the internal origin of this event?
     public abstract Vector3 GetHandlePosition();
 
+    protected abstract bool UsesSnap();
+
     protected abstract void DrawGizmoSelf();
 
     public void Awake() {
@@ -290,7 +292,7 @@ public abstract class MapEvent : MonoBehaviour {
         if (tilesPerSecond == 0) {
             transform.localPosition = targetPositionPx;
         } else {
-            var tween = transform.DOLocalMove(targetPositionPx, 1.0f / tilesPerSecond, true);
+            var tween = transform.DOLocalMove(targetPositionPx, 1.0f / tilesPerSecond, UsesSnap());
             tween.SetEase(Ease.Linear);
             yield return CoUtils.RunTween(tween);
         }

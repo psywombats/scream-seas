@@ -13,7 +13,7 @@ public class BattleControllerEditor : Editor {
                 controller.StartCoroutine(controller.battle.BattleRoutine(controller));
             }
         } else {
-            GUILayout.Label("Enter play mode to test battle");
+            // TODO serialize contents of map
         }
 
         if (controller.battle != null) {

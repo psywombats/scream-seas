@@ -82,6 +82,10 @@ public class MapEvent2D : MapEvent {
         }
     }
 
+    protected override bool UsesSnap() {
+        return true;
+    }
+
     private float DepthForPositionPx(float y) {
         return (y / (parent.size.y * Map.TileSizePx)) * 0.1f;
     }

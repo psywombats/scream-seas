@@ -15,13 +15,15 @@ public class BattleController : MonoBehaviour {
     // properties required upon initializion
     public Battle battle;
 
-    // all of these behaviors read + managed internally
-    public Map map { get { return GetComponent<Map>(); } }
+    // interally populated
     public Cursor cursor { get; private set; }
     public DirectionCursor dirCursor { get; private set; }
 
     // internal state
     private Dictionary<BattleUnit, BattleEvent> dolls;
+
+    // convenience getters
+    public Map map { get { return GetComponent<Map>(); } }
 
     // === INITIALIZATION ==========================================================================
 
