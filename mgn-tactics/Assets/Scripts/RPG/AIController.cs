@@ -2,12 +2,10 @@
 using System.Collections;
 
 /**
- * A big bad brain that dictates how enemy units take their turns. It's a scriptable object that
- * serializes along with battles, the idea being that "ai easymode" or "ai brutal" can be drag-
- * dropped onto battle instances.
+ * A big bad brain that dictates how enemy units take their turns. At some point it should be set up
+ * to take in a configuration file.
  */
-[CreateAssetMenu(fileName = "AIController", menuName = "Data/RPG/AI")]
-public class AIController : ScriptableObject {
+public class AIController {
 
     private Battle battle;
     private BattleController controller;

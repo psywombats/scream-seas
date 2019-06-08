@@ -5,17 +5,18 @@ using UnityEngine;
 
 /**
  * A battle in progress. Responsible for all battle logic, state, and control flow. The actual
- * battle visual representation is contained in the BattleController. 
+ * battle visual representation is contained in the BattleController, this should just be the logic.
  * 
  * Flow for battles works like this:
- *  - A BattleController exists on a 3d map
- *  - The BattleController holds an instance of this class
- *  - At the start of the battle, we pick up all units with a battle event
+ *  - The scene transitions to the tactics scene
+ *  - The relevant tactics is loaded into the scene
+ *  - A battle controller exists on the loaded map
+ *  - A new battle is created and passed to this controller
+ *  - The controller takes control
  */
- [System.Serializable]
 public class Battle {
 
-    public AIController ai;
+    public AIController ai { get; private set; }
     
     public BattleController controller { get; private set; }
     
@@ -27,6 +28,7 @@ public class Battle {
     public Battle() {
         units = new List<BattleUnit>();
         factions = new Dictionary<Alignment, BattleFaction>();
+        ai = new AIController();
     }
 
     // === BOOKKEEPING AND GETTERS =================================================================

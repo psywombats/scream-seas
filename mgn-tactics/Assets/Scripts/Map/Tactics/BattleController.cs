@@ -5,17 +5,16 @@ using System;
 
 /**
  * Responsible for user input and rendering during a battle. Control flow is actually handled by
- * the Battle class.
+ * the Battle class. This should mostly a collection of ui routines and stuff that the battle needs
+ * to interact with the physical environment.
  */
 [RequireComponent(typeof(Map))]
 public class BattleController : MonoBehaviour {
 
     private const string ListenerId = "BattleControllerListenerId";
 
-    // properties required upon initializion
-    public Battle battle;
-
     // interally populated
+    public Battle battle { get; private set; }
     public Cursor cursor { get; private set; }
     public DirectionCursor dirCursor { get; private set; }
 
@@ -28,6 +27,10 @@ public class BattleController : MonoBehaviour {
     // === INITIALIZATION ==========================================================================
 
     public void Start() {
+        // TODO: create this upon scene loading
+        battle = new Battle();
+        dolls = new Dictionary<BattleUnit, BattleEvent>();
+
         AddUnitsFromMap();
 
         cursor = Cursor.GetInstance();
@@ -40,7 +43,6 @@ public class BattleController : MonoBehaviour {
     }
 
     private void AddUnitsFromMap() {
-        dolls = new Dictionary<BattleUnit, BattleEvent>();
         foreach (BattleEvent battler in map.GetEvents<BattleEvent>()) {
             BattleUnit unit = battle.AddUnitFromSerializedUnit(battler.unitData, 
                 battler.GetComponent<MapEvent>().position);
