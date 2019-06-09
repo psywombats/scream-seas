@@ -81,8 +81,8 @@ public class BattleController : MonoBehaviour {
 
     // === STATE MACHINE ===========================================================================
 
-    public IEnumerator SelectTurnAction(Result<InitialTurnActionType> result, BattleUnit player) {
-        yield return null;
+    public IEnumerator SelectMainAction(Result<MainActionType> result, BattleUnit player) {
+        yield return ui.mainActionSelector.SelectMainActionRoutine(result);
     }
     
     // cancelable, awaits user selecting a unit that matches the rule

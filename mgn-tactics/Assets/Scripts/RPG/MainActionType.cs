@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum InitialTurnActionType {
+public enum MainActionType {
     Move,
     Act,
     Wait,

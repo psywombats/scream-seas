@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class ListSelector : MonoBehaviour {
 
-    private float HideShowDuration = 0.6f;
+    private float HideShowDuration = 10.6f;
 
     public GameObject childAttachPoint;
 
@@ -20,7 +21,7 @@ public class ListSelector : MonoBehaviour {
         foreach (T element in elements) {
             ListCell cell = cellConstructor(element);
             cell.SetSelected(false);
-            cell.transform.parent = childAttachPoint.transform;
+            cell.transform.SetParent(childAttachPoint.transform);
             allCells.Add(cell);
         }
         return allCells;
@@ -63,7 +64,7 @@ public class ListSelector : MonoBehaviour {
                     selection = MoveSelection(selection, -1);
                     break;
                 case InputManager.Command.Down:
-                    selection = MoveSelection(selection, -1);
+                    selection = MoveSelection(selection, 1);
                     break;
             }
             return true;
@@ -75,18 +76,21 @@ public class ListSelector : MonoBehaviour {
     }
 
     public IEnumerator ShowHideRoutine(bool hide = false) {
+        GetComponent<ContentSizeFitter>().enabled = false;
         CanvasGroup group = childAttachPoint.GetComponent<CanvasGroup>();
+
+        RectTransform rect = GetComponent<RectTransform>();
+        float endHeight = hide ? 0.0f : rect.sizeDelta.y;
+        Vector2 endSize = new Vector2(rect.sizeDelta.x, endHeight);
+        var expandTween = rect.DOSizeDelta(endSize, HideShowDuration / 2.0f);
+        var fadeTween = group.DOFade(hide ? 0.0f : 1.0f, HideShowDuration / 2.0f);
+        fadeTween.SetEase(Ease.Linear);
+
         if (!hide) {
-            transform.localScale = new Vector3(1.0f, 0.0f);
+            rect.sizeDelta = new Vector2(rect.sizeDelta.x, 0.0f);
             group.alpha = 0.0f;
         }
 
-        float endHeight = hide ? 0.0f : GetComponent<RectTransform>().sizeDelta.y;
-        Vector2 endSize = new Vector2(GetComponent<RectTransform>().sizeDelta.x, endHeight);
-        var expandTween = GetComponent<RectTransform>().DOSizeDelta(endSize, HideShowDuration / 2.0f);
-        var fadeTween = group.DOFade(hide ? 0.0f : 1.0f, HideShowDuration / 2.0f);
-        fadeTween.SetEase(Ease.Linear);
-      
         if (hide) {
             yield return CoUtils.RunTween(fadeTween);
             yield return CoUtils.RunTween(expandTween);
@@ -94,17 +98,21 @@ public class ListSelector : MonoBehaviour {
             yield return CoUtils.RunTween(expandTween);
             yield return CoUtils.RunTween(fadeTween);
         }
+
+        GetComponent<ContentSizeFitter>().enabled = true;
     }
 
     private void DestroyAllChildren() {
         foreach (Transform child in childAttachPoint.transform) {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
     }
 
     private int MoveSelection(int selection, int delta) {
         GetCell(selection).SetSelected(false);
-        int newSelection = (selection + delta) % childAttachPoint.transform.childCount;
+        int newSelection = selection + delta;
+        if (newSelection < 0) newSelection = childAttachPoint.transform.childCount - 1;
+        if (newSelection >= childAttachPoint.transform.childCount) newSelection = 0;
         GetCell(newSelection).SetSelected(true);
         return newSelection;
     }

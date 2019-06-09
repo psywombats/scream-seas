@@ -128,7 +128,8 @@ public class Battle {
         if (actor.align == Alignment.Enemy) {
             yield return ai.PlayNextEnemyAction(actor);
         } else {
-            
+            Result<MainActionType> mainResult = new Result<MainActionType>();
+            yield return controller.SelectMainAction(mainResult, actor);
         }
 
         yield return null;
