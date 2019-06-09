@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * Sprite representations of BattleUnits that exist on the field.
+ * Sprite representations of Units that exist on the field. This class should be as dumb as
+ * possible and just respond to animation and movement requests.
  */
 [RequireComponent(typeof(CharaEvent))]
 [DisallowMultipleComponent]
@@ -37,21 +38,13 @@ public class BattleEvent : MonoBehaviour {
         }
     }
 
-    public IEnumerator PostActionRoutine() {
-        yield return GetComponent<CharaEvent>().DesaturateRoutine(1.0f);
-    }
-
-    public IEnumerator PostTurnRoutine() {
-        yield return GetComponent<CharaEvent>().DesaturateRoutine(0.0f);
-    }
-
     public bool CanCrossTileGradient(Vector2Int from, Vector2Int to) {
         float fromHeight = terrain.HeightAt(from);
         float toHeight = GetComponent<MapEvent>().parent.terrain.HeightAt(to);
         if (fromHeight < toHeight) {
-            return toHeight - fromHeight <= unit.GetMaxAscent();
+            return toHeight - fromHeight <= unit.unit.GetMaxAscent();
         } else {
-            return fromHeight - toHeight <= unit.GetMaxDescent();
+            return fromHeight - toHeight <= unit.unit.GetMaxDescent();
         }
     }
 }

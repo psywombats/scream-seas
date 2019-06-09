@@ -21,14 +21,12 @@ public class Battle {
     public BattleController controller { get; private set; }
     
     private List<BattleUnit> units;
-    private Dictionary<Alignment, BattleFaction> factions;
 
     // === INITIALIZATION ==========================================================================
 
     public Battle() {
         units = new List<BattleUnit>();
-        factions = new Dictionary<Alignment, BattleFaction>();
-        ai = new AIController();
+        ai = new AIController(this);
     }
 
     // === BOOKKEEPING AND GETTERS =================================================================
@@ -44,23 +42,10 @@ public class Battle {
     // if we see someone with Malu's unit, we should add the Malu instance, eg
     public BattleUnit AddUnitFromSerializedUnit(Unit unit, Vector2Int startingLocation) { 
         Unit instance = Global.Instance().Party.LookUpUnit(unit.name);
-        BattleUnit battleUnit = new BattleUnit(unit, this);
-
+        BattleUnit battleUnit = new BattleUnit(instance, this);
         AddUnit(battleUnit);
 
-        if (!factions.ContainsKey(battleUnit.align)) {
-            factions[battleUnit.align] = new BattleFaction(this, battleUnit.align);
-        }
-
         return battleUnit;
-    }
-
-    public List<BattleFaction> GetFactions() {
-        return new List<BattleFaction>(factions.Values);
-    }
-
-    public BattleFaction GetFaction(Alignment align) {
-        return factions[align];
     }
 
     private void AddUnit(BattleUnit unit) {
@@ -72,87 +57,46 @@ public class Battle {
     // runs and executes this battle
     public IEnumerator BattleRoutine(BattleController controller) {
         this.controller = controller;
-        ai.ConfigureForBattle(this);
         while (true) {
-            yield return NextRoundRoutine();
+            yield return NextActionRoutine();
             if (CheckGameOver() != Alignment.None) {
                 yield break;
             }
         }
     }
-    
-    // coroutine to play out a single round of combat
-    private IEnumerator NextRoundRoutine() {
-        yield return PlayTurnRoutine(Alignment.Hero);
-        if (CheckGameOver() != Alignment.None) {
-            yield break;
-        }
-        yield return PlayTurnRoutine(Alignment.Enemy);
-        if (CheckGameOver() != Alignment.None) {
-            yield break;
-        }
-    }
 
     // returns which alignment won the game, or Alignment.None if no one did
     private Alignment CheckGameOver() {
-        foreach (BattleFaction faction in factions.Values) {
-            if (faction.HasWon()) {
-                return faction.align;
-            } else if (faction.align == Alignment.Hero && faction.HasLost()) {
-                return Alignment.Enemy;
-            } else if (faction.align == Alignment.Enemy && faction.HasLost()) {
-                return Alignment.Hero;
+        bool enemySeen = false;
+        bool playerSeen = false;
+        foreach (BattleUnit unit in units) {
+            if (unit.IsDead()) {
+                continue;
+            }
+            switch (unit.align) {
+                case Alignment.Enemy:
+                    enemySeen = true;
+                    break;
+                case Alignment.Hero:
+                    playerSeen = true;
+                    break;
             }
         }
-        return Alignment.None;
-    }
-
-    // responsible for changing ui state to this unit's turn, then 
-    private IEnumerator PlayTurnRoutine(Alignment align) {
-        if (!factions.ContainsKey(align)) {
-            yield break;
-        }
-        yield return factions[align].OnNewTurnRoutine();
-        yield return controller.TurnBeginAnimationRoutine(align);
-        while (factions[align].HasUnitsLeftToAct()) {
-            yield return PlayNextActionRoutine(align);
-        }
-        yield return controller.TurnEndAnimationRoutine(align);
-    }
-
-    private IEnumerator PlayNextActionRoutine(Alignment align) {
-        switch (align) {
-            case Alignment.Hero:
-                yield return PlayNextHumanActionRoutine();
-                break;
-            case Alignment.Enemy:
-                yield return ai.PlayNextAIActionRoutine();
-                yield break;
-            default:
-                Debug.Assert(false, "bad align " + align);
-                yield break;
+        if (!enemySeen) {
+            return Alignment.Hero;
+        } else if (!playerSeen) {
+            return Alignment.Enemy;
+        } else {
+            return Alignment.None;
         }
     }
 
-    private IEnumerator PlayNextHumanActionRoutine() {
-        controller.MoveCursorToDefaultUnit();
-
-        Result<BattleUnit> unitResult = new Result<BattleUnit>();
-        yield return controller.SelectUnitRoutine(unitResult, (BattleUnit unit) => {
-            return unit.align == Alignment.Hero && !unit.hasActedThisTurn;
-        }, false);
-        BattleUnit actingUnit = unitResult.value;
-
-        Result<Effector> effectResult = new Result<Effector>();
-        yield return actingUnit.PlayNextActionRoutine(effectResult);
-        if (effectResult.canceled) {
-            yield return PlayNextHumanActionRoutine();
-        }
-
+    private IEnumerator NextActionRoutine() {
+        yield return null;
 
         //// TODO: remove this nonsense
-        //Result<BattleUnit> targetedResult = new Result<BattleUnit>();
-        //yield return controller.SelectAdjacentUnitRoutine(targetedResult, actingUnit, (BattleUnit unit) => {
+        //Result<Unit> targetedResult = new Result<Unit>();
+        //yield return controller.SelectAdjacentUnitRoutine(targetedResult, actingUnit, (Unit unit) => {
         //    return unit.align == Alignment.Enemy;
         //});
         //if (targetedResult.canceled) {
@@ -160,7 +104,7 @@ public class Battle {
         //    yield return PlayNextHumanActionRoutine();
         //    yield break;
         //}
-        //BattleUnit targetUnit = targetedResult.value;
+        //Unit targetUnit = targetedResult.value;
         //targetUnit.doll.GetComponent<CharaEvent>().FaceToward(actingUnit.doll.GetComponent<MapEvent>());
 
         //yield return Global.Instance().Maps.activeDuelMap.EnterMapRoutine(actingUnit.doll, targetUnit.doll);

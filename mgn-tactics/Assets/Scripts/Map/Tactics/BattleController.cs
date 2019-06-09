@@ -67,18 +67,6 @@ public class BattleController : MonoBehaviour {
     }
 
     // === STATE MACHINE ===========================================================================
-
-    public IEnumerator TurnBeginAnimationRoutine(Alignment align) {
-        yield break;
-    }
-
-    public IEnumerator TurnEndAnimationRoutine(Alignment align) {
-        List<IEnumerator> routinesToRun = new List<IEnumerator>();
-        foreach (BattleUnit unit in battle.UnitsByAlignment(align)) {
-            routinesToRun.Add(unit.battler.PostTurnRoutine());
-        }
-        yield return CoUtils.RunParallel(routinesToRun.ToArray(), this);
-    }
     
     // cancelable, awaits user selecting a unit that matches the rule
     public IEnumerator SelectUnitRoutine(Result<BattleUnit> result, 
@@ -128,10 +116,5 @@ public class BattleController : MonoBehaviour {
         SelectionGrid grid = SelectionGrid.GetInstance();
         grid.gameObject.transform.SetParent(GetComponent<Map>().transform);
         return grid;
-    }
-
-    public void MoveCursorToDefaultUnit() {
-        BattleUnit defaultHero = battle.GetFaction(Alignment.Hero).NextMoveableUnit();
-        cursor.GetComponent<MapEvent>().SetPosition(defaultHero.position);
     }
 }
