@@ -13,4 +13,9 @@ public class AIController {
     public AIController(Battle battle) {
         this.battle = battle;
     }
+
+    public IEnumerator PlayNextEnemyAction(BattleUnit unit) {
+        unit.AddTurnDelay(10);
+        yield return CoUtils.Wait(1.0f);
+    }
 }

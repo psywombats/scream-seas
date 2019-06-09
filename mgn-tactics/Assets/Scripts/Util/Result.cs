@@ -35,4 +35,12 @@ public class Result<T> {
         canceled = false;
         _value = default(T);
     }
+
+    public void CopyResult(Result<T> other) {
+        if (other.canceled) {
+            canceled = true;
+        } else {
+            value = other.value;
+        }
+    }
 }

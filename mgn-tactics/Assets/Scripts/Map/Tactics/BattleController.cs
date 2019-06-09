@@ -17,12 +17,14 @@ public class BattleController : MonoBehaviour {
     public Battle battle { get; private set; }
     public Cursor cursor { get; private set; }
     public DirectionCursor dirCursor { get; private set; }
+    public BattleUI ui { get; private set; }
 
     // internal state
     private Dictionary<BattleUnit, BattleEvent> dolls;
 
     // convenience getters
     public Map map { get { return GetComponent<Map>(); } }
+    public TacticsCam cam { get { return TacticsCam.Instance(); } }
 
     // === INITIALIZATION ==========================================================================
 
@@ -40,6 +42,11 @@ public class BattleController : MonoBehaviour {
         dirCursor = DirectionCursor.GetInstance();
         dirCursor.gameObject.transform.SetParent(GetComponent<Map>().objectLayer.transform);
         dirCursor.gameObject.SetActive(false);
+
+        ui = FindObjectOfType<BattleUI>();
+        if (ui == null) {
+            ui = BattleUI.Spawn();
+        }
     }
 
     private void AddUnitsFromMap() {
@@ -66,7 +73,17 @@ public class BattleController : MonoBehaviour {
         return null;
     }
 
+    // === ANIMATION ROUTINES ======================================================================
+
+    public IEnumerator OnUnitTurnRoutine(BattleUnit unit) {
+        yield return cam.CenterCameraRoutine(unit.position, map.terrain.HeightAt(unit.position));
+    }
+
     // === STATE MACHINE ===========================================================================
+
+    public IEnumerator SelectTurnAction(Result<InitialTurnActionType> result, BattleUnit player) {
+        yield return null;
+    }
     
     // cancelable, awaits user selecting a unit that matches the rule
     public IEnumerator SelectUnitRoutine(Result<BattleUnit> result, 
@@ -109,7 +126,7 @@ public class BattleController : MonoBehaviour {
     }
 
     public void TargetCameraToLocation(Vector2Int loc) {
-        TacticsCam.Instance().SetTargetLocation(loc, map.terrain.HeightAt(loc));
+        cam.SetTargetLocation(loc, map.terrain.HeightAt(loc));
     }
 
     public SelectionGrid SpawnSelectionGrid() {

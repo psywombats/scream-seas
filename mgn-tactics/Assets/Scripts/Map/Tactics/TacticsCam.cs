@@ -49,9 +49,6 @@ public class TacticsCam : MapCamera {
         targetDollyPosition = transform.localPosition;
         CopyTargetPosition();
         WarpToTarget();
-        //if (Application.isPlaying) {
-        //    Global.Instance().Maps.SetCamera(this);
-        //}
     }
 
     public void Update() {
@@ -100,6 +97,15 @@ public class TacticsCam : MapCamera {
         targetAngles = standardAngles;
         CopyTargetPosition();
         WarpToTarget();
+    }
+
+    // TODO: make this not suck, convert entire class to tweens?
+    public IEnumerator CenterCameraRoutine(Vector2Int targetLocation, float height) {
+        SetTargetLocation(targetLocation, height);
+        while (transform.localPosition != targetDollyPosition) {
+            yield return null;
+        }
+        yield return CoUtils.Wait(0.5f);
     }
 
     public IEnumerator SwitchToDuelCamRoutine(MapEvent3D target1, MapEvent3D target2) {

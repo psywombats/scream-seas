@@ -7,12 +7,16 @@ using UnityEngine;
  */
 public class BattleUnit {
 
+    // convenience functions
     public Unit unit { get; private set; }
     public Battle battle { get; private set; }
     public BattleController controller { get { return battle.controller; } }
     public Alignment align { get { return unit.align; } }
     public BattleEvent battler { get {  return battle.controller.GetDollForUnit(this); } }
     public Vector2Int position {  get { return battler.GetComponent<MapEvent>().position; } }
+
+    // owned information
+    public int nextTurnAt { get; private set; }
 
     // === INITIALIZATION ==========================================================================
 
@@ -24,7 +28,7 @@ public class BattleUnit {
         this.battle = battle;
     }
 
-    // === RPG =====================================================================================
+    // === RPG GETTERS =============================================================================
 
     public float Get(StatTag tag) {
         return unit.stats.Get(tag);
@@ -37,5 +41,12 @@ public class BattleUnit {
     // checks for deadness and dead-like conditions like petrification
     public bool IsDead() {
         return unit.IsDead();
+    }
+
+    // === RPG SETTERS =============================================================================
+
+    // after spending energy on a turn, mark that here
+    public void AddTurnDelay(int timeUnits) {
+        nextTurnAt = battle.NextFreeDelay(nextTurnAt + timeUnits);
     }
 }

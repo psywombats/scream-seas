@@ -36,13 +36,18 @@ public class Battle {
     }
 
     public IEnumerable<BattleUnit> UnitsByAlignment(Alignment align) {
-        return units.Where(unit => (unit.align == align));
+        return units.Where(unit => unit.align == align);
+    }
+
+    public IEnumerable<BattleUnit> LivingUnits() {
+        return units.Where(unit => !unit.IsDead());
     }
 
     // if we see someone with Malu's unit, we should add the Malu instance, eg
     public BattleUnit AddUnitFromSerializedUnit(Unit unit, Vector2Int startingLocation) { 
         Unit instance = Global.Instance().Party.LookUpUnit(unit.name);
         BattleUnit battleUnit = new BattleUnit(instance, this);
+        battleUnit.AddTurnDelay(0);
         AddUnit(battleUnit);
 
         return battleUnit;
@@ -52,18 +57,7 @@ public class Battle {
         units.Add(unit);
     }
 
-    // === STATE MACHINE ===========================================================================
-
-    // runs and executes this battle
-    public IEnumerator BattleRoutine(BattleController controller) {
-        this.controller = controller;
-        while (true) {
-            yield return NextActionRoutine();
-            if (CheckGameOver() != Alignment.None) {
-                yield break;
-            }
-        }
-    }
+    // === TURN LOGIC ==============================================================================
 
     // returns which alignment won the game, or Alignment.None if no one did
     private Alignment CheckGameOver() {
@@ -91,7 +85,52 @@ public class Battle {
         }
     }
 
+    // units aren't allowed to have overlapping NextTurnAt, so when setting a new one, always use
+    // this function to resolve conflicts
+    public int NextFreeDelay(int requestedPosition) {
+        foreach (BattleUnit unit in units) {
+            if (unit.nextTurnAt == requestedPosition) {
+                return NextFreeDelay(requestedPosition + 1);
+            }
+        }
+        return requestedPosition;
+    }
+
+    public BattleUnit GetNextActor() {
+        int minTurn = 0;
+        BattleUnit nextUnit = null;
+        foreach (BattleUnit unit in LivingUnits()) {
+            if (minTurn == 0 || unit.nextTurnAt < minTurn) {
+                minTurn = unit.nextTurnAt;
+                nextUnit = unit;
+            }
+        }
+        return nextUnit;
+    }
+
+    // === STATE MACHINE ===========================================================================
+
+    // runs and executes this battle
+    public IEnumerator BattleRoutine(BattleController controller) {
+        this.controller = controller;
+        while (true) {
+            yield return NextActionRoutine();
+            if (CheckGameOver() != Alignment.None) {
+                yield break;
+            }
+        }
+    }
+
     private IEnumerator NextActionRoutine() {
+        BattleUnit actor = GetNextActor();
+        yield return controller.OnUnitTurnRoutine(actor);
+
+        if (actor.align == Alignment.Enemy) {
+            yield return ai.PlayNextEnemyAction(actor);
+        } else {
+            
+        }
+
         yield return null;
 
         //// TODO: remove this nonsense
