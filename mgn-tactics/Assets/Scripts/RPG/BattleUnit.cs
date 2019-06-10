@@ -17,6 +17,10 @@ public class BattleUnit {
 
     // owned information
     public int nextTurnAt { get; private set; }
+    public int stepsMovedThisTurn { get; set; }
+    public bool hasActedThisTurn { get; set; }
+    public Vector2Int posAtStartThisTurn { get; set; }
+    public bool waitingThisTurn { get; set; }
 
     // === INITIALIZATION ==========================================================================
 
@@ -28,7 +32,7 @@ public class BattleUnit {
         this.battle = battle;
     }
 
-    // === RPG GETTERS =============================================================================
+    // === RPG ACCESSORS ===========================================================================
 
     public float Get(StatTag tag) {
         return unit.stats.Get(tag);
@@ -43,10 +47,22 @@ public class BattleUnit {
         return unit.IsDead();
     }
 
-    // === RPG SETTERS =============================================================================
-
     // after spending energy on a turn, mark that here
     public void AddTurnDelay(int timeUnits) {
         nextTurnAt = battle.NextFreeDelay(nextTurnAt + timeUnits);
+    }
+
+    // === PER TURN LOGIC ==========================================================================
+
+    public bool CanMoveMoreThisTurn() {
+        return stepsMovedThisTurn == 0;
+    }
+
+    public bool CanActThisTurn() {
+        return !hasActedThisTurn;
+    }
+
+    public bool CanDoAnythingThisTurn() {
+        return !waitingThisTurn && (CanActThisTurn() || CanMoveMoreThisTurn());
     }
 }

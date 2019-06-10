@@ -80,10 +80,6 @@ public class BattleController : MonoBehaviour {
     }
 
     // === STATE MACHINE ===========================================================================
-
-    public IEnumerator SelectMainAction(Result<MainActionType> result, BattleUnit player) {
-        yield return ui.mainActionSelector.SelectMainActionRoutine(result);
-    }
     
     // cancelable, awaits user selecting a unit that matches the rule
     public IEnumerator SelectUnitRoutine(Result<BattleUnit> result, 
@@ -92,7 +88,7 @@ public class BattleController : MonoBehaviour {
         cursor.gameObject.SetActive(true);
         while (!result.finished) {
             Result<Vector2Int> locResult = new Result<Vector2Int>();
-            yield return cursor.AwaitSelectionRoutine(locResult);
+            yield return cursor.AwaitSelectionRoutine(locResult, GenericScanner);
             if (locResult.canceled && allowCancel) {
                 result.Cancel();
                 break;
@@ -111,6 +107,20 @@ public class BattleController : MonoBehaviour {
                 Func<BattleUnit, bool> rule,
                 bool canCancel = true) {
         yield return dirCursor.SelectAdjacentUnitRoutine(result, actingUnit, rule, canCancel);
+    }
+
+    public IEnumerator ViewMapRoutine(BattleUnit currentActor) {
+        cursor.GetComponent<MapEvent>().SetPosition(currentActor.position);
+        cursor.gameObject.SetActive(true);
+        Result<Vector2Int> unitResult = new Result<Vector2Int>();
+        while (!unitResult.canceled) {
+            yield return cursor.AwaitSelectionRoutine(unitResult, GenericScanner);
+            if (!unitResult.canceled) {
+                // TODO: display UI for this location
+                unitResult.Reset();
+            }
+        }
+        cursor.gameObject.SetActive(false);
     }
 
     // === GAMEBOARD AND GRAPHICAL INTERACTION =====================================================
@@ -133,5 +143,12 @@ public class BattleController : MonoBehaviour {
         SelectionGrid grid = SelectionGrid.GetInstance();
         grid.gameObject.transform.SetParent(GetComponent<Map>().transform);
         return grid;
+    }
+
+    // === SCANNERS ================================================================================
+
+    private IEnumerator GenericScanner(Vector2Int position) {
+        Debug.Log("scanning at " + position + "...");
+        return null;
     }
 }

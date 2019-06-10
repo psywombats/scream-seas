@@ -10,14 +10,18 @@ public class MainActionSelector : MonoBehaviour {
 
     public ListStringCell cellPrefab;
 
-    public IEnumerator SelectMainActionRoutine(Result<MainActionType> result) {
-        var a = Enum.GetValues(typeof(MainActionType));
-        yield return selector.SelectRoutine(result, new List<MainActionType>((MainActionType[])a), CellConstructor);
+    private List<MainActionType> allowedActions;
+
+    public IEnumerator SelectMainActionRoutine(Result<MainActionType> result, List<MainActionType> allowedActions) {
+        this.allowedActions = allowedActions;
+        var a = (MainActionType[])Enum.GetValues(typeof(MainActionType));
+        yield return selector.SelectRoutine(result, new List<MainActionType>(a), CellConstructor);
     } 
 
     private ListCell CellConstructor(MainActionType type) {
         ListStringCell cell = Instantiate(cellPrefab.gameObject).GetComponent<ListStringCell>();
         cell.Populate(type.ToString());
+        cell.SetSelectable(allowedActions.Contains(type));
         return cell;
     }
 }

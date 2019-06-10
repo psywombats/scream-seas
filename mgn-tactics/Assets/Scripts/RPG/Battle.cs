@@ -126,10 +126,9 @@ public class Battle {
         yield return controller.OnUnitTurnRoutine(actor);
 
         if (actor.align == Alignment.Enemy) {
-            yield return ai.PlayNextEnemyAction(actor);
+            yield return ai.PlayNextEnemyTurn(actor);
         } else {
-            Result<MainActionType> mainResult = new Result<MainActionType>();
-            yield return controller.SelectMainAction(mainResult, actor);
+            yield return PlayNextPlayerTurn(actor);
         }
 
         yield return null;
@@ -150,5 +149,60 @@ public class Battle {
         //yield return Global.Instance().Maps.activeDuelMap.EnterMapRoutine(actingUnit.doll, targetUnit.doll);
         //yield return Global.Instance().Maps.activeDuelMap.ExitMapRoutine();
 
+    }
+
+    private IEnumerator PlayNextPlayerTurn(BattleUnit actor) {
+        actor.posAtStartThisTurn = actor.position;
+        actor.stepsMovedThisTurn = 0;
+        actor.waitingThisTurn = false;
+        while (actor.CanDoAnythingThisTurn()) {
+            controller.TargetCameraToLocation(actor.position);
+            List<MainActionType> allowedActions = new List<MainActionType> { MainActionType.Wait };
+            if (actor.CanActThisTurn()) allowedActions.Add(MainActionType.Act);
+            if (actor.CanMoveMoreThisTurn()) allowedActions.Add(MainActionType.Move);
+            Result<MainActionType> mainResult = new Result<MainActionType>();
+            yield return controller.ui.mainActionSelector.SelectMainActionRoutine(mainResult, allowedActions);
+
+            if (mainResult.canceled) {
+                if (actor.posAtStartThisTurn == actor.position) {
+                    yield return controller.ViewMapRoutine(actor);
+                } else {
+                    actor.battler.GetComponent<MapEvent>().SetPosition(actor.posAtStartThisTurn);
+                    actor.stepsMovedThisTurn = 0;
+                }
+            } else {
+                switch (mainResult.value) {
+                    case MainActionType.Act:
+                        yield return PlayAction(actor);
+                        break;
+                    case MainActionType.Move:
+                        yield return PlayMove(actor);
+                        break;
+                    case MainActionType.Wait:
+                        yield return PlayWait(actor);
+                        break;
+                }
+            }
+        }
+        yield return PlayWait(actor, false);
+    }
+
+    private IEnumerator PlayAction(BattleUnit actor) {
+        yield return null;
+    }
+
+    private IEnumerator PlayMove(BattleUnit actor) {
+        Skill walkSkill = new Skill(new WalkRouteTargeter(), new WalkEffect());
+        Result<Effector> effect = new Result<Effector>();
+        yield return walkSkill.PlaySkillRoutine(actor, effect);
+        if (!effect.canceled) {
+            actor.stepsMovedThisTurn = Map.ManhattanDistance(actor.posAtStartThisTurn, actor.position);
+        }
+    }
+
+    private IEnumerator PlayWait(BattleUnit actor, bool cancelable = true) {
+        actor.AddTurnDelay(100);
+        actor.waitingThisTurn = true;
+        yield return null;
     }
 }

@@ -14,8 +14,8 @@ public class AIController {
         this.battle = battle;
     }
 
-    public IEnumerator PlayNextEnemyAction(BattleUnit unit) {
-        unit.AddTurnDelay(10);
+    public IEnumerator PlayNextEnemyTurn(BattleUnit unit) {
+        unit.AddTurnDelay(100);
         yield return CoUtils.Wait(1.0f);
     }
 }

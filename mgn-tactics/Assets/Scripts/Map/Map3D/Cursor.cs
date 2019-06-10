@@ -12,6 +12,7 @@ public class Cursor : MonoBehaviour, InputListener {
     
     private float lastStepTime;
     private Result<Vector2Int> awaitingSelect;
+    private Func<Vector2Int, IEnumerator> scanRoutine;
 
     public static Cursor GetInstance() {
         GameObject prefab = Resources.Load<GameObject>(InstancePath);
@@ -32,7 +33,10 @@ public class Cursor : MonoBehaviour, InputListener {
     }
 
     // waits for the cursor to select
-    public IEnumerator AwaitSelectionRoutine(Result<Vector2Int> result) {
+    public IEnumerator AwaitSelectionRoutine(Result<Vector2Int> result, Func<Vector2Int, IEnumerator> scanRoutine = null) {
+        this.scanRoutine = scanRoutine;
+        ScanIfNeeded();
+
         awaitingSelect = result;
         while (!result.finished) {
             yield return null;
@@ -90,8 +94,25 @@ public class Cursor : MonoBehaviour, InputListener {
         if (GetComponent<MapEvent>().CanPassAt(target)) {
             StartCoroutine(GetComponent<MapEvent>().StepRoutine(dir));
             lastStepTime = Time.fixedTime;
+            ScanIfNeeded();
         }
 
         return true;
+    }
+
+    private void ScanIfNeeded() {
+        if (scanRoutine == null) {
+            return;
+        }
+        IEnumerator scannerInstance = scanRoutine(GetComponent<MapEvent>().position);
+        if (scannerInstance != null) {
+            StartCoroutine(InterruptedScanRoutine(scannerInstance));
+        }
+    }
+
+    private IEnumerator InterruptedScanRoutine(IEnumerator scannerInstance) {
+        Global.Instance().Input.DisableListener(this);
+        yield return scannerInstance;
+        Global.Instance().Input.EnableListener(this);
     }
 }

@@ -9,7 +9,7 @@ public class WalkRouteTargeter : Targeter {
     protected override IEnumerator InternalExecuteRoutine(Effector effect, Result<bool> result) {
         Cursor cursor = controller.SpawnCursor(actor.position);
         SelectionGrid grid = controller.SpawnSelectionGrid();
-        int range = (int)actor.Get(StatTag.MOVE);
+        int range = (int)actor.Get(StatTag.MOVE) - actor.stepsMovedThisTurn;
         Func<Vector2Int, bool> rule = (Vector2Int loc) => {
             if (loc == actor.position) {
                 return false;

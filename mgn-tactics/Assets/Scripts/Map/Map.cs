@@ -213,7 +213,7 @@ public class Map : MonoBehaviour {
         return null;
     }
 
-    private static int ManhattanDistance(Vector2Int a, Vector2Int b) {
+    public static int ManhattanDistance(Vector2Int a, Vector2Int b) {
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 }

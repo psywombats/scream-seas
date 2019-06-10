@@ -10,6 +10,11 @@ public class Skill : ScriptableObject {
     public Targeter targeter;
     public Effector effect;
 
+    public Skill(Targeter targeter, Effector effect) {
+        this.targeter = targeter;
+        this.effect = effect;
+    }
+
     public IEnumerator PlaySkillRoutine(BattleUnit actor, Result<Effector> effectResult) {
         Targeter targeter = Instantiate(this.targeter);
         Effector effect = Instantiate(this.effect);

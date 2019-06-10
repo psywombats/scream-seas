@@ -9,4 +9,10 @@ public class ListStringCell : ListCell {
     public void Populate(string optionName) {
         text.text = optionName;
     }
+
+    public override void SetSelectable(bool selectable) {
+        base.SetSelectable(selectable);
+        Color c = text.color;
+        text.color = new Color(c.r, c.g, c.b, selectable ? 1.0f : 0.5f);
+    }
 }

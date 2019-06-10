@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ListSelector : MonoBehaviour {
 
-    private float HideShowDuration = 10.6f;
+    private float HideShowDuration = 0.4f;
 
     public GameObject childAttachPoint;
 
@@ -80,7 +80,7 @@ public class ListSelector : MonoBehaviour {
         CanvasGroup group = childAttachPoint.GetComponent<CanvasGroup>();
 
         RectTransform rect = GetComponent<RectTransform>();
-        float endHeight = hide ? 0.0f : rect.sizeDelta.y;
+        float endHeight = hide ? 0.0f : LayoutUtility.GetPreferredHeight(rect);
         Vector2 endSize = new Vector2(rect.sizeDelta.x, endHeight);
         var expandTween = rect.DOSizeDelta(endSize, HideShowDuration / 2.0f);
         var fadeTween = group.DOFade(hide ? 0.0f : 1.0f, HideShowDuration / 2.0f);
