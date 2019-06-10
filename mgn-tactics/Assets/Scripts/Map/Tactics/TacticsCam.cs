@@ -98,11 +98,10 @@ public class TacticsCam : MapCamera {
         CopyTargetPosition();
         WarpToTarget();
     }
-
-    // TODO: make this not suck, convert entire class to tweens?
+    
     public IEnumerator CenterCameraRoutine(Vector2Int targetLocation, float height) {
         SetTargetLocation(targetLocation, height);
-        while (transform.localPosition != targetDollyPosition) {
+        while (Vector3.Distance(transform.localPosition, targetDollyPosition) > 0.2f) {
             yield return null;
         }
         yield return CoUtils.Wait(0.5f);

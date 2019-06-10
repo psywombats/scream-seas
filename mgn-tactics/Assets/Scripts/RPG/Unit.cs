@@ -12,6 +12,7 @@ public class Unit : ScriptableObject {
     public bool unique = true;
     public Alignment align;
 
+    public Skill walkSkill;
     public List<Skill> knownSkills;
 
     // tempish

@@ -18,7 +18,14 @@ public class StatSet : ISerializationCallbackReceiver {
     }
 
     private StatSet(StatDictionary stats) {
-        this.stats = stats.ToDictionary();
+        Dictionary<string, float> statStrings = stats.ToDictionary();
+        this.stats = new Dictionary<StatTag, float>();
+        foreach (var stat in statStrings) {
+            StatTag result;
+            if (Enum.TryParse(stat.Key, true, out result)) {
+                this.stats[result] = stat.Value;
+            }
+        }
     }
 
     private void InitNewSet() {
@@ -29,7 +36,7 @@ public class StatSet : ISerializationCallbackReceiver {
                 if (stat == null) {
                     continue;
                 }
-                stats[tag] = stat.combinator.Zero();
+                stats[tag] = stat.combinator.Identity();
             }
         }
     }
@@ -80,7 +87,11 @@ public class StatSet : ISerializationCallbackReceiver {
     // === SERIALIZATION ===
 
     public void OnBeforeSerialize() {
-        serializedStats = new StatDictionary(stats);
+        Dictionary<string, float> statStrings = new Dictionary<string, float>();
+        foreach (var stat in stats) {
+            statStrings[stat.Key.ToString()] = stat.Value;
+        }
+        serializedStats = new StatDictionary(statStrings);
     }
 
     public void OnAfterDeserialize() {
@@ -94,9 +105,9 @@ public class StatSet : ISerializationCallbackReceiver {
         throw new NotImplementedException();
     }
 
-    [System.Serializable]
-    public class StatDictionary : SerialDictionary<StatTag, float> {
-        public StatDictionary(Dictionary<StatTag, float> dictionary) : base(dictionary) {
+    [Serializable]
+    public class StatDictionary : SerialDictionary<string, float> {
+        public StatDictionary(Dictionary<string, float> dictionary) : base(dictionary) {
 
         }
     }

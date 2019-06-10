@@ -16,7 +16,7 @@ public class Stat {
 
     private static Dictionary<StatTag, Stat> stats;
 
-    private Stat(StatTag tag, CombinationStrategy combinator, String nameShort, bool useBinaryEditor) {
+    private Stat(StatTag tag, CombinationStrategy combinator, string nameShort, bool useBinaryEditor) {
         this.combinator = combinator;
         this.tag = tag;
         this.nameShort = nameShort;

@@ -7,7 +7,7 @@ using System.Collections;
 public interface CombinationStrategy {
 
     // default to this value for new stat sets
-    float Zero();
+    float Identity();
 
     // called when stat2 is added to the base stat1
     float Combine(float stat1, float stat2);

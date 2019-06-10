@@ -24,7 +24,7 @@ public class CombinationAdditive : CombinationStrategy {
         return stat1 - stat2;
     }
 
-    public float Zero() {
+    public float Identity() {
         return 0.0f;
     }
 }

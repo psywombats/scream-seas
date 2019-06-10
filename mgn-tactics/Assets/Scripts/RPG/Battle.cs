@@ -46,7 +46,12 @@ public class Battle {
     // if we see someone with Malu's unit, we should add the Malu instance, eg
     public BattleUnit AddUnitFromSerializedUnit(Unit unit, Vector2Int startingLocation) { 
         Unit instance = Global.Instance().Party.LookUpUnit(unit.name);
-        BattleUnit battleUnit = new BattleUnit(instance, this);
+        BattleUnit battleUnit;
+        if (instance == null) {
+            battleUnit = new BattleUnit(unit, this);
+        } else {
+            battleUnit = new BattleUnit(instance, this);
+        }
         battleUnit.AddTurnDelay(0);
         AddUnit(battleUnit);
 
@@ -97,10 +102,10 @@ public class Battle {
     }
 
     public BattleUnit GetNextActor() {
-        int minTurn = 0;
+        int minTurn = -1;
         BattleUnit nextUnit = null;
         foreach (BattleUnit unit in LivingUnits()) {
-            if (minTurn == 0 || unit.nextTurnAt < minTurn) {
+            if (minTurn == -1 || unit.nextTurnAt < minTurn) {
                 minTurn = unit.nextTurnAt;
                 nextUnit = unit;
             }
@@ -192,7 +197,7 @@ public class Battle {
     }
 
     private IEnumerator PlayMove(BattleUnit actor) {
-        Skill walkSkill = new Skill(new WalkRouteTargeter(), new WalkEffect());
+        Skill walkSkill = actor.unit.walkSkill;
         Result<Effector> effect = new Result<Effector>();
         yield return walkSkill.PlaySkillRoutine(actor, effect);
         if (!effect.canceled) {
