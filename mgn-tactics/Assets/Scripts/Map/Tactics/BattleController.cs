@@ -15,7 +15,7 @@ public class BattleController : MonoBehaviour {
 
     // interally populated
     public Battle battle { get; private set; }
-    public Cursor cursor { get; private set; }
+    public FreeCursor cursor { get; private set; }
     public DirectionCursor dirCursor { get; private set; }
     public BattleUI ui { get; private set; }
 
@@ -35,7 +35,7 @@ public class BattleController : MonoBehaviour {
 
         AddUnitsFromMap();
 
-        cursor = Cursor.GetInstance();
+        cursor = FreeCursor.GetInstance();
         cursor.gameObject.transform.SetParent(GetComponent<Map>().objectLayer.transform);
         cursor.gameObject.SetActive(false);
 
@@ -76,6 +76,7 @@ public class BattleController : MonoBehaviour {
     // === ANIMATION ROUTINES ======================================================================
 
     public IEnumerator OnUnitTurnRoutine(BattleUnit unit) {
+        MoveHighlightCursorToUnit(unit);
         yield return cam.CenterCameraRoutine(unit.position, map.terrain.HeightAt(unit.position));
     }
 
@@ -83,9 +84,10 @@ public class BattleController : MonoBehaviour {
     
     // cancelable, awaits user selecting a unit that matches the rule
     public IEnumerator SelectUnitRoutine(Result<BattleUnit> result, 
-            Func<BattleUnit, bool> rule, 
+            Func<BattleUnit, bool> rule,
+            Vector2Int initialLocation,
             bool allowCancel=true) {
-        cursor.gameObject.SetActive(true);
+        SpawnCursor(initialLocation);
         while (!result.finished) {
             Result<Vector2Int> locResult = new Result<Vector2Int>();
             yield return cursor.AwaitSelectionRoutine(locResult, GenericScanner);
@@ -98,7 +100,7 @@ public class BattleController : MonoBehaviour {
                 result.value = unit;
             }
         }
-        cursor.gameObject.SetActive(false);
+        DespawnCursor();
     }
 
     // selects an adjacent unit to the actor (provided they meet the rule), cancelable
@@ -110,8 +112,7 @@ public class BattleController : MonoBehaviour {
     }
 
     public IEnumerator ViewMapRoutine(BattleUnit currentActor) {
-        cursor.GetComponent<MapEvent>().SetPosition(currentActor.position);
-        cursor.gameObject.SetActive(true);
+        SpawnCursor(currentActor.position);
         Result<Vector2Int> unitResult = new Result<Vector2Int>();
         while (!unitResult.canceled) {
             yield return cursor.AwaitSelectionRoutine(unitResult, GenericScanner);
@@ -120,15 +121,27 @@ public class BattleController : MonoBehaviour {
                 unitResult.Reset();
             }
         }
-        cursor.gameObject.SetActive(false);
+        DespawnCursor();
+    }
+
+    public IEnumerator SelectMainActionRoutine(Result<MainActionType> result, List<MainActionType> allowed, BattleUnit actor) {
+        MoveHighlightCursorToUnit(actor);
+        yield return ui.mainActionSelector.SelectMainActionRoutine(result, allowed);
     }
 
     // === GAMEBOARD AND GRAPHICAL INTERACTION =====================================================
 
-    public Cursor SpawnCursor(Vector2Int location) {
+    public FreeCursor SpawnCursor(Vector2Int position) {
         cursor.gameObject.SetActive(true);
-        cursor.GetComponent<MapEvent>().SetPosition(location);
+        cursor.GetComponent<MapEvent>().SetPosition(position);
+        cursor.EnableReticules();
         return cursor;
+    }
+
+    public DirectionCursor SpawnDirCursor(Vector2Int position) {
+        dirCursor.gameObject.SetActive(true);
+        dirCursor.GetComponent<MapEvent>().SetPosition(position);
+        return dirCursor;
     }
 
     public void DespawnCursor() {
@@ -143,6 +156,11 @@ public class BattleController : MonoBehaviour {
         SelectionGrid grid = SelectionGrid.GetInstance();
         grid.gameObject.transform.SetParent(GetComponent<Map>().transform);
         return grid;
+    }
+
+    public void MoveHighlightCursorToUnit(BattleUnit unit) {
+        SpawnCursor(unit.position);
+        cursor.DisableReticules();
     }
 
     // === SCANNERS ================================================================================

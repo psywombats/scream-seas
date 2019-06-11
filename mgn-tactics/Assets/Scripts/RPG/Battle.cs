@@ -166,7 +166,7 @@ public class Battle {
             if (actor.CanActThisTurn()) allowedActions.Add(MainActionType.Act);
             if (actor.CanMoveMoreThisTurn()) allowedActions.Add(MainActionType.Move);
             Result<MainActionType> mainResult = new Result<MainActionType>();
-            yield return controller.ui.mainActionSelector.SelectMainActionRoutine(mainResult, allowedActions);
+            yield return controller.SelectMainActionRoutine(mainResult, allowedActions, actor);
 
             if (mainResult.canceled) {
                 if (actor.posAtStartThisTurn == actor.position) {

@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-[RequireComponent(typeof(MapEvent))]
-public class DirectionCursor : MonoBehaviour, InputListener {
+public class DirectionCursor : TacticsCursor {
 
-    private const string InstancePath = "Prefabs/Tactics/DirectionCursor";
+    private const string PrefabPath = "Prefabs/Tactics/DirectionCursor";
 
     public OrthoDir currentDir;
     private BattleEvent actor;
     private Result<OrthoDir> awaitingSelect;
 
     public static DirectionCursor GetInstance() {
-        GameObject prefab = Resources.Load<GameObject>(InstancePath);
+        GameObject prefab = Resources.Load<GameObject>(PrefabPath);
         return Instantiate(prefab).GetComponent<DirectionCursor>();
     }
 
@@ -22,6 +21,7 @@ public class DirectionCursor : MonoBehaviour, InputListener {
     public IEnumerator SelectAdjacentUnitRoutine(Result<BattleUnit> result,
                 BattleUnit actingUnit,
                 Func<BattleUnit, bool> rule,
+                Scanner scanner = null,
                 bool canCancel = true) {
         List<OrthoDir> dirs = new List<OrthoDir>();
         Map map = actingUnit.battle.controller.map;
@@ -34,7 +34,7 @@ public class DirectionCursor : MonoBehaviour, InputListener {
         }
         if (dirs.Count > 0) {
             Result<OrthoDir> dirResult = new Result<OrthoDir>();
-            yield return SelectTargetDirRoutine(dirResult, actingUnit, dirs, canCancel);
+            yield return SelectTargetDirRoutine(dirResult, actingUnit, dirs, scanner, canCancel);
             Vector2Int loc = actingUnit.position + dirResult.value.XY3D();
             result.value = map.GetEventAt<BattleEvent>(loc).unit;
         } else {
@@ -47,7 +47,9 @@ public class DirectionCursor : MonoBehaviour, InputListener {
     public IEnumerator SelectTargetDirRoutine(Result<OrthoDir> result,
             BattleUnit actingUnit,
             List<OrthoDir> allowedDirs,
+            Scanner scanner = null,
             bool canCancel = true) {
+        this.scanner = scanner;
         actor = actingUnit.battler;
 
         gameObject.SetActive(true);
@@ -58,7 +60,7 @@ public class DirectionCursor : MonoBehaviour, InputListener {
         grid.ConfigureNewGrid(actingUnit.position, 1, terrain, (Vector2Int loc) => {
             return (loc.x + loc.y + actingUnit.position.x + actingUnit.position.y) % 2 == 1;
         });
-        AttemptSetDirection(allowedDirs[0]);
+        AttemptDirection(allowedDirs[0]);
 
         while (!result.finished) {
             Result<OrthoDir> dirResult = new Result<OrthoDir>();
@@ -78,20 +80,20 @@ public class DirectionCursor : MonoBehaviour, InputListener {
         gameObject.SetActive(false);
     }
 
-    public void OnEnable() {
+    public override void Enable() {
+        base.Enable();
         currentDir = OrthoDir.North;
-        Global.Instance().Input.PushListener(this);
-        TacticsCam.Instance().target = GetComponent<MapEvent>();
     }
 
-    public void OnDisable() {
-        Global.Instance().Input.RemoveListener(this);
-        if (TacticsCam.Instance() != null && TacticsCam.Instance().target == GetComponent<MapEvent>()) {
-            TacticsCam.Instance().target = null;
-        }
+    protected override void OnCancel() {
+        awaitingSelect.Cancel();
     }
 
-    public IEnumerator AwaitSelectionRoutine(BattleEvent actor, Result<OrthoDir> result) {
+    protected override void OnConfirm() {
+        awaitingSelect.value = currentDir;
+    }
+
+    private IEnumerator AwaitSelectionRoutine(BattleEvent actor, Result<OrthoDir> result) {
         this.actor = actor;
         awaitingSelect = result;
         while (!awaitingSelect.finished) {
@@ -100,39 +102,15 @@ public class DirectionCursor : MonoBehaviour, InputListener {
         awaitingSelect = null;
     }
 
-    public bool OnCommand(InputManager.Command command, InputManager.Event eventType) {
-        if (eventType == InputManager.Event.Down) {
-            switch (command) {
-                case InputManager.Command.Down:
-                    AttemptSetDirection(OrthoDir.South);
-                    break;
-                case InputManager.Command.Left:
-                    AttemptSetDirection(OrthoDir.West);
-                    break;
-                case InputManager.Command.Right:
-                    AttemptSetDirection(OrthoDir.East);
-                    break;
-                case InputManager.Command.Up:
-                    AttemptSetDirection(OrthoDir.North);
-                    break;
-                case InputManager.Command.Confirm:
-                    awaitingSelect.value = currentDir;
-                    break;
-                case InputManager.Command.Cancel:
-                    awaitingSelect.Cancel();
-                    break;
-            }
-        }
-        return true;
-    }
-
-    private void AttemptSetDirection(OrthoDir dir) {
+    protected override void AttemptDirection(OrthoDir dir) {
         SetDirection(dir);
     }
 
     private void SetDirection(OrthoDir dir) {
         currentDir = dir;
+        Vector2Int pos = actor.position + dir.XY3D();
         actor.GetComponent<CharaEvent>().facing = dir;
-        GetComponent<MapEvent>().SetPosition(actor.position + dir.XY3D());
+        GetComponent<MapEvent>().SetPosition(pos);
+        //scanner(pos);
     }
 }

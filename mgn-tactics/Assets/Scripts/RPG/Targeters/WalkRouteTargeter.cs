@@ -7,7 +7,7 @@ public class WalkRouteTargeter : Targeter {
     private Vector2Int targetLocation;
 
     protected override IEnumerator InternalExecuteRoutine(Effector effect, Result<bool> result) {
-        Cursor cursor = controller.SpawnCursor(actor.position);
+        FreeCursor cursor = controller.SpawnCursor(actor.position);
         SelectionGrid grid = controller.SpawnSelectionGrid();
         int range = (int)actor.Get(StatTag.MOVE) - actor.stepsMovedThisTurn;
         Func<Vector2Int, bool> rule = (Vector2Int loc) => {
