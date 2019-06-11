@@ -32,7 +32,7 @@ public class WalkRouteTargeter : Targeter {
             }
         }
 
-        controller.DespawnCursor();
+        cursor.Disable();
         Destroy(grid.gameObject);
 
         if (locResult.canceled) {

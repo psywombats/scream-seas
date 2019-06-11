@@ -8,8 +8,9 @@ public abstract class TacticsCursor : MonoBehaviour, InputListener {
 
     protected Scanner scanner;
 
-    public virtual void Enable() {
+    public virtual void Enable(Vector2Int initialPosition) {
         gameObject.SetActive(true);
+        GetComponent<MapEvent>().position = initialPosition;
         Global.Instance().Input.PushListener(this);
         TacticsCam.Instance().target = GetComponent<MapEvent>();
         TacticsCam.Instance().snapTime = ScrollSnapTime;

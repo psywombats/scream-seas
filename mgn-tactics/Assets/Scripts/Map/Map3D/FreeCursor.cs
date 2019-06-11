@@ -17,8 +17,8 @@ public class FreeCursor : TacticsCursor {
         return Instantiate(prefab).GetComponent<FreeCursor>();
     }
 
-    public override void Enable() {
-        base.Enable();
+    public override void Enable(Vector2Int initialPosition) {
+        base.Enable(initialPosition);
         EnableReticules();
     }
 

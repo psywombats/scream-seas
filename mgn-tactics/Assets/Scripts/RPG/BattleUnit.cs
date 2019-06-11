@@ -52,6 +52,25 @@ public class BattleUnit {
         nextTurnAt = battle.NextFreeDelay(nextTurnAt + timeUnits);
     }
 
+    // === RPG LOGIC ===============================================================================
+
+    public bool MeetsTargeterReq(BattleUnit actor, TargetingRequirementType req) {
+        switch (req) {
+            case TargetingRequirementType.NoRequirement:
+            case TargetingRequirementType.RequireUnitPreferAlly:
+            case TargetingRequirementType.RequireUnitPreferEnemy:
+                return true;
+            case TargetingRequirementType.RequireAlly:
+                return actor.align == align;
+            case TargetingRequirementType.RequireEnemy:
+                return actor.align != align;
+            case TargetingRequirementType.RequireEmpty:
+                return false;
+        }
+        Debug.Assert(false, "Unhandled req " + req);
+        return false;
+    }
+
     // === PER TURN LOGIC ==========================================================================
 
     public bool CanMoveMoreThisTurn() {

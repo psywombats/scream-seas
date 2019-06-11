@@ -80,8 +80,8 @@ public class DirectionCursor : TacticsCursor {
         gameObject.SetActive(false);
     }
 
-    public override void Enable() {
-        base.Enable();
+    public override void Enable(Vector2Int initialPosition) {
+        base.Enable(initialPosition);
         currentDir = OrthoDir.North;
     }
 
@@ -104,6 +104,7 @@ public class DirectionCursor : TacticsCursor {
 
     protected override void AttemptDirection(OrthoDir dir) {
         SetDirection(dir);
+        ScanIfNeeded();
     }
 
     private void SetDirection(OrthoDir dir) {

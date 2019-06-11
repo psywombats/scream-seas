@@ -5,7 +5,7 @@ using System;
 /**
  *  When the player is waving a cursor all over the place we probably want some callbacks.
  */
-public abstract class Scanner {
+public class Scanner {
 
     public Action<Vector2Int> scan;
     public Action close;

@@ -73,6 +73,15 @@ public class BattleController : MonoBehaviour {
         return null;
     }
 
+    public bool PositionMeetsTargetingReq(BattleUnit actor, TargetingRequirementType req, Vector2Int pos) {
+        BattleEvent battler = map.GetEventAt<BattleEvent>(pos);
+        if (battler == null) {
+            return req == TargetingRequirementType.NoRequirement || req == TargetingRequirementType.RequireEmpty;
+        } else {
+            return battler.unit.MeetsTargeterReq(actor, req);
+        }
+    }
+
     // === ANIMATION ROUTINES ======================================================================
 
     public IEnumerator OnUnitTurnRoutine(BattleUnit unit) {
@@ -81,47 +90,18 @@ public class BattleController : MonoBehaviour {
     }
 
     // === STATE MACHINE ===========================================================================
-    
-    // cancelable, awaits user selecting a unit that matches the rule
-    public IEnumerator SelectUnitRoutine(Result<BattleUnit> result, 
-            Func<BattleUnit, bool> rule,
-            Vector2Int initialLocation,
-            bool allowCancel=true) {
-        SpawnCursor(initialLocation);
-        while (!result.finished) {
-            Result<Vector2Int> locResult = new Result<Vector2Int>();
-            yield return cursor.AwaitSelectionRoutine(locResult, GenericScanner);
-            if (locResult.canceled && allowCancel) {
-                result.Cancel();
-                break;
-            }
-            BattleUnit unit = GetUnitAt(locResult.value);
-            if (unit != null && rule(unit)) {
-                result.value = unit;
-            }
-        }
-        DespawnCursor();
-    }
-
-    // selects an adjacent unit to the actor (provided they meet the rule), cancelable
-    public IEnumerator SelectAdjacentUnitRoutine(Result<BattleUnit> result,
-                BattleUnit actingUnit,
-                Func<BattleUnit, bool> rule,
-                bool canCancel = true) {
-        yield return dirCursor.SelectAdjacentUnitRoutine(result, actingUnit, rule, canCancel);
-    }
 
     public IEnumerator ViewMapRoutine(BattleUnit currentActor) {
         SpawnCursor(currentActor.position);
         Result<Vector2Int> unitResult = new Result<Vector2Int>();
         while (!unitResult.canceled) {
-            yield return cursor.AwaitSelectionRoutine(unitResult, GenericScanner);
+            yield return cursor.AwaitSelectionRoutine(unitResult, GenericScanner());
             if (!unitResult.canceled) {
                 // TODO: display UI for this location
                 unitResult.Reset();
             }
         }
-        DespawnCursor();
+        cursor.Disable();
     }
 
     public IEnumerator SelectMainActionRoutine(Result<MainActionType> result, List<MainActionType> allowed, BattleUnit actor) {
@@ -132,20 +112,13 @@ public class BattleController : MonoBehaviour {
     // === GAMEBOARD AND GRAPHICAL INTERACTION =====================================================
 
     public FreeCursor SpawnCursor(Vector2Int position) {
-        cursor.gameObject.SetActive(true);
-        cursor.GetComponent<MapEvent>().SetPosition(position);
-        cursor.EnableReticules();
+        cursor.Enable(position);
         return cursor;
     }
 
     public DirectionCursor SpawnDirCursor(Vector2Int position) {
-        dirCursor.gameObject.SetActive(true);
-        dirCursor.GetComponent<MapEvent>().SetPosition(position);
+        dirCursor.Enable(position);
         return dirCursor;
-    }
-
-    public void DespawnCursor() {
-        cursor.gameObject.SetActive(false);
     }
 
     public void TargetCameraToLocation(Vector2Int loc) {
@@ -165,8 +138,11 @@ public class BattleController : MonoBehaviour {
 
     // === SCANNERS ================================================================================
 
-    private IEnumerator GenericScanner(Vector2Int position) {
-        Debug.Log("scanning at " + position + "...");
-        return null;
+    public Scanner GenericScanner() {
+        return new Scanner((Vector2Int pos) => {
+            Debug.Log("Scanning at " + pos);
+        },
+        () => {
+        });
     }
 }
