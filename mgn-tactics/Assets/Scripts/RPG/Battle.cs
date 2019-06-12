@@ -163,7 +163,7 @@ public class Battle {
         while (actor.CanDoAnythingThisTurn()) {
             controller.TargetCameraToLocation(actor.position);
             List<MainActionType> allowedActions = new List<MainActionType> { MainActionType.Wait };
-            if (actor.CanActThisTurn()) allowedActions.Add(MainActionType.Act);
+            if (actor.CanActThisTurn() && actor.HasUsableSkill()) allowedActions.Add(MainActionType.Act);
             if (actor.CanMoveMoreThisTurn()) allowedActions.Add(MainActionType.Move);
             Result<MainActionType> mainResult = new Result<MainActionType>();
             yield return controller.SelectMainActionRoutine(mainResult, allowedActions, actor);

@@ -71,6 +71,15 @@ public class BattleUnit {
         return false;
     }
 
+    public bool HasUsableSkill() {
+        foreach (Skill skill in unit.knownSkills) {
+            if (skill.IsUsable(this)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // === PER TURN LOGIC ==========================================================================
 
     public bool CanMoveMoreThisTurn() {

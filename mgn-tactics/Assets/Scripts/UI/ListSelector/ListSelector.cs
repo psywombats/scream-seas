@@ -10,6 +10,7 @@ public class ListSelector : MonoBehaviour {
     private float HideShowDuration = 0.4f;
 
     public GameObject childAttachPoint;
+    public int selection { get; private set; }
 
     public void Awake() {
         DestroyAllChildren();
@@ -27,24 +28,30 @@ public class ListSelector : MonoBehaviour {
         return allCells;
     }
 
-    public IEnumerator SelectRoutine<T>(Result<T> result, List<T> elements, Func<T, ListCell> cellConstructor, int defaultSelection = 0) {
-        gameObject.SetActive(true);
-        PopulateCells(elements, cellConstructor);
-
-        yield return ShowHideRoutine(false);
-        Result<T> subResult = new Result<T>();
-        yield return RawSelectRoutine(subResult, elements, defaultSelection);
+    public IEnumerator SelectAndCloseRoutine<T>(Result<T> result, List<T> elements, Func<T, ListCell> cellConstructor) {
+        yield return SelectAndPersistRoutine(result, elements, cellConstructor);
         yield return ShowHideRoutine(true);
-
-        result.CopyResult(subResult);
         gameObject.SetActive(false);
     }
 
-    public IEnumerator RawSelectRoutine<T>(Result<T> result, List<T> elements, int defaultSelection = 0) {
-        Debug.Assert(elements.Count == childAttachPoint.transform.childCount);
-        
-        int selection = defaultSelection;
-        GetCell(defaultSelection).SetSelected(true);
+    public IEnumerator SelectAndPersistRoutine<T>(Result<T> result, List<T> elements, Func<T, ListCell> cellConstructor) {
+        if (!gameObject.activeSelf) {
+            gameObject.SetActive(true);
+            yield return ShowHideRoutine();
+        }
+        List<ListCell> cells = PopulateCells(elements, cellConstructor);
+        Result<int> subResult = new Result<int>();
+        yield return RawSelectRoutine(subResult);
+        if (subResult.canceled) {
+            yield return ShowHideRoutine(true);
+            result.Cancel();
+        } else {
+            result.value = elements[subResult.value];
+        }
+    }
+
+    public IEnumerator RawSelectRoutine(Result<int> result) {
+        GetCell(selection).SetSelected(true);
 
         string listenerId = "ListSelector" + gameObject.name;
         Global.Instance().Input.PushListener(listenerId, (InputManager.Command command, InputManager.Event ev) => {
@@ -57,14 +64,14 @@ public class ListSelector : MonoBehaviour {
                     Global.Instance().Input.RemoveListener(listenerId);
                     break;
                 case InputManager.Command.Confirm:
-                    result.value = elements[selection];
+                    result.value = selection;
                     Global.Instance().Input.RemoveListener(listenerId);
                     break;
                 case InputManager.Command.Up:
-                    selection = MoveSelection(selection, -1);
+                    selection = MoveSelection(-1);
                     break;
                 case InputManager.Command.Down:
-                    selection = MoveSelection(selection, 1);
+                    selection = MoveSelection(1);
                     break;
             }
             return true;
@@ -78,18 +85,21 @@ public class ListSelector : MonoBehaviour {
     public IEnumerator ShowHideRoutine(bool hide = false) {
         GetComponent<ContentSizeFitter>().enabled = false;
         CanvasGroup group = childAttachPoint.GetComponent<CanvasGroup>();
-
         RectTransform rect = GetComponent<RectTransform>();
+
         float endHeight = hide ? 0.0f : LayoutUtility.GetPreferredHeight(rect);
         Vector2 endSize = new Vector2(rect.sizeDelta.x, endHeight);
-        var expandTween = rect.DOSizeDelta(endSize, HideShowDuration / 2.0f);
-        var fadeTween = group.DOFade(hide ? 0.0f : 1.0f, HideShowDuration / 2.0f);
-        fadeTween.SetEase(Ease.Linear);
 
         if (!hide) {
             rect.sizeDelta = new Vector2(rect.sizeDelta.x, 0.0f);
             group.alpha = 0.0f;
+        } else {
+            selection = 0;
         }
+        
+        var expandTween = rect.DOSizeDelta(endSize, HideShowDuration / 2.0f);
+        var fadeTween = group.DOFade(hide ? 0.0f : 1.0f, HideShowDuration / 2.0f);
+        fadeTween.SetEase(Ease.Linear);
 
         if (hide) {
             yield return CoUtils.RunTween(fadeTween);
@@ -108,7 +118,7 @@ public class ListSelector : MonoBehaviour {
         }
     }
 
-    private int MoveSelection(int selection, int delta) {
+    private int MoveSelection(int delta) {
         GetCell(selection).SetSelected(false);
         int newSelection = selection + delta;
         if (newSelection < 0) newSelection = childAttachPoint.transform.childCount - 1;

@@ -22,4 +22,10 @@ public class Skill : ScriptableObject {
         targeter.actor = actor;
         yield return targeter.ExecuteRoutine(effect, effectResult);
     }
+
+    // check if the skill is usable by the actor, given the current battle conditions
+    // this doesn't imply there are valid targets, just that its targeter can be run to begin with
+    public bool IsUsable(BattleUnit actor) {
+        return true;
+    }
 }

@@ -15,7 +15,7 @@ public class MainActionSelector : MonoBehaviour {
     public IEnumerator SelectMainActionRoutine(Result<MainActionType> result, List<MainActionType> allowedActions) {
         this.allowedActions = allowedActions;
         var a = (MainActionType[])Enum.GetValues(typeof(MainActionType));
-        yield return selector.SelectRoutine(result, new List<MainActionType>(a), CellConstructor);
+        yield return selector.SelectAndPersistRoutine(result, new List<MainActionType>(a), CellConstructor);
     } 
 
     private ListCell CellConstructor(MainActionType type) {
