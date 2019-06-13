@@ -193,7 +193,15 @@ public class Battle {
     }
 
     private IEnumerator PlayAction(BattleUnit actor) {
-        yield return null;
+        Result<Skill> skillResult = new Result<Skill>();
+        yield return controller.SelectSkillRoutine(skillResult, actor);
+        if (skillResult.canceled) {
+            yield break;
+        }
+
+        Skill skill = skillResult.value;
+        Result<Effector> effectResult = new Result<Effector>();
+        yield return skill.PlaySkillRoutine(actor, effectResult);
     }
 
     private IEnumerator PlayMove(BattleUnit actor) {

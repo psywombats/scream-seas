@@ -109,6 +109,10 @@ public class BattleController : MonoBehaviour {
         yield return ui.mainActionSelector.SelectMainActionRoutine(result, allowed);
     }
 
+    public IEnumerator SelectSkillRoutine(Result<Skill> result, BattleUnit actor) {
+        yield return ui.skillSelector.SelectSkillRoutine(result, actor);
+    }
+
     // === GAMEBOARD AND GRAPHICAL INTERACTION =====================================================
 
     public FreeCursor SpawnCursor(Vector2Int position) {

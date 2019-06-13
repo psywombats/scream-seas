@@ -83,6 +83,10 @@ public class ListSelector : MonoBehaviour {
     }
 
     public IEnumerator ShowHideRoutine(bool hide = false) {
+        if (hide && !gameObject.activeSelf) {
+            yield break;
+        }
+
         GetComponent<ContentSizeFitter>().enabled = false;
         CanvasGroup group = childAttachPoint.GetComponent<CanvasGroup>();
         RectTransform rect = GetComponent<RectTransform>();

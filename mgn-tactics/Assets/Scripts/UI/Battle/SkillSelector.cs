@@ -10,7 +10,7 @@ public class SkillSelector : MonoBehaviour {
 
     private BattleUnit currentActor;
 
-    public IEnumerator SelectActionRoutine(Result<Skill> result, BattleUnit actor) {
+    public IEnumerator SelectSkillRoutine(Result<Skill> result, BattleUnit actor) {
         currentActor = actor;
         yield return selector.SelectAndPersistRoutine(result, actor.unit.knownSkills, CellConstructor);
     }
