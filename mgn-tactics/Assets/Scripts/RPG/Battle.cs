@@ -200,15 +200,19 @@ public class Battle {
         }
 
         Skill skill = skillResult.value;
-        Result<Effector> effectResult = new Result<Effector>();
-        yield return skill.PlaySkillRoutine(actor, effectResult);
+        SkillResult result = new SkillResult();
+        yield return skill.PlaySkillRoutine(actor, result);
+        if (!result.canceled) {
+            actor.hasActedThisTurn = true;
+            actor.AddTurnDelay(result.value.timeExpended);
+        }
     }
 
     private IEnumerator PlayMove(BattleUnit actor) {
         Skill walkSkill = actor.unit.walkSkill;
-        Result<Effector> effect = new Result<Effector>();
-        yield return walkSkill.PlaySkillRoutine(actor, effect);
-        if (!effect.canceled) {
+        SkillResult result = new SkillResult();
+        yield return walkSkill.PlaySkillRoutine(actor, result);
+        if (!result.canceled) {
             actor.stepsMovedThisTurn = Map.ManhattanDistance(actor.posAtStartThisTurn, actor.position);
         }
     }

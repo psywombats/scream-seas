@@ -9,19 +9,10 @@ using UnityEngine;
  */
 public abstract class Effector : ActorScriptableObject {
 
-    /**
-     * Stuff like walking should be able to reverse and refund energy points. The result will be
-     * false if the action is actually not undoable, true if it succeeded.
-     */
-    public virtual IEnumerator Undo(Result<bool> undoableResult) {
-        undoableResult.value = false;
-        yield return null;
-    }
-
     // === TARGETER HOOKUPS ========================================================================
     // subclasses override as they support
 
-    public virtual IEnumerator ExecuteSingleCellRoutine(Result<bool> result, Vector2Int location) {
+    public virtual IEnumerator ExecuteSingleCellRoutine(SkillResult result, Skill skill, Vector2Int location) {
         Debug.LogError(GetType() + " does not support single cell targeters");
         result.Cancel();
         yield return null;

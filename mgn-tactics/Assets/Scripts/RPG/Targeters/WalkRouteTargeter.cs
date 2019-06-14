@@ -6,7 +6,7 @@ public class WalkRouteTargeter : Targeter {
 
     private Vector2Int targetLocation;
 
-    protected override IEnumerator InternalExecuteRoutine(Effector effect, Result<bool> result) {
+    protected override IEnumerator InternalExecuteRoutine(Skill skill, SkillResult result) {
         FreeCursor cursor = controller.SpawnCursor(actor.position);
         SelectionGrid grid = controller.SpawnSelectionGrid();
         int range = (int)actor.Get(StatTag.MOVE) - actor.stepsMovedThisTurn;
@@ -38,7 +38,7 @@ public class WalkRouteTargeter : Targeter {
         if (locResult.canceled) {
             result.Cancel();
         } else {
-            yield return effect.ExecuteSingleCellRoutine(result, locResult.value);
+            yield return skill.effect.ExecuteSingleCellRoutine(result, skill, locResult.value);
         }
     }
 }

@@ -113,6 +113,13 @@ public class BattleController : MonoBehaviour {
         yield return ui.skillSelector.SelectSkillRoutine(result, actor);
     }
 
+    public IEnumerator ClearAllMenus() {
+        yield return CoUtils.RunParallel(new IEnumerator[] {
+            ui.mainActionSelector.GetComponent<ListSelector>().ShowHideRoutine(true),
+            ui.skillSelector.GetComponent<ListSelector>().ShowHideRoutine(true),
+        }, this);
+    }
+
     // === GAMEBOARD AND GRAPHICAL INTERACTION =====================================================
 
     public FreeCursor SpawnCursor(Vector2Int position) {
