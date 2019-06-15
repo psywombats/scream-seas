@@ -12,7 +12,7 @@ public abstract class Effector : ActorScriptableObject {
     // === TARGETER HOOKUPS ========================================================================
     // subclasses override as they support
 
-    public virtual IEnumerator ExecuteSingleCellRoutine(SkillResult result, Skill skill, Vector2Int location) {
+    public virtual IEnumerator ExecuteSingleCellRoutine(SkillResult result, Vector2Int location) {
         Debug.LogError(GetType() + " does not support single cell targeters");
         result.Cancel();
         yield return null;

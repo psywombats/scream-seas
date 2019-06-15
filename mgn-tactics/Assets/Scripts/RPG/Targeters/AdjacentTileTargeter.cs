@@ -7,7 +7,7 @@ public class AdjacentTileTargeter : Targeter {
 
     public TargetingRequirementType targetingReq;
 
-    protected override IEnumerator InternalExecuteRoutine(Skill skill, SkillResult result) {
+    protected override IEnumerator InternalExecuteRoutine(SkillResult result) {
         DirectionCursor cursor = controller.SpawnDirCursor(actor.position);
 
         List<OrthoDir> dirs = new List<OrthoDir>();
@@ -24,7 +24,7 @@ public class AdjacentTileTargeter : Targeter {
         }
 
         Result<OrthoDir> dirResult = new Result<OrthoDir>();
-        while (!result.finished) {
+        while (!dirResult.finished) {
             yield return cursor.SelectTargetDirRoutine(dirResult, actor, dirs, controller.GenericScanner(), true);
         }
         cursor.Disable();
@@ -33,7 +33,7 @@ public class AdjacentTileTargeter : Targeter {
             result.Cancel();
         } else {
             Vector2Int pos = actor.position + dirResult.value.XY3D();
-            yield return skill.effect.ExecuteSingleCellRoutine(result, skill, pos);
+            yield return skill.currentEffect.ExecuteSingleCellRoutine(result, pos);
         }
     }
 }

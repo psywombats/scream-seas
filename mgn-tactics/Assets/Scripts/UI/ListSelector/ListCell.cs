@@ -5,7 +5,7 @@ public class ListCell : MonoBehaviour {
 
     public GameObject selectedState;
 
-    private bool selectable;
+    protected bool selectable;
 
     public virtual void SetSelected(bool selected) {
         selectedState.SetActive(selected);
@@ -13,5 +13,9 @@ public class ListCell : MonoBehaviour {
 
     public virtual void SetSelectable(bool selectable) {
         this.selectable = selectable;
+    }
+
+    public bool IsSelectable() {
+        return selectable;
     }
 }

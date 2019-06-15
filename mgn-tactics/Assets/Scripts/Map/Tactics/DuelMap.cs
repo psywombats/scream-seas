@@ -14,7 +14,8 @@ public class DuelMap : MonoBehaviour {
         Global.Instance().Maps.activeDuelMap = this;
 
         targets = new Dictionary<CharaAnimationTarget.Type, CharaAnimationTarget>();
-        foreach (CharaAnimationTarget doll in GetComponent<Map>().GetEvents<CharaAnimationTarget>()) {
+        foreach (CharaEvent chara in GetComponent<Map>().GetEvents<CharaEvent>()) {
+            CharaAnimationTarget doll = chara.doll.GetComponent<CharaAnimationTarget>();
             targets[doll.type] = doll;
         }
     }

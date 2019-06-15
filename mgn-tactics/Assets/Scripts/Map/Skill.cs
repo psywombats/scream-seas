@@ -7,20 +7,19 @@ public class Skill : ScriptableObject {
     public string skillName;
     public int energyCost;
 
-    public Targeter targeter;
-    public Effector effect;
-
-    public Skill(Targeter targeter, Effector effect) {
-        this.targeter = targeter;
-        this.effect = effect;
-    }
+    public Targeter baseTargeter;
+    public Effector baseEffect;
+    public Targeter currentTargeter { get; private set; }
+    public Effector currentEffect { get; private set; }
 
     public IEnumerator PlaySkillRoutine(BattleUnit actor, SkillResult result) {
-        Targeter targeter = Instantiate(this.targeter);
-        Effector effect = Instantiate(this.effect);
-        effect.actor = actor;
-        targeter.actor = actor;
-        yield return targeter.ExecuteRoutine(this, result);
+        currentTargeter = Instantiate(baseTargeter);
+        currentTargeter.actor = actor;
+        currentTargeter.skill = this;
+        currentEffect = Instantiate(baseEffect);
+        currentEffect.actor = actor;
+        currentEffect.skill = this;
+        yield return currentTargeter.ExecuteRoutine(result);
     }
 
     // check if the skill is usable by the actor, given the current battle conditions

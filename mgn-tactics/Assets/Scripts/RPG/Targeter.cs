@@ -9,9 +9,9 @@ public abstract class Targeter : ActorScriptableObject {
     /**
      * Acquire the targets, pass them to the effector via the appropriate method.
      */
-    public IEnumerator ExecuteRoutine(Skill skill, SkillResult result) {
-        yield return ExecuteRoutine(skill, result);
+    public IEnumerator ExecuteRoutine(SkillResult result) {
+        yield return InternalExecuteRoutine(result);
     }
 
-    protected abstract IEnumerator InternalExecuteRoutine(Skill skill, SkillResult result);
+    protected abstract IEnumerator InternalExecuteRoutine(SkillResult result);
 }

@@ -18,12 +18,12 @@ public class SkillEditor : Editor {
 
         Skill skill = (Skill)target;
 
-        if (!serializedObject.FindProperty("targeter").hasMultipleDifferentValues) {
-            skill.targeter = targeterUtil.DrawSelector(skill.targeter);
+        if (!serializedObject.FindProperty("baseTargeter").hasMultipleDifferentValues) {
+            skill.baseTargeter = targeterUtil.DrawSelector(skill.baseTargeter);
         }
 
-        if (!serializedObject.FindProperty("effect").hasMultipleDifferentValues) {
-            skill.effect = effectorUtil.DrawSelector(skill.effect);
+        if (!serializedObject.FindProperty("baseTargeter").hasMultipleDifferentValues) {
+            skill.baseEffect = effectorUtil.DrawSelector(skill.baseEffect);
         }
     }
 }

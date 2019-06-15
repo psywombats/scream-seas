@@ -110,14 +110,28 @@ public class BattleController : MonoBehaviour {
     }
 
     public IEnumerator SelectSkillRoutine(Result<Skill> result, BattleUnit actor) {
+        if (!ui.mainActionSelector.gameObject.activeSelf) {
+            StartCoroutine(ui.mainActionSelector.GetComponent<ListSelector>().ShowHideRoutine());
+        }
         yield return ui.skillSelector.SelectSkillRoutine(result, actor);
+        if (!result.canceled) {
+            yield return ClearAllMenusRoutine();
+        }
     }
 
-    public IEnumerator ClearAllMenus() {
+    public IEnumerator ClearAllMenusRoutine() {
         yield return CoUtils.RunParallel(new IEnumerator[] {
             ui.mainActionSelector.GetComponent<ListSelector>().ShowHideRoutine(true),
             ui.skillSelector.GetComponent<ListSelector>().ShowHideRoutine(true),
         }, this);
+    }
+
+    public IEnumerator EnterDuelRoutine(BattleUnit actor, BattleUnit victim) {
+        yield return Global.Instance().Maps.activeDuelMap.EnterMapRoutine(actor.battler, victim.battler);
+    }
+
+    public IEnumerator ExitDuelRoutine() {
+        yield return Global.Instance().Maps.activeDuelMap.ExitMapRoutine();
     }
 
     // === GAMEBOARD AND GRAPHICAL INTERACTION =====================================================

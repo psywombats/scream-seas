@@ -11,6 +11,7 @@ public class DirectionCursor : TacticsCursor {
     public OrthoDir currentDir;
     private BattleEvent actor;
     private Result<OrthoDir> awaitingSelect;
+    private SelectionGrid grid;
 
     public static DirectionCursor GetInstance() {
         GameObject prefab = Resources.Load<GameObject>(PrefabPath);
@@ -55,12 +56,14 @@ public class DirectionCursor : TacticsCursor {
         gameObject.SetActive(true);
         actingUnit.controller.cursor.DisableReticules();
 
-        SelectionGrid grid = actingUnit.controller.SpawnSelectionGrid();
-        TacticsTerrainMesh terrain = actingUnit.controller.map.terrain;
-        grid.ConfigureNewGrid(actingUnit.position, 1, terrain, (Vector2Int loc) => {
-            return (loc.x + loc.y + actingUnit.position.x + actingUnit.position.y) % 2 == 1;
-        });
-        AttemptDirection(allowedDirs[0]);
+        if (grid == null) {
+            grid = actingUnit.controller.SpawnSelectionGrid();
+            TacticsTerrainMesh terrain = actingUnit.controller.map.terrain;
+            grid.ConfigureNewGrid(actingUnit.position, 1, terrain, (Vector2Int loc) => {
+                return (loc.x + loc.y + actingUnit.position.x + actingUnit.position.y) % 2 == 1;
+            });
+            AttemptDirection(allowedDirs[0]);
+        }
 
         while (!result.finished) {
             Result<OrthoDir> dirResult = new Result<OrthoDir>();
@@ -74,15 +77,18 @@ public class DirectionCursor : TacticsCursor {
                 result.value = dirResult.value;
             }
         }
-
-        Destroy(grid.gameObject);
-        actingUnit.controller.cursor.EnableReticules();
-        gameObject.SetActive(false);
     }
 
     public override void Enable(Vector2Int initialPosition) {
         base.Enable(initialPosition);
         currentDir = OrthoDir.North;
+    }
+
+    public override void Disable() {
+        base.Disable();
+        Destroy(grid.gameObject);
+        actor.controller.cursor.EnableReticules();
+        grid = null;
     }
 
     protected override void OnCancel() {

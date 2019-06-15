@@ -51,6 +51,10 @@ public class ListSelector : MonoBehaviour {
     }
 
     public IEnumerator RawSelectRoutine(Result<int> result) {
+        yield return null;
+        while (!GetCell(selection).IsSelectable()) {
+            MoveSelection(1);
+        }
         GetCell(selection).SetSelected(true);
 
         string listenerId = "ListSelector" + gameObject.name;
@@ -68,10 +72,10 @@ public class ListSelector : MonoBehaviour {
                     Global.Instance().Input.RemoveListener(listenerId);
                     break;
                 case InputManager.Command.Up:
-                    selection = MoveSelection(-1);
+                    MoveSelection(-1);
                     break;
                 case InputManager.Command.Down:
-                    selection = MoveSelection(1);
+                    MoveSelection(1);
                     break;
             }
             return true;
@@ -80,6 +84,7 @@ public class ListSelector : MonoBehaviour {
         while (!result.finished) {
             yield return null;
         }
+        DisableSelection();
     }
 
     public IEnumerator ShowHideRoutine(bool hide = false) {
@@ -113,6 +118,7 @@ public class ListSelector : MonoBehaviour {
             yield return CoUtils.RunTween(fadeTween);
         }
 
+        gameObject.SetActive(!hide);
         GetComponent<ContentSizeFitter>().enabled = true;
     }
 
@@ -122,13 +128,19 @@ public class ListSelector : MonoBehaviour {
         }
     }
 
-    private int MoveSelection(int delta) {
+    private void MoveSelection(int delta) {
         GetCell(selection).SetSelected(false);
         int newSelection = selection + delta;
         if (newSelection < 0) newSelection = childAttachPoint.transform.childCount - 1;
         if (newSelection >= childAttachPoint.transform.childCount) newSelection = 0;
         GetCell(newSelection).SetSelected(true);
-        return newSelection;
+        selection = newSelection;
+    }
+
+    private void DisableSelection() {
+        foreach (Transform child in childAttachPoint.transform) {
+            child.GetComponent<ListCell>().SetSelected(false);
+        }
     }
 
     private ListCell GetCell(int index) {

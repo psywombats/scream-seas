@@ -4,6 +4,7 @@
 public abstract class ActorScriptableObject : ScriptableObject {
 
     public BattleUnit actor { get; set; }
+    public Skill skill { get; set; }
     protected Battle battle { get { return actor.battle; } }
     protected BattleController controller { get { return battle.controller; } }
     protected BattleEvent battler { get { return actor.battler; } }

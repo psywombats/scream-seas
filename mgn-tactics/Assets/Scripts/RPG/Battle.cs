@@ -137,23 +137,6 @@ public class Battle {
         }
 
         yield return null;
-
-        //// TODO: remove this nonsense
-        //Result<Unit> targetedResult = new Result<Unit>();
-        //yield return controller.SelectAdjacentUnitRoutine(targetedResult, actingUnit, (Unit unit) => {
-        //    return unit.align == Alignment.Enemy;
-        //});
-        //if (targetedResult.canceled) {
-        //    // TODO: reset where they came from
-        //    yield return PlayNextHumanActionRoutine();
-        //    yield break;
-        //}
-        //Unit targetUnit = targetedResult.value;
-        //targetUnit.doll.GetComponent<CharaEvent>().FaceToward(actingUnit.doll.GetComponent<MapEvent>());
-
-        //yield return Global.Instance().Maps.activeDuelMap.EnterMapRoutine(actingUnit.doll, targetUnit.doll);
-        //yield return Global.Instance().Maps.activeDuelMap.ExitMapRoutine();
-
     }
 
     private IEnumerator PlayNextPlayerTurn(BattleUnit actor) {
@@ -194,17 +177,19 @@ public class Battle {
 
     private IEnumerator PlayAction(BattleUnit actor) {
         Result<Skill> skillResult = new Result<Skill>();
-        yield return controller.SelectSkillRoutine(skillResult, actor);
-        if (skillResult.canceled) {
-            yield break;
-        }
+        while (!skillResult.canceled) {
+            yield return controller.SelectSkillRoutine(skillResult, actor);
+            if (skillResult.canceled) {
+                yield break;
+            }
 
-        Skill skill = skillResult.value;
-        SkillResult result = new SkillResult();
-        yield return skill.PlaySkillRoutine(actor, result);
-        if (!result.canceled) {
-            actor.hasActedThisTurn = true;
-            actor.AddTurnDelay(result.value.timeExpended);
+            Skill skill = skillResult.value;
+            SkillResult result = new SkillResult();
+            yield return skill.PlaySkillRoutine(actor, result);
+            if (!result.canceled) {
+                actor.hasActedThisTurn = true;
+                actor.AddTurnDelay(result.value.timeExpended);
+            }
         }
     }
 
@@ -214,6 +199,7 @@ public class Battle {
         yield return walkSkill.PlaySkillRoutine(actor, result);
         if (!result.canceled) {
             actor.stepsMovedThisTurn = Map.ManhattanDistance(actor.posAtStartThisTurn, actor.position);
+            actor.AddTurnDelay(actor.stepsMovedThisTurn * 10);
         }
     }
 
