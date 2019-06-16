@@ -2,7 +2,7 @@
 {
 	Properties
 	{
-		_MainTexture ("Main Texture", 2D) = "white" {}
+		_MainTex ("Main Texture", 2D) = "white" {}
 		_MaskTexture ("Mask Texture", 2D) = "white" {}
 		_Elapsed ("Elapsed Seconds", Range(0,1)) = 0.0
 		_SoftFudge ("Percent Softness", Range(0, 1)) = 0.1
@@ -12,8 +12,9 @@
 	}
 	SubShader
 	{
-		// No culling or depth
-		Cull Off ZWrite Off ZTest Always
+		Cull Off 
+        ZTest Always 
+        ZWrite Off
 
 		Pass
 		{
@@ -43,7 +44,7 @@
 				return o;
 			}
 			
-			sampler2D _MainTexture;
+			sampler2D _MainTex;
 			sampler2D _MaskTexture;
 			float _Elapsed;
 			float _SoftFudge;
@@ -53,7 +54,7 @@
 
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 mainColor = tex2D(_MainTexture, i.uv);
+				fixed4 mainColor = tex2D(_MainTex, i.uv);
 
 				float2 adjustedCoord = i.uv;
 				if (_FlipX > 0) {

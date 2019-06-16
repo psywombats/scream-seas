@@ -9,5 +9,7 @@ public class DummyAttackEffect : Effector {
 
         yield return controller.EnterDuelRoutine(actor, victim);
         yield return controller.ExitDuelRoutine();
+
+        skill.FinalizeSkillResult(result);
     }
 }

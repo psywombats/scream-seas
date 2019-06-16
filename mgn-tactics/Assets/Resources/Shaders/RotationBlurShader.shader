@@ -1,4 +1,4 @@
-Shader "Sprites/Smear" {
+Shader "Tactics/RotationBlur" {
 
     Properties {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}

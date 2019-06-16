@@ -41,8 +41,11 @@ public class CharaAnimationTarget : AnimationTarget {
     [MoonSharpHidden]
     public override void ResetAfterAnimation() {
         transform.position = originalDollPos;
+
         foreach (SpriteRenderer renderer in renderers) {
-            renderer.GetComponent<AfterimageComponent>().enabled = false;
+            if (renderer.GetComponent<AfterimageComponent>()) {
+                renderer.GetComponent<AfterimageComponent>().enabled = false;
+            }
         }
         chara.overrideBodySprite = null;
         chara.itemSprite = null;
@@ -111,14 +114,16 @@ public class CharaAnimationTarget : AnimationTarget {
     public void afterimage(DynValue args) {
         foreach (SpriteRenderer renderer in renderers) {
             AfterimageComponent imager = renderer.GetComponent<AfterimageComponent>();
-            if (EnabledArg(args)) {
-                float imageDuration = FloatArg(args, ArgDuration, 0.05f);
-                int count = (int)FloatArg(args, ArgCount, 3);
-                imager.enabled = true;
-                imager.afterimageCount = count;
-                imager.afterimageDuration = imageDuration;
-            } else {
-                imager.enabled = false;
+            if (imager != null) {
+                if (EnabledArg(args)) {
+                    float imageDuration = FloatArg(args, ArgDuration, 0.05f);
+                    int count = (int)FloatArg(args, ArgCount, 3);
+                    imager.enabled = true;
+                    imager.afterimageCount = count;
+                    imager.afterimageDuration = imageDuration;
+                } else {
+                    imager.enabled = false;
+                }
             }
         }
     }

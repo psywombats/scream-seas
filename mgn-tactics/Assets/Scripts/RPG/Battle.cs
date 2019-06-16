@@ -183,6 +183,7 @@ public class Battle {
                 yield break;
             }
 
+            StartCoroutine(controller.ClearAllMenusRoutine());
             Skill skill = skillResult.value;
             SkillResult result = new SkillResult();
             yield return skill.PlaySkillRoutine(actor, result);

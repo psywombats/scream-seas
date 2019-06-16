@@ -66,9 +66,9 @@ public class CharaEvent : MonoBehaviour {
             _facing = value;
             if (armsLayer != null) {
                 if (facing == OrthoDir.North) {
-                    armsLayer.sortingOrder = -1;
+                    armsLayer.sortingOrder = -2;
                 } else {
-                    armsLayer.sortingOrder = 1;
+                    armsLayer.sortingOrder = 2;
                 }
             }
             UpdateAppearance();

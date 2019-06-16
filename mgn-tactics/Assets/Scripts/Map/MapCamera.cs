@@ -9,6 +9,10 @@ public class MapCamera : MonoBehaviour {
     public bool billboardX;
     public bool billboardY;
 
+    public void OnEnable() {
+        Global.Instance().Maps.camera = this;
+    }
+
     public virtual void ManualUpdate() {
 
     }
