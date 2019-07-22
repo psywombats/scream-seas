@@ -180,10 +180,11 @@ public class Battle {
         while (!skillResult.canceled) {
             yield return controller.SelectSkillRoutine(skillResult, actor);
             if (skillResult.canceled) {
+                skillResult.Reset();
                 yield break;
             }
 
-            StartCoroutine(controller.ClearAllMenusRoutine());
+            controller.StartCoroutine(controller.ClearAllMenusRoutine());
             Skill skill = skillResult.value;
             SkillResult result = new SkillResult();
             yield return skill.PlaySkillRoutine(actor, result);

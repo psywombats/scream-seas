@@ -14,27 +14,29 @@ public class BillboardingSpriteComponent : MonoBehaviour {
         if (GetCamera() == null) {
             return;
         }
-        if (billboardX || GetCamera().billboardX) {
+        if (billboardX) {
             Vector3 angles = transform.eulerAngles;
             transform.eulerAngles = new Vector3(
-                    GetCamera().GetCameraComponent().transform.eulerAngles.x,
+                    GetCamera().transform.eulerAngles.x,
                     angles.y,
                     angles.z);
         }
-        if (billboardY || GetCamera().billboardY) {
+        if (billboardY) {
             Vector3 angles = transform.eulerAngles;
             transform.eulerAngles = new Vector3(
                     angles.x,
-                    GetCamera().GetCameraComponent().transform.eulerAngles.y,
+                    GetCamera().transform.eulerAngles.y,
                     angles.z);
         }
     }
 
-    private MapCamera GetCamera() {
+    private Camera GetCamera() {
         if (Application.isPlaying) {
-            return Global.Instance().Maps.camera;
+            return GetComponentInParent<MapEvent>().parent.camera;
         } else {
-            return FindObjectOfType<MapCamera>();
+            Camera cam = GetComponentInParent<MapEvent>().parent.camera;
+            if (cam != null) return cam;
+            return FindObjectOfType<Camera>();
         }
     }
 }

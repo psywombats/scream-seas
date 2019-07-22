@@ -149,9 +149,9 @@ public class CharaEvent : MonoBehaviour {
     }
 
     public Sprite FrameBySlot(int x) {
-        return sprites[NameForFrame(spritesheet.name, x, facing.Ordinal())];
+        return FrameByExplicitSlot(x, DirectionRelativeToCamera().Ordinal());
     }
-    public Sprite FrameBySlot(int x, int y) {
+    public Sprite FrameByExplicitSlot(int x, int y) {
         string name = NameForFrame(spritesheet.name, x, y);
         if (!sprites.ContainsKey(name)) {
             Debug.LogError(this + " doesn't contain frame " + name);
@@ -179,7 +179,7 @@ public class CharaEvent : MonoBehaviour {
             // jump up routine routine
             float duration = (targetPx - startPx).magnitude / parent.tilesPerSecond / 2.0f * JumpHeightUpMult;
             yield return JumpRoutine(startPx, targetPx, duration);
-            overrideBodySprite = FrameBySlot(0, facing.Ordinal()); // "prone" frame
+            overrideBodySprite = FrameBySlot(0); // "prone" frame
             yield return CoUtils.Wait(1.0f / parent.tilesPerSecond / 2.0f);
             overrideBodySprite = null;
         } else {
@@ -204,7 +204,7 @@ public class CharaEvent : MonoBehaviour {
             bool isBigDrop = dy <= -1.0f;
             yield return JumpRoutine(parent.transform.position, targetPx, jumpDuration, isBigDrop);
             if (isBigDrop) {
-                overrideBodySprite = FrameBySlot(2, facing.Ordinal()); // "prone" frame
+                overrideBodySprite = FrameBySlot(0); // "prone" frame
                 yield return CoUtils.Wait(JumpHeightDownMult / parent.tilesPerSecond / 2.0f);
                 overrideBodySprite = null;
             }
@@ -272,15 +272,15 @@ public class CharaEvent : MonoBehaviour {
     }
 
     private OrthoDir DirectionRelativeToCamera() {
-        MapCamera cam = Application.isPlaying ? Global.Instance().Maps.camera : FindObjectOfType<MapCamera>();
+        Camera cam = Application.isPlaying ? parent.parent.camera : FindObjectOfType<Camera>();
         if (!cam || !cameraRelativeFacing) {
             return facing;
         }
 
-        Vector3 ourScreen = cam.GetCameraComponent().WorldToScreenPoint(transform.position);
+        Vector3 ourScreen = cam.WorldToScreenPoint(transform.position);
         Vector3 targetWorld = ((MapEvent3D)parent).OwnTileToWorld(parent.position + facing.XY3D());
         targetWorld.y = parent.transform.position.y;
-        Vector3 targetScreen = cam.GetCameraComponent().WorldToScreenPoint(targetWorld);
+        Vector3 targetScreen = cam.WorldToScreenPoint(targetWorld);
         Vector3 delta = targetScreen - ourScreen;
         return OrthoDirExtensions.DirectionOf2D(new Vector2(delta.x, -delta.y));
     }
@@ -291,7 +291,6 @@ public class CharaEvent : MonoBehaviour {
         }
 
         int x;
-        int y = facing.Ordinal();
         if (jumping) {
             x = Mathf.FloorToInt(moveTime * JumpStepsPerSecond) % 2 + 3;
         } else {
@@ -299,7 +298,7 @@ public class CharaEvent : MonoBehaviour {
             if (x == 3) x = 1;
             if (!stepping) x = 1;
         }
-        return FrameBySlot(x, y);
+        return FrameBySlot(x);
     }
 
     private Sprite SpriteForArms() {
