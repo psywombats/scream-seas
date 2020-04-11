@@ -12,7 +12,7 @@ namespace SuperTiled2Unity.Editor
         public const string ProjectSettingsPath = "Project/SuperTiled2Unity";
 
         [SerializeField]
-        private float m_PixelsPerUnit = 100.0f;
+        private float m_PixelsPerUnit = 16.0f;
         public float PixelsPerUnit
         {
             get { return m_PixelsPerUnit; }

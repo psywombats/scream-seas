@@ -135,7 +135,7 @@ public class MapManager : MonoBehaviour {
     private void AddInitialAvatar(Map map) {
         Avatar = Instantiate(Resources.Load<GameObject>("Prefabs/Avatar2D")).GetComponent<AvatarEvent>();
         Avatar.transform.SetParent(map.objectLayer.transform, false);
-        Camera.target = Avatar.Event;
+        // Camera.target = Avatar.Event;
         Camera.ManualUpdate();
     }
 }

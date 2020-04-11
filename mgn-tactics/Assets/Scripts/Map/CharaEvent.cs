@@ -11,7 +11,7 @@ using UnityEngine;
 public class CharaEvent : MonoBehaviour {
     
     private const float DesaturationDuration = 0.5f;
-    private const float StepsPerSecond = 2.0f;
+    private const float StepsPerSecond = 4.0f;
 
     public Doll Doll;
 
@@ -74,7 +74,7 @@ public class CharaEvent : MonoBehaviour {
         bool steppingThisFrame = IsSteppingThisFrame();
         stepping = steppingThisFrame || wasSteppingLastFrame;
         if (!steppingThisFrame && !wasSteppingLastFrame) {
-            moveTime = 0.0f;
+            moveTime = StepsPerSecond / Sprites.StepCount;
         } else {
             moveTime += Time.deltaTime;
         }

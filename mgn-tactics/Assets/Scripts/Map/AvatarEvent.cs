@@ -54,10 +54,12 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
             case InputManager.Event.Hold:
                 switch (command) {
                     case InputManager.Command.Up:
-                        TryStep(OrthoDir.North);
+                        //TryStep(OrthoDir.North);
+                        GetComponent<CharaEvent>().Facing = OrthoDir.North;
+                        Interact();
                         return true;
                     case InputManager.Command.Down:
-                        TryStep(OrthoDir.South);
+                        //TryStep(OrthoDir.South);
                         return true;
                     case InputManager.Command.Right:
                         TryStep(OrthoDir.East);

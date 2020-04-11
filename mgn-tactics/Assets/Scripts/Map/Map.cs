@@ -106,7 +106,10 @@ public abstract class Map : MonoBehaviour {
     public bool IsChipPassableAt(Vector2Int loc) {
         short total = 0;
         foreach (Tilemap layer in layers) {
-            total += IsChipPassableAt(layer, loc);
+            layer.GetComponent<SuperCustomProperties>().TryGetCustomProperty("CheckPassability", out CustomProperty prop);
+            if (prop != null && prop.GetValueAsBool()) {
+                total += IsChipPassableAt(layer, loc);
+            }
         }
         return total >= 0;
     }

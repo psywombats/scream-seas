@@ -24,7 +24,7 @@ public class FieldSpritesheetComponent : MonoBehaviour {
         if (tag == null) {
             tag = "null";
         } else {
-            var spritesheet = IndexDatabase.Instance().FieldSprites.GetDataOrNull(tag).spriteSheet;
+            var spritesheet = IndexDatabase.Instance().FieldSprites.GetData(tag).spriteSheet;
             LoadSpritesheetData(spritesheet);
         }
     }
