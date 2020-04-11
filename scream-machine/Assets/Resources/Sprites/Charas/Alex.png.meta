@@ -1,57 +1,153 @@
 fileFormatVersion: 2
 guid: 91132f0537866b640afe031d83981016
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: AlexNorthLeft
-    21300002: AlexNorthCenter
-    21300004: AlexNorthRight
-    21300006: AlexEastLeft
-    21300008: AlexEastCenter
-    21300010: AlexEastRight
-    21300012: AlexSouthLeft
-    21300014: AlexSouthCenter
-    21300016: AlexSouthRight
-    21300018: AlexWestLeft
-    21300020: AlexWestCenter
-    21300022: AlexWestRight
-    21300024: AlexaNorthLeft
-    21300026: AlexaNorthCenter
-    21300028: AlexaNorthRight
-    21300030: AlexaEastLeft
-    21300032: AlexaEastCenter
-    21300034: AlexaEastRight
-    21300036: AlexaSouthLeft
-    21300038: AlexaSouthCenter
-    21300040: AlexaSouthRight
-    21300042: AlexaWestLeft
-    21300044: AlexaWestCenter
-    21300046: AlexaWestRight
-    21300048: AlexNorthaLeft
-    21300050: AlexNorthaCenter
-    21300052: AlexNorthaRight
-    21300054: AlexEastaLeft
-    21300056: AlexEastaCenter
-    21300058: AlexEastaRight
-    21300060: AlexSouthaLeft
-    21300062: AlexSouthaCenter
-    21300064: AlexSouthaRight
-    21300066: AlexWestaLeft
-    21300068: AlexWestaCenter
-    21300070: AlexWestaRight
-    21300072: Alex_0_0
-    21300074: Alex_1_0
-    21300076: Alex_2_0
-    21300078: Alex_0_1
-    21300080: Alex_1_1
-    21300082: Alex_2_1
-    21300084: Alex_0_2
-    21300086: Alex_1_2
-    21300088: Alex_2_2
-    21300090: Alex_0_3
-    21300092: Alex_1_3
-    21300094: Alex_2_3
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: AlexNorthLeft
+  - first:
+      213: 21300002
+    second: AlexNorthCenter
+  - first:
+      213: 21300004
+    second: AlexNorthRight
+  - first:
+      213: 21300006
+    second: AlexEastLeft
+  - first:
+      213: 21300008
+    second: AlexEastCenter
+  - first:
+      213: 21300010
+    second: AlexEastRight
+  - first:
+      213: 21300012
+    second: AlexSouthLeft
+  - first:
+      213: 21300014
+    second: AlexSouthCenter
+  - first:
+      213: 21300016
+    second: AlexSouthRight
+  - first:
+      213: 21300018
+    second: AlexWestLeft
+  - first:
+      213: 21300020
+    second: AlexWestCenter
+  - first:
+      213: 21300022
+    second: AlexWestRight
+  - first:
+      213: 21300024
+    second: AlexaNorthLeft
+  - first:
+      213: 21300026
+    second: AlexaNorthCenter
+  - first:
+      213: 21300028
+    second: AlexaNorthRight
+  - first:
+      213: 21300030
+    second: AlexaEastLeft
+  - first:
+      213: 21300032
+    second: AlexaEastCenter
+  - first:
+      213: 21300034
+    second: AlexaEastRight
+  - first:
+      213: 21300036
+    second: AlexaSouthLeft
+  - first:
+      213: 21300038
+    second: AlexaSouthCenter
+  - first:
+      213: 21300040
+    second: AlexaSouthRight
+  - first:
+      213: 21300042
+    second: AlexaWestLeft
+  - first:
+      213: 21300044
+    second: AlexaWestCenter
+  - first:
+      213: 21300046
+    second: AlexaWestRight
+  - first:
+      213: 21300048
+    second: AlexNorthaLeft
+  - first:
+      213: 21300050
+    second: AlexNorthaCenter
+  - first:
+      213: 21300052
+    second: AlexNorthaRight
+  - first:
+      213: 21300054
+    second: AlexEastaLeft
+  - first:
+      213: 21300056
+    second: AlexEastaCenter
+  - first:
+      213: 21300058
+    second: AlexEastaRight
+  - first:
+      213: 21300060
+    second: AlexSouthaLeft
+  - first:
+      213: 21300062
+    second: AlexSouthaCenter
+  - first:
+      213: 21300064
+    second: AlexSouthaRight
+  - first:
+      213: 21300066
+    second: AlexWestaLeft
+  - first:
+      213: 21300068
+    second: AlexWestaCenter
+  - first:
+      213: 21300070
+    second: AlexWestaRight
+  - first:
+      213: 21300072
+    second: Alex_0_0
+  - first:
+      213: 21300074
+    second: Alex_1_0
+  - first:
+      213: 21300076
+    second: Alex_2_0
+  - first:
+      213: 21300078
+    second: Alex_0_1
+  - first:
+      213: 21300080
+    second: Alex_1_1
+  - first:
+      213: 21300082
+    second: Alex_2_1
+  - first:
+      213: 21300084
+    second: Alex_0_2
+  - first:
+      213: 21300086
+    second: Alex_1_2
+  - first:
+      213: 21300088
+    second: Alex_2_2
+  - first:
+      213: 21300090
+    second: Alex_0_3
+  - first:
+      213: 21300092
+    second: Alex_1_3
+  - first:
+      213: 21300094
+    second: Alex_2_3
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -146,7 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a30f7e4cbe0055047a81b8c212311412
+      spriteID: 2f1c5079328cf3c4d8e7d0406e8e001f
+      internalID: 21300072
       vertices: []
       indices: 
       edges: []
@@ -166,7 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 02ae244beb0b49c4a8cc587d9272351d
+      spriteID: 645d6397e1f7af44e84a880de5cbef06
+      internalID: 21300074
       vertices: []
       indices: 
       edges: []
@@ -186,7 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 649d151f11ebab64ab99326835984a25
+      spriteID: 934ef45ac89bd1f45b89ab3538efa79f
+      internalID: 21300076
       vertices: []
       indices: 
       edges: []
@@ -206,7 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ce258f006582e240a1f4cfefc198776
+      spriteID: a1b1e5cb26dab394cb077ba3b1f0c578
+      internalID: 21300078
       vertices: []
       indices: 
       edges: []
@@ -226,7 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb4e2b1883522ce47806cfc3072985b1
+      spriteID: d047e3189285c5549931ee691e42efad
+      internalID: 21300080
       vertices: []
       indices: 
       edges: []
@@ -246,7 +347,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: afac3d58634ece04d92ea11ecb9a3213
+      spriteID: 9a14cc55293863e4dafb6f726853bc44
+      internalID: 21300082
       vertices: []
       indices: 
       edges: []
@@ -266,7 +368,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be93bfdfb67481f4dada28ff94a05202
+      spriteID: 9e7976b54f30f554b95e2306f852f62c
+      internalID: 21300084
       vertices: []
       indices: 
       edges: []
@@ -286,7 +389,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b735e3217217b014786e8e2ac6f12350
+      spriteID: 75ab2338c6af58f49b7e8a13b2df534b
+      internalID: 21300086
       vertices: []
       indices: 
       edges: []
@@ -306,7 +410,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a972259edb02ed54cbecde0b33c680f8
+      spriteID: 95a350825ffbf4443bbff49a8b8b6d7d
+      internalID: 21300088
       vertices: []
       indices: 
       edges: []
@@ -326,7 +431,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1749d63b784bcd84daee7cb011de7636
+      spriteID: 87bfbf5c9ded52843980143d66212fde
+      internalID: 21300090
       vertices: []
       indices: 
       edges: []
@@ -346,7 +452,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99042f4a6711ee94b80a1bc42f0c7e24
+      spriteID: d17780dd33ce69d4d955352753ef483f
+      internalID: 21300092
       vertices: []
       indices: 
       edges: []
@@ -366,7 +473,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04d6d793662d6394983b9440635c55c0
+      spriteID: 370c576f456f3ec4c99e9d471d202e65
+      internalID: 21300094
       vertices: []
       indices: 
       edges: []
@@ -375,10 +483,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
