@@ -54,12 +54,10 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
             case InputManager.Event.Hold:
                 switch (command) {
                     case InputManager.Command.Up:
-                        //TryStep(OrthoDir.North);
-                        GetComponent<CharaEvent>().Facing = OrthoDir.North;
-                        Interact();
+                        TryStep(OrthoDir.North);
                         return true;
                     case InputManager.Command.Down:
-                        //TryStep(OrthoDir.South);
+                        TryStep(OrthoDir.South);
                         return true;
                     case InputManager.Command.Right:
                         TryStep(OrthoDir.East);
@@ -142,7 +140,7 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         List<MapEvent> targetEvents = Event.Map.GetEventsAt(target);
 
         List<MapEvent> toCollide = new List<MapEvent>();
-        bool passable = Event.CanPassAt(target);
+        var passable = vsd.y == 0 && Event.CanPassAt(target);
         foreach (MapEvent targetEvent in targetEvents) {
             toCollide.Add(targetEvent);
             if (!Event.CanPassAt(target)) {

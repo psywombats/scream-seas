@@ -11,6 +11,7 @@ public class Global : MonoBehaviour {
     public AudioManager Audio { get; private set; }
     public SerializationManager Serialization { get; private set; }
     public Dispatch Dispatch { get; private set; }
+    public Messenger Messenger { get; private set; }
 
     public GameData Data => Serialization.Data;
     public SystemData SystemData => Serialization.SystemData;
@@ -47,6 +48,7 @@ public class Global : MonoBehaviour {
         Input = gameObject.AddComponent<InputManager>();
         Maps = gameObject.AddComponent<MapManager>();
         Audio = gameObject.AddComponent<AudioManager>();
+        Messenger = gameObject.AddComponent<Messenger>();
     }
 
     private void SetFullscreenMode() {
