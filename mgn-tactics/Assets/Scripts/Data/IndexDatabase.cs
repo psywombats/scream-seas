@@ -7,6 +7,7 @@ public class IndexDatabase : ScriptableObject {
     public FadeIndexData Fades;
     public SoundEffectIndexData SFX;
     public BGMIndexData BGM;
+    public FieldSpriteIndexData FieldSprites;
 
     public static IndexDatabase Instance() {
         return Resources.Load<IndexDatabase>("Database/Database");

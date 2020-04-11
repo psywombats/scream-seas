@@ -30,13 +30,11 @@ public class BillboardingSpriteComponent : MonoBehaviour {
         }
     }
 
+    private Camera cam;
     private Camera GetCamera() {
-        if (Application.isPlaying) {
-            return GetComponentInParent<MapEvent>().parent.camera;
-        } else {
-            Camera cam = GetComponentInParent<MapEvent>().parent.camera;
-            if (cam != null) return cam;
-            return FindObjectOfType<Camera>();
-        }
+        // ugly
+        if (cam != null) return cam;
+        cam = FindObjectOfType<Camera>();
+        return cam;
     }
 }

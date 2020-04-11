@@ -16,17 +16,19 @@ public class MapEventEditor : Editor {
 
         if (!mapEvent.GetComponent<CharaEvent>()) {
             if (GUILayout.Button("Add Chara Event")) {
+                /*
                 GameObject doll = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(DollPath));
                 doll.name = mapEvent.name + " (doll)";
                 GameObjectUtility.SetParentAndAlign(doll, mapEvent.gameObject);
                 CharaEvent chara = mapEvent.gameObject.AddComponent<CharaEvent>();
-                chara.doll = doll;
-                mapEvent.passable = false;
+                chara.Doll = doll;
+                mapEvent.Passable = false;
                 Undo.RegisterCreatedObjectUndo(mapEvent, "Create " + doll.name);
                 Selection.activeObject = doll;
 
                 // hardcode weirdness
                 doll.transform.localPosition = new Vector3(Map.TileSizePx / 2, -Map.TileSizePx, 0.0f);
+                */
             }
             GUILayout.Space(25.0f);
         }
@@ -35,18 +37,12 @@ public class MapEventEditor : Editor {
             mapEvent.GenerateLua();
         }
 
-        Vector2Int originalPosition = mapEvent.position;
+        Vector2Int originalPosition = mapEvent.Position;
 
-        Vector2Int newPosition = EditorGUILayout.Vector2IntField("Tiles position", mapEvent.position);
-        if (newPosition != mapEvent.position) {
+        Vector2Int newPosition = EditorGUILayout.Vector2IntField("Tiles position", mapEvent.Position);
+        if (newPosition != mapEvent.Position) {
             Undo.RecordObject(mapEvent, "Reposition event");
             mapEvent.SetPosition(newPosition);
-        }
-
-        Vector2Int newSize = EditorGUILayout.Vector2IntField("Size", mapEvent.size);
-        if (newSize != mapEvent.size) {
-            Undo.RecordObject(mapEvent, "Resize event");
-            mapEvent.SetSize(newSize);
         }
 
         if (!Application.IsPlaying(mapEvent)) {
@@ -65,7 +61,7 @@ public class MapEventEditor : Editor {
             Undo.RegisterCompleteObjectUndo(mapEvent.transform, "Drag " + mapEvent);
             mapEvent.transform.localPosition = newPosition;
             mapEvent.SetTilePositionToMatchScreenPosition();
-            serializedObject.FindProperty("position").vector2IntValue = mapEvent.position;
+            serializedObject.FindProperty("Position").vector2IntValue = mapEvent.Position;
             serializedObject.ApplyModifiedProperties();
         }
         

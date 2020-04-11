@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// represents an eval-able piece of Lua, usually from an event field
+/// <summary>
+/// represents an eval-able piece of Lua, usually from an event field
+/// </summary>
 public class LuaCondition {
 
     private LuaContext context;

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-/**
- * A serialized lua script, because Unity can't handle .lua files for some damn reason. This right
- * now is also used as the battle animation format.
- */
+/// <summary>
+/// A serialized lua script, because Unity can't handle .lua files for some damn reason.
+/// </summary>
 [CreateAssetMenu(fileName = "Script", menuName = "LuaScript")]
 public class LuaSerializedScript : AutoExpandingScriptableObject {
 

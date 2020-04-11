@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System;
 
-[CreateAssetMenu(fileName = "BGMIndexData", menuName = "Data/VN/BGMIndexData")]
+[CreateAssetMenu(fileName = "BGMIndexData", menuName = "Data/Index/BGMIndexData")]
 public class BGMIndexData : GenericIndex<BGMData> {
 
 }

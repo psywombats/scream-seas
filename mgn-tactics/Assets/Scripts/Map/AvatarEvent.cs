@@ -1,105 +1,131 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharaEvent))]
-public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
+public class AvatarEvent : MonoBehaviour, IInputListener {
 
-    public bool wantsToTrack { get; private set; }
+    public bool WantsToTrack { get; private set; }
 
     private int pauseCount;
-    public bool inputPaused {
+    public bool IsInputPaused {
         get {
             return pauseCount > 0;
         }
     }
 
-    private MapEvent parent { get { return GetComponent<MapEvent>(); } }
+    private CharaEvent chara;
+    public CharaEvent Chara {
+        get {
+            if (chara == null) {
+                chara = GetComponent<CharaEvent>();
+            }
+            return chara;
+        }
+    }
+
+    private MapEvent parent;
+    public MapEvent Event {
+        get {
+            if (parent == null) {
+                parent = GetComponent<MapEvent>();
+            }
+            return parent;
+        }
+    }
+
+    public Map Map => Event.Map;
 
     public void Start() {
-        Global.Instance().Maps.avatar = this;
+        Global.Instance().Maps.Avatar = this;
         Global.Instance().Input.PushListener(this);
         pauseCount = 0;
     }
 
     public virtual void Update() {
-        wantsToTrack = false;
+        WantsToTrack = false;
     }
 
     public bool OnCommand(InputManager.Command command, InputManager.Event eventType) {
-        if (GetComponent<MapEvent>().tracking || inputPaused) {
-            return true;
+        if (Event.Tracking || IsInputPaused) {
+            return false;
         }
         switch (eventType) {
             case InputManager.Event.Hold:
                 switch (command) {
                     case InputManager.Command.Up:
                         TryStep(OrthoDir.North);
-                        return false;
+                        return true;
                     case InputManager.Command.Down:
                         TryStep(OrthoDir.South);
-                        return false;
+                        return true;
                     case InputManager.Command.Right:
                         TryStep(OrthoDir.East);
-                        return false;
+                        return true;
                     case InputManager.Command.Left:
                         TryStep(OrthoDir.West);
-                        return false;
+                        return true;
                     default:
-                        return false;
+                        return true;
                 }
-            case InputManager.Event.Up:
+            case InputManager.Event.Down:
                 switch (command) {
                     case InputManager.Command.Confirm:
                         Interact();
-                        return false;
+                        return true;
+                    case InputManager.Command.Menu:
                     case InputManager.Command.Cancel:
-                        ShowMenu();
-                        return false;
+                        // ShowMenu();
+                        return true;
                     case InputManager.Command.Debug:
-                        Global.Instance().Memory.SaveToSlot(0);
-                        return false;
+                        Global.Instance().Serialization.SaveToSlot(0);
+                        return true;
                     default:
-                        return false;
+                        return true;
                 }
             default:
-                return false;
+                return true;
         }
-    }
-
-    public void PopulateFromMemory(Memory memory) {
-        GetComponent<MapEvent>().SetPosition(memory.position);
-        GetComponent<CharaEvent>().facing = memory.facing;
-    }
-
-    public void PopulateMemory(Memory memory) {
-        memory.position = GetComponent<MapEvent>().position;
-        memory.facing = GetComponent<CharaEvent>().facing;
     }
 
     public void PauseInput() {
         pauseCount += 1;
+        WantsToTrack = false;
     }
 
     public void UnpauseInput() {
-        pauseCount -= 1;
+        if (pauseCount > 0) {
+            pauseCount -= 1;
+        }
+    }
+
+    public void SetHidden(bool hidden) {
+        Global.Instance().Data.SetSwitch("hide_hero", hidden);
+    }
+
+    public void OnTeleport() {
+        Chara.ResetAnimationTimer();
     }
 
     private void Interact() {
-        Vector2Int target = GetComponent<MapEvent>().position + GetComponent<CharaEvent>().facing.XY2D();
-        List<MapEvent> targetEvents = GetComponent<MapEvent>().parent.GetEventsAt(target);
+        var offset = Chara.Facing.XY2D();
+        var target = Event.Position + offset;
+        var targetEvents = Event.Map.GetEventsAt(target);
+        if (Event.Map.HasTilePropertyAt(target, tile => tile != null ? tile.IsCounter : false)) {
+            target += offset;
+            targetEvents.AddRange(Event.Map.GetEventsAt(target));
+        }
         foreach (MapEvent tryTarget in targetEvents) {
-            if (tryTarget.switchEnabled && !tryTarget.IsPassableBy(parent)) {
+            if (tryTarget.IsSwitchEnabled && !tryTarget.IsPassableBy(Event)) {
                 tryTarget.GetComponent<Dispatch>().Signal(MapEvent.EventInteract, this);
                 return;
             }
         }
 
-        target = GetComponent<MapEvent>().position;
-        targetEvents = GetComponent<MapEvent>().parent.GetEventsAt(target);
+        target = Event.Position;
+        targetEvents = Event.Map.GetEventsAt(target);
         foreach (MapEvent tryTarget in targetEvents) {
-            if (tryTarget.switchEnabled && tryTarget.IsPassableBy(parent)) {
+            if (tryTarget.IsSwitchEnabled && tryTarget.IsPassableBy(Event)) {
                 tryTarget.GetComponent<Dispatch>().Signal(MapEvent.EventInteract, this);
                 return;
             }
@@ -107,33 +133,44 @@ public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
     }
 
     private bool TryStep(OrthoDir dir) {
-        Vector2Int vectors = GetComponent<MapEvent>().position;
+        Vector2Int vectors = Event.Position;
         Vector2Int vsd = dir.XY2D();
         Vector2Int target = vectors + vsd;
-        GetComponent<CharaEvent>().facing = dir;
-        List<MapEvent> targetEvents = GetComponent<MapEvent>().parent.GetEventsAt(target);
+        Chara.Facing = dir;
+        List<MapEvent> targetEvents = Event.Map.GetEventsAt(target);
 
         List<MapEvent> toCollide = new List<MapEvent>();
-        bool passable = parent.CanPassAt(target);
+        bool passable = Event.CanPassAt(target);
         foreach (MapEvent targetEvent in targetEvents) {
             toCollide.Add(targetEvent);
-            if (!parent.CanPassAt(target)) {
+            if (!Event.CanPassAt(target)) {
                 passable = false;
             }
         }
 
         if (passable) {
-            wantsToTrack = true;
-            StartCoroutine(CoUtils.RunWithCallback(GetComponent<MapEvent>().StepRoutine(dir), () => {
-                foreach (MapEvent targetEvent in toCollide) {
-                    if (targetEvent.switchEnabled) {
-                        targetEvent.GetComponent<Dispatch>().Signal(MapEvent.EventCollide, this);
+            WantsToTrack = true;
+            StartCoroutine(CoUtils.RunParallel(new IEnumerator[] {
+                CoUtils.RunWithCallback(Event.StepRoutine(dir), () => {
+                    foreach (var targetEvent in toCollide) {
+                        if (targetEvent.IsSwitchEnabled) {
+                            targetEvent.GetComponent<Dispatch>().Signal(MapEvent.EventCollide, this);
+                        }
                     }
-                }
-            }));
+                    foreach (var targetEvent in Event.Map.GetEvents<MapEvent>()) {
+                        if (targetEvent.IsSwitchEnabled) {
+                            targetEvent.GetComponent<Dispatch>().Signal(MapEvent.EventStep, this);
+                        }
+                    }
+                    if (toCollide.Count == 0) {
+                        Global.Instance().Maps.ActiveMap.OnStepEnded();
+                    }
+                }),
+                OnStepStartRoutine(),
+            }, this));
         } else {
-            foreach (MapEvent targetEvent in toCollide) {
-                if (targetEvent.switchEnabled && !targetEvent.IsPassableBy(parent)) {
+            foreach (var targetEvent in toCollide) {
+                if (targetEvent.IsSwitchEnabled && !targetEvent.IsPassableBy(Event)) {
                     targetEvent.GetComponent<Dispatch>().Signal(MapEvent.EventCollide, this);
                 }
             }
@@ -142,7 +179,10 @@ public class AvatarEvent : MonoBehaviour, InputListener, MemoryPopulater {
         return true;
     }
 
-    private void ShowMenu() {
-        // oh shiii
+    private IEnumerator OnStepStartRoutine() {
+        bool trans = Map.HasTilePropertyAt(Event.Position, tile => tile != null ? tile.IsTransparent : false);
+        Chara.SetTransparent(trans);
+        Global.Instance().Maps.ActiveMap.OnStepStarted();
+        yield return null;
     }
 }

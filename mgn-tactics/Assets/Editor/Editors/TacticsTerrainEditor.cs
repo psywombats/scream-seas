@@ -108,10 +108,10 @@ public class TacticsTerrainEditor : Editor {
                 EditorGUILayout.BeginHorizontal();
 
                 for (int x = 0; x < tileset.size.x; x += 1) {
-                    Rect selectRect = EditorGUILayout.BeginHorizontal(GUILayout.Width(Map.TileSizePx), GUILayout.Height(Map.TileSizePx));
+                    Rect selectRect = EditorGUILayout.BeginHorizontal(GUILayout.Width(Map.PxPerTile), GUILayout.Height(Map.PxPerTile));
                     Tile tile = tileset.GetTile<Tile>(new Vector3Int(x, y, 0));
 
-                    GUILayout.Box("", style, GUILayout.Width(Map.TileSizePx), GUILayout.Height(Map.TileSizePx));
+                    GUILayout.Box("", style, GUILayout.Width(Map.PxPerTile), GUILayout.Height(Map.PxPerTile));
                     Rect r = GUILayoutUtility.GetLastRect();
 
                     if (r.Contains(Event.current.mousePosition)) {

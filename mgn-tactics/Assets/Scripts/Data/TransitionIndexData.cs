@@ -15,10 +15,10 @@ public class TransitionData : GenericDataObject {
     public string FadeInTag;
 
     public FadeData GetFadeOut() {
-        return Global.Instance().Database.Fades.GetData(FadeOutTag);
+        return IndexDatabase.Instance().Fades.GetData(FadeOutTag);
     }
 
     public FadeData GetFadeIn() {
-        return Global.Instance().Database.Fades.GetData(FadeInTag);
+        return IndexDatabase.Instance().Fades.GetData(FadeInTag);
     }
 }

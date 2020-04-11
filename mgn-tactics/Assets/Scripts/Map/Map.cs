@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperTiled2Unity;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,53 +7,37 @@ using UnityEngine.Tilemaps;
 /**
  * MGNE's big map class, now in MGNE2. Converted from Tiled and now to unity maps.
  */
-public class Map : MonoBehaviour {
+public abstract class Map : MonoBehaviour {
 
-    // some game-wide critical map2d constants
-    public const int TileSizePx = 16;
-    public const int UnityUnitScale = 1;
+    #region Constants
+
+    /// <summary>The number of pixels a tile takes up</summary>
+    public const int PxPerTile = 16;
+    /// <summary>The number of pixels that make up a tile</summary>
+    public const float UnitsPerTile = 1;
 
     public const string ResourcePath = "Maps/";
-    
+
+    #endregion
+
+    #region Properties and getters
+
     public Grid grid;
     public ObjectLayer objectLayer;
-    public new Camera camera;
 
-    public string bgmKey { get; private set; }
-    
+    public string InternalName { get; set; } = "test"; // hack for dev
+
     // true if the tile in question is passable at x,y
-    private Dictionary<Tilemap, bool[,]> passabilityMap;
-
-    private Vector2Int _size;
-    public Vector2Int size {
-        get {
-            if (_size.x == 0) {
-                if (terrain != null) {
-                    _size = GetComponent<TacticsTerrainMesh>().size;
-                } else {
-                    Vector3Int v3 = grid.transform.GetChild(0).GetComponent<Tilemap>().size;
-                    _size = new Vector2Int(v3.x, v3.y);
-                }
-            }
-            return _size;
-        }
-    }
-    public Vector2 sizePx { get { return size * TileSizePx; } }
-    public int width { get { return size.x; } }
-    public int height { get { return size.y; } }
+    private Dictionary<Tilemap, short[,]> passabilityMap;
 
     private List<Tilemap> _layers;
     public List<Tilemap> layers {
         get {
             if (_layers == null) {
                 _layers = new List<Tilemap>();
-                if (terrain != null) {
-                    _layers.Add(GetComponent<Tilemap>());
-                } else {
-                    foreach (Transform child in grid.transform) {
-                        if (child.GetComponent<Tilemap>()) {
-                            _layers.Add(child.GetComponent<Tilemap>());
-                        }
+                foreach (Transform child in grid.transform) {
+                    if (child.GetComponent<Tilemap>()) {
+                        _layers.Add(child.GetComponent<Tilemap>());
                     }
                 }
             }
@@ -60,17 +45,31 @@ public class Map : MonoBehaviour {
         }
     }
 
-    private TacticsTerrainMesh _terrain;
-    public TacticsTerrainMesh terrain {
+    private Vector2Int _size;
+    public Vector2Int size {
         get {
-            if (_terrain == null) _terrain = GetComponent<TacticsTerrainMesh>();
-            return _terrain;
+            if (_size.x == 0) {
+                _size = InternalGetSize();
+            }
+            return _size;
         }
     }
+    protected abstract Vector2Int InternalGetSize();
 
-    public void Start() {
+    public int Width { get => size.x; }
+    public int Height { get => size.y; }
+
+    public abstract string MapName { get; }
+    public abstract string BgmKey { get; }
+    public abstract string EncounterKey { get; }
+    public abstract string TerrainEncounterKey { get; }
+    public abstract string BattleBGMKey { get; }
+
+    #endregion
+
+    public virtual void Start() {
         // TODO: figure out loading
-        Global.Instance().Maps.activeMap = this;
+        Global.Instance().Maps.ActiveMap = this;
     }
 
     public Vector3Int TileToTilemapCoords(Vector2Int loc) {
@@ -78,28 +77,48 @@ public class Map : MonoBehaviour {
     }
 
     public Vector3Int TileToTilemapCoords(int x, int y) {
-        return new Vector3Int(x, -1 * (y + 1), 0);
+        return new Vector3Int(x, -1 * y, 0);
     }
 
-    public PropertiedTile TileAt(Tilemap layer, int x, int y) {
-        return (PropertiedTile)layer.GetTile(TileToTilemapCoords(x, y));
-    }
+    public abstract PropertiedTile TileAt(Tilemap layer, int x, int y);
 
-    public bool IsChipPassableAt(Tilemap layer, Vector2Int loc) {
+    public short IsChipPassableAt(Tilemap layer, Vector2Int loc) {
+        var groundLayer = layer.GetComponent<TilemapRenderer>().sortingOrder <= 2;
         if (passabilityMap == null) {
-            passabilityMap = new Dictionary<Tilemap, bool[,]>();
+            passabilityMap = new Dictionary<Tilemap, short[,]>();
         }
         if (!passabilityMap.ContainsKey(layer)) {
-            passabilityMap[layer] = new bool[width, height];
-            for (int x = 0; x < width; x += 1) {
-                for (int y = 0; y < height; y += 1) {
+            passabilityMap[layer] = new short[Width, Height];
+            for (int x = 0; x < Width; x += 1) {
+                for (int y = 0; y < Height; y += 1) {
                     PropertiedTile tile = TileAt(layer, x, y);
-                    passabilityMap[layer][x, y] = tile == null || tile.GetData().passable;
+                    if (tile != null) {
+                        if (tile.IsPassable) passabilityMap[layer][x, y] += 1;
+                        if (tile.IsImpassable && groundLayer) passabilityMap[layer][x, y] -= 1;
+                    }
                 }
             }
         }
 
         return passabilityMap[layer][loc.x, loc.y];
+    }
+
+    public bool IsChipPassableAt(Vector2Int loc) {
+        short total = 0;
+        foreach (Tilemap layer in layers) {
+            total += IsChipPassableAt(layer, loc);
+        }
+        return total >= 0;
+    }
+
+    public bool HasTilePropertyAt(Vector2Int loc, Func<PropertiedTile, bool> rule) {
+        foreach (Tilemap layer in layers) {
+            var tile = TileAt(layer, loc.x, loc.y);
+            if (rule(tile)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // careful, this implementation is straight from MGNE, it's efficiency is questionable, to say the least
@@ -122,7 +141,7 @@ public class Map : MonoBehaviour {
                 return mapEvent.GetComponent<T>();
             }
         }
-        return default(T);
+        return default;
     }
 
     // returns all events that have a component of type t
@@ -135,8 +154,11 @@ public class Map : MonoBehaviour {
     }
 
     public MapEvent GetEventNamed(string eventName) {
-        foreach (ObjectLayer layer in GetComponentsInChildren<ObjectLayer>()) {
-            foreach (MapEvent mapEvent in layer.GetComponentsInChildren<MapEvent>()) {
+        if (eventName == "hero") {
+            return Global.Instance().Maps.Avatar.Event;
+        }
+        foreach (var layer in GetComponentsInChildren<ObjectLayer>()) {
+            foreach (var mapEvent in layer.GetComponentsInChildren<MapEvent>()) {
                 if (mapEvent.name == eventName) {
                     return mapEvent;
                 }
@@ -146,8 +168,8 @@ public class Map : MonoBehaviour {
     }
 
     public void OnTeleportTo() {
-        if (bgmKey != null) {
-            Global.Instance().Audio.PlayBGM(bgmKey);
+        if (BgmKey != null) {
+            Global.Instance().Audio.PlayBGM(BgmKey);
         }
     }
 
@@ -155,22 +177,32 @@ public class Map : MonoBehaviour {
 
     }
 
-    // returns a list of coordinates to step to with the last one being the destination, or null
-    public List<Vector2Int> FindPath(MapEvent actor, Vector2Int to) {
-        return FindPath(actor, to, width > height ? width : height);
+    public void OnStepStarted() {
+        foreach (var mapEvent in GetEvents<MapEvent>()) {
+            mapEvent.OnStepStarted();
+        }
     }
-    public List<Vector2Int> FindPath(MapEvent actor, Vector2Int to, int maxPathLength) {
-        if (ManhattanDistance(actor.GetComponent<MapEvent>().position, to) > maxPathLength) {
+
+    public void OnStepEnded() {
+
+    }
+
+    // returns a list of coordinates to step to with the last one being the destination, or null
+    public List<Vector2Int> FindPath(MapEvent actor, Vector2Int to, bool ignoreEvents = false) {
+        return FindPath(actor, to, Width > Height ? Width : Height, ignoreEvents);
+    }
+    public List<Vector2Int> FindPath(MapEvent actor, Vector2Int to, int maxPathLength, bool ignoreEvents = false) {
+        if (ManhattanDistance(actor.GetComponent<MapEvent>().Position, to) > maxPathLength) {
             return null;
         }
-        if (!actor.CanPassAt(to)) {
+        if (!actor.CanPassAt(to) && !ignoreEvents) {
             return null;
         }
 
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
         List<List<Vector2Int>> heads = new List<List<Vector2Int>>();
         List<Vector2Int> firstHead = new List<Vector2Int>();
-        firstHead.Add(actor.GetComponent<MapEvent>().position);
+        firstHead.Add(actor.GetComponent<MapEvent>().Position);
         heads.Add(firstHead);
 
         while (heads.Count > 0) {
@@ -193,16 +225,13 @@ public class Map : MonoBehaviour {
                     Vector2Int next = head[head.Count - 1];
                     // minor perf here, this is critical code
                     switch (dir) {
-                        case OrthoDir.East:     next.x += 1;    break;
-                        case OrthoDir.North:    next.y += 1;    break;
-                        case OrthoDir.West:     next.x -= 1;    break;
-                        case OrthoDir.South:    next.y -= 1;    break;
+                        case OrthoDir.East: next.x += 1; break;
+                        case OrthoDir.North: next.y += 1; break;
+                        case OrthoDir.West: next.x -= 1; break;
+                        case OrthoDir.South: next.y -= 1; break;
                     }
-                    if (!visited.Contains(next) && actor.CanPassAt(next) &&
-                        (actor.GetComponent<CharaEvent>() == null ||
-                             actor.CanPassAt(next)) &&
-                        (actor.GetComponent<BattleEvent>() == null ||
-                             actor.GetComponent<BattleEvent>().CanCrossTileGradient(at, next))) {
+                    if (!visited.Contains(next) &&
+                            (ignoreEvents || actor.GetComponent<CharaEvent>() == null || actor.CanPassAt(next) || next == to)) {
                         List<Vector2Int> newHead = new List<Vector2Int>(head) { next };
                         heads.Add(newHead);
                         visited.Add(next);

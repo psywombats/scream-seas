@@ -2,7 +2,10 @@
 using System.Collections;
 using System;
 
-public class AnonymousListener : InputListener {
+/// <summary>
+/// Wraps a function and turns it into an input listener
+/// </summary>
+public class AnonymousListener : IInputListener {
 
     private Func<InputManager.Command, InputManager.Event, bool> eventResponder;
 

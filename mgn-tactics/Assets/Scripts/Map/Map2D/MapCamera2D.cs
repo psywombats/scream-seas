@@ -6,14 +6,18 @@ public class MapCamera2D : MapCamera {
         ManualUpdate();
     }
 
+    private Vector3 targetPos;
     public override void ManualUpdate() {
         base.ManualUpdate();
-        Vector3 targetPos = target.transform.position;
-        Vector3 oldPos = GetComponent<Camera>().transform.position;
-        Vector3 newPos = new Vector3(
-            targetPos.x - OrthoDir.North.XY2D().y * Map.TileSizePx / Map.UnityUnitScale / 2.0f, 
-            targetPos.y - OrthoDir.North.XY2D().x * Map.TileSizePx / Map.UnityUnitScale / 2.0f, 
-            oldPos.z);
-        GetComponent<Camera>().transform.position = newPos;
+
+        if (target == null) return;
+
+        var cam = GetCameraComponent();
+        // assume the target is moving pixel-perfect (w/e)
+        targetPos = new Vector3(target.transform.position.x, target.transform.position.y, cam.transform.position.z);
+        cam.transform.position = new Vector3(
+            targetPos.x + Map.UnitsPerTile / 2.0f * OrthoDir.East.Px2DX(),
+            targetPos.y + Map.UnitsPerTile / 2.0f * OrthoDir.North.Px2DY(),
+            cam.transform.position.z);
     }
 }

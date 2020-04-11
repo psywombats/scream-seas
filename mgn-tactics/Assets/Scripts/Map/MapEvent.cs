@@ -1,57 +1,54 @@
 ﻿using DG.Tweening;
+using SuperTiled2Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-/**
- * The generic "thing on the map" class for MGNT.
- */
+
 [RequireComponent(typeof(Dispatch))]
-[RequireComponent(typeof(LuaCutsceneContext))]
-[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(SuperCustomProperties))]
 [DisallowMultipleComponent]
 public abstract class MapEvent : MonoBehaviour {
-    
-    private const string PropertyCondition = "show";
-    private const string PropertyBody = "body";
 
-    public const string EventEnabled = "enabled";
-    public const string EventCollide = "collide";
     public const string EventInteract = "interact";
-    public const string EventMove = "move";
+    public const string EventCollide = "collide";
+    public const string EventEnabled = "enabled";
+    public const string EventStep = "step";
 
-    public enum EventTriggerType {
-        Collide,
-        Interact,
-        Autostart,
-        Parallel,
-    }
+    public const string PropertyAppearance = "appearance";
+    public const string PropertyPassable = "passable";
+
+    public const string PropertyLuaHide = "hide";
+    public const string PropertyLuaCollide = "onCollide";
+    public const string PropertyLuaInteract = "onInteract";
+    public const string PropertyLuaAutostart = "onEnter";
+    public const string PropertyLuaBehavior = "onBehavior";
+
+    protected const int TilesPerSecond = 4;
+    protected const float BehaviorMaxDelaySeconds = 7.0f;
+
+    private Vector3 pixelImperfectPos;
+    private int lastUpdatedFrame;
+    private float toNextBehavior;
+    private bool hasAuto;
 
     // Editor properties
-    [HideInInspector] public Vector2Int position = new Vector2Int(0, 0);
-    [HideInInspector] public Vector2Int size = new Vector2Int(1, 1);
-    [Space]
-    [Header("Movement")]
-    public float tilesPerSecond = 2.0f;
-    public bool passable = true;
-    [Space]
-    [Header("Lua scripting")]
-    public string luaCondition;
-    [TextArea(8, 16)] public string luaBody;
-    public EventTriggerType triggerType = EventTriggerType.Collide;
+    public Vector2Int Position = new Vector2Int(0, 0);
+    public SuperCustomProperties Properties;
+    [HideInInspector] public Vector2Int Size;
 
     // Properties
-    public LuaMapEvent luaObject { get; private set; }
-    public Vector3 targetPositionPx { get; set; }
-    public bool tracking { get; private set; }
-    
-    public Vector3 positionPx {
+    public LuaMapEvent LuaObject { get; private set; }
+    public Vector3 TargetPositionPx { get; set; }
+    public bool Tracking { get; private set; }
+    public bool ImpassabilityOverride { get; set; }
+
+    public Vector3 PositionPx {
         get { return transform.localPosition; }
     }
-    
-    public Map parent {
+
+    public Map Map {
         get {
             GameObject parentObject = gameObject;
             while (parentObject.transform.parent != null) {
@@ -64,8 +61,8 @@ public abstract class MapEvent : MonoBehaviour {
             return null;
         }
     }
-    
-    public ObjectLayer layer {
+
+    public ObjectLayer Layer {
         get {
             GameObject parent = gameObject;
             while (parent.transform.parent != null) {
@@ -79,14 +76,14 @@ public abstract class MapEvent : MonoBehaviour {
         }
     }
 
-    private bool _switchEnabled = true;
-    public bool switchEnabled {
-        get { return _switchEnabled; }
+    private bool switchEnabled = true;
+    public bool IsSwitchEnabled {
+        get { return switchEnabled; }
         set {
-            if (value != _switchEnabled) {
+            if (value != switchEnabled) {
+                switchEnabled = value;
                 GetComponent<Dispatch>().Signal(EventEnabled, value);
             }
-            _switchEnabled = value;
         }
     }
 
@@ -118,10 +115,13 @@ public abstract class MapEvent : MonoBehaviour {
     protected abstract void DrawGizmoSelf();
 
     public void Awake() {
-        luaObject = new LuaMapEvent(this);
+        LuaObject = new LuaMapEvent(this);
     }
 
     public void Start() {
+        toNextBehavior = Random.Range(0.5f, 1.0f) * BehaviorMaxDelaySeconds;
+        pixelImperfectPos = PositionPx;
+
         GenerateLua();
 
         GetComponent<Dispatch>().RegisterListener(EventCollide, (object payload) => {
@@ -130,20 +130,38 @@ public abstract class MapEvent : MonoBehaviour {
         GetComponent<Dispatch>().RegisterListener(EventInteract, (object payload) => {
             OnInteract((AvatarEvent)payload);
         });
-        GetComponent<Dispatch>().RegisterListener(EventEnabled, (object payload) => {
-            CheckAutostart((bool)payload);
-        });
+
+        var appearanceResult = LuaObject.Evaluate(PropertyAppearance);
+        if (appearanceResult.IsNotNil() && GetComponent<CharaEvent>() != null) {
+            GetComponent<CharaEvent>().SetAppearanceByTag(appearanceResult.String);
+        }
+
+        var prop = GetProperty(PropertyLuaAutostart);
+        hasAuto = prop != null && prop.Length > 0;
 
         CheckEnabled();
     }
 
-    public virtual void Update() {
-        CheckEnabled();
-        if (triggerType == EventTriggerType.Parallel && switchEnabled && !GetComponent<LuaContext>().IsRunning()) {
-            luaObject.Run(PropertyBody);
+    public void Update() {
+        if (lastUpdatedFrame != Global.Instance().Data.SwitchLastUpdatedFrame) {
+            lastUpdatedFrame = Global.Instance().Data.SwitchLastUpdatedFrame;
+            CheckEnabled();
+        }
+        CheckAutostart(IsSwitchEnabled);
+        if (Tracking) {
+            var resolution = Map.UnitsPerTile / Map.PxPerTile;
+            var x = Mathf.Round(pixelImperfectPos.x * (1.0f / resolution)) * resolution;
+            var y = Mathf.Round(pixelImperfectPos.y * (1.0f / resolution)) * resolution;
+            transform.position = new Vector3(x, y, transform.position.z);
+        }
+        var avatar = Global.Instance().Maps.Avatar;
+        if (avatar != null && !avatar.IsInputPaused) {
+            toNextBehavior -= Time.deltaTime;
+            CheckBehavior();
         }
     }
 
+#if UNITY_EDITOR
     public void OnDrawGizmos() {
         if (Selection.activeGameObject == gameObject) {
             Gizmos.color = Color.red;
@@ -152,34 +170,51 @@ public abstract class MapEvent : MonoBehaviour {
         }
         DrawGizmoSelf();
     }
+#endif
+
+    public void OnValidate() {
+        if (Properties == null) {
+            Properties = GetComponent<SuperCustomProperties>();
+        }
+    }
+
+    public void OnStepStarted() {
+        CheckBehavior();
+    }
 
     public void CheckEnabled() {
-        switchEnabled = luaObject.EvaluateBool(PropertyCondition, true);
+        IsSwitchEnabled = !LuaObject.EvaluateBool(PropertyLuaHide, !IsSwitchEnabled);
+    }
+
+    public bool IsPassable() {
+        string passable = GetProperty(PropertyPassable);
+        if (passable == "IMPASSABLE") return false;
+        if (passable == "PASSABLE") return true;
+        if (ImpassabilityOverride) return false;
+        if (GetComponent<CharaEvent>() != null) return false;
+        return true;
     }
 
     public bool IsPassableBy(MapEvent other) {
-        return passable || !switchEnabled;
+        return IsPassable() || !IsSwitchEnabled;
     }
 
     public OrthoDir DirectionTo(MapEvent other) {
-        return DirectionTo(other.position);
+        return DirectionTo(other.Position);
     }
 
     public bool CanPassAt(Vector2Int loc) {
-        if (!GetComponent<MapEvent>().switchEnabled) {
+        if (!GetComponent<MapEvent>().IsSwitchEnabled) {
             return true;
         }
-        if (loc.x < 0 || loc.x >= parent.width || loc.y < 0 || loc.y >= parent.height) {
+        if (loc.x < 0 || loc.x >= Map.Width || loc.y < 0 || loc.y >= Map.Height) {
             return false;
         }
-        foreach (Tilemap layer in parent.layers) {
-            if (layer.transform.position.z >= parent.objectLayer.transform.position.z && 
-                    !parent.IsChipPassableAt(layer, loc)) {
-                return false;
-            }
+        if (!Map.IsChipPassableAt(loc)) {
+            return false;
         }
-        if (!passable) {
-            foreach (MapEvent mapEvent in parent.GetEventsAt(loc)) {
+        if (!IsPassable()) {
+            foreach (MapEvent mapEvent in Map.GetEventsAt(loc)) {
                 if (!mapEvent.IsPassableBy(this)) {
                     return false;
                 }
@@ -189,72 +224,76 @@ public abstract class MapEvent : MonoBehaviour {
         return true;
     }
 
-    public IEnumerator PathToRoutine(Vector2Int location) {
-        List<Vector2Int> path = parent.FindPath(this, location);
-        if (path == null) {
-            yield break;
-        }
-        MapEvent mapEvent = GetComponent<MapEvent>();
-        foreach (Vector2Int target in path) {
-            OrthoDir dir = mapEvent.DirectionTo(target);
-            yield return StartCoroutine(GetComponent<MapEvent>().StepRoutine(dir));
+    public string GetProperty(string propertyName) {
+        if (Properties.TryGetCustomProperty(propertyName, out CustomProperty prop)) {
+            var str = prop.GetValueAsString();
+            //if (str.StartsWith("this.")) {
+            //    str = str.Substring("this.".Length);
+            //}
+            return str;
+        } else {
+            return "";
         }
     }
 
     public bool ContainsPosition(Vector2Int loc) {
-        Vector2Int pos1 = position;
-        Vector2Int pos2 = position + size;
+        Vector2Int pos1 = Position;
+        Vector2Int pos2 = Position + Size;
         return loc.x >= pos1.x && loc.x < pos2.x && loc.y >= pos1.y && loc.y < pos2.y;
     }
 
     public void SetPosition(Vector2Int location) {
-        position = location;
-        SetScreenPositionToMatchTilePosition();
-        SetDepth();
-    }
-
-    public void SetSize(Vector2Int size) {
-        this.size = size;
+        Position = location;
         SetScreenPositionToMatchTilePosition();
         SetDepth();
     }
 
     public void GenerateLua() {
-        luaObject.Set(PropertyCondition, luaCondition);
-        luaObject.Set(PropertyBody, luaBody);
+        LuaObject.Set(PropertyLuaHide, GetProperty(PropertyLuaHide));
+        LuaObject.Set(PropertyLuaAutostart, GetProperty(PropertyLuaAutostart));
+        LuaObject.Set(PropertyLuaCollide, GetProperty(PropertyLuaCollide));
+        LuaObject.Set(PropertyLuaInteract, GetProperty(PropertyLuaInteract));
+        LuaObject.Set(PropertyLuaBehavior, GetProperty(PropertyLuaBehavior));
+
+        var appearance = GetProperty(PropertyAppearance);
+        var prefix = "lua(";
+        if (appearance.StartsWith(prefix)) {
+            var luaString = appearance.Substring(prefix.Length, appearance.Length - prefix.Length - 1);
+            LuaObject.Set(PropertyAppearance, luaString);
+        }
+
     }
 
     private void CheckAutostart(bool enabled) {
-        LuaContext context = GetComponent<LuaContext>();
-        if (triggerType == EventTriggerType.Autostart && enabled && !context.IsRunning()) {
-            luaObject.Run(PropertyBody);
+        if (hasAuto && enabled && !Global.Instance().Maps.Avatar.IsInputPaused) {
+            LuaObject.Run(PropertyLuaAutostart);
         }
-        if (triggerType == EventTriggerType.Parallel && !enabled && context.IsRunning()) {
-            context.ForceTerminate();
+    }
+
+    private void CheckBehavior() {
+        if (toNextBehavior <= 0) {
+            toNextBehavior = Random.Range(0.5f, 1.0f) * BehaviorMaxDelaySeconds;
+            LuaObject.Run(PropertyLuaBehavior, false);
         }
     }
 
     // called when the avatar stumbles into us
     // before the step if impassable, after if passable
     private void OnCollide(AvatarEvent avatar) {
-        if (triggerType == EventTriggerType.Collide) {
-            luaObject.Run(PropertyBody);
-        }
+        LuaObject.Run(PropertyLuaCollide);
     }
 
     // called when the avatar stumbles into us
     // facing us if impassable, on top of us if passable
     private void OnInteract(AvatarEvent avatar) {
-        if (triggerType == EventTriggerType.Interact) {
-            luaObject.Run(PropertyBody);
-        }
+        LuaObject.Run(PropertyLuaInteract);
     }
 
     private LuaScript ParseScript(string lua) {
         if (lua == null || lua.Length == 0) {
             return null;
         } else {
-            return new LuaScript(GetComponent<LuaContext>(), lua);
+            return new LuaScript(Global.Instance().Maps.Lua, lua);
         }
     }
 
@@ -262,16 +301,16 @@ public abstract class MapEvent : MonoBehaviour {
         if (lua == null || lua.Length == 0) {
             return null;
         } else {
-           return GetComponent<LuaContext>().CreateCondition(lua);
+            return Global.Instance().Maps.Lua.CreateCondition(lua);
         }
     }
 
     public IEnumerator StepRoutine(OrthoDir dir) {
-        if (tracking) {
+        if (Tracking) {
             yield break;
         }
-        
-        position += OffsetForTiles(dir);
+
+        Position += OffsetForTiles(dir);
 
         if (GetComponent<CharaEvent>() == null) {
             yield return LinearStepRoutine(dir);
@@ -287,15 +326,24 @@ public abstract class MapEvent : MonoBehaviour {
     }
 
     public IEnumerator LinearStepRoutine(OrthoDir dir) {
-        tracking = true;
-        targetPositionPx = OwnTileToWorld(position);
-        if (tilesPerSecond == 0) {
-            transform.localPosition = targetPositionPx;
-        } else {
-            var tween = transform.DOLocalMove(targetPositionPx, 1.0f / tilesPerSecond, UsesSnap());
-            tween.SetEase(Ease.Linear);
-            yield return CoUtils.RunTween(tween);
+        Tracking = true;
+        TargetPositionPx = OwnTileToWorld(Position);
+        pixelImperfectPos = PositionPx;
+        var tween = DOTween.To(() => pixelImperfectPos, x => pixelImperfectPos = x, TargetPositionPx, 1.0f / TilesPerSecond);
+        tween.SetEase(Ease.Linear);
+        yield return CoUtils.RunTween(tween);
+        transform.position = TargetPositionPx;
+        Tracking = false;
+    }
+
+    public IEnumerator PathToRoutine(Vector2Int location, bool ignoreEvents = false) {
+        List<Vector2Int> path = Map.FindPath(this, location, ignoreEvents);
+        if (path == null) {
+            yield break;
         }
-        tracking = false;
+        foreach (Vector2Int target in path) {
+            OrthoDir dir = DirectionTo(target);
+            yield return StepRoutine(dir);
+        }
     }
 }

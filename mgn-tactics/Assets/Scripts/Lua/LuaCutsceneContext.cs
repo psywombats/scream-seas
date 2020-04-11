@@ -7,50 +7,61 @@ public class LuaCutsceneContext : LuaContext {
 
     private static readonly string DefinesPath = "Lua/Defines/CutsceneDefines";
 
-    public override IEnumerator RunRoutine(LuaScript script) {
-        if (Global.Instance().Maps.avatar != null) {
-            Global.Instance().Maps.avatar.PauseInput();
+    public override IEnumerator RunRoutine(LuaScript script, bool canBlock) {
+        if (canBlock && Global.Instance().Maps.Avatar != null) {
+            Global.Instance().Maps.Avatar.PauseInput();
         }
-        yield return base.RunRoutine(script);
+        yield return base.RunRoutine(script, canBlock);
         if (MapOverlayUI.Instance().textbox.isDisplaying) {
             yield return MapOverlayUI.Instance().textbox.DisableRoutine();
         }
-        if (Global.Instance().Maps.avatar != null) {
-            Global.Instance().Maps.avatar.UnpauseInput();
+        if (canBlock && Global.Instance().Maps.Avatar != null) {
+            Global.Instance().Maps.Avatar.UnpauseInput();
         }
     }
 
-    public void Start() {
-        //lua.Globals["avatar"] = Global.Instance().Maps.Avatar.GetComponent<MapEvent>().luaObject;
-    }
-
-    public override void Awake() {
-        base.Awake();
+    public override void Initialize() {
+        base.Initialize();
         LoadDefines(DefinesPath);
     }
 
     public override void RunRoutineFromLua(IEnumerator routine) {
         if (MapOverlayUI.Instance().textbox.isDisplaying) {
-            routine = CoUtils.RunSequence(new IEnumerator[] {
+            // MapOverlayUI.Instance().textbox.MarkHiding();
+            base.RunRoutineFromLua(CoUtils.RunSequence(new IEnumerator[] {
                 MapOverlayUI.Instance().textbox.DisableRoutine(),
                 routine,
-            });
+            }));
+        } else {
+            base.RunRoutineFromLua(routine);
         }
-
-        base.RunRoutineFromLua(routine);
     }
 
     public void RunTextboxRoutineFromLua(IEnumerator routine) {
         base.RunRoutineFromLua(routine);
     }
 
+    protected void ResumeNextFrame() {
+        Global.Instance().StartCoroutine(ResumeRoutine());
+    }
+    protected IEnumerator ResumeRoutine() {
+        yield return null;
+        ResumeAwaitedScript();
+    }
+
     protected override void AssignGlobals() {
         base.AssignGlobals();
         lua.Globals["playBGM"] = (Action<DynValue>)PlayBGM;
-        lua.Globals["cs_teleportCoords"] = (Action<DynValue, DynValue, DynValue>)Teleport;
-        lua.Globals["cs_teleport"] = (Action<DynValue, DynValue>)Teleport;
+        lua.Globals["playSound"] = (Action<DynValue>)PlaySound;
+        lua.Globals["sceneSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
+        lua.Globals["face"] = (Action<DynValue, DynValue>)Face;
+        lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue, DynValue>)Teleport;
+        lua.Globals["cs_targetTele"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
-        lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
+        lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
+        lua.Globals["cs_walk"] = (Action<DynValue, DynValue, DynValue, DynValue>)Walk;
+        lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
+        lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -59,19 +70,118 @@ public class LuaCutsceneContext : LuaContext {
         Global.Instance().Audio.PlayBGM(bgmKey.String);
     }
 
-    private void Teleport(DynValue mapName, DynValue x, DynValue y) {
-        RunRoutineFromLua(Global.Instance().Maps.TeleportRoutine(mapName.String, new Vector2Int((int)x.Number, (int)y.Number)));
+    private void PlaySound(DynValue soundKey) {
+        Global.Instance().Audio.PlaySFX(soundKey.String);
     }
 
-    private void Teleport(DynValue mapName, DynValue targetEventName) {
-        RunRoutineFromLua(Global.Instance().Maps.TeleportRoutine(mapName.String, targetEventName.String));
+    private void Teleport(DynValue mapName, DynValue x, DynValue y, DynValue facingLua, DynValue rawLua) {
+        OrthoDir? facing = null;
+        if (!facingLua.IsNil()) facing = OrthoDirExtensions.Parse(facingLua.String);
+        var loc = new Vector2Int((int)x.Number, (int)y.Number);
+        var raw = rawLua.IsNil() ? false : rawLua.Boolean;
+        RunRoutineFromLua(Global.Instance().Maps.TeleportRoutine(mapName.String, loc, facing, raw));
+    }
+
+    private void TargetTeleport(DynValue mapName, DynValue targetEventName, DynValue facingLua, DynValue rawLua) {
+        OrthoDir? facing = null;
+        if (!facingLua.IsNil()) facing = OrthoDirExtensions.Parse(facingLua.String);
+        var raw = rawLua.IsNil() ? false : rawLua.Boolean;
+        RunRoutineFromLua(Global.Instance().Maps.TeleportRoutine(mapName.String, targetEventName.String, facing, raw));
     }
 
     private void FadeOutBGM(DynValue seconds) {
         RunRoutineFromLua(Global.Instance().Audio.FadeOutRoutine((float)seconds.Number));
     }
 
-    private void Speak(DynValue speaker, DynValue text) {
-        RunTextboxRoutineFromLua(MapOverlayUI.Instance().textbox.SpeakRoutine(speaker.String, text.String));
+    private void Walk(DynValue eventLua, DynValue steps, DynValue directionLua, DynValue waitLua) {
+        if (eventLua.Type == DataType.String) {
+            var @event = Global.Instance().Maps.ActiveMap.GetEventNamed(eventLua.String);
+            if (@event == null) {
+                Debug.LogError("Couldn't find event " + eventLua.String);
+            } else {
+                var routine = @event.StepMultiRoutine(OrthoDirExtensions.Parse(directionLua.String), (int)steps.Number);
+                if (!waitLua.IsNil() && waitLua.Boolean) {
+                    RunRoutineFromLua(routine);
+                } else {
+                    @event.StartCoroutine(routine);
+                }
+            }
+        } else {
+            var function = eventLua.Table.Get("walk");
+            function.Function.Call(steps, directionLua, waitLua);
+        }
+    }
+
+    private void Path(DynValue eventLua, DynValue targetArg1, DynValue targetArg2, DynValue targetArg3) {
+        bool wait;
+        Vector2Int target;
+        if (targetArg1.Type == DataType.String) {
+            var targetEvent = Global.Instance().Maps.ActiveMap.GetEventNamed(targetArg1.String);
+            if (targetEvent == null) {
+                Debug.LogError("Couldn't find event " + targetArg1.String);
+                return;
+            }
+            target = targetEvent.Position;
+            wait = targetArg2.Boolean;
+        } else {
+            target = new Vector2Int((int)targetArg1.Number, (int)targetArg2.Number);
+            wait = targetArg3.Boolean;
+        }
+
+        if (eventLua.Type == DataType.String) {
+            var @event = Global.Instance().Maps.ActiveMap.GetEventNamed(eventLua.String);
+            if (@event == null) {
+                Debug.LogError("Couldn't find event " + eventLua.String);
+                return;
+            }
+
+            var routine = @event.PathToRoutine(target);
+            if (wait) {
+                RunRoutineFromLua(routine);
+            } else {
+                @event.StartCoroutine(routine);
+                ResumeNextFrame();
+            }
+        } else {
+            var function = eventLua.Table.Get("path");
+            function.Function.Call(eventLua, targetArg1, targetArg2, targetArg3);
+        }
+    }
+
+    private void PathEvent(DynValue moverLua, DynValue targetLua, DynValue waitLua) {
+        var map = Global.Instance().Maps.ActiveMap;
+        var mover = map.GetEventNamed(moverLua.String);
+        var target = map.GetEventNamed(targetLua.String);
+        var routine = mover.PathToRoutine(target.Position, ignoreEvents:true);
+        if (waitLua.IsNil() || waitLua.Boolean) {
+            RunRoutineFromLua(routine);
+        } else {
+            mover.StartCoroutine(routine);
+        }
+    }
+
+    private void Face(DynValue eventName, DynValue dir) {
+        var @event = Global.Instance().Maps.ActiveMap.GetEventNamed(eventName.String);
+        if (@event == null) {
+            Debug.LogError("Couldn't find event " + eventName.String);
+        } else {
+            @event.GetComponent<CharaEvent>().Facing = OrthoDirExtensions.Parse(dir.String);
+        }
+    }
+
+    private FadeData lastFade;
+    private void Fade(DynValue type) {
+        var typeString = type.String;
+        FadeData fade;
+        bool invert = false;
+        if (typeString == "normal") {
+            fade = lastFade;
+            invert = true;
+        } else {
+            fade = IndexDatabase.Instance().Fades.GetData(typeString);
+        }
+        lastFade = fade;
+        var globals = Global.Instance();
+        RunRoutineFromLua(globals.Maps.Camera.GetComponent<FadeComponent>().FadeRoutine(fade, invert));
     }
 }

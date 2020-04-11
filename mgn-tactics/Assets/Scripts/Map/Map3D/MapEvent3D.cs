@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// todo
 public class MapEvent3D : MapEvent {
 
     public override Vector2Int OwnWorldToTile(Vector3 pos) {
@@ -9,7 +10,8 @@ public class MapEvent3D : MapEvent {
     }
 
     public override Vector3 OwnTileToWorld(Vector2Int position) {
-        return new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
+        // return new Vector3(position.x, Map.terrain.HeightAt(position), position.y);
+        return default;
     }
 
     public override Vector2Int OffsetForTiles(OrthoDir dir) {
@@ -17,17 +19,17 @@ public class MapEvent3D : MapEvent {
     }
 
     public override void SetScreenPositionToMatchTilePosition() {
-        if (parent != null) {
-            transform.localPosition = new Vector3(position.x, parent.terrain.HeightAt(position), position.y);
+        if (Map != null) {
+           // transform.localPosition = new Vector3(Position.x, Map.terrain.HeightAt(Position), Position.y);
         }
     }
 
     public override void SetTilePositionToMatchScreenPosition() {
         SetPosition(OwnWorldToTile(transform.localPosition));
         Vector2 sizeDelta = GetComponent<RectTransform>().sizeDelta;
-        size = new Vector2Int(
-            Mathf.RoundToInt(sizeDelta.x),
-            Mathf.RoundToInt(sizeDelta.y));
+        //size = new Vector2Int(
+        //    Mathf.RoundToInt(sizeDelta.x),
+        //    Mathf.RoundToInt(sizeDelta.y));
     }
 
     public override Vector3 InternalPositionToDisplayPosition(Vector3 position) {
@@ -36,12 +38,12 @@ public class MapEvent3D : MapEvent {
 
     public override void SetDepth() {
         // our global height is identical to the height of the parent layer
-        if (parent != null) {
-            transform.localPosition = new Vector3(
-                gameObject.transform.localPosition.x,
-                parent.terrain.HeightAt(position),
-                gameObject.transform.localPosition.z);
-        }
+        //if (Map != null) {
+        //    transform.localPosition = new Vector3(
+        //        gameObject.transform.localPosition.x,
+        //        Map.terrain.HeightAt(position),
+        //        gameObject.transform.localPosition.z);
+        //}
     }
 
     public override Vector3 GetHandlePosition() {
@@ -49,25 +51,25 @@ public class MapEvent3D : MapEvent {
     }
 
     public override OrthoDir DirectionTo(Vector2Int position) {
-        return OrthoDirExtensions.DirectionOf3D(position - this.position);
+        return OrthoDirExtensions.DirectionOf3D(position - Position);
     }
 
     protected override void DrawGizmoSelf() {
         if (GetComponent<Map3DHandleExists>() != null) {
             return;
         }
-        Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.5f);
-        Gizmos.DrawCube(new Vector3(
-                transform.position.x + size.x * OrthoDir.East.Px3DX() / 2.0f,
-                transform.position.y,
-                transform.position.z + size.y * OrthoDir.North.Px3DZ() / 2.0f),
-            new Vector3((size.x - 0.1f), 0.002f, (size.y - 0.1f)));
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(new Vector3(
-                transform.position.x + size.x * OrthoDir.East.Px3DX() / 2.0f,
-                transform.position.y,
-                transform.position.z + size.y * OrthoDir.North.Px3DZ() / 2.0f),
-            new Vector3((size.x - 0.1f), 0.002f, (size.y - 0.1f)));
+        //Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.5f);
+        //Gizmos.DrawCube(new Vector3(
+        //        transform.position.x + size.x * OrthoDir.East.Px3DX() / 2.0f,
+        //        transform.position.y,
+        //        transform.position.z + size.y * OrthoDir.North.Px3DZ() / 2.0f),
+        //    new Vector3((size.x - 0.1f), 0.002f, (size.y - 0.1f)));
+        //Gizmos.color = Color.white;
+        //Gizmos.DrawWireCube(new Vector3(
+        //        transform.position.x + size.x * OrthoDir.East.Px3DX() / 2.0f,
+        //        transform.position.y,
+        //        transform.position.z + size.y * OrthoDir.North.Px3DZ() / 2.0f),
+        //    new Vector3((size.x - 0.1f), 0.002f, (size.y - 0.1f)));
     }
 
     protected override bool UsesSnap() {

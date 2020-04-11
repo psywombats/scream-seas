@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Textbox : MonoBehaviour, InputListener {
+public class Textbox : MonoBehaviour, IInputListener {
 
     private static readonly string SystemSpeaker = "SYSTEM";
 

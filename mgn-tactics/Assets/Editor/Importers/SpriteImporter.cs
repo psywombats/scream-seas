@@ -23,7 +23,7 @@ internal sealed class SpriteImporter : AssetPostprocessor {
                 int edgeSizeY = 32;
                 int cols = textureSize.x / edgeSizeX;
                 int rows = textureSize.y / edgeSizeY;
-                importer.spritePixelsPerUnit = Map.TileSizePx;
+                importer.spritePixelsPerUnit = Map.PxPerTile;
                 importer.spriteImportMode = SpriteImportMode.Multiple;
                 importer.spritesheet = new SpriteMetaData[rows * cols];
                 List<SpriteMetaData> spritesheet = new List<SpriteMetaData>();
@@ -33,7 +33,7 @@ internal sealed class SpriteImporter : AssetPostprocessor {
                         data.rect = new Rect(x * edgeSizeX, (rows - y - 1) * edgeSizeY, edgeSizeX, edgeSizeY);
                         data.alignment = (int)SpriteAlignment.Custom;
                         data.border = new Vector4(0, 0, 0, 0);
-                        data.name = CharaEvent.NameForFrame(name, x, y);
+                        data.name = FieldSpritesheetComponent.NameForFrame(name, x, y);
                         data.pivot = new Vector2(0.5f, 0.0f);
                         spritesheet.Add(data);
                     }

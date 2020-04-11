@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour, MemoryPopulater {
+public class AudioManager : MonoBehaviour {
 
     private const string NoBGMKey = "none";
+    private const string NoChangeBGMKey = "no_change";
     private const float FadeSeconds = 0.5f;
 
     private AudioSource sfxSource;
     private AudioSource bgmSource;
 
     private float baseVolume = 1.0f;
+    private float bgmVolumeMult = 1.0f;
     private Setting<float> bgmVolumeSetting;
     private Setting<float> sfxVolumeSetting;
 
     public string CurrentBGMKey { get; private set; }
 
     public void Awake() {
-        Global.Instance().Memory.RegisterMemoryPopulater(this);
-
         sfxSource = gameObject.AddComponent<AudioSource>();
         sfxSource.playOnAwake = false;
         sfxSource.loop = false;
@@ -29,35 +28,45 @@ public class AudioManager : MonoBehaviour, MemoryPopulater {
         bgmSource.loop = true;
 
         CurrentBGMKey = NoBGMKey;
-        
-        sfxVolumeSetting = Global.Instance().Settings.GetFloatSetting(SettingsConstants.SoundEffectVolume);
-        bgmVolumeSetting = Global.Instance().Settings.GetFloatSetting(SettingsConstants.BGMVolume);
 
-        gameObject.AddComponent<WaveSource>();
         gameObject.AddComponent<AudioListener>();
+        gameObject.AddComponent<WaveSource>();
+    }
+
+    public void Start() {
+        sfxVolumeSetting = Global.Instance().Serialization.SystemData.SettingSoundEffectVolume;
+        bgmVolumeSetting = Global.Instance().Serialization.SystemData.SettingMusicVolume;
     }
 
     public void Update() {
-        bgmSource.volume = bgmVolumeSetting.Value * baseVolume;
+        bgmSource.volume = bgmVolumeSetting.Value * baseVolume * bgmVolumeMult;
         sfxSource.volume = sfxVolumeSetting.Value * baseVolume;
+    }
+
+    public static void PlayFail() {
+        Global.Instance().Audio.PlaySFX("fail");
+    }
+
+    public WaveSource GetWaveSource() {
+        return GetComponent<WaveSource>();
     }
 
     public void PlaySFX(Enum enumValue) {
         PlaySFX(enumValue.ToString());
     }
-    public void PlaySFX(string key) {
-        AudioClip clip = Global.Instance().Database.SFX.GetData(key).clip;
-        StartCoroutine(PlaySFXRoutine(sfxSource, clip));
+    public void PlaySFX(string key, float muteDuration = 0.0f) {
+        AudioClip clip = IndexDatabase.Instance().SFX.GetData(key).clip;
+        StartCoroutine(PlaySFXRoutine(sfxSource, clip, muteDuration));
     }
 
     public void PlayBGM(string key) {
-        if (key != CurrentBGMKey) {
+        if (key != CurrentBGMKey && key != NoChangeBGMKey) {
             CurrentBGMKey = key;
             if (key == null || key == NoBGMKey) {
                 bgmSource.Stop();
             } else {
                 bgmSource.volume = 1.0f;
-                AudioClip clip = Global.Instance().Database.BGM.GetData(key).track;
+                AudioClip clip = IndexDatabase.Instance().BGM.GetData(key).track;
                 bgmSource.clip = clip;
                 bgmSource.Play();
             }
@@ -66,10 +75,6 @@ public class AudioManager : MonoBehaviour, MemoryPopulater {
 
     public AudioClip BGMClip() {
         return bgmSource.clip;
-    }
-
-    public WaveSource GetWaveSource() {
-        return GetComponent<WaveSource>();
     }
 
     public IEnumerator FadeOutRoutine(float durationSeconds) {
@@ -92,21 +97,29 @@ public class AudioManager : MonoBehaviour, MemoryPopulater {
         PlayBGM(tag);
     }
 
-    public void PopulateMemory(Memory memory) {
-        memory.bgmKey = CurrentBGMKey;
-    }
-
-    public void PopulateFromMemory(Memory memory) {
-        PlayBGM(memory.bgmKey);
-    }
-
-    private IEnumerator PlaySFXRoutine(AudioSource source, AudioClip clip) {
+    private IEnumerator PlaySFXRoutine(AudioSource source, AudioClip clip, float muteDuration = 0.0f) {
         while (clip.loadState == AudioDataLoadState.Loading) {
             yield return null;
         }
         if (clip.loadState == AudioDataLoadState.Loaded) {
             source.clip = clip;
+            if (muteDuration > 0.0f) {
+                StartCoroutine(MuteRoutine(muteDuration));
+            }
             source.Play();
         }
+    }
+
+    private IEnumerator MuteRoutine(float muteDuration) {
+        bgmVolumeMult = 0.0f;
+        yield return CoUtils.Wait(muteDuration - 0.2f);
+        var elapsed = 0.0f;
+        while (elapsed < 0.2f) {
+            elapsed += Time.deltaTime;
+            bgmVolumeMult = elapsed / 0.2f;
+            yield return null;
+        }
+        bgmVolumeMult = 1.0f;
+
     }
 }
