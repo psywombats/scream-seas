@@ -1,0 +1,47 @@
+Y!SMS: "2001-03-09: Warning, severe weather warning for your area"
+Y!SMS: "2001-03-09: Traffic disturbance reported for your area, drive safely"
+
+Y!NEWS: "2001-03-09: Headline: Spate of new email hoax scares heighten national alert"
+Y!NEWS: "2001-03-09: Special March sale: 20% off all Y! Auctions commission fees. Buy or sell anything!"
+Y!NEWS: "2001-03-09: Conflict in the mid-east: world leaders call for immediate cease-fire"
+Y!NEWS: "2001-03-09: Year 2000 mania in retrospect - what caused the hype for nothing?"
+Y!NEWS: "2001-03-09: Claim your domain now! yourname.ycities.com! 100% free!"
+Y!NEWS: "2001-03-09: Cold cases: Investigators link string of disappearances dating back to 1999"
+Y!NEWS: "2001-03-09: Tax day changes: electronic filings to surpass 10% this year"
+
+Y!SMS: "2001-03-09: Downed power lines, blackouts reported in South City neighborhood"
+
+A broadcast is on TV. A panel of experts is discussing a lawsuit against one of city energy providers, claiming they haven't done enough to prevent the recent string of blackouts.
+
+SIS: "***A NEW STAR IS BORN"
+SIS: "[1 image attachment]"
+YOU: "who is this?"
+YOU: "is this some kind of joke? how did you get her number? who are you?"
+-- view the attachment, it's the wreck
+YOU: "is that her car?"
+YOU: "hello?"
+
+CULT: "Good morning!"
+YOU: "who's messaging me? are you the one that was on Elle's number earlier?"
+CULT: "Elle?"
+YOU: "...you're not her"
+CULT: "I'm not quite sure what you mean, but, I had a few questions for you, if had a minute of time."
+YOU: "what is it?"
+CULT: "Do you believe in life after death?"
+YOU: "is that a threat?"
+CULT: "Do you think there's room for true love on this earth?"
+CULT: "Do you understand our Heavenly Father's plan for us all?"
+CULT: "If you'd like answers to these questions, I'm a member of a society that provides answers."
+YOU: "you're a jehovah's witness, never mind"
+CULT: "Haha! That's funny. Have you considered my questions?"
+YOU: "stop texting random numbers"
+YOU: "I'm blocking you"
+
+-- after completing the scene
+YOU: "Elle?"
+YOU: "were you here? you can't still be alive"
+YOU: "if you're not Elle, then tell me what this is supposed to mean"
+YOU: "...guess you're just a lunatic with the same cell number"
+SIS: "***A NEW STAR IS BORN"
+SIS: "[1 video attachment]"
+-- view the attachment, ascension video
