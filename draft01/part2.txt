@@ -356,7 +356,7 @@ CONTROL: "And don't go poking your head too deep on this BBS, okay? It's referra
 YOU: "stop worrying, I won't do anything stupid"
 
 -- on the bbs
-SYSOP: "Welcome to HAXXOR-BBS. Your source for the truly L33T out there, masked heroes in our midst!"
+SYSOP: "Welcome to HAXXOR-WOLFE-BBS. Your source for the truly L33T out there, masked heroes in our midst!"
 SYSOP: "Enter auth token here. Or be automatically disconnected in 60 second(s)."
 OP: "Orion Devout. I maaaay have got a couple sms from these guys the past couple days. Anyone know what they're about?"
 ANON: "Dude. If you got recruited by those asshats you must have zero standards... lock your door next time"
