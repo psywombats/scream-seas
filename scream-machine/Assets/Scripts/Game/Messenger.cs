@@ -5,35 +5,30 @@ public class Messenger : MonoBehaviour {
 
     private const string ConversationsDirectory = "Conversations/";
 
-    private List<Conversation> conversations;
-    private Dictionary<string, Client> clients;
+    private Dictionary<Client, Conversation> conversationsByClient;
+    private Dictionary<string, Client> clientsByTag;
 
     public Messenger() {
-        conversations = new List<Conversation>();
+        conversationsByClient = new Dictionary<Client, Conversation>();
     }
 
     public Client GetClient(string tag) {
-        if (!clients.ContainsKey(tag)) {
-            clients[tag] = new Client(tag);
+        if (!clientsByTag.ContainsKey(tag)) {
+            clientsByTag[tag] = IndexDatabase.Instance().Clients.GetData(tag);
         }
-        return clients[tag];
+        return clientsByTag[tag];
     }
 
-    /// <summary>Simulates getting a new message, triggering the conversation with the given name</summary>
-    public void LoadConversation(string sender, string filename) {
-        var asset = Resources.Load<TextAsset>(ConversationsDirectory + sender + "/" + filename);
-        Conversation convo = null;
-        foreach (var possible in conversations) {
-            if (possible.Client.ClientName == sender) {
-                convo = possible;
-                break;
-            }
-        }
-        if (convo == null) {
-            convo = new Conversation(new Client(sender));
-            conversations.Add(convo);
-        }
+    public Conversation GetConversation(Client client) {
+        conversationsByClient.TryGetValue(client, out Conversation convo);
+        return convo;
+    }
+    public Conversation GetConversation(string clientTag) {
+        return GetConversation(GetClient(clientTag));
+    }
 
-        convo.UpdateWithFile(asset.text);
+    public void EnableScript(SmsScript script) {
+        var convo = GetConversation(script.clientTag);
+        convo.UpdateWithScript(script);
     }
 }
