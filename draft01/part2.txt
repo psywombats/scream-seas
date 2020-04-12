@@ -3,12 +3,11 @@ Y!NEWS: "2001-03-10: Small plane disaster: Cesna crashes into ocean, 3 deaths bl
 Y!NEWS: "2001-03-10: Y!Personals : where real singles make real connections! Try today"
 Y!NEWS: "2001-03-10: Wanted: group of six unidentified men for bomb threat at national lab"
 Y!NEWS: "2001-03-10: Y!Ticker: Realtime stock quotes and news, only $9.95/mo"
-Y!NEWS: "2001-03-10 New releases: new PDA announced with 8mb internal memory"
+Y!NEWS: "2001-03-10: New releases: new PDA announced with 8mb internal memory"
 
 A broadcast is on TV. A panel of experts is discussing possible explanations for the decline in foot traffic on city streets.
 
 Y!SMS: "2001-03-10: Unseasonably warm weekend predicted, small chance of precipitation"
-Y!SMS: "2001-03-10: Police seek assailant for an apparently random assault on 3rd street, no known motive"
 
 PARTNER: "hey? anyone home? this the right number?"
 YOU: "if you're another jehovah's witness, go away, I already blocked one this morning"
@@ -47,7 +46,7 @@ YOU: "oh."
 PARTNER: "not a huge fan?"
 YOU: "I didn't talk to her for almost two years before her death"
 YOU: "she fell into some shady career, I thought. she never really said"
-PARTNER: "heh, well, judge all you want, I'M the one searching for her already you know"
+PARTNER: "lol, well, judge all you want, I'M the one searching for her already you know"
 YOU: "sorry, I just mean... I don't have the details of what she was up to before her death"
 PARTNER: "luckily I do! not that I feel like telling you, if you're going to be all judgy, and I'm not sure you aren't actually the psycho or religious nut that was stalking her"
 PARTNER: "you're not right?"
@@ -101,6 +100,8 @@ CONTROL: "And I suppose I'd better get in touch with Goodwin. He's been trying t
 CONTROL: "Hadn't heard from the man since Z went down and now he's trying to call in favors... Shameless as always."
 CONTROL: "Do a favor for me though and see if you can any info on who sent this message. Might help me crack the thing."
 YOU: "I'm not really sure where to start, but I can try"
+
+Y!SMS: "2001-03-10: Police seek assailant for an apparently random assault on 3rd street, no known motive"
 
 PARTNER: "hey, just thought I'd mention these photos are NEW, taken last week"
 PARTNER: "unless you altered them somehow?"
@@ -250,6 +251,8 @@ CONTROL: "I could've sworn this data was recent. Last month at the latest."
 CONTROL: "Neeever mind. Keep exploring. If you find anything that looks like a server, talk to me right away."
 YOU: "no luck so far"
 
+Y!SMS: "2001-03-10: Fire reported on 22nd St, seek alternate routes to avoid traffic congestion"
+
 PARTNER: "hey you got any questions you want to ask an Orion Devout guy?"
 YOU: "what? well I want to know what really happened to my sister obviously"
 PARTNER: "I mean I could ask this dude that, but I doubt he'd know, seems more scared than anything"
@@ -308,6 +311,11 @@ YOU: "the sun is almost up"
 CONTROL: "Irrrelevant. Just get home, cut me a copy of your tape just in case, and we'll regroup later"
 YOU: "roger"
 
+-- back home
+Y!NEWS: "2001-03-10: Headline: Liberal coalition wins reelecation in UK"
+Y!NEWS: "2001-03-10: Science: Researchers suggest solar flares may be responsible for reported equipment failure"
+Y!NEWS: "2001-03-10: Y!Store: Build your own online store in under 10 minutes"
+
 -- the video
 THEROUX: "Greetings my students, and welcome to Ad Astra. I'm speaking to you today as a representative of the Holy Father, and while I still might be a mere shell myself, I hope I can answer your questions and help guide to a better understanding of His plan."
 THEROUX: "I assume you already know that I stand before you in fulfilment the two thousand years of prophecy that have come before. I'm not up to the task. But as the current representive of His astral will on earth, I will try to convey to you a summary of the next level of consciousness."
@@ -342,7 +350,7 @@ YOU: "not sure what BBS is"
 CONTROL "Shiit man, a bulletin board system? You've never been on one?"
 CONTROL: "I'll give you an address. You can dial in if you're prepared. You can keep a secret?"
 YOU: "I'll try"
-CONTROL: "Heh, you'd better do more than that. This is an intelligence BBS. Invite only. Consider me your invite."
+CONTROL: "Haha, you'd better do more than that. This is an intelligence BBS. Invite only. Consider me your invite."
 CONTROL: "I figured I'd go fishing under one of my puppet accounts and see if Orion would get any bites. Itttt's minnows, almost entirely, I'm afraid."
 CONTROL: "But that wouldn't deter you would it? My dear left hand?"
 YOU: "[1 unknown attachment]"
@@ -362,11 +370,12 @@ OP: "Orion Devout. I maaaay have got a couple sms from these guys the past coupl
 ANON: "Dude. If you got recruited by those asshats you must have zero standards... lock your door next time"
 ANON: "Oh, my brother got in with them once. It's sort of like... a chat society for strangers? You get a txt every once in a while from someone who knows what to do"
 ANON: "Cult. Lamer cult too. They worship the wires. Idiots. Clearly."
-ANON: "***THIS IS THE FIRST LEVEL. YOU CAN ASCEND TO THE NEXT IF YOU SO CHOOSE. THE PLAN IS CLEAR"
-ANON: "hmm, opening your message with three stars? is that some ~symbolism~?"
+ANON: "*THIS IS THE FIRST LEVEL. YOU CAN ASCEND TO THE NEXT IF YOU SO CHOOSE. THE PLAN IS CLEAR*"
+ANON: "you know just because you put stars around your message doesn't make it important"
 ANON: "looool wwwwwww you actually fell for that? you're gonna ascend to the absolute retard plane of existence hahahahahaha"
-ANON: "Orion is internet-savvy. They have eyes here no doubt. Ignore people like this ^. would bet anything they have sene it."
-ANON: "Wwhy would you post here?"
+ANON: "Orion is internet-savvy. They have eyes here no doubt. Ignore people like this ^. would bet anything they have seen it."
+ANON: "Wwhy would you post this here?"
+ANON: "Is this about The Plan? I think that's a conspiracy theory. I don't really get it. But for sure there's a Plan."
 ANON: "Look dude I'm gonna lose rep for saying this but stay out of Orion. We're in digi-space here. Digi-hell? Whatever. Point is it's not the real world."
 ANON: "...continued. Orion exists across these boundaries. Don't fuck with Vertigo Temple."
 ANON: "^ this guy's a lamer obvs. thank you for your contribution LEO wwwww"
