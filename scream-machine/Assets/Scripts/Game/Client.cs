@@ -1,11 +1,8 @@
 ﻿/// <summary>
 /// A person who sends messages
 /// </summary>
-public class Client {
+public class Client : IKeyedDataObject {
 
-    public string ClientName { get; private set; }
-
-    public Client(string name) {
-        ClientName = name;
-    }
+    public string Key { get; private set; }
+    public string DisplayName { get; set; }
 }
