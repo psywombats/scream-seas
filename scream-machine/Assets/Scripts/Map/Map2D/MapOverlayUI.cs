@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class MapOverlayUI : MonoBehaviour {
 
@@ -19,4 +20,7 @@ public class MapOverlayUI : MonoBehaviour {
     }
 
     public Textbox textbox;
+    public BigPhoneComponent bigPhone;
+    public PhoneComponent miniPhone;
+    public PhoneSystem phoneSystem;
 }

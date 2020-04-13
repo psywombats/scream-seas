@@ -62,6 +62,10 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_walk"] = (Action<DynValue, DynValue, DynValue, DynValue>)Walk;
         lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
+
+        lua.Globals["setClientName"] = (Action<DynValue>)SetClientName;
+        lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
+        lua.Globals["cs_message"] = (Action<DynValue, DynValue>)Message;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -183,5 +187,21 @@ public class LuaCutsceneContext : LuaContext {
         lastFade = fade;
         var globals = Global.Instance();
         RunRoutineFromLua(globals.Maps.Camera.GetComponent<FadeComponent>().FadeRoutine(fade, invert));
+    }
+
+    private void SetClientName(DynValue nameLua) {
+        Global.Instance().Messenger.ActiveConvo.Client.displayName = nameLua.String;
+    }
+
+    private void SetNextScript(DynValue scriptNameLua, DynValue prereadLua, DynValue delayLua) {
+        Global.Instance().Messenger.SetNextScript(
+            scriptNameLua.String,
+            prereadLua.IsNil() ? false : prereadLua.Boolean,
+            delayLua.IsNil() ? 0.0f : (float) delayLua.Number
+            );
+    }
+
+    private void Message(DynValue senderLua, DynValue textLua) {
+        RunRoutineFromLua(MapOverlayUI.Instance().bigPhone.PlayMessageRoutine(senderLua.String, textLua.String));
     }
 }

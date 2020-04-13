@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-[CreateAssetMenu(fileName = "TransitionIndexData", menuName = "Data/ClientIndexData")]
+[CreateAssetMenu(fileName = "ClientIndexData", menuName = "Data/ClientIndexData")]
 public class ClientIndexData : GenericIndex<Client> {
 
 }

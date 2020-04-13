@@ -1,20 +1,47 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using System;
+using System.Collections;
 
-public class Conversation : MonoBehaviour {
+public class Conversation {
 
     public Client Client { get; private set; }
-    public List<Message> Messages { get; private set; }
 
-    public SmsScript PendingConversation { get; private set; }
-    public int UnreadCount => PendingConversation == null ? 0 : PendingConversation.unreadCount;
+    public Message LastMessage { get; private set; }
+    public SmsScript PendingScript { get; private set; }
+    public DateTime ModifiedTime { get; private set; }
+    public int UnreadCount => !HasScriptAvailable ? 0 : PendingScript.unreadCount;
+    public bool HasScriptAvailable => PendingScript != null && !preread;
+
+    private bool preread;
 
     public Conversation(Client client) {
         Client = client;
-        Messages = new List<Message>();
+    }
+
+    public string GetPreviewMessageText() {
+        if (PendingScript != null) {
+            if (PendingScript.previewMessage != null && PendingScript.previewMessage.Length > 0) {
+                return PendingScript.previewMessage;
+            }
+        }
+        return LastMessage.Text;
     }
     
-    public void UpdateWithScript(SmsScript script) {
-        PendingConversation = script;
+    public void SetNextScript(SmsScript script, bool preread) {
+        this.preread = preread;
+        ModifiedTime = DateTime.UtcNow;
+        PendingScript = script;
+    }
+
+    public void AddMessage(Message message) {
+        LastMessage = message;
+        Global.Instance().Messenger.UpdateFromMessenger();
+        ModifiedTime = DateTime.UtcNow;
+    }
+
+    public IEnumerator PlayScriptRoutine() {
+        yield return Global.Instance().Messenger.PlayScriptRoutine(PendingScript);
+        PendingScript = null;
+        Global.Instance().Messenger.UpdateFromMessenger();
     }
 }

@@ -75,7 +75,7 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
                         return true;
                     case InputManager.Command.Menu:
                     case InputManager.Command.Cancel:
-                        // ShowMenu();
+                        StartCoroutine(PhoneRoutine());
                         return true;
                     case InputManager.Command.Debug:
                         Global.Instance().Serialization.SaveToSlot(0);
@@ -184,5 +184,11 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         Chara.SetTransparent(trans);
         Global.Instance().Maps.ActiveMap.OnStepStarted();
         yield return null;
+    }
+
+    private IEnumerator PhoneRoutine() {
+        yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
+        yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.DoMenu());
+        yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
     }
 }

@@ -35,13 +35,13 @@ public class PhoneSystem : MonoBehaviour {
     private IEnumerator FlipOpenRoutine() {
         StartCoroutine(HideMiniRoutine());
         yield return CoUtils.Wait(flipMiniDuration * .7f);
-        StartCoroutine(ShowBigRoutine());
+        yield return ShowBigRoutine();
     }
 
     private IEnumerator FlipShutRoutine() {
         StartCoroutine(HideBigRoutine());
         yield return CoUtils.Wait(flipBigDuration * .7f);
-        StartCoroutine(ShowMiniRoutine());
+        yield return ShowMiniRoutine();
     }
 
     private IEnumerator HideMiniRoutine() {

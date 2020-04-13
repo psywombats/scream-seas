@@ -11,10 +11,11 @@ public class Global : MonoBehaviour {
     public AudioManager Audio { get; private set; }
     public SerializationManager Serialization { get; private set; }
     public Dispatch Dispatch { get; private set; }
-    public Messenger Messenger { get; private set; }
+    public MessengerManager MessengerManager { get; private set; }
 
     public GameData Data => Serialization.Data;
     public SystemData SystemData => Serialization.SystemData;
+    public Messenger Messenger => MessengerManager.current;
 
     public static Global Instance() {
         if (instance == null) {
@@ -48,7 +49,9 @@ public class Global : MonoBehaviour {
         Input = gameObject.AddComponent<InputManager>();
         Maps = gameObject.AddComponent<MapManager>();
         Audio = gameObject.AddComponent<AudioManager>();
-        Messenger = gameObject.AddComponent<Messenger>();
+        MessengerManager = gameObject.AddComponent<MessengerManager>();
+
+        MessengerManager.current = new Messenger();
     }
 
     private void SetFullscreenMode() {
