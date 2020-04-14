@@ -143,9 +143,9 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         var passable = vsd.y == 0 && Event.CanPassAt(target);
         foreach (MapEvent targetEvent in targetEvents) {
             toCollide.Add(targetEvent);
-            if (!Event.CanPassAt(target)) {
-                passable = false;
-            }
+        }
+        if (!Event.CanPassAt(target)) {
+            passable = false;
         }
 
         if (passable) {
@@ -170,7 +170,7 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
             }, this));
         } else {
             foreach (var targetEvent in toCollide) {
-                if (targetEvent.IsSwitchEnabled && !targetEvent.IsPassableBy(Event)) {
+                if (targetEvent.IsSwitchEnabled) {
                     targetEvent.GetComponent<Dispatch>().Signal(MapEvent.EventCollide, this);
                 }
             }

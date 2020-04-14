@@ -59,6 +59,7 @@ public abstract class Map : MonoBehaviour {
     public int Width { get => size.x; }
     public int Height { get => size.y; }
 
+    public abstract bool CameraRestricted { get; }
     public abstract string MapName { get; }
     public abstract string BgmKey { get; }
     public abstract string EncounterKey { get; }

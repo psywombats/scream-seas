@@ -11,6 +11,7 @@ public class TsxMap : Map {
     private const string PropertyEncounter = "encounter";
     private const string PropertyTerrainEncounter = "terrainEncounter";
     private const string PropertyBattleBgm = "battle_bgm";
+    private const string PropertyCameraRestricted = "RestrictCamera";
 
     private static Dictionary<TileBase, TsxTile> instantiatedTiles = new Dictionary<TileBase, TsxTile>();
 
@@ -19,6 +20,7 @@ public class TsxMap : Map {
     public override string EncounterKey { get => GetProperty(PropertyEncounter); }
     public override string TerrainEncounterKey { get => GetProperty(PropertyTerrainEncounter); }
     public override string BattleBGMKey { get => GetProperty(PropertyBattleBgm); }
+    public override bool CameraRestricted { get => GetPropertyBool(PropertyCameraRestricted); }
 
     private SuperMap _tsx;
     public SuperMap Tsx {
@@ -56,5 +58,13 @@ public class TsxMap : Map {
         CustomProperty property;
         props.TryGetCustomProperty(propertyName, out property);
         return property?.GetValueAsString();
+    }
+    protected bool GetPropertyBool(string propertyName) {
+        if (props == null) {
+            props = GetComponent<SuperCustomProperties>();
+        }
+        CustomProperty property;
+        props.TryGetCustomProperty(propertyName, out property);
+        return property == null ? false : property.GetValueAsBool();
     }
 }

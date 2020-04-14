@@ -64,7 +64,7 @@ namespace SuperTiled2Unity.Editor
 
             SortingLayerCheck(go);
             renderer.sortingLayerName = m_CurrentSortLayerName;
-            renderer.sortingOrder = m_CurrentSortOrder * 2;
+            renderer.sortingOrder = 0;
 
             return m_CurrentSortLayerName;
         }
@@ -75,7 +75,7 @@ namespace SuperTiled2Unity.Editor
 
             SortingLayerCheck(go);
             renderer.sortingLayerName = m_CurrentSortLayerName;
-            renderer.sortingOrder = m_CurrentSortOrder * 2;
+            renderer.sortingOrder = 0;
 
             // Sprites will either have a specfic sort order or they will be sorted by a custom axis or group
             if (SortingMode == SortingMode.Stacked && !IsInGroup())

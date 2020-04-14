@@ -47,7 +47,7 @@ public class MapManager : MonoBehaviour {
         Avatar?.PauseInput();
         TransitionData data = IndexDatabase.Instance().Transitions.GetData(FadeComponent.DefaultTransitionTag);
         if (!isRaw) {
-            yield return Camera.GetComponent<FadeComponent>().TransitionRoutine(data, () => {
+            yield return Camera.GetComponent<FadeImageEffect>().TransitionRoutine(data, () => {
                 RawTeleport(mapName, location, facing);
             });
         } else {
@@ -61,7 +61,7 @@ public class MapManager : MonoBehaviour {
         if (avatarExists) Avatar.PauseInput();
         TransitionData data = IndexDatabase.Instance().Transitions.GetData(FadeComponent.DefaultTransitionTag);
         if (!isRaw) {
-            yield return Camera.GetComponent<FadeComponent>().TransitionRoutine(data, () => {
+            yield return Camera.GetComponent<FadeImageEffect>().TransitionRoutine(data, () => {
                 RawTeleport(mapName, targetEventName, facing);
             });
         } else {
@@ -75,7 +75,7 @@ public class MapManager : MonoBehaviour {
         RawTeleport(newMapInstance, location, facing);
     }
 
-    private void RawTeleport(string mapName, string targetEventName, OrthoDir? facing = null) {
+    public void RawTeleport(string mapName, string targetEventName, OrthoDir? facing = null) {
         Map newMapInstance;
         if (mapName == activeMapName) {
             newMapInstance = ActiveMap;
@@ -120,14 +120,24 @@ public class MapManager : MonoBehaviour {
         
         newMapObject = Resources.Load<GameObject>(mapName);
         if (newMapObject == null) {
+
             newMapObject = Resources.Load<GameObject>(mapName);
         }
         if (newMapObject == null) {
             var name2 = Map.ResourcePath + mapName;
             newMapObject = Resources.Load<GameObject>(name2);
         }
+        if (newMapObject == null) {
+            var name3 = "Raw" + Map.ResourcePath + mapName;
+            newMapObject = Resources.Load<GameObject>(name3);
+        }
         Assert.IsNotNull(newMapObject, "Couldn't find map " + mapName);
-        var map = Instantiate(newMapObject).GetComponent<Map>();
+        var obj = Instantiate(newMapObject);
+        var map = obj.GetComponent<Map>();
+        foreach (Transform child in obj.transform) {
+            if (map != null) break;
+            map = child.gameObject.GetComponent<Map>();
+        }
         map.InternalName = mapName;
         return map;
     }

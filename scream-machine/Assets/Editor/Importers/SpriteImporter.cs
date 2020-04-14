@@ -12,7 +12,7 @@ internal sealed class SpriteImporter : AssetPostprocessor {
             return;
         }
 
-        if (path.Contains("Sprites") || path.Contains("UI") || path.Contains("tilesets")) {
+        if (path.Contains("Sprites") || path.Contains("UI") || path.Contains("Maps")) {
             TextureImporter importer = (TextureImporter)assetImporter;
             importer.filterMode = FilterMode.Point;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
@@ -39,6 +39,9 @@ internal sealed class SpriteImporter : AssetPostprocessor {
                     }
                 }
                 importer.spritesheet = spritesheet.ToArray();
+            }
+            if (path.Contains("Maps")) {
+                importer.spritePixelsPerUnit = Map.PxPerTile;
             }
         }
     }

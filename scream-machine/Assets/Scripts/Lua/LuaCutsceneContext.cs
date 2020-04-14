@@ -55,8 +55,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["playSound"] = (Action<DynValue>)PlaySound;
         lua.Globals["sceneSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
         lua.Globals["face"] = (Action<DynValue, DynValue>)Face;
-        lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue, DynValue>)Teleport;
-        lua.Globals["cs_targetTele"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
+        lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
         lua.Globals["cs_walk"] = (Action<DynValue, DynValue, DynValue, DynValue>)Walk;
