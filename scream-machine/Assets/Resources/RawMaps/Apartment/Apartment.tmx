@@ -25,7 +25,7 @@
   </object>
   <object id="8" type="Event" x="272" y="80" width="32" height="16">
    <properties>
-    <property name="onInteract" value="speak(&quot;Television&quot;, &quot;A late night news broadcast is on TV. An expert is discussing a lawsuit against one of city energy providers, claiming they haven't done enough to prevent the recent string of blackouts.&quot;)"/>
+    <property name="onInteract" value="speak(&quot;Television&quot;, &quot;A late night talkshow is on TV. An expert is discussing a lawsuit against one of the city energy providers, claiming they haven't done enough to prevent the recent string of blackouts.&quot;)"/>
    </properties>
   </object>
  </objectgroup>
