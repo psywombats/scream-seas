@@ -37,9 +37,13 @@ public class TitleView : MonoBehaviour {
         starTween.SetEase(Ease.Linear);
 
         cameraTween.Play();
+        yield return null;
         panoramaTween.Play();
+        yield return null;
         starTween.Play();
+        yield return null;
         title.DOFade(0.0f, 1.0f).Play();
+        yield return null;
         StartCoroutine(CoUtils.RunAfterDelay(3, () => { StartCoroutine(CrossfadeObj(credit1)); }));
         StartCoroutine(CoUtils.RunAfterDelay(8, () => { StartCoroutine(CrossfadeObj(credit2)); }));
         StartCoroutine(CoUtils.RunAfterDelay(13, () => { StartCoroutine(CrossfadeObj(credit3)); }));
@@ -60,9 +64,9 @@ public class TitleView : MonoBehaviour {
 
     public IEnumerator CrossfadeObj(CanvasGroup group) {
         group.gameObject.SetActive(true);
-        float time = 1.3f;
+        float time = 1.4f;
         yield return CoUtils.RunTween(group.DOFade(1.0f, time));
-        yield return CoUtils.Wait(time + 1.0f);
+        yield return CoUtils.Wait(time + 1.2f);
         yield return CoUtils.RunTween(group.DOFade(0.0f, time));
     }
 }

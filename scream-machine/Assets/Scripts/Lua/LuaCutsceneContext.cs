@@ -62,15 +62,15 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
-
-        lua.Globals["dummy"] = (Action<DynValue>)Dummy;
-
+        lua.Globals["cs_pc"] = (Action)StartPC;
         lua.Globals["cs_clientName"] = (Action<DynValue>)SetClientName;
-        lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
         lua.Globals["cs_message"] = (Action<DynValue, DynValue>)Message;
         lua.Globals["cs_foreign"] = (Action<DynValue>)ForeignPhone;
         lua.Globals["cs_video"] = (Action)Video;
         lua.Globals["cs_flip"] = (Action)Flip;
+
+        lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
+        lua.Globals["setNews"] = (Action<DynValue>)SetNews;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -237,5 +237,13 @@ public class LuaCutsceneContext : LuaContext {
 
     private void Flip() {
         RunRoutineFromLua(MapOverlayUI.Instance().phoneSystem.FlipRoutine());
+    }
+
+    private void StartPC() {
+        RunRoutineFromLua(CoUtils.TaskAsRoutine(MapOverlayUI.Instance().pcSystem.DoMenuAsync()));
+    }
+
+    private void SetNews(DynValue keyLua) {
+        MapOverlayUI.Instance().pcSystem.SetNewsModel(IndexDatabase.Instance().PCNews.GetData(keyLua.String));
     }
 }

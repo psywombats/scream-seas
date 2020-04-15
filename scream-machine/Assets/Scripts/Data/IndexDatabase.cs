@@ -10,6 +10,7 @@ public class IndexDatabase : ScriptableObject {
     public FieldSpriteIndexData FieldSprites;
     public ClientIndexData Clients;
     public ForeignPhoneIndexData ForeignPhones;
+    public PCNewsIndexData PCNews;
 
     public static IndexDatabase Instance() {
         return Resources.Load<IndexDatabase>("Database/Database");
