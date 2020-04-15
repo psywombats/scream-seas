@@ -13,4 +13,9 @@ public class PhoneComponent : MonoBehaviour {
     public virtual void UpdateFromMessenger(Messenger messenger) {
 
     }
+
+    public void SetMessenger(Messenger newMessenger) {
+        messenger = newMessenger;
+        newMessenger.UpdateFromMessenger();
+    }
 }

@@ -29,17 +29,21 @@ public class Conversation {
     
     public void SetNextScript(SmsScript script, bool preread) {
         this.preread = preread;
-        ModifiedTime = DateTime.UtcNow;
         PendingScript = script;
+        if (script.unreadCount > 0) {
+            ModifiedTime = DateTime.UtcNow;
+        }
     }
 
     public void AddMessage(Message message) {
         LastMessage = message;
         Global.Instance().Messenger.UpdateFromMessenger();
-        ModifiedTime = DateTime.UtcNow;
     }
 
     public IEnumerator PlayScriptRoutine() {
+        if (PendingScript.unreadCount > 0) {
+            ModifiedTime = DateTime.UtcNow;
+        }
         yield return Global.Instance().Messenger.PlayScriptRoutine(PendingScript);
         PendingScript = null;
         Global.Instance().Messenger.UpdateFromMessenger();

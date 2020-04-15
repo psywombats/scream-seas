@@ -21,7 +21,7 @@ public class MapEvent2D : MapEvent {
 
     public override Vector3 OwnTileToWorld(Vector2Int position) {
         Vector3 baseCoords = TileToWorld(position);
-        return new Vector3(baseCoords.x, baseCoords.y, DepthForPositionPx(baseCoords.y));
+        return new Vector3(baseCoords.x, baseCoords.y, transform.position.z);
     }
 
     public override void SetTilePositionToMatchScreenPosition() {
@@ -49,12 +49,12 @@ public class MapEvent2D : MapEvent {
     }
 
     public override void SetDepth() {
-        if (Map != null) {
-            gameObject.transform.localPosition = new Vector3(
-                gameObject.transform.localPosition.x,
-                gameObject.transform.localPosition.y,
-                DepthForPositionPx(gameObject.transform.localPosition.y));
-        }
+        //if (Map != null) {
+        //    gameObject.transform.localPosition = new Vector3(
+        //        gameObject.transform.localPosition.x,
+        //        gameObject.transform.localPosition.y,
+        //        DepthForPositionPx(gameObject.transform.localPosition.y));
+        //}
     }
 
     public override Vector3 GetHandlePosition() {

@@ -42,10 +42,10 @@ public class FadeImageEffect : MonoBehaviour {
         }
     }
 
-    public IEnumerator TransitionRoutine(TransitionData transition, Action intermediate = null) {
-        yield return StartCoroutine(FadeRoutine(transition.GetFadeOut()));
-        intermediate?.Invoke();
-        yield return StartCoroutine(FadeRoutine(transition.GetFadeIn(), true));
+    public void SnapFade() {
+        elapsedSeconds = 99f;
+        reverse = false;
+        AssignCommonShaderVariables();
     }
 
     public IEnumerator FadeRoutine(FadeData fade, bool invert = false, float timeMult = 1.0f) {
@@ -64,6 +64,7 @@ public class FadeImageEffect : MonoBehaviour {
     private void AssignCommonShaderVariables() {
         if (currentFade != null) {
             float elapsed = elapsedSeconds / transitionDuration;
+            if (elapsed > 1) elapsed = 1;
             material.SetTexture("_MaskTexture", currentFade.transitionMask);
             material.SetFloat("_Elapsed", reverse ? (1.0f - elapsed) : elapsed);
             material.SetFloat("_SoftFudge", currentFade.softEdgePercent);

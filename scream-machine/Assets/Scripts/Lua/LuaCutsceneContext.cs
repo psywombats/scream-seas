@@ -61,10 +61,16 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_walk"] = (Action<DynValue, DynValue, DynValue, DynValue>)Walk;
         lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
+        lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
 
-        lua.Globals["setClientName"] = (Action<DynValue>)SetClientName;
+        lua.Globals["dummy"] = (Action<DynValue>)Dummy;
+
+        lua.Globals["cs_clientName"] = (Action<DynValue>)SetClientName;
         lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
         lua.Globals["cs_message"] = (Action<DynValue, DynValue>)Message;
+        lua.Globals["cs_foreign"] = (Action<DynValue>)ForeignPhone;
+        lua.Globals["cs_video"] = (Action)Video;
+        lua.Globals["cs_flip"] = (Action)Flip;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -94,6 +100,16 @@ public class LuaCutsceneContext : LuaContext {
 
     private void FadeOutBGM(DynValue seconds) {
         RunRoutineFromLua(Global.Instance().Audio.FadeOutRoutine((float)seconds.Number));
+    }
+
+    private void Speak(DynValue speaker, DynValue text) {
+        var speakerString = speaker.IsNil() ? null : speaker.String;
+        var textString = text.IsNil() ? null : text.String;
+        if (speaker.String.Contains(":")) {
+            textString = speakerString.Split(':')[1].Substring(2);
+            speakerString = speakerString.Split(':')[0];
+        }
+        RunTextboxRoutineFromLua(MapOverlayUI.Instance().textbox.SpeakRoutine(speakerString, textString));
     }
 
     private void Walk(DynValue eventLua, DynValue steps, DynValue directionLua, DynValue waitLua) {
@@ -188,8 +204,14 @@ public class LuaCutsceneContext : LuaContext {
         RunRoutineFromLua(globals.Maps.Camera.GetComponent<FadeComponent>().FadeRoutine(fade, invert));
     }
 
+    private void Dummy(DynValue othername) {
+
+    }
+
     private void SetClientName(DynValue nameLua) {
         Global.Instance().Messenger.ActiveConvo.Client.displayName = nameLua.String;
+        Global.Instance().Messenger.UpdateFromMessenger();
+        RunRoutineFromLua(Global.Instance().Input.ConfirmRoutine());
     }
 
     private void SetNextScript(DynValue scriptNameLua, DynValue prereadLua, DynValue delayLua) {
@@ -201,6 +223,19 @@ public class LuaCutsceneContext : LuaContext {
     }
 
     private void Message(DynValue senderLua, DynValue textLua) {
-        RunRoutineFromLua(MapOverlayUI.Instance().bigPhone.PlayMessageRoutine(senderLua.String, textLua.String));
+        var phone = MapOverlayUI.Instance().phoneSystem.IsFlipped ? MapOverlayUI.Instance().bigPhone : MapOverlayUI.Instance().foreignPhone;
+        RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String));
+    }
+
+    private void ForeignPhone(DynValue keyLua) {
+        RunRoutineFromLua(Global.Instance().MessengerManager.ForeignPhoneRoutine(keyLua.String));
+    }
+
+    private void Video() {
+        RunRoutineFromLua(MapOverlayUI.Instance().bigPhone.VideoRoutine());
+    }
+
+    private void Flip() {
+        RunRoutineFromLua(MapOverlayUI.Instance().phoneSystem.FlipRoutine());
     }
 }

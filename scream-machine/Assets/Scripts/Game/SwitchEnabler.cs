@@ -10,8 +10,7 @@ public class SwitchEnabler : MonoBehaviour {
     private bool switched;
 
     public void OnEnable() {
-        switched = CheckCondition();
-        CheckSwitch();
+        DoUpdate();
     }
 
     public void Update() {
@@ -20,13 +19,17 @@ public class SwitchEnabler : MonoBehaviour {
 
     private void CheckSwitch() {
         if (CheckCondition() != switched) {
-            switched = CheckCondition();
-            if (toEnable != null) toEnable.SetActive(enabled);
-            if (toDisable != null) toDisable.SetActive(!enabled);
+            DoUpdate();
         }
     }
 
     private bool CheckCondition() {
         return Global.Instance().Data.GetSwitch(switchName);
+    }
+
+    private void DoUpdate() {
+        switched = CheckCondition();
+        if (toEnable != null) toEnable.SetActive(switched);
+        if (toDisable != null) toDisable.SetActive(!switched);
     }
 }

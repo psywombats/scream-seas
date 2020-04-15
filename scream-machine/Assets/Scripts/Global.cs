@@ -15,7 +15,7 @@ public class Global : MonoBehaviour {
 
     public GameData Data => Serialization.Data;
     public SystemData SystemData => Serialization.SystemData;
-    public Messenger Messenger => MessengerManager.current;
+    public Messenger Messenger => MessengerManager.Current;
 
     public static Global Instance() {
         if (instance == null) {
@@ -51,7 +51,7 @@ public class Global : MonoBehaviour {
         Audio = gameObject.AddComponent<AudioManager>();
         MessengerManager = gameObject.AddComponent<MessengerManager>();
 
-        MessengerManager.current = new Messenger();
+        MessengerManager.Current = new Messenger();
     }
 
     private void SetFullscreenMode() {

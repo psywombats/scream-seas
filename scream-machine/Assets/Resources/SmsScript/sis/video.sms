@@ -1,0 +1,11 @@
+message("SIS", "[1 video attachment]")
+video()
+wait(0.5)
+message("SIS", "***A NEW STAR IS BORN")
+wait(1.0)
+flip()
+
+setSwitch('long_fade', true)
+setSwitch('nighttime', false)
+teleport('Apartment/Bedroom', 'start')
+setSwitch('long_fade', false)

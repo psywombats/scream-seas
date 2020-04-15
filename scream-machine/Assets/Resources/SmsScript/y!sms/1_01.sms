@@ -1,1 +1,1 @@
-message("Y!SMS", "2001-03-09: Warning, severe weather warning for your area")
+message("Y!SMS", "2001-03-09: Alert: Severe weather warning issued for the greater city area")

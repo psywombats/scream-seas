@@ -68,11 +68,6 @@ public abstract class Map : MonoBehaviour {
 
     #endregion
 
-    public virtual void Start() {
-        // TODO: figure out loading
-        Global.Instance().Maps.ActiveMap = this;
-    }
-
     public Vector3Int TileToTilemapCoords(Vector2Int loc) {
         return TileToTilemapCoords(loc.x, loc.y);
     }

@@ -191,7 +191,7 @@ public abstract class MapEvent : MonoBehaviour {
         if (passable == "IMPASSABLE") return false;
         if (passable == "PASSABLE") return true;
         if (ImpassabilityOverride) return false;
-        if (GetComponent<CharaEvent>() != null) return false;
+        if (GetComponent<CharaEvent>()) return false;
         return true;
     }
 

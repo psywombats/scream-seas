@@ -46,17 +46,7 @@ public class CharaEvent : MonoBehaviour {
         }
     }
 
-    private List<SpriteRenderer> _renderers;
-    protected List<SpriteRenderer> Renderers {
-        get {
-            if (_renderers == null) {
-                _renderers = new List<SpriteRenderer> {
-                    Doll.Renderer
-                };
-            }
-            return _renderers;
-        }
-    }
+    public List<SpriteRenderer> Renderers;
 
     public void Start() {
         GetComponent<Dispatch>().RegisterListener(MapEvent.EventEnabled, (object payload) => {
@@ -95,7 +85,9 @@ public class CharaEvent : MonoBehaviour {
     }
 
     public void UpdateAppearance() {
-        Doll.Renderer.sprite = SpriteForMain();
+        if (Doll.Renderer != null) {
+            Doll.Renderer.sprite = SpriteForMain();
+        }
     }
 
     public void FaceToward(MapEvent other) {

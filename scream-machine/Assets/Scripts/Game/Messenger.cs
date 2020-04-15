@@ -46,8 +46,10 @@ public class Messenger : IComparer<Conversation> {
     }
 
     public void UpdateFromMessenger() {
-        MapOverlayUI.Instance().bigPhone.UpdateFromMessenger(this);
-        MapOverlayUI.Instance().miniPhone.UpdateFromMessenger(this);
+        if (MapOverlayUI.Instance() != null) {
+            MapOverlayUI.Instance().bigPhone.UpdateFromMessenger(this);
+            MapOverlayUI.Instance().miniPhone.UpdateFromMessenger(this);
+        }
     }
 
     public void SetNextScript(SmsScript script, bool preread) {

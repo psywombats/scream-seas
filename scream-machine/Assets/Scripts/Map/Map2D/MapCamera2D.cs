@@ -15,10 +15,9 @@ public class MapCamera2D : MapCamera {
     public override void ManualUpdate() {
         base.ManualUpdate();
 
-        if (target == null) target = Global.Instance().Maps.Avatar.Event;
-
         var cam = GetCameraComponent();
         // assume the target is moving pixel-perfect (w/e)
+        if (target == null) return;
         targetPos = new Vector3(target.transform.position.x, target.transform.position.y, cam.transform.position.z);
         float x = targetPos.x + Map.UnitsPerTile / 2.0f * OrthoDir.East.Px2DX();
         float y = targetPos.y + Map.UnitsPerTile / 2.0f * OrthoDir.North.Px2DY() + offsetY;

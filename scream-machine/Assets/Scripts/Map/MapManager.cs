@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class MapManager : MonoBehaviour {
 
@@ -8,7 +10,7 @@ public class MapManager : MonoBehaviour {
 
     private string activeMapName;
 
-    public Map ActiveMap { get; set; }
+    public Map ActiveMap { get; private set; }
     public AvatarEvent Avatar { get; set; }
 
     private LuaContext lua;
@@ -40,16 +42,34 @@ public class MapManager : MonoBehaviour {
         Avatar = ActiveMap?.GetComponentInChildren<AvatarEvent>();
     }
 
-    public IEnumerator FadeOutRoutine(string tag = FadeComponent.DefaultTransitionTag) => Camera.GetComponent<FadeComponent>().FadeOutRoutine(tag);
-    public IEnumerator FadeInRoutine(string tag = FadeComponent.DefaultTransitionTag) => Camera.GetComponent<FadeComponent>().FadeInRoutine(tag);
+    public IEnumerator NewGameRoutine(FadeImageEffect fade) {
+        TransitionData data = IndexDatabase.Instance().Transitions.GetData("fade_long");
+        Global.Instance().Messenger.SetNextScript("y!sms/1_01", true);
+        Global.Instance().Messenger.SetNextScript("bell/bell", true);
+        Global.Instance().Data.SetSwitch("nighttime", true);
+        yield return SceneManager.LoadSceneAsync("Map2D");
+        Global.Instance().Maps.RawTeleport("Apartment/Bedroom", "start", OrthoDir.East);
+        Avatar.PauseInput();
+        var fadeImage = Camera.GetComponent<FadeImageEffect>();
+        yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
+        yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeInTag), true, 3.0f);
+        yield return CoUtils.RunTween(MapOverlayUI.Instance().miniPhone.transform.DOLocalMoveY(0.0f, 1.0f));
+        Avatar.UnpauseInput();
+    }
 
     public IEnumerator TeleportRoutine(string mapName, Vector2Int location, OrthoDir? facing = null, bool isRaw = false) {
         Avatar?.PauseInput();
         TransitionData data = IndexDatabase.Instance().Transitions.GetData(FadeComponent.DefaultTransitionTag);
+        var mult = Global.Instance().Data.GetSwitch("long_fade") ? 3 : 1;
+        if (Global.Instance().Data.GetSwitch("long_fade")) {
+            StartCoroutine(Global.Instance().Audio.FadeOutRoutine(1.0f));
+        }
         if (!isRaw) {
-            yield return Camera.GetComponent<FadeImageEffect>().TransitionRoutine(data, () => {
-                RawTeleport(mapName, location, facing);
-            });
+            var fadeIn = IndexDatabase.Instance().Fades.GetData(data.FadeInTag);
+            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeIn, false, mult);
+            RawTeleport(mapName, location, facing);
+            var fadeOut = IndexDatabase.Instance().Fades.GetData(data.FadeOutTag);
+            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeOut, true, mult);
         } else {
             RawTeleport(mapName, location, facing);
         }
@@ -60,10 +80,16 @@ public class MapManager : MonoBehaviour {
         bool avatarExists = Avatar != null;
         if (avatarExists) Avatar.PauseInput();
         TransitionData data = IndexDatabase.Instance().Transitions.GetData(FadeComponent.DefaultTransitionTag);
+        var mult = Global.Instance().Data.GetSwitch("long_fade") ? 3 : 1;
+        if (Global.Instance().Data.GetSwitch("long_fade")) {
+            StartCoroutine(Global.Instance().Audio.FadeOutRoutine(1.0f));
+        }
         if (!isRaw) {
-            yield return Camera.GetComponent<FadeImageEffect>().TransitionRoutine(data, () => {
-                RawTeleport(mapName, targetEventName, facing);
-            });
+            var fadeIn = IndexDatabase.Instance().Fades.GetData(data.FadeInTag);
+            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeIn, false, mult);
+            RawTeleport(mapName, targetEventName, facing);
+            var fadeOut = IndexDatabase.Instance().Fades.GetData(data.FadeOutTag);
+            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeOut, true, mult);
         } else {
             RawTeleport(mapName, targetEventName, facing);
         }
@@ -75,7 +101,7 @@ public class MapManager : MonoBehaviour {
         RawTeleport(newMapInstance, location, facing);
     }
 
-    public void RawTeleport(string mapName, string targetEventName, OrthoDir? facing = null) {
+    private void RawTeleport(string mapName, string targetEventName, OrthoDir? facing = null) {
         Map newMapInstance;
         if (mapName == activeMapName) {
             newMapInstance = ActiveMap;
@@ -102,11 +128,17 @@ public class MapManager : MonoBehaviour {
         if (map != ActiveMap) {
             if (ActiveMap != null) {
                 ActiveMap.OnTeleportAway();
-                Destroy(ActiveMap.gameObject);
+                if (ActiveMap.transform.parent != null) {
+                    DestroyImmediate(ActiveMap.transform.parent.gameObject);
+                } else {
+                    DestroyImmediate(ActiveMap.gameObject);
+                }                
             }
 
             ActiveMap = map;
             ActiveMap.OnTeleportTo();
+            camera = null;
+            Camera.target = Avatar.Event;
             Global.Instance().Dispatch.Signal(EventTeleport, ActiveMap);
             Avatar.OnTeleport();
         }
@@ -138,6 +170,8 @@ public class MapManager : MonoBehaviour {
             if (map != null) break;
             map = child.gameObject.GetComponent<Map>();
         }
+
+        Camera.GetComponent<FadeImageEffect>().SnapFade();
         map.InternalName = mapName;
         return map;
     }
@@ -145,7 +179,5 @@ public class MapManager : MonoBehaviour {
     private void AddInitialAvatar(Map map) {
         Avatar = Instantiate(Resources.Load<GameObject>("Prefabs/Avatar2D")).GetComponent<AvatarEvent>();
         Avatar.transform.SetParent(map.objectLayer.transform, false);
-        // Camera.target = Avatar.Event;
-        Camera.ManualUpdate();
     }
 }

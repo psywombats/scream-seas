@@ -61,10 +61,10 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayBGM(string key) {
         if (key != CurrentBGMKey && key != NoChangeBGMKey) {
+            bgmSource.Stop();
+            bgmSource.clip = null;
             CurrentBGMKey = key;
-            if (key == null || key == NoBGMKey) {
-                bgmSource.Stop();
-            } else {
+            if (key != null && key != NoBGMKey) {
                 bgmSource.volume = 1.0f;
                 AudioClip clip = IndexDatabase.Instance().BGM.GetData(key).track;
                 bgmSource.clip = clip;
@@ -77,7 +77,9 @@ public class AudioManager : MonoBehaviour {
         return bgmSource.clip;
     }
 
+    private string lastBGM;
     public IEnumerator FadeOutRoutine(float durationSeconds) {
+        lastBGM = CurrentBGMKey;
         CurrentBGMKey = NoBGMKey;
         while (baseVolume > 0.0f) {
             baseVolume -= Time.deltaTime / durationSeconds;
@@ -86,8 +88,14 @@ public class AudioManager : MonoBehaviour {
             }
             yield return null;
         }
+        bgmSource.Stop();
+        bgmSource.clip = null;
         baseVolume = 1.0f;
         PlayBGM(NoBGMKey);
+    }
+
+    public void ResumeBGM() {
+        PlayBGM(lastBGM);
     }
 
     public IEnumerator CrossfadeRoutine(string tag) {

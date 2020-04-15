@@ -5,16 +5,19 @@ using DG.Tweening;
 public class PhoneSystem : MonoBehaviour {
 
     [SerializeField] private GameObject bigPhone = null;
+    [SerializeField] private GameObject foreignPhone = null;
     [SerializeField] private GameObject miniPhone = null;
     [Space]
     [SerializeField] private float miniPhoneHeight = 250;
     [SerializeField] private float miniPhoneTranslate = 640;
     [SerializeField] private float bigPhoneHeight = 700;
+    [SerializeField] private float bigPhoneOffX = 900;
     [Space]
     [SerializeField] private float flipMiniDuration = 0.3f;
     [SerializeField] private float flipBigDuration = 0.6f;
 
     public bool IsFlipped { get; private set; }
+    public bool IsFlippedForeign { get; private set; }
 
     public IEnumerator FlipRoutine() {
         if (IsFlipped) {
@@ -30,6 +33,22 @@ public class PhoneSystem : MonoBehaviour {
         bigPhone.GetComponent<CanvasGroup>().alpha = 0.0f;
         miniPhone.GetComponent<RectTransform>().anchoredPosition = default;
         bigPhone.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -bigPhoneHeight);
+    }
+
+    public IEnumerator FlipForeignRoutine() {
+        Tweener transparencyTween, translateTween;
+        if (IsFlippedForeign) {
+            transparencyTween = foreignPhone.GetComponent<CanvasGroup>().DOFade(0.0f, flipBigDuration);
+            translateTween = foreignPhone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-bigPhoneOffX, -bigPhoneHeight), flipBigDuration);
+        } else {
+            transparencyTween = foreignPhone.GetComponent<CanvasGroup>().DOFade(1.0f, flipBigDuration);
+            translateTween = foreignPhone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0.0f, 0.0f), flipBigDuration);
+        }
+        yield return CoUtils.RunParallel(new IEnumerator[] {
+                CoUtils.RunTween(transparencyTween),
+                CoUtils.RunTween(translateTween),
+            }, this);
+        IsFlippedForeign = !IsFlippedForeign;
     }
 
     private IEnumerator FlipOpenRoutine() {

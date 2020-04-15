@@ -12,23 +12,29 @@ public class SmsImporter : ScriptedImporter {
 
         sms.script = text;
         sms.unreadCount = 0;
+        var youSent = false;
         for (int i = 0; i < lines.Length; i += 1) {
             if (lines[i].StartsWith("message(")) {
                 int start, run;
                 start = lines[i].IndexOf('\"') + 1;
                 run = lines[i].IndexOf(',') - (start + 1);
                 var tag = lines[i].Substring(start, run);
-                if (tag == "YOU") {
-                    return;
-                } else {
+                if (tag != "YOU") {
+                    if (!youSent) sms.unreadCount += 1;
                     sms.clientTag = tag;
-                    sms.unreadCount += 1;
-                    if (sms.previewMessage == null) {
+                    if (sms.previewMessage == null || sms.previewMessage.Length == 0) {
                         start = lines[i].IndexOf(',') + 3; //, "
                         run = lines[i].LastIndexOf('\"') - start;
                         sms.previewMessage = lines[i].Substring(start, run);
                     }
                     break;
+                } else {
+                    youSent = true;
+                    if (sms.previewMessage == null || sms.previewMessage.Length == 0) {
+                        start = lines[i].IndexOf(',') + 3; //, "
+                        run = lines[i].LastIndexOf('\"') - start;
+                        sms.previewMessage = lines[i].Substring(start, run);
+                    }
                 }
             }
         }
