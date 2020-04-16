@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class PCSystem : MonoBehaviour {
 
-    public enum PCMode { News }
+    public enum PCMode { News, Slideshow }
 
     [SerializeField] private List<CanvasGroup> toFade = null;
     [SerializeField] private float duration = 0.8f;
@@ -17,6 +17,9 @@ public class PCSystem : MonoBehaviour {
     [Space]
     [SerializeField] private PCNewsView newsView = null;
     [SerializeField] private PCNewsData newsModel = null;
+    [Space]
+    [SerializeField] private PCSlideshowView slideshowView = null;
+    [SerializeField] private PCSlideshowData slideshowModel = null;
 
 
     public async Task DoMenuAsync() {
@@ -26,6 +29,9 @@ public class PCSystem : MonoBehaviour {
             case PCMode.News:
                 newsView.Populate(newsModel);
                 break;
+            case PCMode.Slideshow:
+                slideshowView.Populate(slideshowModel);
+                break;
         }
 
         await FadeRoutine(1.0f);
@@ -33,6 +39,9 @@ public class PCSystem : MonoBehaviour {
         switch (mode) {
             case PCMode.News:
                 await Global.Instance().Input.ConfirmRoutine();
+                break;
+            case PCMode.Slideshow:
+                await slideshowView.DoSlideshowAsync();
                 break;
         }
 
@@ -43,6 +52,11 @@ public class PCSystem : MonoBehaviour {
     public void SetNewsModel(PCNewsData model) {
         SetMode(PCMode.News);
         newsModel = model;
+    }
+
+    public void SetSlideshowModel(PCSlideshowData model) {
+        SetMode(PCMode.Slideshow);
+        slideshowModel = model;
     }
 
     public void Show() {
@@ -62,6 +76,11 @@ public class PCSystem : MonoBehaviour {
         switch (mode) {
             case PCMode.News:
                 newsView.gameObject.SetActive(true);
+                slideshowView.gameObject.SetActive(false);
+                break;
+            case PCMode.Slideshow:
+                newsView.gameObject.SetActive(false);
+                slideshowView.gameObject.SetActive(true);
                 break;
         }
     }

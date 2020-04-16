@@ -59,6 +59,8 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
         lua.Globals["cs_walk"] = (Action<DynValue, DynValue, DynValue, DynValue>)Walk;
+        lua.Globals["cs_diag"] = (Action<DynValue>)Diag;
+        lua.Globals["cs_ladder"] = (Action<DynValue, DynValue>)Ladder;
         lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
@@ -71,6 +73,7 @@ public class LuaCutsceneContext : LuaContext {
 
         lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
         lua.Globals["setNews"] = (Action<DynValue>)SetNews;
+        lua.Globals["setSlideshow"] = (Action<DynValue>)SetSlideshow;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -245,5 +248,19 @@ public class LuaCutsceneContext : LuaContext {
 
     private void SetNews(DynValue keyLua) {
         MapOverlayUI.Instance().pcSystem.SetNewsModel(IndexDatabase.Instance().PCNews.GetData(keyLua.String));
+    }
+
+    private void SetSlideshow(DynValue keyLua) {
+        MapOverlayUI.Instance().pcSystem.SetSlideshowModel(IndexDatabase.Instance().PCSlideshows.GetData(keyLua.String));
+    }
+
+    private void Diag(DynValue dirLua) {
+        OrthoDir dir = OrthoDirExtensions.Parse(dirLua.String);
+        RunRoutineFromLua(Global.Instance().Maps.Avatar.Event.DiagRoutine(dir));
+    }
+
+    private void Ladder(DynValue countLua, DynValue dirLua) {
+        OrthoDir dir = OrthoDirExtensions.Parse(dirLua.String);
+        RunRoutineFromLua(Global.Instance().Maps.Avatar.Event.LadderRoutine((int) countLua.Number, dir));
     }
 }

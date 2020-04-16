@@ -25,7 +25,7 @@ public abstract class MapEvent : MonoBehaviour {
     public const string PropertyLuaAutostart = "onEnter";
     public const string PropertyLuaBehavior = "onBehavior";
 
-    protected const int TilesPerSecond = 4;
+    protected int TilesPerSecond = 4;
     protected const float BehaviorMaxDelaySeconds = 7.0f;
 
     private Vector3 pixelImperfectPos;
@@ -334,6 +334,34 @@ public abstract class MapEvent : MonoBehaviour {
         yield return CoUtils.RunTween(tween);
         transform.position = TargetPositionPx;
         Tracking = false;
+    }
+    public IEnumerator DiagRoutine(OrthoDir dir) {
+        Tracking = true;
+        if (GetComponent<CharaEvent>().Facing == OrthoDir.East && dir == OrthoDir.East) {
+            Position += OffsetForTiles(OrthoDir.North);
+            Position += OffsetForTiles(OrthoDir.East);
+        }
+        if (GetComponent<CharaEvent>().Facing == OrthoDir.West && dir == OrthoDir.East) {
+            Position += OffsetForTiles(OrthoDir.South);
+            Position += OffsetForTiles(OrthoDir.West);
+        }
+
+        TargetPositionPx = OwnTileToWorld(Position);
+        pixelImperfectPos = PositionPx;
+        var tween = DOTween.To(() => pixelImperfectPos, x => pixelImperfectPos = x, TargetPositionPx, (2.0f) / TilesPerSecond);
+        tween.SetEase(Ease.Linear);
+        yield return CoUtils.RunTween(tween);
+        transform.position = TargetPositionPx;
+        Tracking = false;
+    }
+
+    public IEnumerator LadderRoutine(int count, OrthoDir dir) {
+        GetComponent<CharaEvent>().Facing = OrthoDir.North;
+        TilesPerSecond /= 2;
+        for (int i = 0; i < count; i += 1) {
+            yield return StepRoutine(dir);
+        }
+        TilesPerSecond *= 2;
     }
 
     public IEnumerator PathToRoutine(Vector2Int location, bool ignoreEvents = false) {

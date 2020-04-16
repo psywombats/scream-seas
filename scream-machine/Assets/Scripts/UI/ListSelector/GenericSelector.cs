@@ -68,18 +68,18 @@ public abstract class GenericSelector : MonoBehaviour {
                     Global.Instance().Input.RemoveListener(ListenerId);
                     canceled = true;
                     if (!leavePointerEnabled) TurnOffPointer();
-                    completion.SetResult(CodeMenu);
+                    completion.TrySetResult(CodeMenu);
                     break;
                 case InputManager.Command.Cancel:
                     Global.Instance().Input.RemoveListener(ListenerId);
                     canceled = true;
                     if (!leavePointerEnabled) TurnOffPointer();
-                    completion.SetResult(CodeCancel);
+                    completion.TrySetResult(CodeCancel);
                     break;
                 case InputManager.Command.Confirm:
                     Global.Instance().Input.RemoveListener(ListenerId);
                     if (!leavePointerEnabled) TurnOffPointer();
-                    completion.SetResult(Selection);
+                    completion.TrySetResult(Selection);
                     break;
                 case InputManager.Command.Up:
                     MoveSelectionVertical(-1);

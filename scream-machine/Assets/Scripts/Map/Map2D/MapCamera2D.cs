@@ -3,9 +3,10 @@
 public class MapCamera2D : MapCamera {
 
     public float minX, maxX;
+    public float minY, maxY;
     public float offsetY = 1;
     public GameObject panorama;
-    public float panGive = 3.1f;
+    public float panGive = 3.1f, panGiveY;
 
     public void LateUpdate() {
         ManualUpdate();
@@ -32,7 +33,11 @@ public class MapCamera2D : MapCamera {
 
         if (panorama != null) {
             var t = (x - minX) / (maxX - minX);
-            panorama.transform.localPosition = new Vector3(panGive * -t, panorama.transform.localPosition.y, panorama.transform.localPosition.z);
+            var t2 = 0.0f;
+            if (minY != 0 && maxY != 0) {
+                t2 = (y - minY) / (maxY - minY);
+            }
+            panorama.transform.localPosition = new Vector3(panGive * -t, t2 != 0 ? panGiveY * t2 : panorama.transform.localPosition.y, panorama.transform.localPosition.z);
         }
     }
 }

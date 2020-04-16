@@ -1,0 +1,5 @@
+message("PARTNER", "the name 'Marcel Theroux' do anything for you?")
+message("YOU", "nope")
+message("PARTNER", "damn, I'm at city hall, and he's the actual person behind the leases")
+message("YOU", "do have his address?")
+message("PARTNER", "nah, he's long dead, suicide in february 2000, over a year ago")

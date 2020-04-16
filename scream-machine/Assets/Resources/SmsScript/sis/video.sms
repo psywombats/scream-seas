@@ -7,5 +7,14 @@ flip()
 
 setSwitch('long_fade', true)
 setSwitch('nighttime', false)
+
+setNews('day2')
+setSwitch('day2', true)
+
 teleport('Apartment/Bedroom', 'start')
 setSwitch('long_fade', false)
+
+setNextScript("y!sms/2_01", true)
+setNextScript("partner/2_01", false, 10)
+
+

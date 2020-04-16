@@ -1,0 +1,17 @@
+message("PARTNER", "hey, just thought I'd mention these photos are NEW, taken last week")
+message("PARTNER", "unless you altered them somehow?")
+message("YOU", "I didn't touch them")
+message("YOU", "what makes you think they're recent?")
+message("PARTNER", "you know that substation fire back on the 3rd, knocked out power south of the highway?")
+message("YOU", "yeah?")
+message("PARTNER", "you can see the damaged powerlines in these")
+message("YOU", "then you know where they were taken?")
+message("PARTNER", "still working on it, could be anywhere south of 25th st, but like, the moon is in the wrong direction")
+message("PARTNER", "I'm actually out for a stroll right now lol, I know the city pretty well so I'm sure I'll jog my memory eventually")
+message("YOU", "good luck")
+
+if getSwitch('orion_1') then
+    setNextScene('partner/2_04', false, 15)
+end
+
+setSwitch('partner/2_03')

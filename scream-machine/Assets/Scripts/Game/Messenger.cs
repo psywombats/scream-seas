@@ -12,7 +12,8 @@ public class Messenger : IComparer<Conversation> {
     public Client Me => me;
     public bool HasScriptAvailable => conversationsByClient.Values.Any(convo => convo.HasScriptAvailable);
     
-    private LuaCutsceneContext lua;
+    public LuaCutsceneContext Lua { get; private set; }
+
     private Dictionary<Client, Conversation> conversationsByClient;
     private Dictionary<string, Client> clientsByTag;
 
@@ -20,8 +21,8 @@ public class Messenger : IComparer<Conversation> {
         conversationsByClient = new Dictionary<Client, Conversation>();
         clientsByTag = new Dictionary<string, Client>();
 
-        lua = new LuaCutsceneContext();
-        lua.Initialize();
+        Lua = new LuaCutsceneContext();
+        Lua.Initialize();
 
         me = IndexDatabase.Instance().Clients.GetData("you");
     }
@@ -66,7 +67,7 @@ public class Messenger : IComparer<Conversation> {
     }
 
     public IEnumerator PlayScriptRoutine(SmsScript sms) {
-        var luaScript = new LuaScript(lua, sms.script);
+        var luaScript = new LuaScript(Lua, sms.script);
         yield return luaScript.RunRoutine(true);
     }
 

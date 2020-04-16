@@ -1,0 +1,14 @@
+message("PARTNER", "hey hey my man, are you in on this?")
+message("YOU", "in on what?")
+message("PARTNER", "oh, I guess Control talked to me first, because she likes me best, the charmer")
+message("PARTNER", "but I have marching orders, just the like the old Z days, except we have you instead of Elle")
+message("YOU", "what are you up to? you heard that warehouse you found is registered to Orion Devout?")
+message("PARTNER", "yeah yeah, I'm big enough to admit when I was wrong, those new-age hippies are in on it, so I'll follow Control's plan")
+message("PARTNER", "I'm headed for the city archives to check on that registration tonight, and if that falls through, the temple thing up north")
+message("PARTNER", "maybe if your job doesn't pan out, we'll meet in person?")
+message("PARTNER", "until then, seeya")
+
+setSwitch('partner/2_07', true)
+if getSwitch('control/2_06) then
+    setNextScript('control/2_08', false, 2)
+end
