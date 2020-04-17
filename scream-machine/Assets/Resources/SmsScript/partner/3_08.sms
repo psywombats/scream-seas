@@ -1,0 +1,11 @@
+message("YOU", "you know anyone called Lang?")
+message("PARTNER", "uh I do actually, that's a blast from the past")
+message("YOU", "they got in touch from the Panoptic post. who are they?")
+message("PARTNER", "coworker, or, ex-coworker, they're a rotten egg, you can block them")
+message("YOU", "they seemed to know Elle")
+message("PARTNER", "Lang would never message a stranger, whoever's using that name probably isn't my Lang anyway, just block them")
+
+setSwitch('3_08', true)
+if getSwitch('3_09') then
+    setNextScript('sketch/3_10', false, 5)
+end

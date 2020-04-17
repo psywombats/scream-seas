@@ -1,0 +1,23 @@
+message("YOU", "I don't know what more you want me to do")
+message("CONTROL", "No machines? No computers?" )
+message("YOU", "the most I found was a tape")
+message("CONTROL", "VHS? Casette? Or code for some ancient magnet punchcode beast?")
+message("YOU", "vhs it looks like")
+message("CONTROL", "Aand what's on it, then?")
+message("YOU", "I'm not a walking VCR")
+message("CONTROL", "Fine. We'll call tonight a failure.")
+message("CONTROL", "It's early, but you can go home.")
+message("YOU", "I'm barely going to make the last train. how is that early?")
+message("CONTROL", "Irrrelevant. Just get home, cut me a copy of that tape if it's anything important, and we'll regroup later.")
+message("YOU", "roger")
+
+flip()
+setSwitch('long_fade', true)
+setSwitch('nighttime', true)
+
+setSwitch('disable_weather', true)
+setSwitch('vcr_mode', true)
+setNews('day2_2')
+
+teleport('Apartment/Bedroom', 'start')
+setSwitch('long_fade', false)

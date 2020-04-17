@@ -5,7 +5,7 @@ message("YOU", "should I back out?")
 message("CONTROL", "That would be quite the letdown. No, I have some info that might help you out here.")
 message("CONTROL", "That 'warehouse' is actually a compound of sorts, a main office for the Orion Devout administration.")
 message("YOU", "how do you figure that?")
-message("CONTROL", "Their public server was so out of date it was exposed via at least three obvious vulnerabilities. Child's play; quite droll."
+message("CONTROL", "Their public server was so out of date it was exposed via at least three obvious vulnerabilities. Child's play; quite boring.")
 message("CONTROL", "On my screen now I have a photo tour of this compound, recorded as part of new member orientation, it seems.")
 message("YOU", "this place doesn't look like much...")
 message("CONTROL", "Stop off to your right first. You'll like what you see.")

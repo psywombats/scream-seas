@@ -22,6 +22,7 @@ public class CharaEvent : MonoBehaviour {
     private Vector3 targetPx;
     private float moveTime;
     private bool stepping;
+    private bool faceFix;
 
     public MapEvent Parent { get { return GetComponent<MapEvent>(); } }
     public Map Map { get { return Parent.Map; } }
@@ -41,6 +42,7 @@ public class CharaEvent : MonoBehaviour {
     public OrthoDir Facing {
         get { return _facing; }
         set {
+            if (faceFix) return;
             _facing = value;
             UpdateAppearance();
         }
@@ -97,6 +99,9 @@ public class CharaEvent : MonoBehaviour {
     public void ResetAnimationTimer() {
         moveTime = 0.0f;
     }
+
+    public void FixFace() => faceFix = true;
+    public void CancelFix() => faceFix = false;
 
     public void SetTransparent(bool trans) {
         var propBlock = new MaterialPropertyBlock();

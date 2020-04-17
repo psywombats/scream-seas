@@ -30,11 +30,6 @@
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
-  <object id="6" x="144" y="176" width="16" height="16">
-   <properties>
-    <property name="onInteract" value="setSwitch('day2', true); setNextScript(&quot;partner/2_01&quot;, false, 5); setNews('day2')"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer id="3" name="Passability" width="27" height="21" opacity="0">
   <properties>

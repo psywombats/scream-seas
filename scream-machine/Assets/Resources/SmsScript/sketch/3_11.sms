@@ -1,0 +1,5 @@
+message("YOU", "where did you get this?")
+message("SKETCH", "She gave it to me. In case something happened. Long ago.")
+message("YOU", "this is your information?")
+message("SKETCH", "This is Orion's information. Their file. On Elle.")
+message("SKETCH", "I merely gave you the key.")

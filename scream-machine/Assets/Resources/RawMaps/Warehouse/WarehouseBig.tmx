@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="22" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="10">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="22" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="12">
  <properties>
   <property name="RestrictCamera" type="bool" value="true"/>
  </properties>
@@ -31,13 +31,25 @@
   <object id="7" name="entry" type="Target" x="320" y="48" width="16" height="16"/>
   <object id="8" type="Event" x="32" y="128" width="16" height="16">
    <properties>
-    <property name="onInteract" value="speak(&quot;Warehouse door&quot;, &quot;This looks to be the loading door leading to the warehouse front. It's securely locked.&quot;)"/>
+    <property name="onCollide" value="speak(&quot;Warehouse door&quot;, &quot;This looks to be the loading door leading to the warehouse front. It's securely locked.&quot;)"/>
    </properties>
   </object>
   <object id="9" name="'y!sms/2_03'" type="Event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="hide" value="return getSwitch('y!sms/2_03')"/>
-    <property name="onEnter" value="setNextScene('y!sms/2_03', false, 6); setSwitch('y!sms/2_03', true);"/>
+    <property name="onEnter" value="setNextScript('y!sms/2_03', false, 6); setSwitch('y!sms/2_03', true)"/>
+   </properties>
+  </object>
+  <object id="10" type="Event" x="80" y="96" width="80" height="16">
+   <properties>
+    <property name="onInteract" value="speak('Shipping containers', &quot;It looks like this was a functional warehouse... Once. Now all the boxes are empty.&quot;)"/>
+    <property name="passable" value="IMPASSABLE"/>
+   </properties>
+  </object>
+  <object id="11" type="Event" x="224" y="96" width="48" height="16">
+   <properties>
+    <property name="onInteract" value="speak('Truck', &quot;The tires are deflated and the passenger window broken. It's doubtful the engine would even start.&quot;)"/>
+    <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,4 @@
+message("SKETCH", "I forgot to mention. Be wary.")
+message("SKETCH", "I know Goodwin is a fool. But. I suspect that after leaving Z, Orion Devout became his new employer.")
+
+setNextScript('cult/3_17')

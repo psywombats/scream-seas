@@ -4,3 +4,5 @@ message("YOU", "there's nothing here but trash. this place has been empty a whil
 message("CONTROL", "I could've sworn this data was recent. Last month at the latest.")
 message("CONTROL", "Neeever mind. Keep exploring. If you find anything that looks like a computer, talk to me right away.")
 message("YOU", "no luck so far")
+
+setNextScript('partner/2_12')

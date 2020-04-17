@@ -1,0 +1,7 @@
+message("RANDOM", "heya! pretty bold putting your number out there sweetie?")
+message("YOU", "do I know you?")
+message("RANDOM", "wanna find a bathroom somewhere, gorgeous? airport or somewhere? what do you say? I bet you're smexy af")
+setClientName("[blocked number]")
+
+setNextScript('control/3_05', false, 3)
+setNextScript('partner/3_06', false, 3.5)

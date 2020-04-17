@@ -1,0 +1,4 @@
+message("PARTNER", "hey I've been talking to Lang, they're sketchy as hell")
+message("PARTNER", "the real lang bailed on us last year just before Z unraveled, they ran and never looked back")
+message("PARTNER", "getting in touch now, through you? no idea what they're playing at")
+setNextScript('control/3_13')

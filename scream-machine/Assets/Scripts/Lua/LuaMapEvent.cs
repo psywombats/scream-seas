@@ -105,6 +105,7 @@ public class LuaMapEvent {
         for (var @base = 0; @base < 4; @base += 1) {
             var ordinal = (offset + @base) % 4;
             var dir = (OrthoDir)ordinal;
+            if (dir.Px2DX() == 0) continue;
             var newPos = mapEvent.Position + dir.XY2D();
             if (mapEvent.Map.IsChipPassableAt(newPos)) {
                 if (Global.Instance().Maps.Avatar.Event.Position == newPos) {

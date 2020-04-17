@@ -357,11 +357,13 @@ public abstract class MapEvent : MonoBehaviour {
 
     public IEnumerator LadderRoutine(int count, OrthoDir dir) {
         GetComponent<CharaEvent>().Facing = OrthoDir.North;
+        GetComponent<CharaEvent>().FixFace();
         TilesPerSecond /= 2;
         for (int i = 0; i < count; i += 1) {
             yield return StepRoutine(dir);
         }
         TilesPerSecond *= 2;
+        GetComponent<CharaEvent>().CancelFix();
     }
 
     public IEnumerator PathToRoutine(Vector2Int location, bool ignoreEvents = false) {

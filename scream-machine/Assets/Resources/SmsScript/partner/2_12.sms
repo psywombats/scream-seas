@@ -1,0 +1,8 @@
+message("PARTNER", "hey you got any questions you want to ask an Orion Devout guy?")
+message("YOU", "what? well I want to know what really happened to my sister obviously")
+message("PARTNER", "I mean I could ask this dude that, but I doubt he'd know, seems more scared than anything")
+message("YOU", "you found a member?")
+message("PARTNER", "sure did, he's been maintaining the titles since that Theroux guy croaked")
+message("PARTNER", "Control didn't have anything else she wanted me to put to him though, so I figured I'd ask you")
+message("YOU", "he doesn't know anything about a plan? or a father? or who Orion is?")
+message("PARTNER", "one sec")

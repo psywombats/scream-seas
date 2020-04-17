@@ -1,0 +1,13 @@
+message("PARTNER", "hey sorry to bother you, but you don't have like... eyes on your house?")
+message("YOU", "my apartment doesn't have eyes. doesn't have a nose either, or a face or ears or anything")
+message("PARTNER", "eyes on your house! enemy eyes! no one's watching your place?")
+message("YOU", "no")
+message("PARTNER", "weird, I could swear I've got company here where I'm at")
+message("PARTNER", "they're crafty, sort of, moving out of sight when I look for them? but I know they're there")
+message("PARTNER", "don't tell Control about this lol, she'd think I'm seeing things")
+message("YOU", "can do")
+
+setSwitch('3_06', true)
+if getSwitch('3_05') then
+    setNextScript('sketch/3_07')
+end
