@@ -11,6 +11,9 @@ public class MapCamera : MonoBehaviour {
 
     public void OnEnable() {
         Global.Instance().Maps.Camera = this;
+        if (target == null && Global.Instance().Maps.Avatar != null) {
+            target = Global.Instance().Maps.Avatar.Event;
+        }
     }
 
     public virtual void ManualUpdate() {

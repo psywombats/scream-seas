@@ -2,7 +2,7 @@ message("PARTNER", "hey, I'm on the bus headed up to Mission, bored as hell")
 message("PARTNER", "just wanted to say not to feed Lang too much")
 message("YOU", "why not?")
 message("PARTNER", "well for one thing, they're blowing up my phone right now telling me to be careful with the 27th/Mission church")
-message("PARTNER", "to start, this these Orion kids are a bunch of toothless cowards")
+message("PARTNER", "to start, these Orion kids are a bunch of toothless cowards")
 message("PARTNER", "and, well, the Lang I knew did not give two shits about my safety, so, this is probably a ruse")
 
 setNextScript('sketch/3_16')

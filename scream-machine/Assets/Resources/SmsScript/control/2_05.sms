@@ -7,4 +7,4 @@ message("YOU", "a url?")
 message("CONTROL", "Maybe. I was using some random keys to try to interpret the message but seeing as there are some English words in there, I suppose that must be the solution.")
 message("CONTROL", "But if the check the site for yourself, it's hard to believe anyone would need to link this to your sister.")
 
-setSlideshow('vertigo_1')
+setSlideshow('elle_1')

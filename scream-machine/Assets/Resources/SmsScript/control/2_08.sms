@@ -23,5 +23,5 @@ flip()
 
 setSwitch('long_fade', true)
 teleport('Warehouse/WarehouseFront', 'entry')
-setNextScript('partner/2_09')
+setNextScript('partner/2_09', false, 15)
 setSwitch('long_fade', false)

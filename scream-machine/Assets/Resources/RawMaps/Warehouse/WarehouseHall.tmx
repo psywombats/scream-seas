@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="22" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="17">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="22" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="19">
  <properties>
   <property name="RestrictCamera" type="bool" value="true"/>
  </properties>
@@ -42,6 +42,18 @@
    <properties>
     <property name="hide" value="return getSwitch('partner/2_14') or not getSwitch('day02/tape')"/>
     <property name="onEnter" value="setNextScript('partner/2_14', false, 3); setSwitch('partner/2_14', true)"/>
+   </properties>
+  </object>
+  <object id="17" name="control/3_31" type="Event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('control/3_31') or not getSwitch('day3')"/>
+    <property name="onEnter" value="setNextScript('control/3_31', false, 3); setSwitch('control/3_31', true)"/>
+   </properties>
+  </object>
+  <object id="18" x="128" y="48" width="16" height="16">
+   <properties>
+    <property name="hide" value="return not getSwitch('day3') or getSwitch('triggered_lights')"/>
+    <property name="onCollide" value="playScene('day03/lights_off'); setSwitch('triggered_lights', true)"/>
    </properties>
   </object>
  </objectgroup>

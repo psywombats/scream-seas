@@ -9,6 +9,6 @@ message("PARTNER", "maybe if your job doesn't pan out, we'll meet in person?")
 message("PARTNER", "until then, seeya")
 
 setSwitch('partner/2_07', true)
-if getSwitch('control/2_06) then
+if getSwitch('control/2_06') then
     setNextScript('control/2_08', false, 2)
 end

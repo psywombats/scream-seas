@@ -187,10 +187,12 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
     }
 
     private IEnumerator PhoneRoutine() {
+        PauseInput();
         yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.DoMenu());
         if (MapOverlayUI.Instance().phoneSystem.IsFlipped) {
             yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         }
+        UnpauseInput();
     }
 }

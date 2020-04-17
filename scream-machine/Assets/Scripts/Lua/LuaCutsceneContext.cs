@@ -70,6 +70,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_foreign"] = (Action<DynValue>)ForeignPhone;
         lua.Globals["cs_video"] = (Action)Video;
         lua.Globals["cs_flip"] = (Action)Flip;
+        lua.Globals["cs_awaitBGMLoad"] = (Action)AwaitBGM;
 
         lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
         lua.Globals["setNews"] = (Action<DynValue>)SetNews;
@@ -262,5 +263,9 @@ public class LuaCutsceneContext : LuaContext {
     private void Ladder(DynValue countLua, DynValue dirLua) {
         OrthoDir dir = OrthoDirExtensions.Parse(dirLua.String);
         RunRoutineFromLua(Global.Instance().Maps.Avatar.Event.LadderRoutine((int) countLua.Number, dir));
+    }
+
+    private void AwaitBGM() {
+        RunRoutineFromLua(Global.Instance().Audio.AwaitBGMLoad());
     }
 }

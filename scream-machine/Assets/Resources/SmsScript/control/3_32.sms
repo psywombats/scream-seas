@@ -1,0 +1,3 @@
+message("YOU", "the lights are out. what's going on?")
+message("CONTROL", "Daaamn it. It's a power outage. No electricity at my place and my internet connection is dead. I can't get anything.")
+message("CONTROL", "Sit tight!")

@@ -67,6 +67,7 @@ public class AudioManager : MonoBehaviour {
             if (key != null && key != NoBGMKey) {
                 bgmSource.volume = 1.0f;
                 AudioClip clip = IndexDatabase.Instance().BGM.GetData(key).track;
+
                 bgmSource.clip = clip;
                 bgmSource.Play();
             }
@@ -96,6 +97,12 @@ public class AudioManager : MonoBehaviour {
 
     public void ResumeBGM() {
         PlayBGM(lastBGM);
+    }
+
+    public IEnumerator AwaitBGMLoad() {
+        while (bgmSource.clip.loadState != AudioDataLoadState.Loaded) {
+            yield return null;
+        }
     }
 
     public IEnumerator CrossfadeRoutine(string tag) {

@@ -20,6 +20,9 @@ public class PCSlideshowView : MonoBehaviour {
         var panoptic = image.sprite.name.Contains("panoptic");
         text.enabled = !panoptic;
         panopticText.enabled = panoptic;
+
+        if (!model.slides[0].invertColor) text.color = new Color(.05f, 0, 0, .95f);
+        else text.color = new Color(1, .9f, .9f, .9f);
     }
 
     public async Task DoSlideshowAsync() {

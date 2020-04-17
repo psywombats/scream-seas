@@ -1,0 +1,2 @@
+message("YOU", "I'm inside. the same door was open")
+message("CONTROL", "Excellent. Keep moving down the main hall while I pull up the map.")
