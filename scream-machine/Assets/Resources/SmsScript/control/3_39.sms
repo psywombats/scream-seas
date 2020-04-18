@@ -1,0 +1,25 @@
+message("CONTROL", "Okay! Sorry about that. Power's back here at Control's place.")
+message("YOU", "Goodwin's in trouble")
+message("CONTROL", "Yeah, he's going to be in trouble with me, having to scramble Lang and leave you hanging like that.")
+message("CONTROL", "Lang got there in time; Goodwin should be safe now. It was looking grim for a while, but, mission success.")
+message("CONTROL", "How are things there?")
+message("YOU", "lights are back, and I found the entrance on my own... place is a maze though")
+message("CONTROL", "Head home for tonight.")
+message("CONTROL", "Goodwin managed to escape with some hardware that should let me establish a direct connection with the Orion/Vertigo server.")
+message("CONTROL", "If I play my cards right, we might not need you to get physical access.")
+message("YOU", "got it, I'll pull out")
+message("CONTROL", "I'm so close I can feel it. The answer will be mine!")
+
+
+flip()
+
+setSwitch('long_fade', true)
+setSwitch('nighttime', false)
+
+setNews('day4')
+setSwitch('day4', true)
+teleport('Apartment/Bedroom', 'start')
+setSwitch('long_fade', false)
+
+setNextScript("y!sms/2_01", true)
+setNextScript("partner/2_01", false, 10)

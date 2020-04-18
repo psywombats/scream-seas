@@ -1,0 +1,15 @@
+setSwitch('lights_off', false)
+
+wait(.1)
+setSwitch('lights_off', true)
+wait(.1)
+setSwitch('lights_off', false)
+wait(.1)
+setSwitch('lights_off', true)
+fadeOutBGM(1)
+setSwitch('flashlight', false)
+setSwitch('lights_off', false)
+
+playBGM('warehouse')
+setNextScript('control/3_39', false, 3)
+setSpeedMult(1)

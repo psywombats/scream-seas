@@ -16,3 +16,8 @@ wait(3)
 face('hero', 'SOUTH')
 setSwitch('flashlight', true)
 setNextScript('control/3_32')
+
+setNextScript('y!sms/3_05', false, 24)
+setNextScript('partner/3_33', false, 30)
+
+setSpeedMult(0.5)
