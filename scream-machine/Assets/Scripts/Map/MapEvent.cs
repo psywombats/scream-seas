@@ -24,8 +24,9 @@ public abstract class MapEvent : MonoBehaviour {
     public const string PropertyLuaInteract = "onInteract";
     public const string PropertyLuaAutostart = "onEnter";
     public const string PropertyLuaBehavior = "onBehavior";
-
-    protected int TilesPerSecond = 4;
+    
+    protected int baseTilesPerSecond = 4;
+    protected int TilesPerSecond => (int) (baseTilesPerSecond * SpeedMult);
     protected const float BehaviorMaxDelaySeconds = 7.0f;
 
     private Vector3 pixelImperfectPos;
@@ -43,6 +44,7 @@ public abstract class MapEvent : MonoBehaviour {
     public Vector3 TargetPositionPx { get; set; }
     public bool Tracking { get; private set; }
     public bool ImpassabilityOverride { get; set; }
+    public float SpeedMult { get; set; } = 1;
 
     public Vector3 PositionPx {
         get { return transform.localPosition; }
@@ -358,11 +360,11 @@ public abstract class MapEvent : MonoBehaviour {
     public IEnumerator LadderRoutine(int count, OrthoDir dir) {
         GetComponent<CharaEvent>().Facing = OrthoDir.North;
         GetComponent<CharaEvent>().FixFace();
-        TilesPerSecond /= 2;
+        baseTilesPerSecond /= 2;
         for (int i = 0; i < count; i += 1) {
             yield return StepRoutine(dir);
         }
-        TilesPerSecond *= 2;
+        baseTilesPerSecond *= 2;
         GetComponent<CharaEvent>().CancelFix();
     }
 

@@ -1,3 +1,5 @@
+if getSwitch('day_4') then
+    speak("Television", "A broadcast is on TV. A panel of experts is discussing shortwave radio anomalies having a negative effect on communication infrastructure.")
 if getSwitch('day_3') then
     speak("Television", "A news broadcast is on TV. A panel of experts is discussing the one year anniversary of the Mission St. disappearances and the lack of leads.")
 elseif getSwitch('saw_vhs') then

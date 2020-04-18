@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="22" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="12">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="22" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="14">
  <properties>
   <property name="RestrictCamera" type="bool" value="true"/>
  </properties>
@@ -29,7 +29,7 @@
    </properties>
   </object>
   <object id="7" name="entry" type="Target" x="320" y="48" width="16" height="16"/>
-  <object id="8" type="Event" x="32" y="128" width="16" height="16">
+  <object id="8" type="Event" x="0" y="112" width="16" height="16">
    <properties>
     <property name="onCollide" value="speak(&quot;Warehouse door&quot;, &quot;This looks to be the loading door leading to the warehouse front. It's securely locked.&quot;)"/>
    </properties>
@@ -52,6 +52,12 @@
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
+  <object id="12" type="Door" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="onCollide" value="teleport('Warehouse/Secret', 'entry')"/>
+   </properties>
+  </object>
+  <object id="13" name="secret" type="Target" x="32" y="112" width="16" height="16"/>
  </objectgroup>
  <layer id="4" name="Passability" width="22" height="9" opacity="0">
   <properties>

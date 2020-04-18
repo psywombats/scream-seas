@@ -75,6 +75,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
         lua.Globals["setNews"] = (Action<DynValue>)SetNews;
         lua.Globals["setSlideshow"] = (Action<DynValue>)SetSlideshow;
+        lua.Globals["setSpeedMult"] = (Action<DynValue>)SetSpeedMult;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -240,7 +241,11 @@ public class LuaCutsceneContext : LuaContext {
     }
 
     private void Flip() {
-        RunRoutineFromLua(MapOverlayUI.Instance().phoneSystem.FlipRoutine());
+        if (MapOverlayUI.Instance().phoneSystem.IsFlipped) {
+            RunRoutineFromLua(MapOverlayUI.Instance().phoneSystem.FlipRoutine());
+        } else {
+            RunRoutineFromLua(Global.Instance().Maps.Avatar.PhoneRoutine());
+        }
     }
 
     private void StartPC() {
@@ -267,5 +272,9 @@ public class LuaCutsceneContext : LuaContext {
 
     private void AwaitBGM() {
         RunRoutineFromLua(Global.Instance().Audio.AwaitBGMLoad());
+    }
+
+    private void SetSpeedMult(DynValue multLua) {
+        Global.Instance().Maps.Avatar.Event.SpeedMult = (float) multLua.Number;
     }
 }

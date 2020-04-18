@@ -13,6 +13,7 @@ public class MapOverlayUI : MonoBehaviour {
         }
         if (_instance == null) {
             _instance = FindObjectOfType<MapOverlayUI>();
+            _instance.textbox.gameObject.SetActive(true);
         }
         return _instance;
     }

@@ -9,6 +9,5 @@ message("YOU", "hold out, Lang is almost there. where are you?")
 
 setSwitch('partner/3_38', true)
 if getSwitch('found_compound') then
-    wait(8)
-    playScene('day03/lights_on')
+    setNextScript('control/lights_on', false, 8)
 end

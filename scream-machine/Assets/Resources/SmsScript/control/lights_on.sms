@@ -1,3 +1,20 @@
+setSwitch('lights_off', false)
+
+wait(.1)
+setSwitch('lights_off', true)
+wait(.1)
+setSwitch('lights_off', false)
+wait(.1)
+setSwitch('lights_off', true)
+fadeOutBGM(1)
+setSwitch('flashlight', false)
+setSwitch('lights_off', false)
+
+playBGM('warehouse')
+setSpeedMult(1)
+
+wait(1)
+
 message("CONTROL", "Okay! Sorry about that. Power's back here at Control's place.")
 message("YOU", "Goodwin's in trouble")
 message("CONTROL", "Yeah, he's going to be in trouble with me, having to scramble Lang and leave you hanging like that.")
@@ -21,5 +38,5 @@ setSwitch('day4', true)
 teleport('Apartment/Bedroom', 'start')
 setSwitch('long_fade', false)
 
-setNextScript("y!sms/2_01", true)
-setNextScript("partner/2_01", false, 10)
+setNextScript("y!sms/4_01", true)
+setNextScript("partner/4_01")

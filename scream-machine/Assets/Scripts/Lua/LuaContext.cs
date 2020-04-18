@@ -132,7 +132,7 @@ public class LuaContext {
         lua.Globals["debugLog"] = (Action<DynValue>)DebugLog;
         lua.Globals["playSFX"] = (Action<DynValue>)PlaySFX;
         lua.Globals["cs_wait"] = (Action<DynValue>)Wait;
-        lua.Globals["cs_play"] = (Action<DynValue>)Play;
+        lua.Globals["cs_play"] = (Action<DynValue, DynValue>)Play;
         lua.Globals["getSwitch"] = (Func<DynValue, DynValue>)GetSwitch;
         lua.Globals["setSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
         lua.Globals["eventNamed"] = (Func<DynValue, LuaMapEvent>)EventNamed;
@@ -176,8 +176,17 @@ public class LuaContext {
         Global.Instance().Audio.PlaySFX(sfxKey.String);
     }
 
-    protected void Play(DynValue filename) {
-        RunRoutineFromLua(RunRoutineFromFile(filename.String));
+    protected void Play(DynValue filename, DynValue delay) {
+        if (delay.IsNil()) {
+            RunRoutineFromLua(RunRoutineFromFile(filename.String));
+        } else {
+            RunRoutineFromLua(CoUtils.Wait(0.01f));
+            activeScripts.Peek().scriptRoutine.Resume();
+            Global.Instance().StartCoroutine(CoUtils.RunAfterDelay((float)delay.Number, () => {
+                Global.Instance().StartCoroutine(RunRoutineFromFile(filename.String));
+            }));
+        }
+        
     }
 
     protected DynValue GetAvatar() {

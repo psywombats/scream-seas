@@ -178,15 +178,7 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         
         return true;
     }
-
-    private IEnumerator OnStepStartRoutine() {
-        bool trans = Map.HasTilePropertyAt(Event.Position, tile => tile != null ? tile.IsTransparent : false);
-        Chara.SetTransparent(trans);
-        Global.Instance().Maps.ActiveMap.OnStepStarted();
-        yield return null;
-    }
-
-    private IEnumerator PhoneRoutine() {
+    public IEnumerator PhoneRoutine() {
         PauseInput();
         yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.DoMenu());
@@ -194,5 +186,13 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
             yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         }
         UnpauseInput();
+    }
+
+
+    private IEnumerator OnStepStartRoutine() {
+        bool trans = Map.HasTilePropertyAt(Event.Position, tile => tile != null ? tile.IsTransparent : false);
+        Chara.SetTransparent(trans);
+        Global.Instance().Maps.ActiveMap.OnStepStarted();
+        yield return null;
     }
 }
