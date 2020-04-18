@@ -5,7 +5,7 @@ message("CONTROL", "And did you know that the first eclipse of the millenium was
 message("YOU", "didn't know either of those things")
 message("YOU", "maybe he recorded it in advance.")
 message("CONTROL", "That's I thought too. But he references all the power grid problems we've been having.")
-message("CONTROL" "'Disease-by-mail? That has to be the anthrax scare. Yes?")
+message("CONTROL", "'Disease-by-mail?' That has to be the anthrax scare. Yes?")
 message("CONTROL", "At least I think that's what he's talking about. The language is quite unclear, but I doubt the man is Nostradumus here.")
 message("CONTROL", "The implication is clear, I hope? Theroux was still alive in June 2000, and he was supposed to have killed himself in February of that year.")
 message("YOU", "you're sure it's him? maybe he faked his death like Elle did")
