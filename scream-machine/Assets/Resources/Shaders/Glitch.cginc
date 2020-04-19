@@ -121,6 +121,7 @@ float _PEdgeDepthMax;
 float _PEdgePower;
 float _PEdgeDistanceGrain;
 float _PEdgeAmplitude;
+float _PEdgeWavePower;
 
 // for when 0.0001 and 0.1 are equally valid
 // source is from a slider, usually 0-1
@@ -524,19 +525,21 @@ fixed4 glitchFragFromCoords(float2 xy, float4 pxXY) {
         if (_PEdgeDuration > 0.0) {
             dist += _PEdgeAmplitude * sin(t / cubicEase(_PEdgeDuration, 10.0));
         }
-        float adjustedDist = (dist - _PEdgeDepthMin) / (_PEdgeDepthMax - _PEdgeDepthMin);
-        float offset = 0.0;
-        float level = 0.5;
         if (_PEdgeUseWaveSource > 0.0) {
             float angle = ((atan2(dy, dx) / (3.141)) + 1.0) / 2.0;
             angle += 0.25;
             if (angle > 1.0) {
                 angle -= 1.0;
             }
-            int sampleNumber = floor(angle * (float)_WaveSamples);
-            level = ((_Wave[sampleNumber] + 1.0) / 2.0);
+            angle = angle * .8 + .2;
+            float perfect = angle * (float)_WaveSamples;
+            int sampleHi = floor(perfect);
+            int sampleLo = ceil(perfect);
+            float level = (_Wave[sampleHi] + _Wave[sampleLo]) / 2.0;
+            dist += level * _PEdgeWavePower;
         }
-        offset = adjustedDist - level;
+        float adjustedDist = (dist - _PEdgeDepthMin) / (_PEdgeDepthMax - _PEdgeDepthMin);
+        float offset = adjustedDist;
         offset = clamp(offset, 0.0, 1.0) * _PEdgePower;
         c[0] -= offset;
         c[1] -= offset;

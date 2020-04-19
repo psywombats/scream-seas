@@ -10,6 +10,7 @@ public class WaveSource : MonoBehaviour {
     public int Oversample = 25;
     public AudioClip Source;
     public bool DrawWave = false;
+    public bool Reset { get; set; } = false;
 
     private float[] channelSamples;
     private float[] averageSamples;
@@ -26,15 +27,16 @@ public class WaveSource : MonoBehaviour {
         int sampleCountPerChannel = sampleInCount / Source.channels;
         int outputSampleCount = sampleCountPerChannel / Oversample;
         int inSamplesPerOut = sampleInCount / outputSampleCount;
-        if (channelSamples == null) {
+        if (channelSamples == null || Reset) {
+            Reset = false;
             channelSamples = new float[sampleInCount];
             averageSamples = new float[outputSampleCount];
         }
 
         int offset = (int)(elapsedTime * (float)Source.frequency);
-        while (offset >= Source.samples) {
-            elapsedTime -= Source.samples * Source.frequency;
-            offset = (int)(elapsedTime * (float)Source.frequency);
+        if (offset >= Source.samples) {
+            offset = 0;
+            elapsedTime -= Source.length;
         }
         Source.GetData(channelSamples, offset);
         for (int outSample = 0; outSample < outputSampleCount; outSample += 1) {

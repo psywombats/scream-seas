@@ -1,0 +1,4 @@
+message("PARTNER", "signal???")
+message("YOU", "I can't help you")
+message("YOU", "have you heard from Control?")
+setNextScript("sketch/4_21")

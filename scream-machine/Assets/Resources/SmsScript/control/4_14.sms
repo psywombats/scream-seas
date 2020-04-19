@@ -1,0 +1,3 @@
+message("CONTROL", "Take a right from here, then a left after that.")
+message("CONTROL", "Once you're there, wait until I've had Lang open the way for you")
+setNextScript('partner/4_15')

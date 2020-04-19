@@ -1,0 +1,5 @@
+message("PARTNER", "the signal? please hurry")
+message("YOU", "I'm stuck in a store room... haven't heard from Control or Lang")
+message("PARTNER", "ok, ok, just give me the signal ASAP")
+setNextScript('y!sms/4_03', false, 4)
+setNextScript('sis/4_19', false, 19)

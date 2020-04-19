@@ -122,6 +122,23 @@ public class LuaMapEvent {
         }
     }
 
+    public void stalk() {
+        OrthoDir dir;
+        var dist = (mapEvent.Position - Global.Instance().Maps.Avatar.Event.Position).magnitude;
+        if (dist > 12) return;
+        var tooClose = dist < 4;
+        if (mapEvent.Position.x > Global.Instance().Maps.Avatar.Event.Position.x ^ tooClose) {
+            dir = OrthoDir.West;
+        } else {
+            dir = OrthoDir.East;
+        }
+        var newPos = mapEvent.Position + dir.XY2D();
+        if (mapEvent.CanPassAt(newPos) && mapEvent.Map.GetEventAt<MapEvent>(newPos) == null) {
+            var context = Global.Instance().Maps.Lua;
+            mapEvent.StartCoroutine(mapEvent.StepRoutine(dir));
+        }
+    }
+
     public void cs_step(string directionName) {
         var context = Global.Instance().Maps.Lua;
         context.RunRoutineFromLua(mapEvent.StepRoutine(OrthoDirExtensions.Parse(directionName)));

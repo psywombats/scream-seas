@@ -1,0 +1,1 @@
+teleport('Compound/GenericRoom', 'near')

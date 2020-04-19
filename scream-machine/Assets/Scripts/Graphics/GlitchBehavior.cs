@@ -8,7 +8,7 @@ public class GlitchBehavior : MonoBehaviour {
     private float elapsedSeconds;
 
     public void Awake() {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        var renderer = GetComponent<Renderer>();
         if (renderer != null) {
             material = renderer.sharedMaterial;
         } else {

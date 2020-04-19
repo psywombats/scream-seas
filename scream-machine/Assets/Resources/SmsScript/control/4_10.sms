@@ -14,7 +14,7 @@ message("CONTROL", "If I told you to go back there and head back to the hidden e
 message("YOU", "yes.")
 message("CONTROL", "Oookay! The timing is important. Take the last train, Washingtion Station stop. You should arrive right before midnight.")
 message("YOU", "I'll be there")
-message("CONTROL", "Good boy.")
+message("CONTROL", "Good dog!")
 message("CONTROL", "This is embarassing... I'm giddy as a schoolgirl! I'm so close I can taste it!")
 message("CONTROL", "Theroux, or whoever is behind all this... I'll know your plan soon!")
 
@@ -24,5 +24,6 @@ setSwitch('long_fade', true)
 
 teleport('Warehouse/WarehouseFront', 'entry')
 setSwitch('long_fade', false)
+setSwitch('flashlight', true)
 
 setNextScript('partner/4_11', false, 30)

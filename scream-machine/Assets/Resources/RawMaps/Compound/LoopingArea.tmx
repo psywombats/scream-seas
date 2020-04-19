@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="56" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="20">
  <editorsettings>
-  <export format="tmx"/>
+  <export target="." format="tmx"/>
  </editorsettings>
  <tileset firstgid="1" source="../Tilesets/general.tsx"/>
  <tileset firstgid="81" source="../Tilesets/Editor.tsx"/>
@@ -28,7 +28,7 @@
   <object id="10" name="left" type="Target" x="144" y="128" width="16" height="16"/>
   <object id="12" type="Door" x="128" y="128" width="16" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Compound/LoopingArea', 'right')"/>
+    <property name="onCollide" value="if getSwitch('day4') then teleport('Compound/GenericRoom', 'right') else teleport('Compound/LoopingArea', 'right') end"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
@@ -47,7 +47,7 @@
   </object>
   <object id="19" name="found_compound" type="Event" x="128" y="80" width="16" height="16">
    <properties>
-    <property name="hide" value="return getSwitch('found_compound')"/>
+    <property name="hide" value="return getSwitch('found_compound') or getSwitch('day4')"/>
     <property name="onEnter" value="playScene('day03/found_compound')"/>
    </properties>
   </object>

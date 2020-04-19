@@ -14,7 +14,7 @@
   <object id="5" type="Event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="hide" value="return getSwitch('lights_off')"/>
-    <property name="onCollide" value="teleport('Warehouse/WarehouseBack', 'door', 'SOUTH')"/>
+    <property name="onCollide" value="teleport('Warehouse/WarehouseBack', 'door', 'SOUTH'); if getSwitch('day4') then setSwitch('flashlight', true) end"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
@@ -47,17 +47,17 @@
   </object>
   <object id="17" name="control/3_31" type="Event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="hide" value="return getSwitch('control/3_31') or not getSwitch('day3')"/>
+    <property name="hide" value="return getSwitch('control/3_31') or not getSwitch('day3') or getSwitch('day4')"/>
     <property name="onEnter" value="setNextScript('control/3_31', false, 3); setSwitch('control/3_31', true)"/>
    </properties>
   </object>
-  <object id="18" x="128" y="48" width="16" height="16">
+  <object id="18" type="Event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="hide" value="return not getSwitch('day3') or getSwitch('triggered_lights')"/>
+    <property name="hide" value="return not getSwitch('day3') or getSwitch('triggered_lights') or getSwitch('day4')"/>
     <property name="onCollide" value="playScene('day03/lights_off'); setSwitch('triggered_lights', true)"/>
    </properties>
   </object>
-  <object id="19" type="Event" x="336" y="48" width="16" height="16">
+  <object id="19" type="Event" x="336" y="32" width="16" height="16">
    <properties>
     <property name="hide" value="return not getSwitch('lights_off')"/>
     <property name="onCollide" value="playScene('day03/stay_put')"/>

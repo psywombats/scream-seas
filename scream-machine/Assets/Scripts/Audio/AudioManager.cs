@@ -62,12 +62,14 @@ public class AudioManager : MonoBehaviour {
     public void PlayBGM(string key) {
         if (key != CurrentBGMKey && key != NoChangeBGMKey) {
             bgmSource.Stop();
+            GetWaveSource().Reset = true;
             bgmSource.clip = null;
             CurrentBGMKey = key;
             if (key != null && key != NoBGMKey) {
                 bgmSource.volume = 1.0f;
                 AudioClip clip = IndexDatabase.Instance().BGM.GetData(key).track;
 
+                GetWaveSource().Reset = true;
                 bgmSource.clip = clip;
                 bgmSource.Play();
             }
@@ -89,6 +91,7 @@ public class AudioManager : MonoBehaviour {
             }
             yield return null;
         }
+        GetWaveSource().Reset = true;
         bgmSource.Stop();
         bgmSource.clip = null;
         baseVolume = 1.0f;
