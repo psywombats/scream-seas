@@ -9,16 +9,19 @@ public class Conversation {
     public Message LastMessage { get; private set; }
     public SmsScript PendingScript { get; private set; }
     public DateTime ModifiedTime { get; private set; }
-    public int UnreadCount => !HasScriptAvailable ? 0 : PendingScript.unreadCount;
+    public int UnreadCount => forcePreview != null ? hax : (!HasScriptAvailable ? 0 : PendingScript.unreadCount);
     public bool HasScriptAvailable => PendingScript != null && !preread;
 
+    private string forcePreview;
     private bool preread;
+    private int hax = 3;
 
     public Conversation(Client client) {
         Client = client;
     }
 
     public string GetPreviewMessageText() {
+        if (forcePreview != null) return forcePreview;
         if (PendingScript != null) {
             if (PendingScript.previewMessage != null && PendingScript.previewMessage.Length > 0) {
                 return PendingScript.previewMessage;
@@ -35,6 +38,13 @@ public class Conversation {
         }
     }
 
+    public void ForcePreview(string text) {
+        forcePreview = text;
+        ModifiedTime = DateTime.UtcNow;
+        hax += 1;
+        Global.Instance().Messenger.UpdateFromMessenger();
+    }
+
     public void AddMessage(Message message) {
         LastMessage = message;
         Global.Instance().Messenger.UpdateFromMessenger();
@@ -44,8 +54,9 @@ public class Conversation {
         if (PendingScript.unreadCount > 0) {
             ModifiedTime = DateTime.UtcNow;
         }
-        yield return Global.Instance().Messenger.PlayScriptRoutine(PendingScript);
+        var script = PendingScript;
         PendingScript = null;
+        yield return Global.Instance().Messenger.PlayScriptRoutine(script);
         Global.Instance().Messenger.UpdateFromMessenger();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using MoonSharp.Interpreter;
+using DG.Tweening;
 
 public class LuaCutsceneContext : LuaContext {
 
@@ -78,6 +79,8 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["setSlideshow"] = (Action<DynValue>)SetSlideshow;
         lua.Globals["setSpeedMult"] = (Action<DynValue>)SetSpeedMult;
         lua.Globals["switchToSelectMode"] = (Action)SwitchToSelectMode;
+        lua.Globals["messagePreview"] = (Action<DynValue, DynValue>)PreviewMessage;
+        lua.Globals["panPhone"] = (Action)PanPhone;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -234,7 +237,11 @@ public class LuaCutsceneContext : LuaContext {
         if (autotypeLua.IsNil()) {
             RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String));
         } else {
-            RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String, 4.5f));
+            var type = autotypeLua.String;
+            var delay = 4.4f;
+            if (type == "short") delay = 2.8f;
+            if (type == "long") delay = 6.5f;
+            RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String, delay));
         }
     }
 
@@ -291,5 +298,15 @@ public class LuaCutsceneContext : LuaContext {
     private void ForceConversation(DynValue clientLua) {
         var convo = Global.Instance().Messenger.GetConversation(clientLua.String);
         RunRoutineFromLua(CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.ShowConversation(convo)));
+    }
+
+    private void PreviewMessage(DynValue clientLua, DynValue textLua) {
+        var client = Global.Instance().Messenger.GetClient(clientLua.String);
+        var convo = Global.Instance().Messenger.GetConversation(client);
+        convo.ForcePreview(textLua.String);
+    }
+
+    private void PanPhone() {
+        MapOverlayUI.Instance().bigPhone.gameObject.transform.DOLocalMove(new Vector3(-410, 0), 1.0f).Play();
     }
 }

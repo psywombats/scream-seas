@@ -91,6 +91,6 @@ public class Messenger : IComparer<Conversation> {
         if (x.HasScriptAvailable != y.HasScriptAvailable) {
             return x.HasScriptAvailable ? -1 : 1;
         }
-        return x.ModifiedTime.CompareTo(y.ModifiedTime);
+        return -x.ModifiedTime.CompareTo(y.ModifiedTime);
     }
 }

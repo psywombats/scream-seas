@@ -599,6 +599,29 @@ fixed4 glitchFragFromCoords(float2 xy, float4 pxXY) {
         c[2] = clampShade(c[2] + _CClampBrightness, shadesB, _CClampDither > 0.0, _CClampDitherVary > 0.0, seed);
     }
     
+    // palette distorions
+    if (_PDistEnabled > 0.0) {
+        float covariant = 5.0;
+        c = invertChannel(c, 0, _PDistInvertR, covariant);
+        if (_PDistSimultaneousInvert != 0.0) covariant += 1.0;
+        c = invertChannel(c, 1, _PDistInvertG, covariant);
+        if (_PDistSimultaneousInvert != 0.0) covariant += 1.0;
+        c = invertChannel(c, 2, _PDistInvertB, covariant);
+
+        c = maxChannel(c, 0, _PDistMaxR, 8.0);
+        c = maxChannel(c, 1, _PDistMaxG, 9.0);
+        c = maxChannel(c, 2, _PDistMaxB, 10.0);
+
+        float monoRoll = rand2(t, 11.0);
+        float monoChance = cubicEase(_PDistMonocolorChance, 1.0);
+        if (monoRoll > 1.0 - monoChance) {
+            float bright = (c[0] + c[1] + c[2]) / 3.0;
+            c[0] = _PDistMonocolor[0] * bright;
+            c[1] = _PDistMonocolor[1] * bright;
+            c[2] = _PDistMonocolor[2] * bright;
+        }
+    }
+    
     // static frames
     if (_SFrameEnabled > 0.0) {
         float sframeChance = cubicEase(_SFrameChance, 1.0) + 0.01;

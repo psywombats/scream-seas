@@ -120,6 +120,7 @@ public class BigPhoneComponent : PhoneComponent {
 
     public IEnumerator VideoRoutine() {
         float duration = 0.8f;
+        bool fadeBGM = Global.Instance().Data.GetSwitch("day4");
         var sizeTween = transform.DOScale(new Vector3(2, 2, 1), duration);
         var translateTween = transform.DOLocalMoveY(-30f, duration);
         var clearTween = fromMode.GetComponent<CanvasGroup>().DOFade(0.0f, duration);
@@ -130,12 +131,13 @@ public class BigPhoneComponent : PhoneComponent {
             CoUtils.RunTween(sizeTween),
             CoUtils.RunTween(translateTween),
             CoUtils.RunTween(clearTween),
-            Global.Instance().Audio.FadeOutRoutine(duration),
+            !fadeBGM ? CoUtils.Wait(0.0f) : Global.Instance().Audio.FadeOutRoutine(duration),
         }, this);
         yield return CoUtils.Wait(0.5f);
 
         Global.Instance().Data.SetSwitch("snow_disabled", true);
         videoMode.SetActive(true);
+        if (!fadeBGM) videoMode.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
         videoMode.GetComponent<VideoPlayer>().Play();
         yield return CoUtils.Wait(3.0f);
         while (videoMode.GetComponent<VideoPlayer>().isPlaying) {
@@ -145,7 +147,7 @@ public class BigPhoneComponent : PhoneComponent {
         Global.Instance().Data.SetSwitch("snow_disabled", false);
 
         yield return CoUtils.Wait(1.0f);
-        Global.Instance().Audio.ResumeBGM();
+        if (fadeBGM) Global.Instance().Audio.ResumeBGM();
         sizeTween = transform.DOScale(new Vector3(1, 1, 1), duration);
         translateTween = transform.DOLocalMoveY(0, duration);
         clearTween = fromMode.GetComponent<CanvasGroup>().DOFade(1.0f, duration);

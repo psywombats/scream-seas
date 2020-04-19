@@ -102,7 +102,7 @@ public class LuaContext {
     }
 
     public virtual IEnumerator RunRoutine(LuaScript script, bool canBlock) {
-        if (canBlock) activeScripts.Push(script);
+        activeScripts.Push(script);
         forceKilled = false;
         try {
             script.scriptRoutine.Resume();
@@ -113,15 +113,15 @@ public class LuaContext {
         while (script.scriptRoutine.State != CoroutineState.Dead && !forceKilled) {
             yield return null;
         }
-        if (canBlock) activeScripts.Pop();
+        activeScripts.Pop();
     }
 
-    public IEnumerator RunRoutineFromFile(string filename) {
+    public IEnumerator RunRoutineFromFile(string filename, bool canBlock = true) {
         if (filename.Contains(".")) {
             filename = filename.Substring(0, filename.IndexOf('.'));
         }
         var asset = Resources.Load<LuaSerializedScript>("Lua/" + filename);
-        yield return RunRoutine(asset.luaString, true);
+        yield return RunRoutine(asset.luaString, canBlock);
     }
 
     protected void ResumeAwaitedScript() {
@@ -133,10 +133,12 @@ public class LuaContext {
         lua.Globals["playSFX"] = (Action<DynValue>)PlaySFX;
         lua.Globals["cs_wait"] = (Action<DynValue>)Wait;
         lua.Globals["cs_play"] = (Action<DynValue, DynValue>)Play;
+        lua.Globals["playSceneParallel"] = (Action<DynValue>)PlaySceneParallel;
         lua.Globals["getSwitch"] = (Func<DynValue, DynValue>)GetSwitch;
         lua.Globals["setSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
         lua.Globals["eventNamed"] = (Func<DynValue, LuaMapEvent>)EventNamed;
         lua.Globals["getAvatar"] = (Func<DynValue>)GetAvatar;
+        lua.Globals["rand"] = (Func<DynValue, DynValue>)Rand;
     }
 
     protected void LoadDefines(string path) {
@@ -176,9 +178,13 @@ public class LuaContext {
         Global.Instance().Audio.PlaySFX(sfxKey.String);
     }
 
-    protected void Play(DynValue filename, DynValue delay) {
+    protected DynValue Rand(DynValue max) {
+        return Marshal(UnityEngine.Random.Range(0, (int)max.Number));
+    }
+    protected void Play(DynValue filename, DynValue delay) => Play(filename, delay, false);
+    protected void Play(DynValue filename, DynValue delay, bool blocks = true) {
         if (delay.IsNil()) {
-            RunRoutineFromLua(RunRoutineFromFile(filename.String));
+            RunRoutineFromLua(RunRoutineFromFile(filename.String, blocks));
         } else {
             RunRoutineFromLua(CoUtils.Wait(0.01f));
             activeScripts.Peek().scriptRoutine.Resume();
@@ -186,11 +192,54 @@ public class LuaContext {
                 Global.Instance().StartCoroutine(RunRoutineFromFile(filename.String));
             }));
         }
-        
+    }
+
+    protected void PlaySceneParallel(DynValue filename) {
+        Global.Instance().StartCoroutine(UglyRoutine());
     }
 
     protected DynValue GetAvatar() {
         var obj = Global.Instance().Maps.Avatar.Event.LuaObject;
         return UserData.Create(obj);
+    }
+
+    private IEnumerator UglyRoutine() {
+        var commands = new List<Action>() {
+            () => PreviewMessage("SKETCH", "Run. Get out. Run. Get out."),
+            () => PreviewMessage("CONTROL", "Ahahah! I get it, I understand all of it, written here!"),
+            () => PreviewMessage("SIS", "***There is no need to be worried or afraid"),
+            () => PreviewMessage("SKETCH", "Leave GoodWin. He is no longer human. Run. Run Run."),
+            () => PreviewMessage("CONTROL", "We were acting to the Plan all along!"),
+            () => PreviewMessage("SIS", "***Do you understand the Plan now?"),
+            () => PreviewMessage("SKETCH", "Run. Now. Do not listen to anyone but me."),
+            () => PreviewMessage("CONTROL", "Every move I made, He was one step ahead. Brilliant!"),
+            () => PreviewMessage("SIS", "***You see it now, don't you, that I am the Vertigo Temple?"),
+            () => PreviewMessage("SKETCH", "I may be too late. Are you still in the physical world?"),
+            () => PreviewMessage("CONTROL", "Toooo good!!! It fits! The message! Signs! All of it!"),
+            () => PreviewMessage("SIS", "***You can discard your shell now - come join us"),
+            () => PreviewMessage("SKETCH", "Elle left us long ago. She exists only within VT's simulation"),
+            () => PreviewMessage("CONTROL", "The mystery at last!!"),
+            () => PreviewMessage("SIS", "***If you understand the Plan, you have ascended"),
+            () => PreviewMessage("SKETCH", "Run. Run run run run."),
+            () => PreviewMessage("CONTROL", "Sooo you've all betrayed me! Hahahahaha! Well done!"),
+            () => PreviewMessage("SIS", "***Remember, I love you always"),
+            () => PreviewMessage("SKETCH", "If you wish to remain in this world, you must escape."),
+            () => PreviewMessage("CONTROL", "The Truth, the Split Second Instant Of Truth!"),
+            () => PreviewMessage("SIS", "***Soon we will meet again"),
+        };
+        var offset = 0;
+        while (!Global.Instance().Data.GetSwitch("stop_spam")) {
+            if (offset >= commands.Count) {
+                offset = 0;
+            }
+            commands[offset]();
+            yield return CoUtils.Wait(1.166f * 3);
+            offset += 1;
+        }
+    }
+    private void PreviewMessage(string clientString, string text) {
+        var client = Global.Instance().Messenger.GetClient(clientString);
+        var convo = Global.Instance().Messenger.GetConversation(client);
+        convo.ForcePreview(text);
     }
 }

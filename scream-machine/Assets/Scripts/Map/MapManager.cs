@@ -23,6 +23,8 @@ public class MapManager : MonoBehaviour {
             return lua;
         }
     }
+    
+    public LuaCutsceneContext parallelLua = new LuaCutsceneContext();
 
     private new MapCamera camera;
     public MapCamera Camera {

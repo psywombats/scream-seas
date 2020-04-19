@@ -6,6 +6,7 @@ public class MessengerManager : MonoBehaviour {
     public Messenger Current { get; set; }
 
     public IEnumerator ForeignPhoneRoutine(string key) {
+        MapOverlayUI.Instance().foreignPhone.gameObject.SetActive(true);
         var phoneData = IndexDatabase.Instance().ForeignPhones.GetData(key);
         var originalMessenger = Current;
         Current = new Messenger();
@@ -17,5 +18,6 @@ public class MessengerManager : MonoBehaviour {
         yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().foreignPhone.DoMenu());
         yield return MapOverlayUI.Instance().phoneSystem.FlipForeignRoutine();
         Current = originalMessenger;
+        MapOverlayUI.Instance().foreignPhone.gameObject.SetActive(false);
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="28">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="30">
  <editorsettings>
-  <export format="tmx"/>
+  <export target="." format="tmx"/>
  </editorsettings>
  <tileset firstgid="1" source="../Tilesets/general.tsx"/>
  <tileset firstgid="81" source="../Tilesets/Editor.tsx"/>
@@ -11,6 +11,23 @@
  <imagelayer id="13" name="Border">
   <image source="Images/GenericBorder.png" width="415" height="175"/>
  </imagelayer>
+ <objectgroup id="4" name="Object Layer 1">
+  <object id="10" name="entry" type="Target" x="144" y="128" width="16" height="16"/>
+  <object id="28" name="phone" type="Character" x="256" y="128" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('day04/phone')"/>
+    <property name="onInteract" value="playScene('day04/phone')"/>
+   </properties>
+  </object>
+  <object id="29" x="160" y="128" width="16" height="16">
+   <properties>
+    <property name="onInteract" value="setSwitch('day4', true); playSceneParallel('lol')"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <imagelayer id="11" name="Fore" visible="0">
+  <image source="Images/GenericTop.png" width="415" height="175"/>
+ </imagelayer>
  <layer id="3" name="Passability" width="26" height="11" opacity="0">
   <properties>
    <property name="CheckPassability" type="bool" value="true"/>
@@ -19,43 +36,4 @@
    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
   </data>
  </layer>
- <objectgroup id="4" name="Object Layer 1">
-  <object id="10" name="left" type="Target" x="144" y="128" width="16" height="16"/>
-  <object id="12" type="Door" x="128" y="128" width="16" height="16">
-   <properties>
-    <property name="onCollide" value="playScene('day04/compound_left')"/>
-    <property name="passable" value="IMPASSABLE"/>
-   </properties>
-  </object>
-  <object id="20" type="Door" x="288" y="128" width="16" height="16">
-   <properties>
-    <property name="onCollide" value="playScene('da0y4/compound_right')"/>
-    <property name="passable" value="IMPASSABLE"/>
-   </properties>
-  </object>
-  <object id="21" name="right" type="Target" x="272" y="128" width="16" height="16"/>
-  <object id="22" name="far" type="Target" x="176" y="128" width="16" height="16"/>
-  <object id="23" name="near" type="Target" x="240" y="128" width="16" height="16"/>
-  <object id="24" type="Door" x="240" y="112" width="16" height="16">
-   <properties>
-    <property name="onCollide" value="playScene('day04/compound_up')"/>
-    <property name="passable" value="IMPASSABLE"/>
-   </properties>
-  </object>
-  <object id="25" type="Door" x="176" y="144" width="16" height="16">
-   <properties>
-    <property name="onCollide" value="playScene('day04/compound_down')"/>
-    <property name="passable" value="IMPASSABLE"/>
-   </properties>
-  </object>
-  <object id="27" name="control/4_14" type="Event" x="128" y="80" width="16" height="16">
-   <properties>
-    <property name="hide" value="return getSwitch('control/4_14')"/>
-    <property name="onEnter" value="setNextScript('control/4_14'); setSwitch('control/4_14', true)"/>
-   </properties>
-  </object>
- </objectgroup>
- <imagelayer id="11" name="Fore">
-  <image source="Images/GenericTop.png" width="415" height="175"/>
- </imagelayer>
 </map>

@@ -68,11 +68,6 @@
    </properties>
   </object>
   <object id="16" x="288" y="64" height="16"/>
-  <object id="17" x="288" y="64" width="16" height="16">
-   <properties>
-    <property name="onInteract" value="setSwitch('day3', true); setSwitch('day4', true)"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer id="4" name="Passability" width="31" height="10" opacity="0">
   <properties>

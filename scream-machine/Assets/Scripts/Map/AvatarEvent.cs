@@ -179,6 +179,7 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         return true;
     }
     public IEnumerator PhoneRoutine() {
+        if (Global.Instance().Data.GetSwitch("disable_phone")) yield break;
         PauseInput();
         yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.DoMenu());
