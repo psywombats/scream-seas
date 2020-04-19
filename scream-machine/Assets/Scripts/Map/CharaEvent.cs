@@ -67,6 +67,8 @@ public class CharaEvent : MonoBehaviour {
         stepping = steppingThisFrame || wasSteppingLastFrame;
         if (!steppingThisFrame && !wasSteppingLastFrame) {
             moveTime = StepsPerSecond / Sprites.StepCount;
+        } else if (steppingThisFrame && !wasSteppingLastFrame) {
+            moveTime = 0;
         } else {
             moveTime += Time.deltaTime;
         }

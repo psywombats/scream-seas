@@ -37,6 +37,7 @@ setNews('day4')
 setSwitch('day4', true)
 teleport('Apartment/Bedroom', 'start')
 setSwitch('long_fade', false)
+playBGM('apartment')
 
 setNextScript("y!sms/4_01", true)
 setNextScript("partner/4_01")

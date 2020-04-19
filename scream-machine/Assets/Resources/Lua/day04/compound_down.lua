@@ -1,3 +1,4 @@
+playScene('door_common')
 if getSwitch('go_to_finale') then
     goToFinale()
 elseif getSwitch('finale_mode') and not isBigRoom() then

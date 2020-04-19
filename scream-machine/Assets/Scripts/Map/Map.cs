@@ -24,7 +24,6 @@ public abstract class Map : MonoBehaviour {
 
     public Grid grid;
     public ObjectLayer objectLayer;
-
     public string InternalName { get; set; } = "test"; // hack for dev
 
     // true if the tile in question is passable at x,y

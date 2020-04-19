@@ -58,6 +58,9 @@ public class Messenger : IComparer<Conversation> {
     }
 
     public void SetNextScript(SmsScript script, bool preread) {
+        if (!preread && !Global.Instance().Maps.IsTransitioning && script.unreadCount > 0) {
+            Global.Instance().Audio.PlaySFX("vibrate");
+        }
         var convo = GetConversation(script.clientTag);
         convo.SetNextScript(script, preread);
         UpdateFromMessenger();

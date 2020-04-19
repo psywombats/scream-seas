@@ -10,5 +10,5 @@ public class BGMIndexData : GenericIndex<BGMData> {
 public class BGMData : GenericDataObject {
 
     public AudioClip track;
-
+    public int loopStartPoint;
 }

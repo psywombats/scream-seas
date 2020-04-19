@@ -13,6 +13,8 @@ public class MapManager : MonoBehaviour {
     public Map ActiveMap { get; private set; }
     public AvatarEvent Avatar { get; set; }
 
+    public bool IsTransitioning { get; private set; }
+
     private LuaContext lua;
     public LuaContext Lua {
         get {
@@ -45,18 +47,21 @@ public class MapManager : MonoBehaviour {
     }
 
     public IEnumerator NewGameRoutine(FadeImageEffect fade) {
+        IsTransitioning = true;
         TransitionData data = IndexDatabase.Instance().Transitions.GetData("fade_long");
         Global.Instance().Messenger.SetNextScript("y!sms/1_01", true);
         Global.Instance().Messenger.SetNextScript("bell/bell", true);
         Global.Instance().Data.SetSwitch("nighttime", true);
+        Global.Instance().Audio.PlayBGM("nighttime");
         yield return SceneManager.LoadSceneAsync("Map2D");
         MapOverlayUI.Instance().pcSystem.SetNewsModel(IndexDatabase.Instance().PCNews.GetData("day1"));
-        Global.Instance().Maps.RawTeleport("Apartment/Bedroom", "start", OrthoDir.East);
+        Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.West);
         Avatar.PauseInput();
         var fadeImage = Camera.GetComponent<FadeImageEffect>();
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeInTag), true, 3.0f);
         yield return CoUtils.RunTween(MapOverlayUI.Instance().miniPhone.transform.DOLocalMoveY(0.0f, 1.0f));
+        IsTransitioning = false;
         Avatar.UnpauseInput();
     }
 
@@ -117,6 +122,7 @@ public class MapManager : MonoBehaviour {
     }
 
     private void RawTeleport(Map map, Vector2Int location, OrthoDir? facing = null) {
+        IsTransitioning = true;
         activeMapName = null;
         if (Avatar == null) {
             AddInitialAvatar(map);
@@ -145,6 +151,9 @@ public class MapManager : MonoBehaviour {
             Global.Instance().Dispatch.Signal(EventTeleport, ActiveMap);
             Avatar.OnTeleport();
         }
+        StartCoroutine(CoUtils.RunAfterDelay(0.2f, () => {
+            IsTransitioning = false;
+        }));
     }
 
     private Map InstantiateMap(string mapName) {

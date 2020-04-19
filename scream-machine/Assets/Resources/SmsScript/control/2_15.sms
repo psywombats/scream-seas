@@ -19,5 +19,6 @@ setSwitch('disable_weather', true)
 setSwitch('vcr_mode', true)
 setNews('day2_2')
 
+playBGM('apartment')
 teleport('Apartment/Bedroom', 'start')
 setSwitch('long_fade', false)

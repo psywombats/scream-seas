@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour {
         Menu,
         Cancel,
         Debug,
+        Phune,
     };
 
     public enum Event {
@@ -38,10 +39,11 @@ public class InputManager : MonoBehaviour {
         keybinds[Command.Right] = new List<KeyCode>(new[] { KeyCode.RightArrow, KeyCode.D, KeyCode.Keypad6 });
         keybinds[Command.Up] = new List<KeyCode>(new[] { KeyCode.UpArrow, KeyCode.W, KeyCode.Keypad8 });
         keybinds[Command.Down] = new List<KeyCode>(new[] { KeyCode.DownArrow, KeyCode.S, KeyCode.Keypad2 });
-        keybinds[Command.Confirm] = new List<KeyCode>(new[] { KeyCode.Space, KeyCode.Z, KeyCode.Return });
+        keybinds[Command.Confirm] = new List<KeyCode>(new[] { KeyCode.Space, KeyCode.Z, KeyCode.Return, KeyCode.KeypadEnter });
         keybinds[Command.Cancel] = new List<KeyCode>(new[] { KeyCode.B, KeyCode.X, KeyCode.Backspace });
         keybinds[Command.Debug] = new List<KeyCode>(new[] { KeyCode.F9 });
-        keybinds[Command.Menu] = new List<KeyCode>(new[] { KeyCode.Escape, KeyCode.C, KeyCode.Tab });
+        keybinds[Command.Menu] = new List<KeyCode>(new[] { KeyCode.Escape });
+        keybinds[Command.Phune] = new List<KeyCode>(new[] { KeyCode.Tab });
         fastKeys = new List<KeyCode>(new[] { KeyCode.LeftControl, KeyCode.RightControl, KeyCode.Space, KeyCode.Z });
 
         listeners = new List<IInputListener>();
@@ -57,34 +59,38 @@ public class InputManager : MonoBehaviour {
     public void Update() {
         listenersTemp.Clear();
         listenersTemp.AddRange(listeners);
-        
-        foreach (Command command in Enum.GetValues(typeof(Command))) {
-            foreach (IInputListener listener in listenersTemp) {
-                if (disabledListeners.Contains(listener)) {
-                    continue;
-                }
-                bool endProcessing = false; // ew.
-                foreach (KeyCode code in keybinds[command]) {
-                    if (Input.GetKeyDown(code)) {
-                        endProcessing |= listener.OnCommand(command, Event.Down);
+
+        try {
+            foreach (Command command in Enum.GetValues(typeof(Command))) {
+                foreach (IInputListener listener in listenersTemp) {
+                    if (disabledListeners.Contains(listener)) {
+                        continue;
                     }
-                    if (Input.GetKeyUp(code)) {
-                        endProcessing |= listener.OnCommand(command, Event.Up);
-                        holdStartTimes.Remove(command);
-                    }
-                    if (Input.GetKey(code)) {
-                        if (!holdStartTimes.ContainsKey(command)) {
-                            holdStartTimes[command] = Time.time;
+                    bool endProcessing = false; // ew.
+                    foreach (KeyCode code in keybinds[command]) {
+                        if (Input.GetKeyDown(code)) {
+                            endProcessing |= listener.OnCommand(command, Event.Down);
                         }
-                        endProcessing |= listener.OnCommand(command, Event.Hold);
-                        if (Time.time - holdStartTimes[command] > KeyRepeatSeconds) {
-                            endProcessing |= listener.OnCommand(command, Event.Repeat);
+                        if (Input.GetKeyUp(code)) {
+                            endProcessing |= listener.OnCommand(command, Event.Up);
+                            holdStartTimes.Remove(command);
                         }
+                        if (Input.GetKey(code)) {
+                            if (!holdStartTimes.ContainsKey(command)) {
+                                holdStartTimes[command] = Time.time;
+                            }
+                            endProcessing |= listener.OnCommand(command, Event.Hold);
+                            if (Time.time - holdStartTimes[command] > KeyRepeatSeconds) {
+                                endProcessing |= listener.OnCommand(command, Event.Repeat);
+                            }
+                        }
+                        if (endProcessing) break;
                     }
                     if (endProcessing) break;
                 }
-                if (endProcessing) break;
             }
+        } catch (Exception e) {
+            Debug.LogError("Error in main input loop: " + e);
         }
     }
 

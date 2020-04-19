@@ -14,27 +14,27 @@
   <object id="5" type="Event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="hide" value="return getSwitch('lights_off')"/>
-    <property name="onCollide" value="teleport('Warehouse/WarehouseBack', 'door', 'SOUTH'); if getSwitch('day4') then setSwitch('flashlight', true) end"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Warehouse/WarehouseBack', 'door', 'SOUTH'); if getSwitch('day4') then setSwitch('flashlight', true) end"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
   <object id="8" name="entry" type="Target" x="320" y="48" width="16" height="16"/>
   <object id="9" type="Door" x="224" y="32" width="16" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Warehouse/Interior01', 'entry')"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Warehouse/Interior01', 'entry')"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
   <object id="10" type="Door" x="0" y="48" width="16" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Warehouse/WarehouseBig', 'entry')"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Warehouse/WarehouseBig', 'entry')"/>
    </properties>
   </object>
   <object id="11" name="left" type="Target" x="16" y="48" width="16" height="16"/>
   <object id="12" name="interior01" type="Target" x="224" y="48" width="16" height="16"/>
   <object id="13" type="Door" x="96" y="32" width="16" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Warehouse/InteriorHall', 'entry', 'EAST')"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Warehouse/InteriorHall', 'entry', 'EAST')"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
@@ -57,7 +57,7 @@
     <property name="onCollide" value="playScene('day03/lights_off'); setSwitch('triggered_lights', true)"/>
    </properties>
   </object>
-  <object id="19" type="Event" x="336" y="32" width="16" height="16">
+  <object id="19" type="Event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="hide" value="return not getSwitch('lights_off')"/>
     <property name="onCollide" value="playScene('day03/stay_put')"/>

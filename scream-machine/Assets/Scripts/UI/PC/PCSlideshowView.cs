@@ -21,6 +21,11 @@ public class PCSlideshowView : MonoBehaviour {
         text.enabled = !panoptic;
         panopticText.enabled = panoptic;
 
+        if (model.slides[0].audioCue != null && model.slides[0].audioCue.Length > 0) {
+            Global.Instance().Audio.PlaySFX(model.slides[0].audioCue);
+        }
+
+
         if (!model.slides[0].invertColor) text.color = new Color(.05f, 0, 0, .95f);
         else text.color = new Color(1, .9f, .9f, .9f);
     }
@@ -34,6 +39,11 @@ public class PCSlideshowView : MonoBehaviour {
             panopticText.enabled = panoptic;
 
             var slide = model.slides[i];
+
+            if (slide.audioCue != null && slide.audioCue.Length > 0) {
+                Global.Instance().Audio.PlaySFX(slide.audioCue);
+            }
+
             image.sprite = slide.sprite;
             text.text = slide.text;
             panopticText.text = slide.text;

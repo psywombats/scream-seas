@@ -16,7 +16,7 @@ public class MiniPhoneComponent : PhoneComponent {
                 statusText.text = message.Client.displayName;
                 previewText.text = message.Text;
             } else {
-                statusText.text = "No new messages";
+                statusText.text = messenger.HasScriptAvailable ? "Compose..." : "No new messages";
                 previewText.text = "";
             }
         }

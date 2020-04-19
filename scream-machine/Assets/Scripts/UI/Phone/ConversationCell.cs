@@ -14,7 +14,8 @@ public class ConversationCell : MonoBehaviour {
 
     public void Populate(Conversation convo) {
         Convo = convo;
-        fromText.text = Convo.Client.displayName;
+        bool composeMode = convo.HasScriptAvailable && convo.UnreadCount == 0;
+        fromText.text = (composeMode ? "> " : "") + Convo.Client.displayName;
         subjText.text = Convo.GetPreviewMessageText();
         foreach (var obj in unreadState) {
             obj.SetActive(Convo.UnreadCount > 0);

@@ -73,8 +73,7 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
                     case InputManager.Command.Confirm:
                         Interact();
                         return true;
-                    case InputManager.Command.Menu:
-                    case InputManager.Command.Cancel:
+                    case InputManager.Command.Phune:
                         StartCoroutine(PhoneRoutine());
                         return true;
                     case InputManager.Command.Debug:

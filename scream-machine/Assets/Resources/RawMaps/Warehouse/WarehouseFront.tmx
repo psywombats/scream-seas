@@ -19,11 +19,6 @@
    </properties>
   </object>
   <object id="7" name="right" type="Target" x="336" y="112" width="16" height="16"/>
-  <object id="9" x="80" y="112" width="16" height="16">
-   <properties>
-    <property name="onInteract" value="setSwitch('day3', true); setSwitch('day4', true); setSwitch('flashlight', true)"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer id="4" name="Passability" width="31" height="10" opacity="0">
   <properties>

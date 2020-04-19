@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="9">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="12">
  <tileset firstgid="1" source="../Tilesets/Editor.tsx"/>
  <imagelayer id="1" name="Background" offsetx="0" offsety="32">
   <image source="Images/Apartment.png" width="320" height="80"/>
@@ -7,12 +7,12 @@
  <objectgroup id="2" name="Object Layer">
   <object id="1" type="Door" x="96" y="64" width="16" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Apartment/Bedroom', 'entry')"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Apartment/Bedroom', 'entry')"/>
    </properties>
   </object>
   <object id="2" type="Door" x="208" y="64" width="16" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Apartment/Bathroom', 'entry')"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Apartment/Bathroom', 'entry')"/>
    </properties>
   </object>
   <object id="3" name="bedroom" type="Target" x="96" y="80" width="16" height="16"/>
@@ -26,6 +26,21 @@
   <object id="8" type="Event" x="272" y="80" width="32" height="16">
    <properties>
     <property name="onInteract" value="playScene('tv')"/>
+   </properties>
+  </object>
+  <object id="9" name="start" type="Target" x="32" y="80" width="16" height="16"/>
+  <object id="10" type="Event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('day1')"/>
+    <property name="onInteract" value="speak('Front door', &quot;The night is bleeding into early morning. It's cold and uninviting.&quot;)"/>
+    <property name="passable" value="IMPASSABLE"/>
+   </properties>
+  </object>
+  <object id="11" type="Event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('day2')"/>
+    <property name="onInteract" value="speak('Front door', &quot;It's a jungle out there.&quot;)"/>
+    <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
  </objectgroup>

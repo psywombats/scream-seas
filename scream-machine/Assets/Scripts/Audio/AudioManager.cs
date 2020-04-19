@@ -18,6 +18,10 @@ public class AudioManager : MonoBehaviour {
 
     public string CurrentBGMKey { get; private set; }
 
+    private bool shouldLoop = true;
+    private int loopEnd = 0;
+    private int loopStart = 0;
+
     public void Awake() {
         sfxSource = gameObject.AddComponent<AudioSource>();
         sfxSource.playOnAwake = false;
@@ -25,7 +29,7 @@ public class AudioManager : MonoBehaviour {
 
         bgmSource = gameObject.AddComponent<AudioSource>();
         bgmSource.playOnAwake = false;
-        bgmSource.loop = true;
+        bgmSource.loop = false;
 
         CurrentBGMKey = NoBGMKey;
 
@@ -53,6 +57,13 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    public void FixedUpdate() {
+        if (bgmSource.clip != null && shouldLoop && (bgmSource.timeSamples >= loopEnd || !bgmSource.isPlaying)) {
+            bgmSource.timeSamples = loopStart;
+            bgmSource.Play();
+        }
+    }
+
     public static void PlayFail() {
         Global.Instance().Audio.PlaySFX("fail");
     }
@@ -65,7 +76,9 @@ public class AudioManager : MonoBehaviour {
         PlaySFX(enumValue.ToString());
     }
     public void PlaySFX(string key, float muteDuration = 0.0f) {
-        AudioClip clip = IndexDatabase.Instance().SFX.GetData(key).clip;
+        var data = IndexDatabase.Instance().SFX.GetData(key);
+        if (data == null) return;
+        var clip = data.clip;
         StartCoroutine(PlaySFXRoutine(sfxSource, clip, muteDuration));
     }
 
@@ -76,8 +89,12 @@ public class AudioManager : MonoBehaviour {
             bgmSource.clip = null;
             CurrentBGMKey = key;
             if (key != null && key != NoBGMKey) {
+                var data = IndexDatabase.Instance().BGM.GetData(key);
                 bgmSource.volume = 1.0f;
-                AudioClip clip = IndexDatabase.Instance().BGM.GetData(key).track;
+                AudioClip clip = data.track;
+                loopEnd = clip.samples;
+                loopStart = data.loopStartPoint;
+                shouldLoop = data.loopStartPoint >= 0;
 
                 GetWaveSource().Reset = true;
                 bgmSource.clip = clip;

@@ -22,5 +22,6 @@ public class PCSlide {
 
     public Sprite sprite;
     public bool invertColor;
+    public string audioCue;
     [TextArea(10, 10)]public string text;
 }

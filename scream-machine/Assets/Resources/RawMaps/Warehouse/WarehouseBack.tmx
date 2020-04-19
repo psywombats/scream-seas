@@ -56,7 +56,7 @@
   </object>
   <object id="12" type="Event" x="256" y="48" width="32" height="16">
    <properties>
-    <property name="onCollide" value="teleport('Warehouse/WarehouseHall', 'entry', 'WEST'); playBGM('warehouse'); setSwitch('flashlight', false)"/>
+    <property name="onCollide" value="playScene('door_common'); teleport('Warehouse/WarehouseHall', 'entry', 'WEST'); playBGM('warehouse'); setSwitch('flashlight', false)"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>

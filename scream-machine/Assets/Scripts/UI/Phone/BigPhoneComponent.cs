@@ -17,6 +17,8 @@ public class BigPhoneComponent : PhoneComponent {
     [SerializeField] private ListView ConversationList = null;
     [SerializeField] private GenericSelector ConversationSelector = null;
 
+    private bool isFirstMessage = true;
+
     public void Populate(Messenger messenger) {
         this.messenger = messenger;
 
@@ -56,6 +58,7 @@ public class BigPhoneComponent : PhoneComponent {
     }
 
     public void SwitchToSelectMode() {
+        isFirstMessage = true;
         messageSelectMode.SetActive(true);
         toMode.SetActive(false);
         fromMode.SetActive(false);
@@ -69,7 +72,7 @@ public class BigPhoneComponent : PhoneComponent {
             await convo.PlayScriptRoutine();
         } else {
             var msg = convo.LastMessage;
-            await PlayMessageRoutine(msg);
+            await PlayMessageRoutine(msg, 0, true);
             UpdateFromMessenger(messenger);
         }
         SwitchToSelectMode();
@@ -94,7 +97,7 @@ public class BigPhoneComponent : PhoneComponent {
         });
     }
 
-    public IEnumerator PlayMessageRoutine(string sender, string text, float forceLength = 0.0f) {
+    public IEnumerator PlayMessageRoutine(string sender, string text, float forceLength = 0.0f, bool isStale = false) {
         if (text.Length > 0) {
             if (messenger == null) {
                 messenger = Global.Instance().Messenger;
@@ -105,12 +108,13 @@ public class BigPhoneComponent : PhoneComponent {
             var convo = messenger.ActiveConvo;
 
             var message = new Message(convo, sender == "YOU" ? messenger.Me : convo.Client, text);
+            
             convo.AddMessage(message);
-            yield return PlayMessageRoutine(message, forceLength);
+            yield return PlayMessageRoutine(message, forceLength, isStale);
         }
     }
 
-    public IEnumerator PlayMessageRoutine(Message message, float forceLength = 0.0f) {
+    public IEnumerator PlayMessageRoutine(Message message, float forceLength = 0.0f, bool isStale = false) {
         if (message.Client != messenger.Me) {
             SwitchToFromMode();
             UpdateFromMessenger(messenger);
@@ -118,6 +122,16 @@ public class BigPhoneComponent : PhoneComponent {
             SwitchToToMode();
             UpdateFromMessenger(messenger);
         }
+
+        if (!isStale && !isFirstMessage) {
+            if (message.Client == messenger.Me) {
+                Global.Instance().Audio.PlaySFX("type_message");
+            } else if (!isStale) {
+                Global.Instance().Audio.PlaySFX("receive_message");
+            }
+        }
+        isFirstMessage = false;
+
         if (forceLength > 0) {
             yield return CoUtils.Wait(forceLength);
         } else {
