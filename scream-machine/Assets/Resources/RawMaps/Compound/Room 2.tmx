@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="5" tilewidth="16" tileheight="16" nextobjectid="20">
+ <tileset firstgid="1" source="../Tilesets/general.tsx"/>
+ <tileset firstgid="81" source="../Tilesets/Editor.tsx"/>
+ <imagelayer name="Background">
+  <image source="Images/Vertigo2.png" width="128" height="80"/>
+ </imagelayer>
+ <imagelayer name="Border">
+  <image source="Images/Frame1.png" width="128" height="80"/>
+ </imagelayer>
+ <layer name="Passability" width="8" height="5" opacity="0.35">
+  <properties>
+   <property name="CheckPassability" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64">
+   AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1" offsetx="-32" offsety="-80"/>
+ <imagelayer name="Fore">
+  <image source="Images/Vertigo2Top.png" width="128" height="80"/>
+ </imagelayer>
+</map>
