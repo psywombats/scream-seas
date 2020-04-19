@@ -89,6 +89,9 @@ public class Messenger : IComparer<Conversation> {
     }
 
     public int Compare(Conversation x, Conversation y) {
+        if (x.hax != y.hax) {
+            return x.hax - y.hax;
+        }
         if (x.UnreadCount != y.UnreadCount) {
             return x.UnreadCount > 0 ? -1 : 1;
         }

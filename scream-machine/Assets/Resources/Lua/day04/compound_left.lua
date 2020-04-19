@@ -1,4 +1,8 @@
-if not getSwitch('day4/codesheet') and getSwitch('first_left') then
+if getSwitch('go_to_finale') then
+    goToFinale()
+elseif getSwitch('finale_mode') and not isBigRoom() then
+    teleport('Compound/LoopingArea', 'right')
+elseif not getSwitch('day4/codesheet') and getSwitch('first_left') then
     teleport('Compound/DeadEnd', 'entry')
 else
     local r = rand(4)

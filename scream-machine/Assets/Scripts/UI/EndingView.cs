@@ -59,7 +59,7 @@ public class EndingView : MonoBehaviour {
         // turn on the light
         // black out the protagonist
         DOTween.To(() => light.range, x => light.range = x, constLightBlast, timeLightBlast).SetEase(Ease.Linear).Play();
-        protag.DOColor(new Color(0, 0, 0), timeProtagColor).SetEase(Ease.Linear).Play();
+        protag.DOColor(new Color(0, 0, 0), timeProtagUncolor).SetEase(Ease.Linear).Play();
         yield return CoUtils.Wait(delayLights);
 
         // pan the camera upwards

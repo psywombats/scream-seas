@@ -1,4 +1,8 @@
-if not getSwitch('find_next_room') and getSwitch('first_right') then
+if getSwitch('go_to_finale') then
+    goToFinale()
+elseif getSwitch('finale_mode') and not isBigRoom() then
+    teleport('Compound/LoopingArea', 'left')
+elseif not getSwitch('find_next_room') and getSwitch('first_right') then
     local r = rand(5)
     if r <= 0 then teleport('Compound/Room3', 'left')
     elseif r <= 1 then teleport('Compound/Room4', 'left')

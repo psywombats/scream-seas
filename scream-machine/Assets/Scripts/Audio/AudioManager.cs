@@ -38,9 +38,19 @@ public class AudioManager : MonoBehaviour {
         bgmVolumeSetting = Global.Instance().Serialization.SystemData.SettingMusicVolume;
     }
 
+    private bool dead;
     public void Update() {
         bgmSource.volume = bgmVolumeSetting.Value * baseVolume * bgmVolumeMult;
         sfxSource.volume = sfxVolumeSetting.Value * baseVolume;
+
+        if (Global.Instance().Data.GetSwitch("finale_mode")) {
+            bgmSource.loop = false;
+            if (!bgmSource.isPlaying && !dead) {
+                dead = true;
+                bgmSource.loop = true;
+                Global.Instance().Data.SetSwitch("go_to_finale", true);
+            }
+        }
     }
 
     public static void PlayFail() {

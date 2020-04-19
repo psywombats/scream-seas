@@ -23,9 +23,12 @@ public class GlitchBehavior : MonoBehaviour {
 
     private void AssignCommonShaderVariables() {
         material.SetFloat("_Elapsed", elapsedSeconds);
-        if (useWaveSource && Global.Instance().Audio.GetWaveSource() != null) {
-            material.SetFloatArray("_Wave", Global.Instance().Audio.GetWaveSource().GetSamples());
-            material.SetInt("_WaveSamples", Global.Instance().Audio.GetWaveSource().GetSampleCount());
+        if (useWaveSource && Global.Instance().Audio.BGMClip() != null && Global.Instance().Audio.GetWaveSource() != null) {
+            var samples = Global.Instance().Audio.GetWaveSource().GetSamples();
+            if (samples != null) {
+                material.SetFloatArray("_Wave", samples);
+                material.SetInt("_WaveSamples", Global.Instance().Audio.GetWaveSource().GetSampleCount());
+            }
         }
     }
 }

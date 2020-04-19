@@ -139,6 +139,7 @@ public class LuaContext {
         lua.Globals["eventNamed"] = (Func<DynValue, LuaMapEvent>)EventNamed;
         lua.Globals["getAvatar"] = (Func<DynValue>)GetAvatar;
         lua.Globals["rand"] = (Func<DynValue, DynValue>)Rand;
+        lua.Globals["isBigRoom"] = (Func<DynValue>)IsBigMap;
     }
 
     protected void LoadDefines(string path) {
@@ -147,6 +148,11 @@ public class LuaContext {
     }
 
     // === LUA CALLABLE ============================================================================
+
+    protected DynValue IsBigMap() {
+        var map = Global.Instance().Maps.ActiveMap;
+        return Marshal(map.size.x >= 10 && map.size.x <= 20);
+    }
 
     protected LuaMapEvent EventNamed(DynValue eventName) {
         MapEvent mapEvent = Global.Instance().Maps.ActiveMap.GetEventNamed(eventName.String);

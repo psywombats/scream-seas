@@ -127,7 +127,7 @@ public class BigPhoneComponent : PhoneComponent {
 
     public IEnumerator VideoRoutine() {
         float duration = 0.8f;
-        bool fadeBGM = Global.Instance().Data.GetSwitch("day4");
+        bool fadeBGM = !Global.Instance().Data.GetSwitch("day4");
         var sizeTween = transform.DOScale(new Vector3(2, 2, 1), duration);
         var translateTween = transform.DOLocalMoveY(-30f, duration);
         var clearTween = fromMode.GetComponent<CanvasGroup>().DOFade(0.0f, duration);

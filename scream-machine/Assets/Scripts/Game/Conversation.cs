@@ -14,7 +14,9 @@ public class Conversation {
 
     private string forcePreview;
     private bool preread;
-    private int hax = 3;
+
+    public int hax = 3;
+    private int otherh = 1;
 
     public Conversation(Client client) {
         Client = client;
@@ -41,7 +43,8 @@ public class Conversation {
     public void ForcePreview(string text) {
         forcePreview = text;
         ModifiedTime = DateTime.UtcNow;
-        hax += 1;
+        hax += otherh;
+        otherh += 1;
         Global.Instance().Messenger.UpdateFromMessenger();
     }
 

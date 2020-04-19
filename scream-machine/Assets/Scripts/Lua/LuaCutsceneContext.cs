@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using MoonSharp.Interpreter;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class LuaCutsceneContext : LuaContext {
 
@@ -83,9 +84,11 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["panPhone"] = (Action)PanPhone;
         lua.Globals["playEnding"] = (Action)PlayEnding;
         lua.Globals["clearConversations"] = (Action)ClearConversations;
+        lua.Globals["goToFinale"] = (Action)GoToFinale;
     }
 
     // === LUA CALLABLE ============================================================================
+
 
     private void PlayBGM(DynValue bgmKey) {
         Global.Instance().Audio.PlayBGM(bgmKey.String);
@@ -321,5 +324,20 @@ public class LuaCutsceneContext : LuaContext {
 
     private void ClearConversations() {
         Global.Instance().Messenger.Clear();
+    }
+
+    private void GoToFinale() {
+        Global.Instance().StartCoroutine(GoToFinaleRoutine());
+        Global.Instance().Maps.Avatar.PauseInput();
+    }
+
+    private IEnumerator GoToFinaleRoutine() {
+        TransitionData data = IndexDatabase.Instance().Transitions.GetData("default");
+        var fadeImage = Global.Instance().Maps.Camera.GetComponent<FadeImageEffect>();
+        yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
+        Global.Instance().Maps.Avatar.transform.SetParent(null);
+        UnityEngine.Object.DontDestroyOnLoad(Global.Instance().Maps.Avatar.gameObject);
+        Global.Instance().Maps.Avatar.transform.position = new Vector3(-100, 0, 0);
+        SceneManager.LoadScene("Ending");
     }
 }

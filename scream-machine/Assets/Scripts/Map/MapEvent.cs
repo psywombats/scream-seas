@@ -122,6 +122,9 @@ public abstract class MapEvent : MonoBehaviour {
 
     public void Start() {
         toNextBehavior = Random.Range(0.5f, 1.0f) * BehaviorMaxDelaySeconds;
+        if (Global.Instance().Data.GetSwitch("finale_mode")) {
+            toNextBehavior /= 3;
+        }
         pixelImperfectPos = PositionPx;
 
         GenerateLua();
@@ -275,6 +278,9 @@ public abstract class MapEvent : MonoBehaviour {
     private void CheckBehavior() {
         if (toNextBehavior <= 0) {
             toNextBehavior = Random.Range(0.5f, 1.0f) * BehaviorMaxDelaySeconds;
+            if (Global.Instance().Data.GetSwitch("finale_mode")) {
+                toNextBehavior /= 3;
+            }
             LuaObject.Run(PropertyLuaBehavior, false);
         }
     }

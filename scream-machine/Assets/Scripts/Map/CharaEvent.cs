@@ -132,7 +132,8 @@ public class CharaEvent : MonoBehaviour {
             (GetComponent<AvatarEvent>() && GetComponent<AvatarEvent>().WantsToTrack);
     }
 
-    private Sprite SpriteForMain() {
+    public Sprite SpriteForMain(FieldSpritesheetComponent sprites = null) {
+        if (sprites == null) sprites = Sprites;
         int x = Mathf.FloorToInt(moveTime * StepsPerSecond) % Sprites.StepCount;
         if (x == 3) x = 1;
         if (!stepping) x = 1;
