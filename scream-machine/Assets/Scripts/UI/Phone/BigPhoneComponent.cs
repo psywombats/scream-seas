@@ -96,7 +96,14 @@ public class BigPhoneComponent : PhoneComponent {
 
     public IEnumerator PlayMessageRoutine(string sender, string text, float forceLength = 0.0f) {
         if (text.Length > 0) {
+            if (messenger == null) {
+                messenger = Global.Instance().Messenger;
+            }
+            if (messenger.ActiveConvo == null) {
+                messenger.ActiveConvo = messenger.GetConversation("SIS");
+            }
             var convo = messenger.ActiveConvo;
+
             var message = new Message(convo, sender == "YOU" ? messenger.Me : convo.Client, text);
             convo.AddMessage(message);
             yield return PlayMessageRoutine(message, forceLength);

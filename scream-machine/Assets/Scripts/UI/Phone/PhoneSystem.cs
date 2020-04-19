@@ -98,6 +98,9 @@ public class PhoneSystem : MonoBehaviour {
     }
 
     private IEnumerator ShowMiniRoutine() {
+        if (Global.Instance().Data.GetSwitch("ending_mode")) {
+            yield break;
+        }
         var shrinkMiniTween = miniPhone.transform.DOLocalMoveY(0.0f, flipMiniDuration);
         var translateMiniTween = miniPhone.transform.DOLocalMoveX(0.0f, flipMiniDuration);
         shrinkMiniTween.SetEase(Ease.InQuad);

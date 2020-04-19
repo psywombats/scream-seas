@@ -27,6 +27,10 @@ public class Messenger : IComparer<Conversation> {
         me = IndexDatabase.Instance().Clients.GetData("you");
     }
 
+    public void Clear() {
+        conversationsByClient.Clear();
+    }
+
     public Client GetClient(string tag) {
         if (!clientsByTag.ContainsKey(tag)) {
             clientsByTag[tag] = new Client(IndexDatabase.Instance().Clients.GetData(tag));

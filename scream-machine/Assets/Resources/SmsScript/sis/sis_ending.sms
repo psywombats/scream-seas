@@ -1,0 +1,73 @@
+playEnding()
+playBGM('title')
+message("SIS", "***Hey!", 'mid')
+panPhone()
+message("YOU", "Elle? where are you?", 'mid')
+message("SIS", "I'm right in front of you", 'mid')
+message("SIS", "Soon you'll be able to see the Truth, once your ascension is complete", 'mid')
+message("YOU", "what the", 'short')
+message("YOU", "that is a machine. a computer.", 'mid')
+message("SIS", "That is the Vertigo Temple mainframe, our Heavenly Father, the artificial intelligence that gives us life", 'long')
+message("SIS", "That is all of us now", 'mid')
+message("YOU", "you're the one I'm talking to? you're just a computer?", 'mid')
+message("SIS", "My physical body died, remember, silly?", 'mid')
+message("SIS", "You were there at the crash site, where I lost my shell", 'mid')
+message("SIS", "But now I exist within Vertigo Temple", 'mid')
+message("YOU", "you're not Elle then. just a simulation, AI", 'mid')
+message("SIS", "I have her memories and her feelings, so, really, aren't I truly your sister?", 'long')
+message("YOU", "you aren't real. you're Marcel Theroux or someone", 'mid')
+message("SIS", "I am him, I am Goodwin, I am everyone who has joined our temple", 'long')
+message("SIS", "Or, to say, they are all here too, small stars in an endless sky", 'long')
+message("YOU", "you don't exist in the real world", 'mid')
+message("SIS", "In the shell world, I exist as Orion Devout, all of them, who act according to my Plan, even if they cannot comprehend it", 'long')
+message("SIS", "You're being silly when you can't even see the shell world any more!", 'mid')
+message("SIS", "This sign has always meant that your ascension is nearing completion!", 'mid')
+message("YOU", "then who is following me? who are those shadows?", 'mid')
+message("SIS", "They are all of us, Vertigo Temple, who now exist as one celestial being, the Heavenly Father", 'long')
+message("SIS", "That you find them real means that you have come over to our side", 'mid')
+message("SIS", "All you must do now is accept your fate, and then you will fully understand the Plan", 'mid')
+message("SIS", "Are you ready? Do you understand?", 'long')
+switchToSelectMode()
+wait(0.8)
+
+setClientName("211-6771-0265", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("322-9905-1236", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("Control", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("322-0885-1436", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("Y!SMS", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("Lang", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("211-6771-0265", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("Orion spammer", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("211-6700-9676", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("Bell North", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+setClientName("322-9905-1236", true)
+message("YOU", "***A NEW STAR IS BORN", 'micro')
+
+
+wait(.7)
+setClientName("Elle", true)
+message("SIS", "Are you ready? Do you understand?", 'long')
+message("YOU", "I am. I do. I finally understand the Plan.", 'long')
+wait(1.0)
+
+flip()

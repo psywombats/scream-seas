@@ -178,15 +178,15 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         
         return true;
     }
-    public IEnumerator PhoneRoutine() {
+    public static IEnumerator PhoneRoutine() {
         if (Global.Instance().Data.GetSwitch("disable_phone")) yield break;
-        PauseInput();
+        if (Global.Instance().Maps.Avatar != null) Global.Instance().Maps.Avatar.PauseInput();
         yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.DoMenu());
         if (MapOverlayUI.Instance().phoneSystem.IsFlipped) {
             yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
         }
-        UnpauseInput();
+        if (Global.Instance().Maps.Avatar != null) Global.Instance().Maps.Avatar.UnpauseInput();
     }
 
 

@@ -66,7 +66,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_pc"] = (Action)StartPC;
-        lua.Globals["cs_clientName"] = (Action<DynValue>)SetClientName;
+        lua.Globals["cs_clientName"] = (Action<DynValue, DynValue>)SetClientName;
         lua.Globals["cs_message"] = (Action<DynValue, DynValue, DynValue>)Message;
         lua.Globals["cs_foreign"] = (Action<DynValue>)ForeignPhone;
         lua.Globals["cs_video"] = (Action)Video;
@@ -81,6 +81,8 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["switchToSelectMode"] = (Action)SwitchToSelectMode;
         lua.Globals["messagePreview"] = (Action<DynValue, DynValue>)PreviewMessage;
         lua.Globals["panPhone"] = (Action)PanPhone;
+        lua.Globals["playEnding"] = (Action)PlayEnding;
+        lua.Globals["clearConversations"] = (Action)ClearConversations;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -218,10 +220,12 @@ public class LuaCutsceneContext : LuaContext {
 
     }
 
-    private void SetClientName(DynValue nameLua) {
+    private void SetClientName(DynValue nameLua, DynValue auto) {
         Global.Instance().Messenger.ActiveConvo.Client.displayName = nameLua.String;
         Global.Instance().Messenger.UpdateFromMessenger();
-        RunRoutineFromLua(Global.Instance().Input.ConfirmRoutine());
+        if (auto.IsNil()) {
+            RunRoutineFromLua(Global.Instance().Input.ConfirmRoutine());
+        }
     }
 
     private void SetNextScript(DynValue scriptNameLua, DynValue prereadLua, DynValue delayLua) {
@@ -241,6 +245,7 @@ public class LuaCutsceneContext : LuaContext {
             var delay = 4.4f;
             if (type == "short") delay = 2.8f;
             if (type == "long") delay = 6.5f;
+            if (type == "micro") delay = 0.8f;
             RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String, delay));
         }
     }
@@ -257,7 +262,7 @@ public class LuaCutsceneContext : LuaContext {
         if (MapOverlayUI.Instance().phoneSystem.IsFlipped) {
             RunRoutineFromLua(MapOverlayUI.Instance().phoneSystem.FlipRoutine());
         } else {
-            RunRoutineFromLua(Global.Instance().Maps.Avatar.PhoneRoutine());
+            RunRoutineFromLua(AvatarEvent.PhoneRoutine());
         }
     }
 
@@ -308,5 +313,13 @@ public class LuaCutsceneContext : LuaContext {
 
     private void PanPhone() {
         MapOverlayUI.Instance().bigPhone.gameObject.transform.DOLocalMove(new Vector3(-410, 0), 1.0f).Play();
+    }
+
+    private void PlayEnding() {
+        UnityEngine.Object.FindObjectOfType<EndingView>().PlayEnding();
+    }
+
+    private void ClearConversations() {
+        Global.Instance().Messenger.Clear();
     }
 }
