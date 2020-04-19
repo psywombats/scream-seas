@@ -48,19 +48,31 @@ public class BigPhoneComponent : PhoneComponent {
             }
 
             var convo = ConversationList.GetCell(index).GetComponent<ConversationCell>().Convo;
-            messenger.ActiveConvo = convo;
-            if (convo.PendingScript != null) {
-                await convo.PlayScriptRoutine();
-            } else {
-                var msg = convo.LastMessage;
-                await PlayMessageRoutine(msg);
-                UpdateFromMessenger(messenger);
-            }
-            SwitchToSelectMode();
+            await ShowConversation(convo);
             if (!MapOverlayUI.Instance().phoneSystem.IsFlipped && !MapOverlayUI.Instance().phoneSystem.IsFlippedForeign) {
                 break;
             }
         }
+    }
+
+    public void SwitchToSelectMode() {
+        messageSelectMode.SetActive(true);
+        toMode.SetActive(false);
+        fromMode.SetActive(false);
+
+        UpdateSelector();
+    }
+
+    public async Task ShowConversation(Conversation convo) {
+        messenger.ActiveConvo = convo;
+        if (convo.PendingScript != null) {
+            await convo.PlayScriptRoutine();
+        } else {
+            var msg = convo.LastMessage;
+            await PlayMessageRoutine(msg);
+            UpdateFromMessenger(messenger);
+        }
+        SwitchToSelectMode();
     }
 
     private void SwitchToFromMode() {
@@ -75,14 +87,6 @@ public class BigPhoneComponent : PhoneComponent {
         fromMode.SetActive(false);
     }
 
-    private void SwitchToSelectMode() {
-        messageSelectMode.SetActive(true);
-        toMode.SetActive(false);
-        fromMode.SetActive(false);
-
-        UpdateSelector();
-    }
-
     private void UpdateSelector() {
         var convos = messenger.GetRecentConversations();
         ConversationList.Populate(convos.GetRange(0, Mathf.Min(6, convos.Count)), (obj, data) => {
@@ -90,16 +94,16 @@ public class BigPhoneComponent : PhoneComponent {
         });
     }
 
-    public IEnumerator PlayMessageRoutine(string sender, string text) {
+    public IEnumerator PlayMessageRoutine(string sender, string text, float forceLength = 0.0f) {
         if (text.Length > 0) {
             var convo = messenger.ActiveConvo;
             var message = new Message(convo, sender == "YOU" ? messenger.Me : convo.Client, text);
             convo.AddMessage(message);
-            yield return PlayMessageRoutine(message);
+            yield return PlayMessageRoutine(message, forceLength);
         }
     }
 
-    public IEnumerator PlayMessageRoutine(Message message) {
+    public IEnumerator PlayMessageRoutine(Message message, float forceLength = 0.0f) {
         if (message.Client != messenger.Me) {
             SwitchToFromMode();
             UpdateFromMessenger(messenger);
@@ -107,7 +111,11 @@ public class BigPhoneComponent : PhoneComponent {
             SwitchToToMode();
             UpdateFromMessenger(messenger);
         }
-        yield return Global.Instance().Input.ConfirmRoutine();
+        if (forceLength > 0) {
+            yield return CoUtils.Wait(forceLength);
+        } else {
+            yield return Global.Instance().Input.ConfirmRoutine();
+        }
     }
 
     public IEnumerator VideoRoutine() {

@@ -66,16 +66,18 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_pc"] = (Action)StartPC;
         lua.Globals["cs_clientName"] = (Action<DynValue>)SetClientName;
-        lua.Globals["cs_message"] = (Action<DynValue, DynValue>)Message;
+        lua.Globals["cs_message"] = (Action<DynValue, DynValue, DynValue>)Message;
         lua.Globals["cs_foreign"] = (Action<DynValue>)ForeignPhone;
         lua.Globals["cs_video"] = (Action)Video;
         lua.Globals["cs_flip"] = (Action)Flip;
         lua.Globals["cs_awaitBGMLoad"] = (Action)AwaitBGM;
+        lua.Globals["cs_forceConversation"] = (Action<DynValue>)ForceConversation;
 
         lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
         lua.Globals["setNews"] = (Action<DynValue>)SetNews;
         lua.Globals["setSlideshow"] = (Action<DynValue>)SetSlideshow;
         lua.Globals["setSpeedMult"] = (Action<DynValue>)SetSpeedMult;
+        lua.Globals["switchToSelectMode"] = (Action)SwitchToSelectMode;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -227,9 +229,13 @@ public class LuaCutsceneContext : LuaContext {
             );
     }
 
-    private void Message(DynValue senderLua, DynValue textLua) {
+    private void Message(DynValue senderLua, DynValue textLua, DynValue autotypeLua) {
         var phone = MapOverlayUI.Instance().phoneSystem.IsFlipped ? MapOverlayUI.Instance().bigPhone : MapOverlayUI.Instance().foreignPhone;
-        RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String));
+        if (autotypeLua.IsNil()) {
+            RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String));
+        } else {
+            RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String, 4.5f));
+        }
     }
 
     private void ForeignPhone(DynValue keyLua) {
@@ -276,5 +282,14 @@ public class LuaCutsceneContext : LuaContext {
 
     private void SetSpeedMult(DynValue multLua) {
         Global.Instance().Maps.Avatar.Event.SpeedMult = (float) multLua.Number;
+    }
+
+    private void SwitchToSelectMode() {
+        MapOverlayUI.Instance().bigPhone.SwitchToSelectMode();
+    }
+
+    private void ForceConversation(DynValue clientLua) {
+        var convo = Global.Instance().Messenger.GetConversation(clientLua.String);
+        RunRoutineFromLua(CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.ShowConversation(convo)));
     }
 }
