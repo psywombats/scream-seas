@@ -27,7 +27,7 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="3" name="Passability" width="21" height="9">
+ <layer id="3" name="Passability" width="21" height="9" opacity="0">
   <properties>
    <property name="CheckPassability" type="bool" value="true"/>
   </properties>

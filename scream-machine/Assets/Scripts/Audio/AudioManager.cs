@@ -60,7 +60,9 @@ public class AudioManager : MonoBehaviour {
     public void FixedUpdate() {
         if (bgmSource.clip != null && shouldLoop && (bgmSource.timeSamples >= loopEnd || !bgmSource.isPlaying)) {
             bgmSource.timeSamples = loopStart;
-            bgmSource.Play();
+            if (!bgmSource.isPlaying) {
+                bgmSource.Play();
+            }
         }
     }
 

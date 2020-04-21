@@ -11,12 +11,6 @@
    </properties>
   </object>
   <object id="3" name="entry" type="Target" x="32" y="48" width="16" height="16"/>
-  <object id="4" type="Event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="hide" value="return getSwitch('entered_bathroom')"/>
-    <property name="onEnter" value="setSwitch('entered_bathroom', true)"/>
-   </properties>
-  </object>
  </objectgroup>
  <layer id="3" name="Passability" width="9" height="5" opacity="0">
   <properties>

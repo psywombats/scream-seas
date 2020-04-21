@@ -36,7 +36,7 @@
    </properties>
   </object>
  </objectgroup>
- <imagelayer id="8" name="fore" offsetx="224" offsety="80">
+ <imagelayer id="8" name="fore" visible="0" offsetx="224" offsety="80">
   <image source="Images/WarehouseRoomTop.png" width="208" height="80"/>
  </imagelayer>
 </map>

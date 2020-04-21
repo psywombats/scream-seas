@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="12">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="14">
  <tileset firstgid="1" source="../Tilesets/Editor.tsx"/>
  <imagelayer id="1" name="Background" offsetx="0" offsety="32">
   <image source="Images/Apartment.png" width="320" height="80"/>
@@ -28,7 +28,7 @@
     <property name="onInteract" value="playScene('tv')"/>
    </properties>
   </object>
-  <object id="9" name="start" type="Target" x="32" y="80" width="16" height="16"/>
+  <object id="9" name="start" type="Target" x="256" y="80" width="16" height="16"/>
   <object id="10" type="Event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="hide" value="return getSwitch('day1')"/>
@@ -41,6 +41,12 @@
     <property name="hide" value="return getSwitch('day2')"/>
     <property name="onInteract" value="speak('Front door', &quot;It's a jungle out there.&quot;)"/>
     <property name="passable" value="IMPASSABLE"/>
+   </properties>
+  </object>
+  <object id="13" name="sis/1_contact" type="Event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('sis/1_contact') or not getSwitch('entered_bathroom')"/>
+    <property name="onEnter" value="setNextScript(&quot;sis/1_contact&quot;, false, 3); setSwitch('sis/1_contact', true)"/>
    </properties>
   </object>
  </objectgroup>

@@ -21,7 +21,7 @@ message("PARTNER", "so what's the setup, what's the plan? you were the one stalk
 message("YOU", "Elle? you know her?")
 message("PARTNER", "Elle Applewhite, vanished about a year ago")
 message("PARTNER", "did you kill her or something without knowing her name?")
-message("YOU", that was her. she was my sister")
+message("YOU", "that was her. she was my sister")
 message("YOU", "and she didn't disappear a year ago, she died. I was at the funeral")
 message("PARTNER", "didn't know she had a sibling, but I was at the funeral too, but I guess she's still out there, huh?")
 message("YOU", "she messaged me. or someone with her number did")

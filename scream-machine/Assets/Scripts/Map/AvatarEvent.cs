@@ -76,6 +76,9 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
                     case InputManager.Command.Phune:
                         StartCoroutine(PhoneRoutine());
                         return true;
+                    case InputManager.Command.Menu:
+                        Global.Instance().StartCoroutine(FindObjectOfType<PauseView>().MenuRoutine());
+                        return true;
                     case InputManager.Command.Debug:
                         Global.Instance().Serialization.SaveToSlot(0);
                         return true;

@@ -85,6 +85,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["playEnding"] = (Action)PlayEnding;
         lua.Globals["clearConversations"] = (Action)ClearConversations;
         lua.Globals["goToFinale"] = (Action)GoToFinale;
+        lua.Globals["showVHS"] = (Action<DynValue>)ShowVHS;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -339,5 +340,14 @@ public class LuaCutsceneContext : LuaContext {
         UnityEngine.Object.DontDestroyOnLoad(Global.Instance().Maps.Avatar.gameObject);
         Global.Instance().Maps.Avatar.transform.position = new Vector3(-100, 0, 0);
         SceneManager.LoadScene("Ending");
+    }
+
+    private void ShowVHS(DynValue showBool) {
+        var vhs = UnityEngine.Object.FindObjectOfType<VcrSystem>();
+        if (showBool.Boolean) {
+            Global.Instance().StartCoroutine(vhs.PlayRoutine());
+        } else {
+            Global.Instance().StartCoroutine(vhs.HideRoutine());
+        }
     }
 }

@@ -55,7 +55,7 @@ public class MapManager : MonoBehaviour {
         Global.Instance().Audio.PlayBGM("nighttime");
         yield return SceneManager.LoadSceneAsync("Map2D");
         MapOverlayUI.Instance().pcSystem.SetNewsModel(IndexDatabase.Instance().PCNews.GetData("day1"));
-        Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.West);
+        Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.East);
         Avatar.PauseInput();
         var fadeImage = Camera.GetComponent<FadeImageEffect>();
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);

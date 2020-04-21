@@ -21,11 +21,6 @@
    </properties>
   </object>
   <object id="22" name="entry" type="Target" x="176" y="128" width="16" height="16"/>
-  <object id="23" type="Event" x="176" y="208" width="16" height="16">
-   <properties>
-    <property name="onCollide" value="ladder(6, 'NORTH'); teleport('Warehouse/Secret', 'landing', 'WEST')"/>
-   </properties>
-  </object>
   <object id="24" name="control/4_13" type="Event" x="128" y="128" width="16" height="16">
    <properties>
     <property name="hide" value="return getSwitch('control/4_13') or not getSwitch('day4')"/>

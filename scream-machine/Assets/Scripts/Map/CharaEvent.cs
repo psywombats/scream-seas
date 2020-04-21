@@ -67,18 +67,14 @@ public class CharaEvent : MonoBehaviour {
         stepping = steppingThisFrame || wasSteppingLastFrame;
         if (!steppingThisFrame && !wasSteppingLastFrame) {
             moveTime = StepsPerSecond / Sprites.StepCount;
-        } else if (steppingThisFrame && !wasSteppingLastFrame) {
-            moveTime = 0;
         } else {
             moveTime += Time.deltaTime;
         }
         wasSteppingLastFrame = steppingThisFrame;
         lastPosition = transform.position;
-
-        var newX = Mathf.FloorToInt(moveTime * StepsPerSecond) % Sprites.StepCount;
-        if (oldX != newX) {
+        
             UpdateAppearance();
-        }
+
     }
 
     public void UpdateEnabled(bool enabled) {

@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour {
         Cancel,
         Debug,
         Phune,
+        Quit
     };
 
     public enum Event {
@@ -44,6 +45,7 @@ public class InputManager : MonoBehaviour {
         keybinds[Command.Debug] = new List<KeyCode>(new[] { KeyCode.F9 });
         keybinds[Command.Menu] = new List<KeyCode>(new[] { KeyCode.Escape });
         keybinds[Command.Phune] = new List<KeyCode>(new[] { KeyCode.Tab });
+        keybinds[Command.Quit] = new List<KeyCode>(new[] { KeyCode.Q });
         fastKeys = new List<KeyCode>(new[] { KeyCode.LeftControl, KeyCode.RightControl, KeyCode.Space, KeyCode.Z });
 
         listeners = new List<IInputListener>();
