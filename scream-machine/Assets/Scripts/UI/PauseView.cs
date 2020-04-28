@@ -4,6 +4,10 @@ using DG.Tweening;
 
 public class PauseView : MonoBehaviour {
 
+    [SerializeField] private LuaSerializedScript fixitScript = null;
+
+    private LuaCutsceneContext lua = new LuaCutsceneContext();
+
     public IEnumerator MenuRoutine() {
         yield return CoUtils.RunTween(GetComponent<CanvasGroup>().DOFade(1.0f, 0.8f));
         Global.Instance().Input.PushListener("pause", (cmd, ev) => {
@@ -12,6 +16,11 @@ public class PauseView : MonoBehaviour {
                 Application.Quit();
             }
             if (cmd == InputManager.Command.Confirm) {
+                StartCoroutine(DieRoutine());
+            }
+            if (cmd == InputManager.Command.Debug) {
+                lua.Initialize();
+                StartCoroutine(lua.RunRoutine(new LuaScript(lua, fixitScript.luaString), true));
                 StartCoroutine(DieRoutine());
             }
             return true;

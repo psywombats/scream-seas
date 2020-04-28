@@ -1,4 +1,5 @@
 message("CONTROL", "Alllright. I've come to a decision. We're dealing Lang in.")
+setClientName("Control")
 message("YOU", "as in they're joining the investigation?")
 message("CONTROL", "They say they want to find Elle. You and Goodwin want to find Elle. I want to figure out this puzzle.")
 message("CONTROL", "So it'd only be logical to work with them, yes?")

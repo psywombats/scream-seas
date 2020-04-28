@@ -36,7 +36,7 @@
   </object>
   <object id="9" name="'y!sms/2_03'" type="Event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="hide" value="return getSwitch('y!sms/2_03')"/>
+    <property name="hide" value="return getSwitch('y!sms/2_03') or getSwitch('day3')"/>
     <property name="onEnter" value="setNextScript('y!sms/2_03', false, 6); setSwitch('y!sms/2_03', true)"/>
    </properties>
   </object>

@@ -5,6 +5,6 @@ message("CONTROL", "Took a bit to recognize though because what came out on the 
 message("CONTROL", "http://98.137.246.7/~t4urus/RECORD378 22697931617968800?DECRYPT=NULL")
 message("YOU", "a url?")
 message("CONTROL", "Maybe. I was using some random keys to try to interpret the message but seeing as there are some English words in there, I suppose that must be the solution.")
-message("CONTROL", "But if the check the site for yourself, it's hard to believe anyone would need to link this to your sister.")
+message("CONTROL", "But if you check the site for yourself, it's hard to believe anyone would need to link this to your sister.")
 
 setSlideshow('elle_1')
