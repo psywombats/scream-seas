@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c1492aa42b6746e419ccd6e8ff956295
+guid: 5bc9c4a323c4f7240b3e3e62d4788d24
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -10,7 +10,9 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
   errors: []
-  warnings: []
+  warnings:
+  - Pixels Per Unit mismatch between map (100) and tileset 'Tilesets/Debug2d.tsx'
+    (16)
   missingSortingLayers: []
   missingLayers: []
   missingTags: []
