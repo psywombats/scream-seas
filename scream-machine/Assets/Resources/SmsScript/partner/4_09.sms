@@ -1,5 +1,0 @@
-message("PARTNER", "lol you realllly spooked Lang, that coward")
-message("PARTNER", "they're refusing to come unless you're out")
-message("YOU", "I talked to them this morning, they asked some questions but I don't know what set them off")
-message("PARTNER", "who even KNOWS with them, told you they were awful to work with")
-setNextScript('control/4_10')

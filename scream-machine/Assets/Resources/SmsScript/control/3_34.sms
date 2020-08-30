@@ -1,4 +1,0 @@
-message("CONTROL", "Listen, change of plan. How fast can you get to the North Side?")
-message("YOU", "that's the opposite end of town, and it's going to take time to find my way out of here without power")
-message("CONTROL", "Dammit. I think Lang's in the city. I need to scramble someone to bail out Goodwin.")
-setNextScript('partner/3_35', false, 25)

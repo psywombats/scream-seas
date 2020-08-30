@@ -1,5 +1,0 @@
-message("YOU", "is it true you guys did a job for Vertigo Temple back in '99? with Elle involved")
-message("CONTROL", "Haha. Who told you that?")
-message("YOU", "Lang did, yesterday")
-message("CONTROL", "I wasn't involved in that nonsense.")
-setNextScript('partner/4_05')

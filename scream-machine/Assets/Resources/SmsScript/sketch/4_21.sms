@@ -1,4 +1,0 @@
-message("YOU", "you're supposed to contact me")
-message("SKETCH", "[Message send failed - You have been blocked by this number]")
-
-setNextScript('partner/4_23', false, 12)

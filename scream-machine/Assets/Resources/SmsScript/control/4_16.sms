@@ -1,5 +1,0 @@
-message("CONTROL", "Okay, they're on to Goodwin. I think Vertigo's eye is elsewhere right now. Did you follow my directions?")
-message("YOU", "yeah I think I'm here. a store room?")
-message("CONTROL", "Stay put there until I tell you.")
-message("CONTROL", "And whatever you do, don't go into the monitor room until Lang gives the all-clear.")
-message("YOU", "Lang's supposed to be in touch? they blocked me")

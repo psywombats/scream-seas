@@ -1,8 +1,0 @@
-message("PARTNER", "you in yet?")
-message("YOU", "almost there")
-message("PARTNER", "okay, give me the signal when you're ready then")
-message("YOU", "signal?")
-message("PARTNER", "oh, guess you don't know that part yet, lol")
-message("PARTNER", "were you tailed on your way over?")
-message("YOU", "not sure")
-message("PARTNER", "they're swarming me, gonna take every trick in the book to lose these guys")

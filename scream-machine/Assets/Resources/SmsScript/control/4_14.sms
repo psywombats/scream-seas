@@ -1,3 +1,0 @@
-message("CONTROL", "Take the right from here, then the first left after that.")
-message("CONTROL", "Once you're there, wait until I've had Lang open the way for you")
-setNextScript('partner/4_15')

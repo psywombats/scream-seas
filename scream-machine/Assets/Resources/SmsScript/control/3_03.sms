@@ -1,5 +1,0 @@
-message("YOU", "hey did you post my number on that info site?")
-setNextScript('random/3_04')
-message("CONTROL", "On Panoptic? What ever are you talking about?")
-message("YOU", "well someone did. I'm getting crank message already, something about Vertigo Temple")
-message("CONTROL", "Vertigo Temple? Hmmm. Let me connect, one moment.")

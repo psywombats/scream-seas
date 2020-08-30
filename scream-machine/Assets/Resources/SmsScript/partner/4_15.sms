@@ -1,7 +1,0 @@
-message("PARTNER", "don't forget to give me the signal")
-message("YOU", "when?")
-message("PARTNER", "oh, right")
-message("PARTNER", "dude how did you sneak in here? the security down here is insane")
-message("YOU", "when I went in there was no one there")
-message("PARTNER", "lucky bastard")
-message("PARTNER", "hold a sec, I might have to start playing rough")

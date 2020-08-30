@@ -1,7 +1,0 @@
-message("YOU", "hey, there's a bit of a problem")
-message("CONTROL", "Oh?")
-message("YOU", "this place is... different")
-message("CONTROL", "Different how?")
-message("YOU", "it's hard to say")
-message("CONTROL", "If you can't articulate it then was it really worth bothering me about?")
-message("CONTROL", "You need to hurry or the timing will be off. This whole thing is a precision instrument.")

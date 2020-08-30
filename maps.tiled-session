@@ -1,0 +1,4017 @@
+{
+    "activeFile": "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
+    "expandedProjectPaths": [
+        "scream-seas/Assets/Resources/RawMaps"
+    ],
+    "exportAsImage.drawTileGrid": false,
+    "exportAsImage.includeBackgroundColor": false,
+    "exportAsImage.useCurrentScale": true,
+    "exportAsImage.visibleLayersOnly": true,
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/aking/saga/saga/res/maps/world1/herocave01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.25,
+                "y": 392.5
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/test2.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world1/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 607,
+                "y": 180
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world2/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 706,
+                "y": 375
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world3.5/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 607,
+                "y": 463
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world3/ermengarde_interior.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 248,
+                "y": 279
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world3/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 710,
+                "y": 478
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world3/sea_caves.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 560,
+                "y": 515
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world4/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 735,
+                "y": 631
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world5/air01.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 576,
+                "y": 871
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world5/fire01.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 584,
+                "y": 1118
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world5/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 439,
+                "y": 415
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world5/palace_f3.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 312,
+                "y": 319
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world5/palace_f4.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 295,
+                "y": 279
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4 (editable version)/res/maps/world5/palace_f5.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 455,
+                "y": 399
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/crater/tower02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120,
+                "y": 167
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/crater/tower11.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 119,
+                "y": 167
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/crater/tower12.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 119,
+                "y": 215
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/crater/tower13.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 95,
+                "y": 95
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/crater/town.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 447,
+                "y": 343
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/f01_transition.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 343,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/f07_sideworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1030,
+                "y": 602
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/f09_sideworld_inn.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 160,
+                "y": 167
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/f09_sideworld_shrine.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 136,
+                "y": 151
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/f10_transition.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 304,
+                "y": 538
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/f12_sideworld_town_unused.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 623,
+                "y": 529
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/reverse_f07_sideworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 183
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/reverse_f07_sideworld_interior.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 583,
+                "y": 247
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/tower/reverse_transition.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 343,
+                "y": 231
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace01.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 575,
+                "y": 543
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 391,
+                "y": 295
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace03.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 583,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace04.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_b1.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 463,
+                "y": 431
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_f1.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319,
+                "y": 319
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_f2.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 311,
+                "y": 351
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_f3.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 311,
+                "y": 319
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_f4.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 295,
+                "y": 279
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_f5.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 455,
+                "y": 399
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/palace_stairs.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 407,
+                "y": 527
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/town.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 359,
+                "y": 335
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/water01.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1238,
+                "y": 1398
+            }
+        },
+        "C:/Users/aking_2/Desktop/SaGa4/res/maps/world5/water02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 279,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/Dropbox/scream-machine/scream-machine/Assets/Resources/Maps/Apartment.tmx": {
+            "scale": 3.9979166666666663,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 168.2126107347577,
+                "y": -2.626367899947894
+            }
+        },
+        "C:/Users/aking_2/Dropbox/scream-machine/scream-machine/Assets/Resources/Maps/BedroomConspiracy.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 1357.5,
+                "y": 444
+            }
+        },
+        "C:/Users/aking_2/Dropbox/scream-machine/scream-machine/Assets/Resources/Maps/BedroomLate.tmx": {
+            "scale": 7.632386363636362,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 88.11136752773024,
+                "y": 58.17315566143082
+            }
+        },
+        "C:/Users/aking_2/Dropbox/scream-machine/scream-machine/Assets/Resources/Maps/Debug2D.tmx": {
+            "scale": 3.645625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.05486027773017,
+                "y": 120.41830961769246
+            }
+        },
+        "C:/Users/aking_2/Dropbox/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/DeadEnd.tmx": {
+            "scale": 0.10733173076923076,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 9219.081746920494,
+                "y": 3996.9540873460255
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/3D/corridor.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 175.5,
+                "y": 127.5
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/3D/duel.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 263.3333333333333,
+                "y": 215.33333333333331
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/3D/tactics.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 175,
+                "y": 127
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/3D/tactics02.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 175.33333333333331,
+                "y": 127.33333333333333
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/Testmap01.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/Testmap02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/battle_mockup.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 287,
+                "y": 175
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/defrag.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/erebus/erebus/Assets/Resources/Maps/Test/icthyotest.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/mgn-tactics/mgn-tactics/Assets/Resources/Maps/Debug2D.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 151.75,
+                "y": 117.5
+            }
+        },
+        "C:/Users/aking_2/mgne3/MGNE3/Assets/Maps/Test/Testmap01.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 159,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/mgne3/MGNE3/Assets/Maps/Test_3d/Debug3d.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 63,
+                "y": 63
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/altar00.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/altar01.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 175,
+                "y": 175
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/altar02.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 175,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/altar03.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/altar04.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 303,
+                "y": 191
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/altar05.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_arrival01.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_elyvilon_.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_elyvilon_refuge.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_hep_ancient_way.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_hep_forgotten.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_hep_grave.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 175,
+                "y": 127
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_hep_hall.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 303
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_overflow_diagonal.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_overflow_embedded.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_overflow_quadquetra.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_overflow_tiled.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 175,
+                "y": 175
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_overflow_triangle.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 303,
+                "y": 191
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_overflow_triquetra.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 175,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_uskayaw_demo.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_uskayaw_show_me_your_moves.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_uskayaw_spiral1.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_uskayaw_spiral2.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/altar/psy_uskayaw_whorl.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival01.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_arrows.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 335,
+                "y": 335
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_batcave.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 271,
+                "y": 303
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_conway.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 223,
+                "y": 223
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_courtyard.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_crosshairs.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_dodecagon.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 367,
+                "y": 367
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_fountain.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_heroes.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 463,
+                "y": 303
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_radial01.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_radial02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 335,
+                "y": 335
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_solomon.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_spokes.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 303,
+                "y": 303
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_star.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 367,
+                "y": 367
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_statuary.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_terrarium.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_whirlpool.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_arrival_wood_between_worlds.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 367,
+                "y": 367
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival/psy_crosshairs.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival01.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 223,
+                "y": 143
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_arrows.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 335,
+                "y": 335
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_crosshairs.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_dodecagon.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 367,
+                "y": 367
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_fountain.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_heroes.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 463,
+                "y": 303
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_radial01.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_radial02.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 335,
+                "y": 335
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_solomon.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_spokes.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 303,
+                "y": 303
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/arrival_old/psy_arrival_statuary.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/debug/ee_9x9_debug.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1002.6666666666666,
+                "y": 1124
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/debug/template.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/debug/wallcolors.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_ash.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_beogh.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_chei.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_dith.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_ecumenical.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_ely.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_fedhas.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_gozag.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_hep.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_jiyva.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_kiku.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_lugonu.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_makhleb.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_nemelex.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_oka.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_qaz.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_ru.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_sif.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_trog.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_tso.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_usk.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_vehumet.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_xom.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_yred.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_5x5_zin.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 79,
+                "y": 79
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_ash.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_beogh.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_chei.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_dith.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_ecumenical.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_ely.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_fedhas.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_gozag.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_hep.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_jiyva.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_kiku.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_lugonu.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_makhleb.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_nemelex.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_okawaru.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_qaz.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_ru.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_sif.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_trog.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_tso.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_uskayaw.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_vehumet.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_xom.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_yred.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_9x9_zin.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_encompass.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 822.6666666666666,
+                "y": 784
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_boxy.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 335,
+                "y": 383
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_cathedral.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 617,
+                "y": 454
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_figure_zero.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 559,
+                "y": 454
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_five_rooms.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 431,
+                "y": 431
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_temple.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 588
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_tomelike.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 367,
+                "y": 335
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_main_trinity.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 271,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_mini_altar.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 175,
+                "y": 175
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_mini_double.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 239
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_mini_exposed.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 111,
+                "y": 111
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_mini_quad.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143,
+                "y": 143
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/ecumenical_evil/psy_ee_mini_treasure.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207,
+                "y": 207
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer/psy_flighty.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 478.66666666666663,
+                "y": 590.6666666666666
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer/psy_pick_your_poison.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 622.6666666666666,
+                "y": 605.3333333333333
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer/psy_plant_boss.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 575,
+                "y": 367
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer/psy_rapid_city.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511,
+                "y": 658
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer/psy_river_settlement.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511,
+                "y": 588
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer/psy_winged_rats.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 478.66666666666663,
+                "y": 590.6666666666666
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/sewer_old/psy_pick_your_poison.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 628,
+                "y": 487
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/temple/psy_temple_ashenzari.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 495,
+                "y": 454
+            }
+        },
+        "C:/Users/aking_2/pcme/maps/temple/psy_temple_tso.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 399,
+                "y": 274
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/bg/palace_bg.tmx": {
+            "scale": 1.0936875000000001,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 448.02560146294064,
+                "y": 273.84421966969535
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/fortress_b1.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 73.25,
+                "y": 125
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/fortress_b2.tmx": {
+            "scale": 1.3671093749999998,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 313.4350534316247,
+                "y": 320.3840219441111
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/fortress_f1.tmx": {
+            "scale": 1.0012254901960784,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 295.1383108935128,
+                "y": 255.68665850673196
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/fortress_f2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 50.333333333333314,
+                "y": 164
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/gate.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 433.25,
+                "y": 334.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/gate_interior.tmx": {
+            "scale": 1.2914062499999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 228.0459770114943,
+                "y": 229.20750151240176
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/mirror.tmx": {
+            "scale": 0.6953725961538462,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1086.4678938726124,
+                "y": 661.5158586120474
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/mirror_interior.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 328.3333333333333,
+                "y": 198.66666666666666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/misc_town.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1383.7956454654552,
+                "y": 915.5083147608434
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/misc_town_interior.tmx": {
+            "scale": 2.047713414634146,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 206.32770043921687,
+                "y": 107.92525869128266
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/oracle_f1.tmx": {
+            "scale": 0.8409156976744185,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 234.86301961801058,
+                "y": 160.5392792325642
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/oracle_f2.tmx": {
+            "scale": 2.0253472222222224,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.71318361049202,
+                "y": 131.82924738556488
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/hero/oracle_f3.tmx": {
+            "scale": 3.906026785714286,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": -6.5283730498885575,
+                "y": 72.45214012229269
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/test.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 445.8333333333333,
+                "y": 177.33333333333331
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/test2.tmx": {
+            "scale": 3.6307812499999996,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 186.32353574041397,
+                "y": 119.53350260360632
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f01.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 414.99999999999994,
+                "y": 370
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f01_intro.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 482.25,
+                "y": 1340
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f01_transition.tmx": {
+            "scale": 0.8510416666666667,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 711.4810281517747,
+                "y": 424.1860465116279
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f02.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 255.66666666666663,
+                "y": 381.3333333333333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f02_sideworld.tmx": {
+            "scale": 1.477956081081081,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.3748785644894,
+                "y": 296.35522029830275
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f02_sideworld_interior.tmx": {
+            "scale": 3.4177734374999997,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 96.11520658323334,
+                "y": 128.15360877764445
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f03.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 230.75,
+                "y": 113.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f03_sideworld.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 431.25,
+                "y": 300.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f03_sideworld_interior.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": -50.25,
+                "y": 113.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f03_sideworld_shrine.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 633.25,
+                "y": 412.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f04.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 165.66666666666663,
+                "y": 358.66666666666663
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f05.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 219.75,
+                "y": 322
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f05_transition.tmx": {
+            "scale": 0.9772804054054054,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 328.9741595367729,
+                "y": 296.7418546365915
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f06.tmx": {
+            "scale": 1.5018382352941175,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 256.0195838433293,
+                "y": 184.44063647490825
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f07.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 348.75,
+                "y": 271
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f07_sideworld.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 734.3333333333333,
+                "y": 470.6666666666667
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f08.tmx": {
+            "scale": 1.2053125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 208.65957998444384,
+                "y": 240.60150375939853
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f09.tmx": {
+            "scale": 1.0012254901960784,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 686.6585067319461,
+                "y": 435.46634026927785
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f09_sideworld.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 597.25,
+                "y": 533
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f09_sideworld_inn.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 213.66666666666663,
+                "y": 131.33333333333331
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f09_sideworld_shrine.tmx": {
+            "scale": 1.903125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 136.88013136289,
+                "y": 152.9064039408867
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f10.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 441.25,
+                "y": 426.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f10_reverse.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 25.75,
+                "y": 274.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f10_transition.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 253.66666666666663,
+                "y": 219.33333333333331
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f11.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 265,
+                "y": 314
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f12.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 349.5,
+                "y": 795
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f13.tmx": {
+            "scale": 2.031944444444444,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 184.3062200956938,
+                "y": 215.55707450444294
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f13_sideworld.tmx": {
+            "scale": 1.4229872881355932,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 456.4341546936649,
+                "y": 232.60924588699476
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f13_sideworld_interior.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 321.66666666666663,
+                "y": 226
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f14.tmx": {
+            "scale": 1.952470930232558,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 328.04585721730064,
+                "y": 152.11494081739
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f15.tmx": {
+            "scale": 1.6083639705882353,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 425.58774787130693,
+                "y": 388.59363392193836
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f16_reverse.tmx": {
+            "scale": 1.8228125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 64.46082633293332,
+                "y": 240.28801645808335
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/reverse_f10.tmx": {
+            "scale": 1.8228125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 64.46082633293332,
+                "y": 240.28801645808335
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/reverse_transition.tmx": {
+            "scale": 1.8856681034482756,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 336.48551345791196,
+                "y": 232.27841590948057
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/darkcave01.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 666.5,
+                "y": 396
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/darkcave01_dark.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1321.5,
+                "y": 720
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/hero_gate.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 401.5,
+                "y": 385
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/herocave01.tmx": {
+            "scale": 1.3671093749999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.01828675924344,
+                "y": 396.4569403965941
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/herocave02.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 387.25,
+                "y": 280.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/herocave02_dark.tmx": {
+            "scale": 1.3671093749999998,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 313.4350534316247,
+                "y": 320.3840219441111
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/herocave03.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 322.3333333333333,
+                "y": 324
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/hq01.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.02194411109207,
+                "y": 384.4608263329333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/hq02.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.02194411109207,
+                "y": 384.4608263329333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/hq03.tmx": {
+            "scale": 1.7088867187499999,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 281.17721012629295,
+                "y": 256.3072175552889
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/mountaintown.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.02194411109207,
+                "y": 384.4608263329333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/mountaintown_interior.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 458.5,
+                "y": 72
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/overworld.tmx": {
+            "scale": 0.027906249999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 25281.075027995525,
+                "y": 12434.490481522958
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/overworld_old.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 450.75,
+                "y": 458.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/parish.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 441.25,
+                "y": 459
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/parish_interior.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 393.5,
+                "y": 371
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/pass01.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 400.6994685410595,
+                "y": 384.4608263329333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/pass02.tmx": {
+            "scale": 1.1887907608695651,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 408.3981941825247,
+                "y": 368.44162523572777
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/plainstown.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 526.5,
+                "y": 452
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/plainstown_interior.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 161.25,
+                "y": 388
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/plainstown_old.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 464.77627292988177,
+                "y": 384.4608263329333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/rivertown.tmx": {
+            "scale": 1.1160076530612244,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.8539916566661,
+                "y": 392.47042688153607
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/rivertown_interior.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 496.16666666666663,
+                "y": 361.66666666666663
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/shrine01.tmx": {
+            "scale": 1.1160076530612244,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 408.15132293273905,
+                "y": 391.57437567861024
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/shrine02.tmx": {
+            "scale": 1.7088867187499999,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 410.5011714955141,
+                "y": 241.67781016058063
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/shrine03.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 326.25,
+                "y": 295.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/springs.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 703.75,
+                "y": 248
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/springs01.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 925.5,
+                "y": 234
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world1/well.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 413.75,
+                "y": 103.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/a0.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 527.6666666666666,
+                "y": 368
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/a5.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1379.75,
+                "y": 848
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/caves_a.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 868.5,
+                "y": 319
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/caves_b.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 704.5,
+                "y": 448
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/caves_c.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 582.5,
+                "y": 555
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/coast_town.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 290.75,
+                "y": 165.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/coast_town_interior.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 378.25,
+                "y": 132
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/east_ruins.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 454.99999999999994,
+                "y": 290.66666666666663
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/east_ruins_interior.tmx": {
+            "scale": 2.1527243589743588,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 312.3948485074071,
+                "y": 192.31444949006178
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/hidden_town.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 435.75,
+                "y": 421.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/hidden_town_interior.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 568.9999999999999,
+                "y": 423.3333333333333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/intro_pass.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 575.5,
+                "y": 855
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/lara_ruin.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 605.6666666666666,
+                "y": 454.6666666666667
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1215.5,
+                "y": 515
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/overworld_2.tmx": {
+            "scale": 1.0115210843373492,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 664.8403186183282,
+                "y": 376.6604630387852
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/overworld_old.tmx": {
+            "scale": 0.6152108433734939,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 664.0000000000002,
+                "y": 377.1064871481029
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/pass.tmx": {
+            "scale": 1.1887907608695651,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.0036573518487,
+                "y": 368.44162523572777
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/port_east.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 309.75,
+                "y": 370.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/port_west.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 305.75,
+                "y": 441.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/west_ruins.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 321.75,
+                "y": 272
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/west_ruins_interior.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 421.66666666666663,
+                "y": 196.66666666666666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/wolf01.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 555.6666666666666,
+                "y": 247.33333333333331
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/wolf02.tmx": {
+            "scale": 1.4021634615384615,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 543.0893193896794,
+                "y": 411.50694325390026
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/wolf03.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 201.25,
+                "y": 94.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/wolf04.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 106.75,
+                "y": 122
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_b1.tmx": {
+            "scale": 1.1634973404255318,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 450.7960454883136,
+                "y": 396.2192125264301
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_exterior.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 707.25,
+                "y": 486.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_f1.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 221.66666666666663,
+                "y": 630.6666666666667
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_f2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 273.66666666666663,
+                "y": 342
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_f3.tmx": {
+            "scale": 1.2152083333333332,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 216.01234356248926,
+                "y": 360.432024687125
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_foyer.tmx": {
+            "scale": 2.1873750000000003,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 148.8085033430482,
+                "y": 178.75307160409164
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_leftstair.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 160.33333333333331,
+                "y": 136.66666666666666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_rightstair.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 157,
+                "y": 90
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_rightstair2.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 127.25,
+                "y": 175
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_throne.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 162.25,
+                "y": 280
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_town.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 903,
+                "y": 430.75
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world2/worm_town_interior.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 812.25,
+                "y": 440.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 307.75,
+                "y": 479.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle02.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 394.5,
+                "y": 248
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle03.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 421.25,
+                "y": 529.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle04.tmx": {
+            "scale": 1.8228125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 192.28527344419683,
+                "y": 241.38522201268646
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle05.tmx": {
+            "scale": 1.8856681034482756,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 145.04143093891076,
+                "y": 232.27841590948057
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_07.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 222.75,
+                "y": 199
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_08.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 298.25,
+                "y": 161.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_11.tmx": {
+            "scale": 1.3763319672131147,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 256.1155363656667,
+                "y": 180.18908657783075
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_12.tmx": {
+            "scale": 1.4229872881355932,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 456.4341546936649,
+                "y": 160.2263083451202
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_13.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 72.75,
+                "y": 139
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 157.75,
+                "y": 275
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_02.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 225.66666666666663,
+                "y": 177.33333333333331
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_03.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 218.75,
+                "y": 242.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_04.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 246.75,
+                "y": 250
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_05.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 186.25,
+                "y": 219
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_06.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 237.75,
+                "y": 214.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_08.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 419.25,
+                "y": 137
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_09.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 176.75,
+                "y": 172
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_09_dark.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 126.25,
+                "y": 192
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_10.tmx": {
+            "scale": 2.4856534090909093,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 136.58380478884507,
+                "y": 176.21121206926108
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_e_13.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 210.5,
+                "y": 166
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_00.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 223.75,
+                "y": 9.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_00_water.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 324.75,
+                "y": 276
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 206.75,
+                "y": 292.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_02.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 208.75,
+                "y": 214
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_03.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 206.25,
+                "y": 268.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_04.tmx": {
+            "scale": 1.953013392857143,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 184.07451854391678,
+                "y": 224.78084461969254
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_05.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 269.66666666666663,
+                "y": 194.66666666666666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_06.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 225.25,
+                "y": 213.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_07.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 206.25,
+                "y": 205.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_09.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 211.66666666666663,
+                "y": 242.66666666666666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_10.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 113.25,
+                "y": 257.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/castle_w_13.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 79.75,
+                "y": 95.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/darkcave01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1067.75,
+                "y": 378
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/fortress_b1.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 287.75,
+                "y": 123.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/fortress_f1.tmx": {
+            "scale": 1.2717296511627907,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 424.2253843076747,
+                "y": 344.4128235899194
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/fortress_f2.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 177.25,
+                "y": 132
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/gate.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 422.25,
+                "y": 287.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hometown.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 411.75,
+                "y": 276.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hometown_interior.tmx": {
+            "scale": 1.5624107142857142,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 296.0169152523001,
+                "y": 280.3360192010972
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hq01.tmx": {
+            "scale": 1.1634973404255318,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 344.2208126178639,
+                "y": 376.4512257843306
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hq02.tmx": {
+            "scale": 1.0936875000000001,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 393.62249271386924,
+                "y": 400.48002743013876
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hq03.tmx": {
+            "scale": 1.333765243902439,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 392.4978570204011,
+                "y": 328.39362249271386
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hq04.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 207.25,
+                "y": 511
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/mirror.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 383.25,
+                "y": 376
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/mirror01.tmx": {
+            "scale": 1.051622596153846,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 504.4585404880279,
+                "y": 416.4992285273445
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/mirror02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 629.5,
+                "y": 261
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/overworld.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 370.25,
+                "y": 922
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/overworld_old.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 114.5,
+                "y": 352
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/pass01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 361.25,
+                "y": 439.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/pass02.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 401.75,
+                "y": 413.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/rivertown.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 361.75,
+                "y": 479
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/rivertown_interior.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 305.66666666666663,
+                "y": 258
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/shrine01.tmx": {
+            "scale": 1.1160076530612244,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 399.1908109034802,
+                "y": 228.49305674609977
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/shrine02.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 236.25,
+                "y": 178.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/shrine03.tmx": {
+            "scale": 1.7088867187499999,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 248.40733756214644,
+                "y": 256.3072175552889
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/shrine04.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 217.25,
+                "y": 231
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/springs01.tmx": {
+            "scale": 1.4729166666666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 456.5770862800566,
+                "y": 272.24893917963226
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/springs02.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 414.99999999999994,
+                "y": 248.66666666666666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/springs03.tmx": {
+            "scale": 1.8228125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 288.29075947196986,
+                "y": 240.28801645808335
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/base.tmx": {
+            "scale": 1.3020089285714285,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.4059660552032,
+                "y": 336.40322304131666
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/base_interior.tmx": {
+            "scale": 1.5190104166666665,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 408.4896279787417,
+                "y": 406.1854963140751
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/celephais.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 342.25,
+                "y": 475.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/celephais_interior.tmx": {
+            "scale": 1.7088867187499999,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 713.0373164180812,
+                "y": 227.6335790616607
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/celephais_tunnel.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 322.3333333333333,
+                "y": 378.66666666666663
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/celephais_underground.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 389,
+                "y": 360
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/city.tmx": {
+            "scale": 1.0317806603773585,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 584.9111377793016,
+                "y": 424.5088290759472
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/city_interior.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1266.3333333333333,
+                "y": 433.3333333333333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/east_depot.tmx": {
+            "scale": 1.0722426470588236,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 497.55528887364994,
+                "y": 410.354877421567
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/east_depot_interior.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 92.25,
+                "y": 135
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/ermengarde.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 318.25,
+                "y": 290
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/ermengarde_interior.tmx": {
+            "scale": 1.0331249999999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 248.2758620689655,
+                "y": 280.70175438596493
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/filtration.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 734.5,
+                "y": 302
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/filtration_east.tmx": {
+            "scale": 2.2599609375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 120.35606257021865,
+                "y": 128.32080200501252
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/filtration_west.tmx": {
+            "scale": 2.2599609375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 120.35606257021865,
+                "y": 128.32080200501252
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/gate.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 458.63192182410427,
+                "y": 285.2734441968112
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/gate_depot.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 111.49999999999999,
+                "y": 127.33333333333333
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/hali.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 473,
+                "y": 594
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/lab_center.tmx": {
+            "scale": 1.5190104166666665,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 152.4018515343734,
+                "y": 288.3456197497
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/lab_final.tmx": {
+            "scale": 2.0253472222222224,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 232.3058460483456,
+                "y": 216.25921481227496
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/lab_foyer.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 160.75,
+                "y": 119
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/lab_left.tmx": {
+            "scale": 1.5190104166666665,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 328.1741813817933,
+                "y": 101.38179324532834
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/lab_right.tmx": {
+            "scale": 1.5190104166666665,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 328.1741813817933,
+                "y": 19.749699982856157
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/mine01.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 528.3333333333334,
+                "y": 342
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/mine02.tmx": {
+            "scale": 0.8931515957446807,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1685.6041092831092,
+                "y": 134.35569120821862
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/mine03.tmx": {
+            "scale": 1.4021634615384615,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 218.5907766158066,
+                "y": 202.544145379736
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/overworld.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 853.25,
+                "y": 661
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/overworld_old.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 681,
+                "y": 512
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/plutonium01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 190.25,
+                "y": 181
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/plutonium02.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 472.75,
+                "y": 799
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/plutonium03.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 515.5,
+                "y": 431
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/plutonium_station.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 312.3333333333333,
+                "y": 120
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/powerplant01.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 318.25,
+                "y": 179.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/powerplant02.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 250.5,
+                "y": 248
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/powerplant03.tmx": {
+            "scale": 1.02125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 384.33292533659727,
+                "y": 207.5887392900857
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/powerplant04.tmx": {
+            "scale": 1.6471774193548387,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 79.83353733170134,
+                "y": 24.891064871481035
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/powerplant05.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 339.25,
+                "y": 224
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/prison01.tmx": {
+            "scale": 1.5190104166666665,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 336.07406137493575,
+                "y": 288.3456197497
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/prison02.tmx": {
+            "scale": 1.2152083333333332,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 520.4868849648551,
+                "y": 360.432024687125
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/ruins01.tmx": {
+            "scale": 1.4729166666666667,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 456.5770862800566,
+                "y": 216.5770862800566
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/ruins02.tmx": {
+            "scale": 1.477956081081081,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 281.13149322818447,
+                "y": 296.35522029830275
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/ruins03.tmx": {
+            "scale": 1.0936875000000001,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 425.6243213897936,
+                "y": 400.48002743013876
+            }
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3/sea_caves.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 617.5,
+                "y": 471
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/crater/tower07.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 122.75,
+                "y": 159
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/crater/tower12.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120,
+                "y": 215
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/crater/tower13.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 96,
+                "y": 95
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/demo.tmx": {
+            "scale": 2.3775815217391303,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 176.2294988285045,
+                "y": 109.98571346934109
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/test.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 250,
+                "y": 216
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/test2.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 253.25,
+                "y": 174
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/tower/f05.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1084.5,
+                "y": 697
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/tower/f16.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 571.6666666666666,
+                "y": 18
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world1/overworld.tmx": {
+            "scale": 0.7812053571428571,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 608.6747814160808,
+                "y": 560.6720384021944
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world1/parish.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 400.16666666666663,
+                "y": 456
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world1/plainstown.tmx": {
+            "scale": 1.1392578125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 464.7762729298817,
+                "y": 384.4608263329333
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world1/plainstown_interior.tmx": {
+            "scale": 1.4184027777777777,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 288,
+                "y": 96.58751529987761
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world1/rivertown.tmx": {
+            "scale": 0.7379464285714286,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 384.17422867513613,
+                "y": 392.98245614035085
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world1/well.tmx": {
+            "scale": 1.3671093749999998,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 384.3876792959598,
+                "y": 320.3840219441111
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world2/east_ruins_interior.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 367.5,
+                "y": 366
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world2/overworld.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 842,
+                "y": 546
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world2/worm_town.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 385.66666666666663,
+                "y": 402.66666666666663
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3.5/castle01.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 355.75,
+                "y": 69
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3.5/castle03.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 358.25,
+                "y": 418
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3.5/fortress_b1.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 146,
+                "y": 144
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/city_interior.tmx": {
+            "scale": 0.682571138211382,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 985.2452914464379,
+                "y": 432.18938435196907
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/ermengarde.tmx": {
+            "scale": 0.7736742424242424,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 761.3023255813954,
+                "y": 522.1835985312118
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/lab_center.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 152,
+                "y": 287
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/lab_final.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 231,
+                "y": 281.5
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/lab_left.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 328,
+                "y": 287
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/lab_right.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 328,
+                "y": 287
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/ruins01.tmx": {
+            "scale": 1.4729166666666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 456.5770862800566,
+                "y": 216.5770862800566
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world3/ruins02.tmx": {
+            "scale": 1.477956081081081,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 280.4548831361792,
+                "y": 296.35522029830275
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world4/city.tmx": {
+            "scale": 0.9515625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 400.91954022988506,
+                "y": 304.7619047619048
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world4/city_interior.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 455,
+                "y": 247
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world4/illusive03.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 288,
+                "y": 489
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world4/illusive04.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 296.5,
+                "y": 302
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world4/overworld.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 795.6666666666666,
+                "y": 1060
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/fire01.tmx": {
+            "scale": 0.6668826219512195,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 584.0608034744841,
+                "y": 656.7872449854277
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace01.tmx": {
+            "scale": 0.8041819852941177,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 576.362077833019,
+                "y": 544.6528373049888
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_b1.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 507.5,
+                "y": 423
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_f1.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 301.5,
+                "y": 357
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_f2.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 329.5,
+                "y": 404
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_f3.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 325.5,
+                "y": 249
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_f4.tmx": {
+            "scale": 1.5624107142857142,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 296.6569518258186,
+                "y": 280.3360192010972
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_f5.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 492.5,
+                "y": 467
+            }
+        },
+        "C:/Users/aking_2/saga/saga/res/maps/world5/palace_stairs.tmx": {
+            "scale": 0.8285511363636363,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 409.1479513115036,
+                "y": 528.6336362077834
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Apartment.tmx": {
+            "scale": 4.1978125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 160.20248641405493,
+                "y": 40.02084418968212
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Apartment/Apartment.tmx": {
+            "scale": 3.9979166666666663,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 128.19176654507558,
+                "y": 21.6362688900469
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Apartment/Bathroom.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 81.54545454545455,
+                "y": 11
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Apartment/BedroomEarly.tmx": {
+            "scale": 6.996354166666666,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 96.12149184843297,
+                "y": 32.016675351745704
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Apartment/BedroomLate.tmx": {
+            "scale": 6.996354166666666,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 96.12149184843297,
+                "y": 32.016675351745704
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Bathroom.tmx": {
+            "scale": 9.328472222222222,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 72.09111888632472,
+                "y": 40.092309982877985
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/CrashSite/Accident.tmx": {
+            "scale": 3.816193181818181,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 176.22273505546048,
+                "y": 64.20010422094843
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/Debug2D.tmx": {
+            "scale": 3.645625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 160.05486027773017,
+                "y": 81.87896451225787
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/Maps/RoomSample.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 146.16666666666666,
+                "y": 71.66666666666666
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Apartment/Apartment.tmx": {
+            "scale": 4.1978125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 100.40943944018461,
+                "y": 67.41606491476215
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Apartment/Bathroom.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 51.18181818181817,
+                "y": 16.36363636363636
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Apartment/BedroomEarly.tmx": {
+            "scale": 4,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 202.875,
+                "y": 142.75
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Apartment/BedroomLate.tmx": {
+            "scale": 7.632386363636362,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 88.11136752773024,
+                "y": 40.092309982878
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Antechamber.tmx": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 156.83333333333334,
+                "y": 123.33333333333334
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/DeadEnd.tmx": {
+            "scale": 3.2290865384615386,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 208.26323233827142,
+                "y": 88.26025459688826
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/GenericRoom.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 236.83333333333331,
+                "y": 51.66666666666666
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/LoopingArea.tmx": {
+            "scale": 3,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 128.83333333333331,
+                "y": -2
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 1.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 95.375,
+                "y": 25.25
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 2.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 105.625,
+                "y": 35
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 3.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 89.625,
+                "y": 18
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 4.tmx": {
+            "scale": 3,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 63.16666666666666,
+                "y": 21.333333333333343
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 5.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 102.375,
+                "y": 61.75
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 6.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 79.375,
+                "y": 15.5
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 7.tmx": {
+            "scale": 4,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 94.375,
+                "y": 15.75
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Compound/Room 8.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 44.125,
+                "y": 11.5
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/CrashSite/Accident.tmx": {
+            "scale": 3.9979166666666663,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 141.9489317352788,
+                "y": 93.54872329338197
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/CrashSite/Street.tmx": {
+            "scale": 1.646200980392157,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 223.2412714955706,
+                "y": -31.58788059257057
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Example.tmx": {
+            "scale": 6.8355468749999995,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 56.10377735870622,
+                "y": 64.07680438882223
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Interior01..tmx": {
+            "scale": 2.9984374999999996,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 224.2834809796769,
+                "y": 88.04585721730069
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Interior01.tmx": {
+            "scale": 2.9984374999999996,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 224.2834809796769,
+                "y": 87.04533611255862
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Interior02.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 228.16666666666669,
+                "y": 121.33333333333333
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Interior03.tmx": {
+            "scale": 2.895043103448276,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 216.05895927938656,
+                "y": 88.42700811434527
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Interior04.tmx": {
+            "scale": 2.895043103448276,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 216.05895927938656,
+                "y": 88.42700811434527
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Interior05.tmx": {
+            "scale": 2.895043103448276,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 245.0740713169061,
+                "y": 113.64252214695153
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/InteriorHall.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 669.5,
+                "y": 65.66666666666666
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/Secret.tmx": {
+            "scale": 2.7985416666666665,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 222.4372813221172,
+                "y": 143.2889153577012
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/WarehouseBack.tmx": {
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 343.5,
+                "y": 138
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/WarehouseBig.tmx": {
+            "scale": 3.816193181818181,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 247.23591156108097,
+                "y": 121.58713615722478
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/WarehouseFront.tmx": {
+            "scale": 2.708266129032258,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 239.08285565398648,
+                "y": 80.12506513809276
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/WarehouseHall.tmx": {
+            "scale": 3.816193181818181,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 176.22273505546048,
+                "y": 40.35435122459616
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/WarehouseRoom.tmx": {
+            "scale": 6.458173076923077,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 104.13161616913571,
+                "y": 40.10422094841063
+            }
+        },
+        "C:/Users/aking_2/scream-machine/scream-machine/Assets/Resources/RawMaps/Warehouse/WarehouseSide.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 497.5,
+                "y": 145
+            }
+        },
+        "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx": {
+            "scale": 2.4225,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 164.08668730650155,
+                "y": 118.88544891640868
+            }
+        },
+        "scream-seas/Assets/Resources/RawMaps/Example.tmx": {
+            "scale": 4.519921875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 56.085040186673574,
+                "y": 64.16040100250626
+            }
+        },
+        "scream-seas/Assets/Resources/RawMaps/RoomSample.tmx": {
+            "scale": 5.319999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.16917293233084,
+                "y": 40.037593984962406
+            }
+        },
+        "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx": {
+            "scaleInDock": 1
+        },
+        "scream-seas/Assets/Resources/RawMaps/Tilesets/Editor.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "frame.defaultDuration": 500,
+    "map.fixedSize": true,
+    "map.height": 10,
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.layerDataFormat": 1,
+    "map.orientation": 1,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 10,
+    "openFiles": [
+        "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx"
+    ],
+    "project": "maps.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+        "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
+        "scream-seas/Assets/Resources/RawMaps/RoomSample.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Example.tmx"
+    ],
+    "tileset.embedInMap": false,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#003039",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
+}
