@@ -1,6 +1,6 @@
 # scream-seas
 
-Scream jam Aug-Sep 2020
+Scream jam August/Sept 2020
 
 ## Git setup instructions for non-technical people (Windows)
 
