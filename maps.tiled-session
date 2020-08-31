@@ -3985,7 +3985,7 @@
             "scale": 1.4872713414634144,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 312.6531030594988,
+                "x": 311.98073079485476,
                 "y": 120.35463537129094
             }
         },
@@ -4042,7 +4042,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 168.38211134773348,
-                "y": 120.0170368116824
+                "y": 120.46486157590509
             }
         }
     },
@@ -4062,16 +4062,17 @@
     "project": "maps.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
         "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
-        "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Example.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
+        "scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
         "scream-seas/Assets/Resources/RawMaps/BasicBitch.tmx",
+        "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
-        "scream-seas/Assets/Resources/RawMaps/RoomSample.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Example.tmx"
+        "scream-seas/Assets/Resources/RawMaps/RoomSample.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",

@@ -8,10 +8,6 @@ public class IndexDatabase : ScriptableObject {
     public SoundEffectIndexData SFX;
     public BGMIndexData BGM;
     public FieldSpriteIndexData FieldSprites;
-    public ClientIndexData Clients;
-    public ForeignPhoneIndexData ForeignPhones;
-    public PCNewsIndexData PCNews;
-    public PCSlideshowIndexData PCSlideshows;
 
     public static IndexDatabase Instance() {
         return Resources.Load<IndexDatabase>("Database/Database");

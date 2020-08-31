@@ -66,26 +66,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
-        lua.Globals["cs_pc"] = (Action)StartPC;
-        lua.Globals["cs_clientName"] = (Action<DynValue, DynValue>)SetClientName;
-        lua.Globals["cs_message"] = (Action<DynValue, DynValue, DynValue>)Message;
-        lua.Globals["cs_foreign"] = (Action<DynValue>)ForeignPhone;
-        lua.Globals["cs_video"] = (Action)Video;
-        lua.Globals["cs_flip"] = (Action)Flip;
         lua.Globals["cs_awaitBGMLoad"] = (Action)AwaitBGM;
-        lua.Globals["cs_forceConversation"] = (Action<DynValue>)ForceConversation;
-
-        lua.Globals["setNextScript"] = (Action<DynValue, DynValue, DynValue>)SetNextScript;
-        lua.Globals["setNews"] = (Action<DynValue>)SetNews;
-        lua.Globals["setSlideshow"] = (Action<DynValue>)SetSlideshow;
-        lua.Globals["setSpeedMult"] = (Action<DynValue>)SetSpeedMult;
-        lua.Globals["switchToSelectMode"] = (Action)SwitchToSelectMode;
-        lua.Globals["messagePreview"] = (Action<DynValue, DynValue>)PreviewMessage;
-        lua.Globals["panPhone"] = (Action)PanPhone;
-        lua.Globals["playEnding"] = (Action)PlayEnding;
-        lua.Globals["clearConversations"] = (Action)ClearConversations;
-        lua.Globals["goToFinale"] = (Action)GoToFinale;
-        lua.Globals["showVHS"] = (Action<DynValue>)ShowVHS;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -220,68 +201,6 @@ public class LuaCutsceneContext : LuaContext {
         RunRoutineFromLua(globals.Maps.Camera.GetComponent<FadeComponent>().FadeRoutine(fade, invert));
     }
 
-    private void Dummy(DynValue othername) {
-
-    }
-
-    private void SetClientName(DynValue nameLua, DynValue auto) {
-        Global.Instance().Messenger.ActiveConvo.Client.displayName = nameLua.String;
-        Global.Instance().Messenger.UpdateFromMessenger();
-        if (auto.IsNil()) {
-            RunRoutineFromLua(Global.Instance().Input.ConfirmRoutine());
-        }
-    }
-
-    private void SetNextScript(DynValue scriptNameLua, DynValue prereadLua, DynValue delayLua) {
-        Global.Instance().Messenger.SetNextScript(
-            scriptNameLua.String,
-            prereadLua.IsNil() ? false : prereadLua.Boolean,
-            delayLua.IsNil() ? 0.0f : (float) delayLua.Number
-            );
-    }
-
-    private void Message(DynValue senderLua, DynValue textLua, DynValue autotypeLua) {
-        var phone = MapOverlayUI.Instance().phoneSystem.IsFlipped ? MapOverlayUI.Instance().bigPhone : MapOverlayUI.Instance().foreignPhone;
-        if (autotypeLua.IsNil()) {
-            RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String));
-        } else {
-            var type = autotypeLua.String;
-            var delay = 4.4f;
-            if (type == "short") delay = 2.8f;
-            if (type == "long") delay = 6.5f;
-            if (type == "micro") delay = 0.8f;
-            RunRoutineFromLua(phone.PlayMessageRoutine(senderLua.String, textLua.String, delay));
-        }
-    }
-
-    private void ForeignPhone(DynValue keyLua) {
-        RunRoutineFromLua(Global.Instance().MessengerManager.ForeignPhoneRoutine(keyLua.String));
-    }
-
-    private void Video() {
-        RunRoutineFromLua(MapOverlayUI.Instance().bigPhone.VideoRoutine());
-    }
-
-    private void Flip() {
-        if (MapOverlayUI.Instance().phoneSystem.IsFlipped) {
-            RunRoutineFromLua(MapOverlayUI.Instance().phoneSystem.FlipRoutine());
-        } else {
-            RunRoutineFromLua(AvatarEvent.PhoneRoutine());
-        }
-    }
-
-    private void StartPC() {
-        RunRoutineFromLua(CoUtils.TaskAsRoutine(MapOverlayUI.Instance().pcSystem.DoMenuAsync()));
-    }
-
-    private void SetNews(DynValue keyLua) {
-        MapOverlayUI.Instance().pcSystem.SetNewsModel(IndexDatabase.Instance().PCNews.GetData(keyLua.String));
-    }
-
-    private void SetSlideshow(DynValue keyLua) {
-        MapOverlayUI.Instance().pcSystem.SetSlideshowModel(IndexDatabase.Instance().PCSlideshows.GetData(keyLua.String));
-    }
-
     private void Diag(DynValue dirLua) {
         OrthoDir dir = OrthoDirExtensions.Parse(dirLua.String);
         RunRoutineFromLua(Global.Instance().Maps.Avatar.Event.DiagRoutine(dir));
@@ -298,56 +217,5 @@ public class LuaCutsceneContext : LuaContext {
 
     private void SetSpeedMult(DynValue multLua) {
         Global.Instance().Maps.Avatar.Event.SpeedMult = (float) multLua.Number;
-    }
-
-    private void SwitchToSelectMode() {
-        MapOverlayUI.Instance().bigPhone.SwitchToSelectMode();
-    }
-
-    private void ForceConversation(DynValue clientLua) {
-        var convo = Global.Instance().Messenger.GetConversation(clientLua.String);
-        RunRoutineFromLua(CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.ShowConversation(convo)));
-    }
-
-    private void PreviewMessage(DynValue clientLua, DynValue textLua) {
-        var client = Global.Instance().Messenger.GetClient(clientLua.String);
-        var convo = Global.Instance().Messenger.GetConversation(client);
-        convo.ForcePreview(textLua.String);
-    }
-
-    private void PanPhone() {
-        MapOverlayUI.Instance().bigPhone.gameObject.transform.DOLocalMove(new Vector3(-410, 0), 1.0f).Play();
-    }
-
-    private void PlayEnding() {
-        UnityEngine.Object.FindObjectOfType<EndingView>().PlayEnding();
-    }
-
-    private void ClearConversations() {
-        Global.Instance().Messenger.Clear();
-    }
-
-    private void GoToFinale() {
-        Global.Instance().StartCoroutine(GoToFinaleRoutine());
-        Global.Instance().Maps.Avatar.PauseInput();
-    }
-
-    private IEnumerator GoToFinaleRoutine() {
-        TransitionData data = IndexDatabase.Instance().Transitions.GetData("default");
-        var fadeImage = Global.Instance().Maps.Camera.GetComponent<FadeImageEffect>();
-        yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
-        Global.Instance().Maps.Avatar.transform.SetParent(null);
-        UnityEngine.Object.DontDestroyOnLoad(Global.Instance().Maps.Avatar.gameObject);
-        Global.Instance().Maps.Avatar.transform.position = new Vector3(-100, 0, 0);
-        SceneManager.LoadScene("Ending");
-    }
-
-    private void ShowVHS(DynValue showBool) {
-        var vhs = UnityEngine.Object.FindObjectOfType<VcrSystem>();
-        if (showBool.Boolean) {
-            Global.Instance().StartCoroutine(vhs.PlayRoutine());
-        } else {
-            Global.Instance().StartCoroutine(vhs.HideRoutine());
-        }
     }
 }

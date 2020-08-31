@@ -49,18 +49,14 @@ public class MapManager : MonoBehaviour {
     public IEnumerator NewGameRoutine(FadeImageEffect fade) {
         IsTransitioning = true;
         TransitionData data = IndexDatabase.Instance().Transitions.GetData("fade_long");
-        Global.Instance().Messenger.SetNextScript("y!sms/1_01", true);
-        Global.Instance().Messenger.SetNextScript("bell/bell", true);
-        Global.Instance().Data.SetSwitch("nighttime", true);
-        Global.Instance().Audio.PlayBGM("nighttime");
+        //Global.Instance().Data.SetSwitch("nighttime", true);
+        //Global.Instance().Audio.PlayBGM("nighttime");
         yield return SceneManager.LoadSceneAsync("Map2D");
-        MapOverlayUI.Instance().pcSystem.SetNewsModel(IndexDatabase.Instance().PCNews.GetData("day1"));
-        Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.East);
+        //Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.East);
         Avatar.PauseInput();
         var fadeImage = Camera.GetComponent<FadeImageEffect>();
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeInTag), true, 3.0f);
-        yield return CoUtils.RunTween(MapOverlayUI.Instance().miniPhone.transform.DOLocalMoveY(0.0f, 1.0f));
         IsTransitioning = false;
         Avatar.UnpauseInput();
     }

@@ -11,6 +11,7 @@ public class AlphaProximityComponent : MonoBehaviour {
     public float maxDist = 5.0f;
     
     void Update() {
+        if (anchor == null) anchor = Global.Instance().Maps.Avatar.Event;
         float d = Vector3.Distance(anchor.PositionPx, Global.Instance().Maps.Avatar.GetComponent<MapEvent>().PositionPx);
         float a = (Mathf.Clamp(d, minDist, maxDist) - minDist) / (maxDist - minDist);
         a = a * (maxAlpha - minAlpha) + minAlpha;

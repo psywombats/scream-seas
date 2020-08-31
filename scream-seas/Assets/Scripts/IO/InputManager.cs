@@ -14,7 +14,6 @@ public class InputManager : MonoBehaviour {
         Menu,
         Cancel,
         Debug,
-        Phune,
         Quit
     };
 
@@ -44,7 +43,6 @@ public class InputManager : MonoBehaviour {
         keybinds[Command.Cancel] = new List<KeyCode>(new[] { KeyCode.B, KeyCode.X, KeyCode.Backspace });
         keybinds[Command.Debug] = new List<KeyCode>(new[] { KeyCode.F9 });
         keybinds[Command.Menu] = new List<KeyCode>(new[] { KeyCode.Escape });
-        keybinds[Command.Phune] = new List<KeyCode>(new[] { KeyCode.Tab });
         keybinds[Command.Quit] = new List<KeyCode>(new[] { KeyCode.Q });
         fastKeys = new List<KeyCode>(new[] { KeyCode.LeftControl, KeyCode.RightControl, KeyCode.Space, KeyCode.Z });
 

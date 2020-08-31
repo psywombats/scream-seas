@@ -18,9 +18,4 @@ public class MapOverlayUI : MonoBehaviour {
     }
 
     public Textbox textbox;
-    public BigPhoneComponent bigPhone;
-    public BigPhoneComponent foreignPhone;
-    public PhoneComponent miniPhone;
-    public PhoneSystem phoneSystem;
-    public PCSystem pcSystem;
 }

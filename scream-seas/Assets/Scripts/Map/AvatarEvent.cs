@@ -73,9 +73,6 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
                     case InputManager.Command.Confirm:
                         Interact();
                         return true;
-                    case InputManager.Command.Phune:
-                        StartCoroutine(PhoneRoutine());
-                        return true;
                     case InputManager.Command.Menu:
                         Global.Instance().StartCoroutine(FindObjectOfType<PauseView>().MenuRoutine());
                         return true;
@@ -180,17 +177,6 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
         
         return true;
     }
-    public static IEnumerator PhoneRoutine() {
-        if (Global.Instance().Data.GetSwitch("disable_phone") && !Global.Instance().Data.GetSwitch("stop_spam")) yield break;
-        if (Global.Instance().Maps.Avatar != null) Global.Instance().Maps.Avatar.PauseInput();
-        yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
-        yield return CoUtils.TaskAsRoutine(MapOverlayUI.Instance().bigPhone.DoMenu());
-        if (MapOverlayUI.Instance().phoneSystem.IsFlipped) {
-            yield return MapOverlayUI.Instance().phoneSystem.FlipRoutine();
-        }
-        if (Global.Instance().Maps.Avatar != null) Global.Instance().Maps.Avatar.UnpauseInput();
-    }
-
 
     private IEnumerator OnStepStartRoutine() {
         bool trans = Map.HasTilePropertyAt(Event.Position, tile => tile != null ? tile.IsTransparent : false);

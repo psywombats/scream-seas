@@ -47,6 +47,18 @@ public class TmxImporter : CustomTmxImporter {
                         // doll.Renderer.material = materials.ForegroundMaterial;
                         doll.transform.SetParent(mapEvent.transform);
                         chara.Doll = doll;
+                        if (mapEvent.GetProperty("proximity") != null) {
+                            if (doll.Renderer.GetComponent<AlphaProximityComponent>() == null) {
+                                doll.Renderer.gameObject.AddComponent<AlphaProximityComponent>();
+                            }
+                            var prox = mapEvent.GetProperty("proximity").ToFloat();
+                            var alphaComponent = doll.Renderer.GetComponent<AlphaProximityComponent>();
+                            alphaComponent.minDist = prox;
+                            alphaComponent.maxDist = prox + 0.25f;
+                            alphaComponent.minAlpha = 1.0f;
+                            alphaComponent.maxAlpha = 0.0f;
+                            alphaComponent.anchor = mapEvent;
+                        }
                     } else {
                         chara = mapEvent.GetComponent<CharaEvent>();
                         doll = chara.Doll;

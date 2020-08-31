@@ -70,7 +70,6 @@ public abstract class GenericSelector : MonoBehaviour {
                     if (!leavePointerEnabled) TurnOffPointer();
                     completion.TrySetResult(CodeMenu);
                     break;
-                case InputManager.Command.Phune:
                 case InputManager.Command.Cancel:
                     Global.Instance().Input.RemoveListener(ListenerId);
                     canceled = true;
