@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 public class MapManager : MonoBehaviour {
 
@@ -12,6 +11,7 @@ public class MapManager : MonoBehaviour {
 
     public Map ActiveMap { get; private set; }
     public AvatarEvent Avatar { get; set; }
+    public MapEvent Chaser { get; set; }
 
     public bool IsTransitioning { get; private set; }
 
@@ -129,6 +129,10 @@ public class MapManager : MonoBehaviour {
         if (facing != null) {
             Avatar.Chara.Facing = facing.GetValueOrDefault(OrthoDir.North);
         }
+
+        Global.Instance().Data.SetSwitch("chaser_spawning", false);
+        Global.Instance().Data.SetSwitch("chaser_active", false);
+        Global.Instance().Maps.Chaser = null;
 
         if (map != ActiveMap) {
             if (ActiveMap != null) {

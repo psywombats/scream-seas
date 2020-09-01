@@ -393,6 +393,14 @@
                 "y": 3996.9540873460255
             }
         },
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/AAAAA.tmx": {
+            "scale": 1.2526676829268293,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 312.13386066321874,
+                "y": 120.54274414359598
+            }
+        },
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx": {
             "scale": 1.325076219512195,
             "selectedLayer": 0,
@@ -405,7 +413,7 @@
             "scale": 0.5720274390243902,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 781.4310459693538,
+                "x": 674.7928047968022,
                 "y": 279.7068620919387
             }
         },
@@ -1685,6 +1693,12 @@
                 "y": 119.53350260360632
             }
         },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tilesets/lower.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tilesets/upper.tsx": {
+            "scaleInDock": 1
+        },
         "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/tower/f01.tmx": {
             "scale": 1.5,
             "selectedLayer": 2,
@@ -2809,7 +2823,7 @@
             "scale": 1.1634973404255318,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 344.2208126178639,
+                "x": 344.6505514600835,
                 "y": 376.4512257843306
             }
         },
@@ -3982,11 +3996,11 @@
             }
         },
         "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx": {
-            "scale": 1.4872713414634144,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 311.98073079485476,
-                "y": 120.35463537129094
+                "x": 170.5,
+                "y": 117.5
             }
         },
         "scream-seas/Assets/Resources/RawMaps/BasicBitch.tmx": {
@@ -4062,6 +4076,9 @@
     "project": "maps.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
+        "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hq01.tmx",
         "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
         "scream-seas/Assets/Resources/RawMaps/Example.tmx",
         "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
@@ -4070,9 +4087,7 @@
         "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
         "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
-        "scream-seas/Assets/Resources/RawMaps/RoomSample.tmx"
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",

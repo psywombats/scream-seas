@@ -16,6 +16,6 @@ public class MapOverlayUI : MonoBehaviour {
         }
         return _instance;
     }
-
-    public Textbox textbox;
+    
+    public NVLComponent nvl;
 }

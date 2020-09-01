@@ -2,8 +2,6 @@
 using System.Collections;
 using System;
 using MoonSharp.Interpreter;
-using DG.Tweening;
-using UnityEngine.SceneManagement;
 
 public class LuaCutsceneContext : LuaContext {
 
@@ -14,9 +12,6 @@ public class LuaCutsceneContext : LuaContext {
             Global.Instance().Maps.Avatar.PauseInput();
         }
         yield return base.RunRoutine(script, canBlock);
-        if (MapOverlayUI.Instance().textbox.isDisplaying) {
-            yield return MapOverlayUI.Instance().textbox.DisableRoutine();
-        }
         if (canBlock && Global.Instance().Maps.Avatar != null) {
             Global.Instance().Maps.Avatar.UnpauseInput();
         }
@@ -28,15 +23,7 @@ public class LuaCutsceneContext : LuaContext {
     }
 
     public override void RunRoutineFromLua(IEnumerator routine) {
-        if (MapOverlayUI.Instance().textbox.isDisplaying) {
-            // MapOverlayUI.Instance().textbox.MarkHiding();
-            base.RunRoutineFromLua(CoUtils.RunSequence(new IEnumerator[] {
-                MapOverlayUI.Instance().textbox.DisableRoutine(),
-                routine,
-            }));
-        } else {
             base.RunRoutineFromLua(routine);
-        }
     }
 
     public void RunTextboxRoutineFromLua(IEnumerator routine) {
@@ -57,6 +44,8 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["playSound"] = (Action<DynValue>)PlaySound;
         lua.Globals["sceneSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
         lua.Globals["face"] = (Action<DynValue, DynValue>)Face;
+        lua.Globals["spawnChaser"] = (Action<DynValue, DynValue>)SpawnChaser;
+        lua.Globals["wipe"] = (Action)Wipe;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
@@ -65,8 +54,13 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_ladder"] = (Action<DynValue, DynValue>)Ladder;
         lua.Globals["cs_path"] = (Action<DynValue, DynValue, DynValue, DynValue>)Path;
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
-        lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
+        //lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_awaitBGMLoad"] = (Action)AwaitBGM;
+        lua.Globals["cs_enterNVL"] = (Action)EnterNVL;
+        lua.Globals["cs_exitNVL"] = (Action)ExitNVL;
+        lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
+        lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
+        lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -99,15 +93,15 @@ public class LuaCutsceneContext : LuaContext {
         RunRoutineFromLua(Global.Instance().Audio.FadeOutRoutine((float)seconds.Number));
     }
 
-    private void Speak(DynValue speaker, DynValue text) {
-        var speakerString = speaker.IsNil() ? null : speaker.String;
-        var textString = text.IsNil() ? null : text.String;
-        if (speaker.String.Contains(":")) {
-            textString = speakerString.Split(':')[1].Substring(2);
-            speakerString = speakerString.Split(':')[0];
-        }
-        RunTextboxRoutineFromLua(MapOverlayUI.Instance().textbox.SpeakRoutine(speakerString, textString));
-    }
+    //private void Speak(DynValue speaker, DynValue text) {
+    //    var speakerString = speaker.IsNil() ? null : speaker.String;
+    //    var textString = text.IsNil() ? null : text.String;
+    //    if (speaker.String.Contains(":")) {
+    //        textString = speakerString.Split(':')[1].Substring(2);
+    //        speakerString = speakerString.Split(':')[0];
+    //    }
+    //    RunTextboxRoutineFromLua(MapOverlayUI.Instance().textbox.SpeakRoutine(speakerString, textString));
+    //}
 
     private void Walk(DynValue eventLua, DynValue steps, DynValue directionLua, DynValue waitLua) {
         if (eventLua.Type == DataType.String) {
@@ -217,5 +211,74 @@ public class LuaCutsceneContext : LuaContext {
 
     private void SetSpeedMult(DynValue multLua) {
         Global.Instance().Maps.Avatar.Event.SpeedMult = (float) multLua.Number;
+    }
+
+    private void SpawnChaser(DynValue targetLua, DynValue delayLua) {
+        Global.Instance().StartCoroutine(SpawnChaserRoutine(targetLua.String, delayLua.Number));
+    }
+    private IEnumerator SpawnChaserRoutine(string targetName, double delay) {
+        if (Global.Instance().Data.GetSwitch("chaser_spawning")) {
+            yield break;
+        }
+        Global.Instance().Data.SetSwitch("chaser_spawning", true);
+
+        var map = Global.Instance().Maps.ActiveMap;
+        var target = map.GetEventNamed(targetName);
+        Global.Instance().Data.SetVariable("chaser_x", (int) target.transform.position.x);
+        Global.Instance().Data.SetVariable("chaser_y", (int) target.transform.position.y);
+
+        yield return CoUtils.Wait((float) delay);
+        if (!Global.Instance().Data.GetSwitch("chaser_spawning")) {
+            yield break;
+        }
+        var chaser = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Prefabs/Chaser")).GetComponent<MapEvent>();
+        chaser.transform.SetParent(map.objectLayer.transform, false);
+
+        chaser.SetPosition(target.Position);
+        Global.Instance().Data.SetSwitch("chaser_active", true);
+        Global.Instance().Maps.Chaser = chaser;
+    }
+
+    public void EnterNVL() {
+        RunRoutineFromLua(EnterNVLRoutine());
+    }
+    private IEnumerator EnterNVLRoutine() {
+        yield return MapOverlayUI.Instance().nvl.ShowRoutine();
+    }
+
+    public void ExitNVL() {
+        RunRoutineFromLua(ExitNVLRoutine());
+    }
+    private IEnumerator ExitNVLRoutine() {
+        yield return MapOverlayUI.Instance().nvl.HideRoutine();
+    }
+
+    public void Speak(DynValue speakerNameLua, DynValue messageLua) {
+        var speaker = IndexDatabase.Instance().Speakers.GetData(speakerNameLua.String);
+        RunRoutineFromLua(SpeakRoutine(speaker, messageLua.String));
+    }
+    private IEnumerator SpeakRoutine(SpeakerData speaker, string message) {
+        yield return MapOverlayUI.Instance().nvl.SpeakRoutine(speaker, message);
+    }
+
+    public void Enter(DynValue speakerNameLua, DynValue slotLua) {
+        var speaker = IndexDatabase.Instance().Speakers.GetData(speakerNameLua.String);
+        var slot = slotLua.String;
+        RunRoutineFromLua(EnterRoutine(speaker, slot));
+    }
+    private IEnumerator EnterRoutine(SpeakerData speaker, string slot) {
+        yield return MapOverlayUI.Instance().nvl.EnterRoutine(speaker, slot);
+    }
+
+    public void Exit(DynValue speakerNameLua) {
+        var speaker = IndexDatabase.Instance().Speakers.GetData(speakerNameLua.String);
+        RunRoutineFromLua(ExitRoutine(speaker));
+    }
+    private IEnumerator ExitRoutine(SpeakerData speaker) {
+        yield return MapOverlayUI.Instance().nvl.ExitRoutine(speaker);
+    }
+
+    public void Wipe() {
+        MapOverlayUI.Instance().nvl.Wipe();
     }
 }
