@@ -1,5 +1,5 @@
 {
-    "activeFile": "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
+    "activeFile": "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
     "expandedProjectPaths": [
         "scream-seas/Assets/Resources/RawMaps"
     ],
@@ -3999,8 +3999,8 @@
             "scale": 2,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 170.5,
-                "y": 117.5
+                "x": 193,
+                "y": 116
             }
         },
         "scream-seas/Assets/Resources/RawMaps/BasicBitch.tmx": {
@@ -4071,11 +4071,13 @@
     "map.width": 10,
     "openFiles": [
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx"
+        "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx"
     ],
     "project": "maps.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
+        "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
         "C:/Users/aking_2/saga/saga-unity/Assets/Resources/Maps/world3.5/hq01.tmx",
@@ -4084,9 +4086,7 @@
         "scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
         "scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx",
         "scream-seas/Assets/Resources/RawMaps/BasicBitch.tmx",
-        "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
         "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx"
     ],
     "tileset.embedInMap": false,

@@ -61,6 +61,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
         lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
+        lua.Globals["cs_setBG"] = (Action<DynValue>)SetBG;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -276,6 +277,15 @@ public class LuaCutsceneContext : LuaContext {
     }
     private IEnumerator ExitRoutine(SpeakerData speaker) {
         yield return MapOverlayUI.Instance().nvl.ExitRoutine(speaker);
+    }
+
+    public void SetBG(DynValue bgLua) {
+        var bg = IndexDatabase.Instance().Backgrounds.GetData(bgLua.String);
+        RunRoutineFromLua(SetBGRoutine(bg));
+
+    }
+    private IEnumerator SetBGRoutine(BackgroundData background) {
+        yield return MapOverlayUI.Instance().nvl.SetBGRoutine(background.bg);
     }
 
     public void Wipe() {

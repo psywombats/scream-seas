@@ -9,6 +9,7 @@ public class IndexDatabase : ScriptableObject {
     public BGMIndexData BGM;
     public FieldSpriteIndexData FieldSprites;
     public SpeakerIndexData Speakers;
+    public BackgroundIndexData Backgrounds;
 
     public static IndexDatabase Instance() {
         return Resources.Load<IndexDatabase>("Database/Database");

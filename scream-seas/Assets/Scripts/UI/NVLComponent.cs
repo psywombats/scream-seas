@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NVLComponent : MonoBehaviour {
+
+    private static float bgTime = 0.5f;
 
     public PortraitComponent slotA;
     public PortraitComponent slotB;
@@ -14,6 +17,7 @@ public class NVLComponent : MonoBehaviour {
     public ExpanderComponent backer;
     public LineAutotyper text;
     public CanvasGroup fader;
+    public Image background;
 
     public void Wipe() {
         text.Clear();
@@ -22,9 +26,11 @@ public class NVLComponent : MonoBehaviour {
     public IEnumerator ShowRoutine() {
         backer.Hide();
         fader.alpha = 0.0f;
+        background.color = new Color(1, 1, 1, 0);
         foreach (var portrait in GetPortraits()) {
             portrait.Clear();
         }
+        StartCoroutine(CoUtils.RunTween(background.DOColor(new Color(1, 1, 1, 1), bgTime)));
         yield return backer.ShowRoutine();
         text.Clear();
         Wipe();
@@ -39,7 +45,18 @@ public class NVLComponent : MonoBehaviour {
         }
         routines.Add(backer.HideRoutine());
         routines.Add(CoUtils.RunTween(fader.DOFade(0.0f, backer.duration)));
+        routines.Add(CoUtils.RunTween(background.DOColor(new Color(1, 1, 1, 0), bgTime)));
         yield return CoUtils.RunParallel(routines.ToArray(), this);
+    }
+
+    public IEnumerator SetBGRoutine(Sprite bg) {
+        if (background.color.a > 0) {
+            yield return StartCoroutine(CoUtils.RunTween(background.DOColor(new Color(0.0f, 0.0f, 0.0f, 1.0f), bgTime)));
+            background.overrideSprite = bg;
+            yield return StartCoroutine(CoUtils.RunTween(background.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), bgTime)));
+        } else {
+            background.overrideSprite = bg;
+        }
     }
 
     public IEnumerator EnterRoutine(SpeakerData speaker, string slot) {
