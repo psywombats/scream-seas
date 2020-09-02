@@ -41,6 +41,7 @@ public class TitleComponent : MonoBehaviour {
         StartCoroutine(Global.Instance().Audio.FadeOutRoutine(3.0f));
         TransitionData data = IndexDatabase.Instance().Transitions.GetData("fade_long");
         yield return fade.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag));
+        yield return CoUtils.Wait(3.0f);
         Global.Instance().StartCoroutine(Global.Instance().Maps.NewGameRoutine(fade));
     }
 }

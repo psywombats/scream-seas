@@ -88,7 +88,7 @@ public class NVLComponent : MonoBehaviour {
         }
 
         string toType;
-        if (portrait != null) {
+        if (speaker.Key != "????") {
             toType = "\"" + message + "\"";
         } else {
             toType = message + "";

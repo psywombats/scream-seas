@@ -46,6 +46,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["face"] = (Action<DynValue, DynValue>)Face;
         lua.Globals["spawnChaser"] = (Action<DynValue, DynValue>)SpawnChaser;
         lua.Globals["wipe"] = (Action)Wipe;
+        lua.Globals["clear"] = (Action)Wipe;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
