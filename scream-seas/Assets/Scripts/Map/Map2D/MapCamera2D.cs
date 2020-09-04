@@ -7,6 +7,7 @@ public class MapCamera2D : MapCamera {
     public float offsetY = 1;
     public GameObject panorama;
     public float panGive = 3.1f, panGiveY;
+    public Camera cam;
 
     public void LateUpdate() {
         ManualUpdate();
@@ -15,6 +16,10 @@ public class MapCamera2D : MapCamera {
     private Vector3 targetPos;
     public override void ManualUpdate() {
         base.ManualUpdate();
+
+        if (target == null) {
+            target = Global.Instance().Maps.Avatar?.Event;
+        }
 
         var cam = GetCameraComponent();
         // assume the target is moving pixel-perfect (w/e)
@@ -26,10 +31,10 @@ public class MapCamera2D : MapCamera {
         if (minX != 0 && x < minX) x = minX;
         if (maxX != 0 && x > maxX) x = maxX;
 
-        cam.transform.position = new Vector3(
+        transform.position = new Vector3(
             x,
             y,
-            cam.transform.position.z);
+            transform.position.z);
 
         if (panorama != null) {
             var t = (x - minX) / (maxX - minX);
@@ -39,5 +44,9 @@ public class MapCamera2D : MapCamera {
             }
             panorama.transform.localPosition = new Vector3(panGive * -t, t2 != 0 ? panGiveY * t2 : panorama.transform.localPosition.y, panorama.transform.localPosition.z);
         }
+    }
+
+    public override Camera GetCameraComponent() {
+        return cam;
     }
 }

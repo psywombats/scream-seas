@@ -19,6 +19,7 @@ public class Oscillator : MonoBehaviour {
     public OscillationMovementMode movementMode = OscillationMovementMode.Sinusoidal;
     public OscillationOffsetMode offsetMode = OscillationOffsetMode.StartsAtMiddle;
     public bool scaleMode;
+    public bool roundTo16;
 
     private Vector3 originalPosition;
     private Vector3 originalScale;
@@ -40,7 +41,12 @@ public class Oscillator : MonoBehaviour {
         if (scaleMode) {
             gameObject.transform.localScale = originalScale + maxOffset * vectorMultiplier;
         } else {
-            gameObject.transform.localPosition = originalPosition + maxOffset * vectorMultiplier;
+            var offset = maxOffset * vectorMultiplier;
+            if (roundTo16) {
+                offset.x = Mathf.RoundToInt(offset.x * (16f * 6f)) / (16f * 6f);
+                offset.y = Mathf.RoundToInt(offset.y * (16f * 6f)) / (16f * 6f);
+            }
+            gameObject.transform.localPosition = originalPosition + offset;
         }
     }
 

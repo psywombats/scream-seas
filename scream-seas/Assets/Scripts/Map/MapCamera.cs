@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(FadeImageEffect))]
 public class MapCamera : MonoBehaviour {
     
     public MapEvent target;
+
+    public FadeImageEffect fade;
 
     // these are read by sprites, not actually enforced by the cameras
     public bool billboardX;

@@ -54,7 +54,7 @@ public class MapManager : MonoBehaviour {
         yield return SceneManager.LoadSceneAsync("Map2D");
         //Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.East);
         Avatar.PauseInput();
-        var fadeImage = Camera.GetComponent<FadeImageEffect>();
+        var fadeImage = Camera.fade;
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeInTag), true, 3.0f);
         IsTransitioning = false;
@@ -70,10 +70,10 @@ public class MapManager : MonoBehaviour {
         }
         if (!isRaw) {
             var fadeIn = IndexDatabase.Instance().Fades.GetData(data.FadeInTag);
-            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeIn, false, mult);
+            yield return Camera.fade.FadeRoutine(fadeIn, false, mult);
             RawTeleport(mapName, location, facing);
             var fadeOut = IndexDatabase.Instance().Fades.GetData(data.FadeOutTag);
-            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeOut, true, mult);
+            yield return Camera.fade.FadeRoutine(fadeOut, true, mult);
         } else {
             RawTeleport(mapName, location, facing);
         }
@@ -90,10 +90,10 @@ public class MapManager : MonoBehaviour {
         }
         if (!isRaw) {
             var fadeIn = IndexDatabase.Instance().Fades.GetData(data.FadeInTag);
-            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeIn, false, mult);
+            yield return Camera.fade.FadeRoutine(fadeIn, false, mult);
             RawTeleport(mapName, targetEventName, facing);
             var fadeOut = IndexDatabase.Instance().Fades.GetData(data.FadeOutTag);
-            yield return Camera.GetComponent<FadeImageEffect>().FadeRoutine(fadeOut, true, mult);
+            yield return Camera.fade.FadeRoutine(fadeOut, true, mult);
         } else {
             RawTeleport(mapName, targetEventName, facing);
         }
@@ -183,7 +183,7 @@ public class MapManager : MonoBehaviour {
             map = child.gameObject.GetComponent<Map>();
         }
 
-        Camera.GetComponent<FadeImageEffect>().SnapFade();
+        Camera.fade.SnapFade();
         map.InternalName = mapName;
         return map;
     }

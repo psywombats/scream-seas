@@ -29,9 +29,8 @@ public class TitleComponent : MonoBehaviour {
     private IEnumerator TitleRoutine() {
         yield return Global.Instance().Input.ConfirmRoutine();
         currentAudio.DOFade(0.0f, camTime).Play();
-        newAudio.Play();
-        newAudio.DOFade(1.0f, camTime).Play();
         yield return CoUtils.RunTween(titleGroup.DOFade(0.0f, 1.0f));
+        newAudio.Play();
         cam.transform.DOMoveY(camY, camTime).Play();
         yield return CoUtils.RunTween(moon.DOFade(0.0f, moonTime));
         yield return CoUtils.RunTween(underlay.DOColor(Color.white, camTime - moonTime));

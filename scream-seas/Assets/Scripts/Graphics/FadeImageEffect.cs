@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 public class FadeImageEffect : MonoBehaviour {
-
+    
     public Shader shader;
 
     private FadeData currentFade;
