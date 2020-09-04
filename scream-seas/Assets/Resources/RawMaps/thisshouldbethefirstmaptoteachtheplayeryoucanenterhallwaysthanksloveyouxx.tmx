@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="22" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="17">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="22" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="21">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="22" height="15">
   <properties>
@@ -90,6 +90,24 @@
     <property name="lighting" value="hallway"/>
    </properties>
   </object>
+  <object id="17" name="ArrowNE" type="Event" x="288" y="160" width="16" height="16">
+   <properties>
+    <property name="appearance" value="arrow_diag"/>
+    <property name="face" value="NORTH"/>
+    <property name="proximity" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="18" name="tele" type="Event" x="304" y="128" width="16" height="16">
+   <properties>
+    <property name="onCollide" value="targetTele('Decky', 'door1', 'SOUTH')"/>
+   </properties>
+  </object>
+  <object id="19" name="tele" type="Event" x="288" y="112" width="16" height="16">
+   <properties>
+    <property name="onCollide" value="targetTele('Decky', 'door1', 'SOUTH')"/>
+   </properties>
+  </object>
+  <object id="20" name="stair" type="Target" x="272" y="128" width="16" height="16"/>
  </objectgroup>
  <layer id="7" name="Foreground" width="22" height="15">
   <data encoding="base64">

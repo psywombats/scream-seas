@@ -80,9 +80,7 @@ public class CharaEvent : MonoBehaviour {
     }
 
     public void UpdateEnabled(bool enabled) {
-        foreach (SpriteRenderer renderer in Renderers) {
-            renderer.enabled = enabled;
-        }
+        Doll.Renderer.enabled = enabled;
         UpdateAppearance();
     }
 

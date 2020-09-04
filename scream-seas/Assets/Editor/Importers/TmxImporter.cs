@@ -75,6 +75,7 @@ public class TmxImporter : CustomTmxImporter {
                         chara = mapEvent.gameObject.AddComponent<CharaEvent>();
                         var dollObject = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(DollPrefabPath));
                         doll = dollObject.GetComponent<Doll>();
+                        doll.SetRenderer(tmxObject.m_Type == "Event");
                         // doll.Renderer.material = materials.ForegroundMaterial;
                         doll.transform.SetParent(mapEvent.transform);
                         chara.Doll = doll;
@@ -93,11 +94,11 @@ public class TmxImporter : CustomTmxImporter {
                     } else {
                         chara = mapEvent.GetComponent<CharaEvent>();
                         doll = chara.Doll;
+                        doll.SetRenderer(tmxObject.m_Type == "Event");
                     }
 
                     chara.alwaysAnimates = tmxObject.m_Type == "Event";
                     doll.transform.localPosition = Vector3.zero;
-                    doll.SetRenderer(tmxObject.m_Type == "Event");
 
                     if (IndexDatabase.Instance().FieldSprites.GetDataOrNull(appearance) != null) {
                         // it's a literal

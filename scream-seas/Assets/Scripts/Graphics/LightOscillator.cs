@@ -31,7 +31,8 @@ public class LightOscillator : Oscillator {
         float vectorMult = CalcVectorMult();
         Light light = GetComponent<Light>();
 
-        if (Random.Range(0.0f, 1.0f) < flickerChance) {
+
+        if (flickerChance > 0 && Random.Range(0.0f, 1.0f) < flickerChance) {
             light.intensity = originalIntensity + flickerIntensity;
             light.range = originalRange + flickerRange;
             light.color = flickerColor;

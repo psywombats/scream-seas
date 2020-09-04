@@ -23,3 +23,4 @@ exitNVL()
 
 playBGM('belowdeck')
 targetTele('YourCabin', 'warp')
+setSwitch('begin_night_1', true)

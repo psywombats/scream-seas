@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="42" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="33">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="42" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="42" height="15">
   <properties>
@@ -102,17 +102,10 @@
     <property name="proximity" type="float" value="2"/>
    </properties>
   </object>
-  <object id="22" name="ArrowUp" type="Event" x="384" y="160" width="16" height="16">
+  <object id="22" name="Locked" type="Event" x="384" y="160" width="16" height="16">
    <properties>
-    <property name="appearance" value="arrow"/>
-    <property name="face" value="NORTH"/>
-    <property name="proximity" type="float" value="2"/>
-   </properties>
-  </object>
-  <object id="23" name="ArrowUp" type="Event" x="400" y="160" width="16" height="16">
-   <properties>
-    <property name="appearance" value="arrow"/>
-    <property name="face" value="NORTH"/>
+    <property name="appearance" value="locked"/>
+    <property name="hide" value="return getSwitch('item_keyring')"/>
     <property name="proximity" type="float" value="2"/>
    </properties>
   </object>
@@ -157,11 +150,53 @@
   </object>
   <object id="31" name="tele" type="Event" x="384" y="112" width="32" height="16">
    <properties>
+    <property name="hide" value="return not getSwitch('item_keyring')"/>
     <property name="onCollide" value="targetTele('RadioRoom', 'door')"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
   <object id="32" name="radio" type="Target" x="384" y="128" width="16" height="16"/>
+  <object id="33" name="shawn" type="Character" x="368" y="128" width="16" height="16">
+   <properties>
+    <property name="appearance" value="shawn"/>
+    <property name="face" value="WEST"/>
+    <property name="hide" value="return getSwitch('night1_hall')"/>
+   </properties>
+  </object>
+  <object id="34" name="ari" type="Character" x="336" y="128" width="16" height="16">
+   <properties>
+    <property name="appearance" value="ari"/>
+    <property name="face" value="EAST"/>
+    <property name="hide" value="return getSwitch('night1_hall')"/>
+   </properties>
+  </object>
+  <object id="35" name="trigger" type="Event" x="432" y="128" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('night1_hall')"/>
+    <property name="onCollide" value="play('night1_hall')"/>
+   </properties>
+  </object>
+  <object id="37" name="Locked" type="Event" x="400" y="160" width="16" height="16">
+   <properties>
+    <property name="appearance" value="locked"/>
+    <property name="hide" value="return getSwitch('item_keyring')"/>
+    <property name="proximity" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="38" name="Unlocked" type="Event" x="384" y="160" width="16" height="16">
+   <properties>
+    <property name="appearance" value="unlocked"/>
+    <property name="hide" value="return not getSwitch('item_keyring')"/>
+    <property name="proximity" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="39" name="Unlocked" type="Event" x="400" y="160" width="16" height="16">
+   <properties>
+    <property name="appearance" value="unlocked"/>
+    <property name="hide" value="return not getSwitch('item_keyring')"/>
+    <property name="proximity" type="float" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="6" name="Foreground" width="42" height="15">
   <data encoding="base64">

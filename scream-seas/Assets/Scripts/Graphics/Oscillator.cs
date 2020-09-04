@@ -51,6 +51,10 @@ public class Oscillator : MonoBehaviour {
     }
 
     protected float CalcVectorMult() {
+        if (durationSeconds == 0.0f) {
+            return 1.0f;
+        }
+
         elapsed += Time.deltaTime;
         while (elapsed >= durationSeconds && durationSeconds > .02) {
             elapsed -= durationSeconds;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="17" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="13">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="17" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="14">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="17" height="15">
   <properties>
@@ -70,6 +70,13 @@
     <property name="appearance" value="arrow"/>
     <property name="face" value="SOUTH"/>
     <property name="proximity" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="13" name="keyring" type="Event" x="128" y="112" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('item_keyring')"/>
+    <property name="onInteract" value="play('pickup'); setSwitch('item_keyring', true)"/>
+    <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
  </objectgroup>
