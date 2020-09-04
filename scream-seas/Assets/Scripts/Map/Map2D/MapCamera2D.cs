@@ -17,6 +17,8 @@ public class MapCamera2D : MapCamera {
     public override void ManualUpdate() {
         base.ManualUpdate();
 
+        if (!track) return;
+
         if (target == null) {
             target = Global.Instance().Maps.Avatar?.Event;
         }

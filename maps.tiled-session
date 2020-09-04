@@ -1,5 +1,5 @@
 {
-    "activeFile": "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Decky.tmx",
+    "activeFile": "scream-seas/Assets/Resources/RawMaps/Decky.tmx",
     "expandedProjectPaths": [
         "scream-seas/Assets/Resources/RawMaps"
     ],
@@ -414,7 +414,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 321.6628914057295,
-                "y": 121.49766822118589
+                "y": 122.3717521652232
             }
         },
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx": {
@@ -4002,8 +4002,8 @@
             "scale": 2,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 466.75,
-                "y": 111
+                "x": 484,
+                "y": 119.5
             }
         },
         "scream-seas/Assets/Resources/RawMaps/BasicBitch.tmx": {
@@ -4031,11 +4031,11 @@
             }
         },
         "scream-seas/Assets/Resources/RawMaps/Black.tmx": {
-            "scale": 0.5720274390243902,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 455.39773484343766,
-                "y": 279.7068620919387
+                "x": 134,
+                "y": 41.333333333333314
             }
         },
         "scream-seas/Assets/Resources/RawMaps/CabinDos.tmx": {
@@ -4048,9 +4048,9 @@
         },
         "scream-seas/Assets/Resources/RawMaps/CabinUno.tmx": {
             "scale": 2.410625,
-            "selectedLayer": 4,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 136.68654394607205,
+                "x": 136.68654394607208,
                 "y": 120.30075187969925
             }
         },
@@ -4070,6 +4070,14 @@
                 "y": 91.64086687306502
             }
         },
+        "scream-seas/Assets/Resources/RawMaps/Decky.tmx": {
+            "scale": 2.410625,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 215.7116930256676,
+                "y": 183.769769250713
+            }
+        },
         "scream-seas/Assets/Resources/RawMaps/Example.tmx": {
             "scale": 4.519921875,
             "selectedLayer": 0,
@@ -4080,10 +4088,10 @@
         },
         "scream-seas/Assets/Resources/RawMaps/RadioRoom.tmx": {
             "scale": 1.7238541666666667,
-            "selectedLayer": 0,
+            "selectedLayer": 5,
             "viewCenter": {
                 "x": 241.029669466433,
-                "y": 120.6598586017282
+                "y": 119.49966765363467
             }
         },
         "scream-seas/Assets/Resources/RawMaps/RandomRoom.tmx": {
@@ -4122,15 +4130,15 @@
             "scale": 2.410625,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 136.68654394607208,
+                "x": 136.89395903551986,
                 "y": 120.30075187969925
             }
         },
         "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx": {
             "scale": 2.233016304347826,
-            "selectedLayer": 0,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 168.60602372984482,
+                "x": 168.60602372984485,
                 "y": 120.91268634012776
             }
         }
@@ -4148,23 +4156,23 @@
     "openFiles": [
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
         "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Decky.tmx"
+        "scream-seas/Assets/Resources/RawMaps/Decky.tmx"
     ],
     "project": "maps.tiled-project",
-    "property.type": "bool",
+    "property.type": "string",
     "recentFiles": [
         "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
         "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Decky.tmx",
-        "scream-seas/Assets/Resources/RawMaps/YourCabin.tmx",
-        "scream-seas/Assets/Resources/RawMaps/RandomRoom.tmx",
-        "scream-seas/Assets/Resources/RawMaps/CabinDos.tmx",
         "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
-        "scream-seas/Assets/Resources/RawMaps/CabinUno.tmx",
-        "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
-        "scream-seas/Assets/Resources/RawMaps/ScifiBitch.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Black.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Decky.tmx",
         "scream-seas/Assets/Resources/RawMaps/RadioRoom.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Example.tmx"
+        "scream-seas/Assets/Resources/RawMaps/BasicBitchTheSequel.tmx",
+        "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
+        "scream-seas/Assets/Resources/RawMaps/RandomRoom.tmx",
+        "scream-seas/Assets/Resources/RawMaps/YourCabin.tmx",
+        "scream-seas/Assets/Resources/RawMaps/CabinDos.tmx",
+        "scream-seas/Assets/Resources/RawMaps/CabinUno.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",

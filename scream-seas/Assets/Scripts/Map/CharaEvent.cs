@@ -8,14 +8,16 @@ using UnityEngine;
  */
 [DisallowMultipleComponent]
 [RequireComponent(typeof(FieldSpritesheetComponent))]
-public class CharaEvent : MonoBehaviour {
+public class CharaEvent : MonoBehaviour { 
+
+    public static bool disableStep = false;
     
     private const float DesaturationDuration = 0.5f;
     private const float StepsPerSecond = 4.0f;
 
     public Doll Doll;
 
-    [SerializeField] private bool alwaysAnimates = true;
+    public bool alwaysAnimates = false;
     
     private Vector2 lastPosition;
     private bool wasSteppingLastFrame;
@@ -124,6 +126,7 @@ public class CharaEvent : MonoBehaviour {
     }
 
     private bool IsSteppingThisFrame() {
+        if (disableStep) return false;
         Vector2 position = transform.position;
         Vector2 delta = position - lastPosition;
         return alwaysAnimates || (delta.sqrMagnitude > 0 && delta.sqrMagnitude < Map.PxPerTile) || Parent.Tracking ||

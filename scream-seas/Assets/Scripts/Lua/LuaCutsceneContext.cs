@@ -63,6 +63,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
         lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
         lua.Globals["cs_setBG"] = (Action<DynValue>)SetBG;
+        lua.Globals["cs_shanty"] = (Action)Shanty;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -291,5 +292,58 @@ public class LuaCutsceneContext : LuaContext {
 
     public void Wipe() {
         MapOverlayUI.Instance().nvl.Wipe();
+    }
+
+    private void Shanty() {
+        RunRoutineFromLua(ShantyRoutine());
+    }
+    private IEnumerator ShantyRoutine() {
+        yield return MapOverlayUI.Instance().shanty.StartRoutine();
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "If the ocean ever finds the haul",
+            "That's hidden in your chest",
+            "She'll return it to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "Well, I found a wayward soul",
+            "As they was driftin' far away",
+            "Well, I found a wayward soul",
+            "As they was driftin' far away",
+            "Lord, help me save their soul",
+            "Afore they go too far astray",
+            "And surrender to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "O Confiteor Deo",
+            "Let me tell thee what I know",
+            "O Confiteor Deo",
+            "Let me tell thee what I know",
+            "If thou deign to spare me life",
+            "Then I shall tell thee all I know",
+            "Pray return it to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "Well, I went and crossed me brother",
+            "Though he trust me with his life",
+            "Well, I went and crossed me brother",
+            "Though he trust me with his life",
+            "There'll be plenty time to think upon it",
+            "In the afterlife,",
+            "When I come home to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "If the ocean ever finds the haul",
+            "That's hidden in your chest",
+            "She'll return it to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.FinishRoutine();
     }
 }

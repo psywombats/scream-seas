@@ -5,6 +5,7 @@ public class MapCamera : MonoBehaviour {
     public MapEvent target;
 
     public FadeImageEffect fade;
+    public bool track = false;
 
     // these are read by sprites, not actually enforced by the cameras
     public bool billboardX;

@@ -23,6 +23,8 @@ public class FlickerProximityBehavior : MonoBehaviour {
             var chaserY = Global.Instance().Data.GetVariable("chaser_y");
             var target = new Vector3(chaserX, chaserY, Global.Instance().Maps.Avatar.transform.position.z);
             dist = (target - transform.position).magnitude;
+        } else {
+            return;
         }
        
         var ratio = Mathf.Clamp((dist - minDist) / (maxDist - minDist), 0, 1);

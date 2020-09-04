@@ -53,12 +53,15 @@ public class MapManager : MonoBehaviour {
         //Global.Instance().Audio.PlayBGM("nighttime");
         yield return SceneManager.LoadSceneAsync("Map2D");
         //Global.Instance().Maps.RawTeleport("Apartment/Apartment", "start", OrthoDir.East);
-        Avatar.PauseInput();
+        ActiveMap = FindObjectOfType<Map>();
+        Avatar = FindObjectOfType<AvatarEvent>();
+        var tweakavi = Avatar != null;
+        if (tweakavi) Avatar.PauseInput();
         var fadeImage = Camera.fade;
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeOutTag), false, 0.0f);
         yield return fadeImage.FadeRoutine(IndexDatabase.Instance().Fades.GetData(data.FadeInTag), true, 3.0f);
         IsTransitioning = false;
-        Avatar.UnpauseInput();
+        if (tweakavi) Avatar.UnpauseInput();
     }
 
     public IEnumerator TeleportRoutine(string mapName, Vector2Int location, OrthoDir? facing = null, bool isRaw = false) {
@@ -147,7 +150,9 @@ public class MapManager : MonoBehaviour {
             ActiveMap = map;
             ActiveMap.OnTeleportTo();
             camera = null;
-            Camera.target = Avatar.Event;
+            if (Camera.track) {
+                Camera.target = Avatar.Event;
+            }
             Global.Instance().Dispatch.Signal(EventTeleport, ActiveMap);
             Avatar.OnTeleport();
         }

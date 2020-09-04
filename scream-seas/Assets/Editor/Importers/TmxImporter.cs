@@ -78,7 +78,7 @@ public class TmxImporter : CustomTmxImporter {
                         // doll.Renderer.material = materials.ForegroundMaterial;
                         doll.transform.SetParent(mapEvent.transform);
                         chara.Doll = doll;
-                        if (mapEvent.GetProperty("proximity") != null) {
+                        if (mapEvent.GetProperty("proximity") != null && mapEvent.GetProperty("proximity").Length > 0) {
                             if (doll.Renderer.GetComponent<AlphaProximityComponent>() == null) {
                                 doll.Renderer.gameObject.AddComponent<AlphaProximityComponent>();
                             }
@@ -95,7 +95,9 @@ public class TmxImporter : CustomTmxImporter {
                         doll = chara.Doll;
                     }
 
+                    chara.alwaysAnimates = tmxObject.m_Type == "Event";
                     doll.transform.localPosition = Vector3.zero;
+                    doll.SetRenderer(tmxObject.m_Type == "Event");
 
                     if (IndexDatabase.Instance().FieldSprites.GetDataOrNull(appearance) != null) {
                         // it's a literal

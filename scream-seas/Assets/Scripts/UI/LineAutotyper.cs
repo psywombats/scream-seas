@@ -82,7 +82,7 @@ public class LineAutotyper : TextAutotyper {
 
             typingStartIndex = 0;
             var fullMessage = new StringBuilder();
-            for (var i = 0; i < lineCount; i += 1) {
+            for (var i = 0; i < fullLines; i += 1) {
                 if (i < fullLines - 1) {
                     typingStartIndex += lines[i].Length + 2; // +2 for \r\n
                 }

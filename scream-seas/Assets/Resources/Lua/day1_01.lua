@@ -1,4 +1,5 @@
 setBG('infirmary')
+playBGM('day1')
 
 enterNVL()
 enter('you', 'c')
@@ -15,9 +16,9 @@ speak('cy', "You got a name there, kiddo?")
 speak('you', "...")
 speak('cy', "Don't worry. You're safe here now, no matter what happened out there.")
 speak('you', "...")
-speak('cy', "Haa... Well, I imagine you've been through a hell of a time. You don't have to talk until you're ready.")
 clear()
 
+speak('cy', "Haa... Well, I imagine you've been through a hell of a time. You don't have to talk until you're ready.")
 enter('shawn', 'e')
 speak('shawn', "Cyyy! Listen up! Cy! Cy, we have company on the way!")
 exit('you')
