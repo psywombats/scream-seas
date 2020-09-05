@@ -123,6 +123,7 @@ public class LuaMapEvent {
     }
 
     public void stalk() {
+        if (CharaEvent.disableStalk) return;
         OrthoDir dir;
         var dist = (mapEvent.Position - Global.Instance().Maps.Avatar.Event.Position).magnitude;
         if (dist > 12) return;

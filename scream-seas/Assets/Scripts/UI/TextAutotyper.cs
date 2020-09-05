@@ -10,6 +10,8 @@ public class TextAutotyper : MonoBehaviour, IInputListener {
     [SerializeField] protected GameObject advanceArrow;
     [SerializeField] protected bool speedUpWhenHurried;
 
+    public bool mode2 = false;
+
     public int LinesTyped { get; private set; } = 0;
 
     protected int typingStartIndex = 0;
@@ -47,9 +49,11 @@ public class TextAutotyper : MonoBehaviour, IInputListener {
             int charsToShow = Mathf.FloorToInt(elapsed * charsPerSecond) + typingStartIndex;
             int cutoff = charsToShow > text.Length ? text.Length : charsToShow;
             textbox.text = text.Substring(0, cutoff);
-            textbox.text += "<color=#aa000000>";
-            textbox.text += text.Substring(cutoff);
-            textbox.text += "</color>";
+            if (!mode2) {
+                textbox.text += "<color=#aa000000>";
+                textbox.text += text.Substring(cutoff);
+                textbox.text += "</color>";
+            }
             yield return null;
 
             elapsed += Time.deltaTime;

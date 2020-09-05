@@ -102,6 +102,29 @@ public class MapManager : MonoBehaviour {
         }
         if (avatarExists) Avatar.UnpauseInput();
     }
+
+    public float ChaserSpawnsAt { get; private set; }
+    public IEnumerator SpawnChaserRoutine(Map map, int x, int y, float delay) {
+        Global.Instance().Data.SetVariable("chaser_x", x);
+        Global.Instance().Data.SetVariable("chaser_y", y);
+
+        Global.Instance().Data.SetSwitch("chaser_spawning", true);
+
+        Debug.Log("Going to spawn chaser at " + x + "," + y + " in " + delay + " on " + map.InternalName);
+        ChaserSpawnsAt = Time.time + delay;
+        yield return CoUtils.Wait(delay);
+        if (!Global.Instance().Data.GetSwitch("chaser_spawning") || map != ActiveMap) {
+            Debug.Log("Canceling spawn as active map " + map.InternalName + " is not " + ActiveMap.InternalName);
+            yield break;
+        }
+        var chaser = Instantiate(Resources.Load<GameObject>("Prefabs/Chaser")).GetComponent<MapEvent>();
+        chaser.transform.SetParent(ActiveMap.objectLayer.transform, false);
+
+        Debug.Log("Now spawning chaser at " + x + "," + y + " on " + map.InternalName);
+        chaser.SetPosition(new Vector2Int(x, y));
+        Global.Instance().Data.SetSwitch("chaser_active", true);
+        Global.Instance().Maps.Chaser = chaser;
+    }
     
     private void RawTeleport(string mapName, Vector2Int location, OrthoDir? facing = null) {
         Map newMapInstance = InstantiateMap(mapName);
@@ -128,13 +151,27 @@ public class MapManager : MonoBehaviour {
         } else {
             Avatar.transform.SetParent(map.objectLayer.transform, false);
         }
-        Avatar.GetComponent<MapEvent>().SetPosition(location);
+        var oldPos = Avatar.Event.Position;
+        Avatar.Event.SetPosition(location);
         if (facing != null) {
             Avatar.Chara.Facing = facing.GetValueOrDefault(OrthoDir.North);
         }
 
-        Global.Instance().Data.SetSwitch("chaser_spawning", false);
-        Global.Instance().Data.SetSwitch("chaser_active", false);
+        
+        if (Global.Instance().Data.GetSwitch("chaser_active") || Global.Instance().Data.GetSwitch("chaser_spawning")) {
+            var dist = 8.0f;
+            if (Global.Instance().Maps.Chaser != null) {
+                dist = (oldPos - Global.Instance().Maps.Chaser.Position).magnitude;
+            }
+            Debug.Log("Distance chaser was behind: " + dist);
+            if (dist < 2.0f) {
+                dist = 2.0f;
+            }
+            if (dist > 8) {
+                dist = 8.0f;
+            }
+            StartCoroutine(SpawnChaserRoutine(map, location.x, location.y, dist / 2.0f));
+        }
         Global.Instance().Maps.Chaser = null;
 
         if (map != ActiveMap) {

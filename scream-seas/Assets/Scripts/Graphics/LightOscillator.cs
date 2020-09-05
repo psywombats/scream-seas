@@ -28,9 +28,12 @@ public class LightOscillator : Oscillator {
     }
 
     public override void Update() {
+        if (Global.Instance().Data.GetSwitch("chaser_active") || Global.Instance().Data.GetSwitch("chaser_spawning")) {
+            return;
+        }
+
         float vectorMult = CalcVectorMult();
         Light light = GetComponent<Light>();
-
 
         if (flickerChance > 0 && Random.Range(0.0f, 1.0f) < flickerChance) {
             light.intensity = originalIntensity + flickerIntensity;

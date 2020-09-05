@@ -102,7 +102,7 @@
     <property name="onCollide" value="targetTele('Decky', 'door1', 'SOUTH')"/>
    </properties>
   </object>
-  <object id="19" name="tele" type="Event" x="288" y="112" width="16" height="16">
+  <object id="19" name="tele" type="Event" x="272" y="112" width="32" height="16">
    <properties>
     <property name="onCollide" value="targetTele('Decky', 'door1', 'SOUTH')"/>
    </properties>

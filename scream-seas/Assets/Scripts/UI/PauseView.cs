@@ -9,6 +9,7 @@ public class PauseView : MonoBehaviour {
     private LuaCutsceneContext lua = new LuaCutsceneContext();
 
     public IEnumerator MenuRoutine() {
+        CharaEvent.disableStalk = true;
         yield return CoUtils.RunTween(GetComponent<CanvasGroup>().DOFade(1.0f, 0.8f));
         Global.Instance().Input.PushListener("pause", (cmd, ev) => {
             if (ev != InputManager.Event.Up) return true;
@@ -30,5 +31,6 @@ public class PauseView : MonoBehaviour {
     public IEnumerator DieRoutine() {
         Global.Instance().Input.RemoveListener("pause");
         yield return CoUtils.RunTween(GetComponent<CanvasGroup>().DOFade(0.0f, 0.8f));
+        CharaEvent.disableStalk = false;
     }
 }

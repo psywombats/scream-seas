@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="15">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="18">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="30" height="15">
   <properties>
@@ -86,11 +86,15 @@
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
-  <object id="14" x="48" y="128" width="16" height="16">
+  <object id="15" name="chaser_spawn" type="Target" x="352" y="128" width="16" height="16"/>
+  <object id="16" name="trigger" type="Event" x="224" y="112" width="32" height="16">
    <properties>
-    <property name="onInteract" value="play('day1_08.lua')"/>
+    <property name="hide" value="return getSwitch('night1_chaser') or not getSwitch('night1_bridge')"/>
+    <property name="onInteract" value="play('night1_chaser')"/>
+    <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
+  <object id="17" name="restart" type="Target" x="112" y="128" width="16" height="16"/>
  </objectgroup>
  <layer id="7" name="Foreground" width="30" height="15" opacity="0.5">
   <data encoding="base64">

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ChaserComponent : MonoBehaviour {
 
@@ -17,6 +18,31 @@ public class ChaserComponent : MonoBehaviour {
         if (!@event.Tracking) {
             Stalk();
         }
+        @event = GetComponent<MapEvent>();
+        if (@event.Position == Global.Instance().Maps.Avatar.Event.Position && !going) {
+            going = true;
+            Global.Instance().StartCoroutine(GameOverRoutine());
+        }
+    }
+
+    private bool going = false;
+    private IEnumerator GameOverRoutine() {
+        Global.Instance().Maps.Avatar.PauseInput();
+        Global.Instance().Data.SetSwitch("chaser_active", false);
+        Global.Instance().Data.SetSwitch("chaser_spawning", false);
+        Global.Instance().Audio.PlaySFX("chaser_howl");
+        Global.Instance().Audio.PlayBGM("none");
+        string map;
+        if (!Global.Instance().Data.GetSwitch("day2")) {
+            map = "RadioRoom";
+            Global.Instance().Data.SetSwitch("night1_chaser", false);
+        } else {
+            map = "";
+        }
+        yield return MapOverlayUI.Instance().go.GameOverRoutine();
+        yield return Global.Instance().Maps.TeleportRoutine(map, "restart");
+        yield return MapOverlayUI.Instance().go.ResumeNormalRoutine();
+        going = false;
     }
 
     public void Stalk() {

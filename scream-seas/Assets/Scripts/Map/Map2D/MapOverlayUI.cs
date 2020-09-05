@@ -19,4 +19,6 @@ public class MapOverlayUI : MonoBehaviour {
     
     public NVLComponent nvl;
     public ShantyComponent shanty;
+    public GameOverUIComponent go;
+    public CrypticMessageComponent message;
 }

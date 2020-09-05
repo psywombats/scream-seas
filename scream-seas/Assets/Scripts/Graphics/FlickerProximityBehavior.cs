@@ -21,7 +21,7 @@ public class FlickerProximityBehavior : MonoBehaviour {
         } else if (Global.Instance().Data.GetSwitch("chaser_spawning")) {
             var chaserX = Global.Instance().Data.GetVariable("chaser_x");
             var chaserY = Global.Instance().Data.GetVariable("chaser_y");
-            var target = new Vector3(chaserX, chaserY, Global.Instance().Maps.Avatar.transform.position.z);
+            var target = new Vector3(chaserX, -chaserY, Global.Instance().Maps.Avatar.transform.position.z);
             dist = (target - transform.position).magnitude;
         } else {
             return;

@@ -47,6 +47,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["spawnChaser"] = (Action<DynValue, DynValue>)SpawnChaser;
         lua.Globals["wipe"] = (Action)Wipe;
         lua.Globals["clear"] = (Action)Wipe;
+        lua.Globals["chaserGameOver"] = (Action)ChaserGameOver;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
@@ -64,6 +65,9 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
         lua.Globals["cs_setBG"] = (Action<DynValue>)SetBG;
         lua.Globals["cs_shanty"] = (Action)Shanty;
+        lua.Globals["cs_beginMessage"] = (Action)BeginMessage;
+        lua.Globals["cs_message"] = (Action<DynValue>)Message;
+        lua.Globals["cs_endMessage"] = (Action)EndMessage;
     }
 
     // === LUA CALLABLE ============================================================================
@@ -220,26 +224,9 @@ public class LuaCutsceneContext : LuaContext {
         Global.Instance().StartCoroutine(SpawnChaserRoutine(targetLua.String, delayLua.Number));
     }
     private IEnumerator SpawnChaserRoutine(string targetName, double delay) {
-        if (Global.Instance().Data.GetSwitch("chaser_spawning")) {
-            yield break;
-        }
-        Global.Instance().Data.SetSwitch("chaser_spawning", true);
-
         var map = Global.Instance().Maps.ActiveMap;
         var target = map.GetEventNamed(targetName);
-        Global.Instance().Data.SetVariable("chaser_x", (int) target.transform.position.x);
-        Global.Instance().Data.SetVariable("chaser_y", (int) target.transform.position.y);
-
-        yield return CoUtils.Wait((float) delay);
-        if (!Global.Instance().Data.GetSwitch("chaser_spawning")) {
-            yield break;
-        }
-        var chaser = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Prefabs/Chaser")).GetComponent<MapEvent>();
-        chaser.transform.SetParent(map.objectLayer.transform, false);
-
-        chaser.SetPosition(target.Position);
-        Global.Instance().Data.SetSwitch("chaser_active", true);
-        Global.Instance().Maps.Chaser = chaser;
+        yield return Global.Instance().Maps.SpawnChaserRoutine(map, target.Position.x, target.Position.y, (float)delay);
     }
 
     public void EnterNVL() {
@@ -345,5 +332,20 @@ public class LuaCutsceneContext : LuaContext {
             "She'll return it to the sea"
         });
         yield return MapOverlayUI.Instance().shanty.FinishRoutine();
+    }
+
+    private void ChaserGameOver() {
+    }
+
+    public void BeginMessage() {
+        RunRoutineFromLua(MapOverlayUI.Instance().message.BeginRoutine());
+    }
+
+    public void EndMessage() {
+        RunRoutineFromLua(MapOverlayUI.Instance().message.EndRoutine());
+    }
+
+    public void Message(DynValue messageLua) {
+        RunRoutineFromLua(MapOverlayUI.Instance().message.TypeRoutine(messageLua.String));
     }
 }

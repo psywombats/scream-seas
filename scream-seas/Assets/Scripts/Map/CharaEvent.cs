@@ -11,6 +11,7 @@ using UnityEngine;
 public class CharaEvent : MonoBehaviour { 
 
     public static bool disableStep = false;
+    public static bool disableStalk = false;
     
     private const float DesaturationDuration = 0.5f;
     private const float StepsPerSecond = 4.0f;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="19">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="22">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="20" height="15">
   <properties>
@@ -56,6 +56,7 @@
    <properties>
     <property name="appearance" value="arrow"/>
     <property name="face" value="NORTH"/>
+    <property name="hide" value="return getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')"/>
     <property name="proximity" type="float" value="1"/>
    </properties>
   </object>
@@ -63,12 +64,14 @@
    <properties>
     <property name="appearance" value="arrow"/>
     <property name="face" value="NORTH"/>
+    <property name="hide" value="return getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')"/>
     <property name="proximity" type="float" value="1"/>
    </properties>
   </object>
   <object id="14" name="door1" type="Target" x="48" y="176" width="16" height="16"/>
   <object id="15" name="tele" type="Event" x="32" y="160" width="32" height="16">
    <properties>
+    <property name="hide" value="return getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')"/>
     <property name="onCollide" value="targetTele('thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx', 'stair', 'WEST')"/>
    </properties>
   </object>
@@ -90,6 +93,20 @@
    <properties>
     <property name="hide" value="return getSwitch('night1_bridge')"/>
     <property name="onCollide" value="play('night1_bridge')"/>
+   </properties>
+  </object>
+  <object id="19" name="auto" type="Event" x="32" y="96" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('night1_conclusion01') or not getSwitch('night1_chaser')"/>
+    <property name="onEnter" value="play('night1_conclusion01')"/>
+   </properties>
+  </object>
+  <object id="21" name="shawn" type="Character" x="256" y="176" width="16" height="16">
+   <properties>
+    <property name="appearance" value="shawn"/>
+    <property name="face" value="EAST"/>
+    <property name="hide" value="return not getSwitch('night1_chaser')"/>
+    <property name="onInteract" value="play('night1_conclusion02')"/>
    </properties>
   </object>
  </objectgroup>
