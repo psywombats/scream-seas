@@ -25,6 +25,7 @@ public class ShantyComponent : MonoBehaviour {
         yield return MapOverlayUI.Instance().nvl.backer.HideRoutine();
         yield return expander.ShowRoutine();
         Global.Instance().Audio.PlayBGM("shanty");
+        yield return Global.Instance().Audio.AwaitBGMLoad();
         StartCoroutine(ParallelRoutine());
     }
 

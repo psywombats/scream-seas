@@ -4042,13 +4042,13 @@
             "scale": 2.410625,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 136.68654394607205,
+                "x": 136.68654394607208,
                 "y": 120.30075187969925
             }
         },
         "scream-seas/Assets/Resources/RawMaps/CabinUno.tmx": {
             "scale": 2.410625,
-            "selectedLayer": 2,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 136.68654394607208,
                 "y": 120.30075187969925
@@ -4130,7 +4130,7 @@
             "scale": 2.410625,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 136.89395903551986,
+                "x": 137.1013741249676,
                 "y": 120.30075187969925
             }
         },
@@ -4161,18 +4161,18 @@
     "project": "maps.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
-        "scream-seas/Assets/Resources/RawMaps/BasicBitchTheSequel.tmx",
+        "scream-seas/Assets/Resources/RawMaps/ScifiBitch.tmx",
+        "scream-seas/Assets/Resources/RawMaps/RadioRoom.tmx",
         "scream-seas/Assets/Resources/RawMaps/AAAAA.tmx",
         "scream-seas/Assets/Resources/RawMaps/Decky.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
-        "scream-seas/Assets/Resources/RawMaps/Black.tmx",
-        "scream-seas/Assets/Resources/RawMaps/RadioRoom.tmx",
-        "scream-seas/Assets/Resources/RawMaps/RandomRoom.tmx",
+        "scream-seas/Assets/Resources/RawMaps/CabinUno.tmx",
         "scream-seas/Assets/Resources/RawMaps/YourCabin.tmx",
         "scream-seas/Assets/Resources/RawMaps/CabinDos.tmx",
-        "scream-seas/Assets/Resources/RawMaps/CabinUno.tmx"
+        "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
+        "scream-seas/Assets/Resources/RawMaps/BasicBitchTheSequel.tmx",
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
+        "scream-seas/Assets/Resources/RawMaps/Black.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",

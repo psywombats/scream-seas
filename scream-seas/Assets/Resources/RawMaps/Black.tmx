@@ -18,7 +18,7 @@
   <object id="4" type="Event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="hide" value="return getSwitch('dedupe')"/>
-    <property name="onEnter" value="setSwitch('dedupe', true); play('day1_00')"/>
+    <property name="onEnter" value="setSwitch('dedupe', true); play('day1_09')"/>
    </properties>
   </object>
  </objectgroup>

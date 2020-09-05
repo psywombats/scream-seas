@@ -48,6 +48,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["wipe"] = (Action)Wipe;
         lua.Globals["clear"] = (Action)Wipe;
         lua.Globals["chaserGameOver"] = (Action)ChaserGameOver;
+        lua.Globals["slowtype"] = (Action<DynValue>)Slowtype;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
@@ -347,5 +348,9 @@ public class LuaCutsceneContext : LuaContext {
 
     public void Message(DynValue messageLua) {
         RunRoutineFromLua(MapOverlayUI.Instance().message.TypeRoutine(messageLua.String));
+    }
+
+    public void Slowtype(DynValue charsPerSecondLua) {
+        MapOverlayUI.Instance().nvl.text.charsPerSecond = (float) charsPerSecondLua.Number;
     }
 }

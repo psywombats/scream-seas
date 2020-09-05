@@ -16,3 +16,5 @@ setBG('black')
 wait(3)
 playSFX('chaser2')
 wait(4.5)
+
+play('day2_00')

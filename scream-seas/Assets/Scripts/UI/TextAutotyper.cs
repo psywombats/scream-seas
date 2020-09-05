@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TextAutotyper : MonoBehaviour, IInputListener {
 
     [SerializeField] public Text textbox;
-    [SerializeField] protected float charsPerSecond = 120f;
+    [SerializeField] public float charsPerSecond = 120f;
     [SerializeField] protected GameObject advanceArrow;
     [SerializeField] protected bool speedUpWhenHurried;
 

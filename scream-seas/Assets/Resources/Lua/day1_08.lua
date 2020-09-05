@@ -27,7 +27,7 @@ speak('cy', "Leo, they have a right to know what's going on. If we were doing th
 speak('leo', "Fair point. And you seem like my kind of kid, Kid. So to tell the truth...")
 speak('ari', "Leo, watch yourself.")
 clear()
-speak('leo', "The Revolution is a stolen vessel. We've been operating without flag or license for almost five years.")
+speak('leo', "The Revolution is a stolen vessel. We operate with no licenses, flags, or laws.")
 speak('ari', "We're a free ship. Free flow of information, free flow of goods, free flow of people. Revolution Radio is the heart of it.")
 speak('leo', "Heh, I'd say tax evasion and or smuggling is the heart of it. That's what pays the bills. But the point is, you're in on the secret now, Kid.")
 clear()
