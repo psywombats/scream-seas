@@ -35,7 +35,7 @@
   <object id="4" name="door" type="Target" x="192" y="128" width="16" height="16"/>
   <object id="5" name="tele" type="Event" x="176" y="144" width="32" height="16">
    <properties>
-    <property name="onCollide" value="targetTele('CrewCabinsBitch', 'door1')"/>
+    <property name="onCollide" value="play('door'); targetTele('CrewCabinsBitch', 'door1')"/>
    </properties>
   </object>
   <object id="8" name="WallLight" type="Light" x="64" y="112" width="16" height="16">

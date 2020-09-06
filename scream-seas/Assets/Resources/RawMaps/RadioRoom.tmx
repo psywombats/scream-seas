@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="18">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="19">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="30" height="15">
   <properties>
@@ -82,7 +82,7 @@
   <object id="11" name="door" type="Target" x="96" y="128" width="16" height="16"/>
   <object id="12" name="tele" type="Event" x="96" y="144" width="32" height="16">
    <properties>
-    <property name="onCollide" value="targetTele('ScifiBitch', 'radio')"/>
+    <property name="onCollide" value="play('door'); targetTele('ScifiBitch', 'radio')"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>
@@ -95,6 +95,14 @@
    </properties>
   </object>
   <object id="17" name="restart" type="Target" x="112" y="128" width="16" height="16"/>
+  <object id="18" name="ari" type="Character" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="appearance" value="ari"/>
+    <property name="face" value="EAST"/>
+    <property name="hide" value="return getSwitch('night2_ari') or not getSwitch('begin_night_2')"/>
+    <property name="onInteract" value="play('night2_ari')"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="7" name="Foreground" width="30" height="15" opacity="0.5">
   <data encoding="base64">

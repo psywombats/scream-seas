@@ -140,6 +140,9 @@ public class MapManager : MonoBehaviour {
         }
         activeMapName = mapName;
         MapEvent target = newMapInstance.GetEventNamed(targetEventName);
+        if (target == null) {
+            Debug.LogError("Could not find target " + targetEventName);
+        }
         RawTeleport(newMapInstance, target.Position, facing);
     }
 

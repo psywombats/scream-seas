@@ -1,1 +1,2 @@
-setSwitch('enable_inventory, true')
+setSwitch('enable_inventory', true)
+playSFX('pickup')

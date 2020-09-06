@@ -37,7 +37,7 @@ public class ChaserComponent : MonoBehaviour {
             map = "RadioRoom";
             Global.Instance().Data.SetSwitch("night1_chaser", false);
         } else {
-            map = "";
+            map = "deck2";
         }
         yield return MapOverlayUI.Instance().go.GameOverRoutine();
         yield return Global.Instance().Maps.TeleportRoutine(map, "restart");

@@ -15,7 +15,7 @@ speak('shawn', "Are you extingent energy levels in tune with the aura of the ent
 speak('you', "...???")
 speak('shawn', "Then you'll never be an engineer. Sorry to say, you've either got the gift of engineering or you don't. Blessing and a curse, all that.")
 clear()
-speak('shawn', "But Inky looks like he's behaving tonight, even if I need to make repairs on Blinky when we're in port. It's a good diesel-electric setup we've got so even if we're moving at 5 knots to evade detection then we can keep full power on - ")
+speak('shawn', "But Inky looks like he's behaving tonight, even if I need to make repairs on Blinky in a couple days. It's a good diesel-electric setup we've got so even if we're moving at 5 knots to evade detection then we can keep full power on - ")
 speak('shawn', "Ahhh never mind. I don't want to bore you. Besides, it should be about time for the victory feast anyway, right? Let's head up to the main deck.")
 exitNVL()
 

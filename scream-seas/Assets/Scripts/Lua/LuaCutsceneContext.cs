@@ -49,6 +49,8 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["clear"] = (Action)Wipe;
         lua.Globals["chaserGameOver"] = (Action)ChaserGameOver;
         lua.Globals["slowtype"] = (Action<DynValue>)Slowtype;
+        lua.Globals["cyPan"] = (Action)CyPan;
+        lua.Globals["cyEat"] = (Action)CyEat;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
@@ -200,7 +202,7 @@ public class LuaCutsceneContext : LuaContext {
         }
         lastFade = fade;
         var globals = Global.Instance();
-        RunRoutineFromLua(globals.Maps.Camera.GetComponent<FadeComponent>().FadeRoutine(fade, invert));
+        RunRoutineFromLua(globals.Maps.Camera.fade.FadeRoutine(fade, invert));
     }
 
     private void Diag(DynValue dirLua) {
@@ -310,7 +312,7 @@ public class LuaCutsceneContext : LuaContext {
             "Let me tell thee what I know",
             "O Confiteor Deo",
             "Let me tell thee what I know",
-            "If thou deign to spare me life",
+            "If thou deign to save my soul",
             "Then I shall tell thee all I know",
             "Pray return it to the sea"
         });
@@ -352,5 +354,13 @@ public class LuaCutsceneContext : LuaContext {
 
     public void Slowtype(DynValue charsPerSecondLua) {
         MapOverlayUI.Instance().nvl.text.charsPerSecond = (float) charsPerSecondLua.Number;
+    }
+
+    public void CyPan() {
+        RunRoutineFromLua(UnityEngine.Object.FindObjectOfType<CyPanComponent>().PanRoutine());
+    }
+
+    public void CyEat() {
+        RunRoutineFromLua(UnityEngine.Object.FindObjectOfType<CyPanComponent>().EatRoutine());
     }
 }

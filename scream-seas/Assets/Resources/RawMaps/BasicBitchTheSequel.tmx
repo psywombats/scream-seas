@@ -57,7 +57,7 @@
   </object>
   <object id="7" name="tele" type="Event" x="768" y="112" width="32" height="16">
    <properties>
-    <property name="onCollide" value="targetTele('RandomRoom', 'door2')"/>
+    <property name="onCollide" value="play('door'); targetTele('RandomRoom', 'door2')"/>
    </properties>
   </object>
   <object id="8" name="tele" type="Event" x="128" y="112" width="16" height="16">
@@ -137,7 +137,7 @@
   <object id="26" name="right" type="Target" x="816" y="128" width="16" height="16"/>
   <object id="27" name="tele" type="Event" x="832" y="128" width="16" height="16">
    <properties>
-    <property name="onCollide" value="targetTele('AAAAA', 'left')"/>
+    <property name="onCollide" value="play('door'); targetTele('AAAAA', 'left')"/>
    </properties>
   </object>
   <object id="28" name="ArrowRight" type="Event" x="816" y="160" width="16" height="16">

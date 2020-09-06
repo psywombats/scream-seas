@@ -6,6 +6,11 @@
    <property name="x" type="bool" value="false"/>
   </properties>
  </tile>
+ <tile id="5">
+  <properties>
+   <property name="x" value=""/>
+  </properties>
+ </tile>
  <tile id="6">
   <properties>
    <property name="x" value=""/>
