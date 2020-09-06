@@ -20,7 +20,9 @@ public class ChaserBGMComponent : MonoBehaviour {
 
     public void Update() {
         if (ChaserSpawning || ChaserEnabled) {
-            Global.Instance().Audio.PlayBGM("none");
+            if (!Global.Instance().Data.GetSwitch("chaser_stealth")) {
+                Global.Instance().Audio.PlayBGM("none");
+            }
             if (!ChaserBGM.isPlaying) {
                 ChaserBGM.Play();
                 TensionBGM.Play();
@@ -41,7 +43,12 @@ public class ChaserBGMComponent : MonoBehaviour {
             targetTension = d;
 
             ChaserBGM.volume = targetChaser;
-            TensionBGM.volume = targetTension;
+            if (Global.Instance().Data.GetSwitch("chaser_stealth")) {
+                TensionBGM.volume = 0.0f;
+                Global.Instance().Audio.bgmSource.volume = targetTension;
+            } else {
+                TensionBGM.volume = targetTension;
+            }
         } else {
             ChaserBGM.Stop();
             TensionBGM.Stop();

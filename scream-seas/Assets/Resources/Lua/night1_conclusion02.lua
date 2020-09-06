@@ -15,6 +15,7 @@ wait(1.5)
 setBG('black')
 wait(3)
 playSFX('chaser2')
-wait(4.5)
+wait(8)
 
+setSwitch('night1_conclusion03', true)
 play('day2_00')

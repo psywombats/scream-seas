@@ -64,6 +64,7 @@ speak('shawn', "Heh. Heh heh. I know just the one. Join the chorus. I'm sure we 
 exit('cy')
 exit('leo')
 exit('shawn')
+face('hero', 'SOUTH')
 shanty()
 
 play('day1_09')

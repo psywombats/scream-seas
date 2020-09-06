@@ -109,6 +109,7 @@ public class MapManager : MonoBehaviour {
         Global.Instance().Data.SetVariable("chaser_y", y);
 
         Global.Instance().Data.SetSwitch("chaser_spawning", true);
+        Global.Instance().Data.SetSwitch("chaser_stealth", false);
 
         Debug.Log("Going to spawn chaser at " + x + "," + y + " in " + delay + " on " + map.InternalName);
         ChaserSpawnsAt = Time.time + delay;

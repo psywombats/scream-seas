@@ -130,7 +130,9 @@ public abstract class MapEvent : MonoBehaviour {
         GenerateLua();
 
         GetComponent<Dispatch>().RegisterListener(EventCollide, (object payload) => {
-            OnCollide((AvatarEvent)payload);
+            if ((payload as AvatarEvent) != null) {
+                OnCollide((AvatarEvent)payload);
+            }
         });
         GetComponent<Dispatch>().RegisterListener(EventInteract, (object payload) => {
             OnInteract((AvatarEvent)payload);

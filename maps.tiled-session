@@ -4018,8 +4018,8 @@
             "scale": 1.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 221,
-                "y": 93.99999999999999
+                "x": 779,
+                "y": 91.33333333333331
             }
         },
         "scream-seas/Assets/Resources/RawMaps/BasicBitchwhyyoumakemesad.tmx": {
@@ -4034,7 +4034,7 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 152.66666666666666,
+                "x": 153.33333333333331,
                 "y": 119.99999999999999
             }
         },
@@ -4056,9 +4056,9 @@
         },
         "scream-seas/Assets/Resources/RawMaps/CrewCabinsBitch.tmx": {
             "scale": 1.3260416666666666,
-            "selectedLayer": 5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 299.01021209740776,
+                "x": 299.3872741555382,
                 "y": 121.413982717989
             }
         },
@@ -4071,11 +4071,11 @@
             }
         },
         "scream-seas/Assets/Resources/RawMaps/Decky.tmx": {
-            "scale": 2.410625,
+            "scale": 4,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 160.95410941145968,
-                "y": 119.88592170080372
+                "x": 241,
+                "y": 164.5
             }
         },
         "scream-seas/Assets/Resources/RawMaps/Example.tmx": {
@@ -4090,7 +4090,7 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 191.5,
+                "x": 191.75,
                 "y": 141
             }
         },
@@ -4122,7 +4122,7 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 172.5,
+                "x": 172.75,
                 "y": 134
             }
         },
@@ -4130,7 +4130,7 @@
             "scale": 3,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 87,
+                "x": 34.66666666666666,
                 "y": 132
             }
         },
@@ -4152,10 +4152,10 @@
         },
         "scream-seas/Assets/Resources/RawMaps/deck2.tmx": {
             "scale": 3,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": -4.666666666666657,
-                "y": 167
+                "x": 180.16666666666663,
+                "y": 166.66666666666666
             }
         },
         "scream-seas/Assets/Resources/RawMaps/dinningrom.tmx": {
@@ -4170,7 +4170,7 @@
             "scale": 1.5776785714285715,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 265.2631578947369,
+                "x": 265.2631578947368,
                 "y": 120.43010752688171
             }
         },
@@ -4178,7 +4178,7 @@
             "scale": 2.410625,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 149.75369458128077,
+                "x": 149.96110967072852,
                 "y": 120.30075187969925
             }
         },
@@ -4186,7 +4186,7 @@
             "scale": 2.233016304347826,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 232.42105263157893,
+                "x": 232.19714024946762,
                 "y": 118.67356251901428
             }
         },
@@ -4194,7 +4194,7 @@
             "scale": 2.3724184782608697,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 168.60431819483418,
+                "x": 168.39356279709065,
                 "y": 120.13057671381937
             }
         },
@@ -4202,7 +4202,7 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 457,
+                "x": 456.75,
                 "y": 163
             }
         }
@@ -4224,20 +4224,20 @@
         "scream-seas/Assets/Resources/RawMaps/Storaj.tmx"
     ],
     "project": "maps.tiled-project",
-    "property.type": "string",
+    "property.type": "bool",
     "recentFiles": [
-        "scream-seas/Assets/Resources/RawMaps/deck2.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Tilesets/Debug2d.tsx",
-        "scream-seas/Assets/Resources/RawMaps/dinningrom.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Lounge.tmx",
-        "scream-seas/Assets/Resources/RawMaps/uhhhidek.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
-        "scream-seas/Assets/Resources/RawMaps/Black.tmx",
         "scream-seas/Assets/Resources/RawMaps/Decky.tmx",
         "scream-seas/Assets/Resources/RawMaps/Storaj.tmx",
-        "scream-seas/Assets/Resources/RawMaps/RadioRoom.tmx",
-        "scream-seas/Assets/Resources/RawMaps/YourCabin.tmx",
-        "scream-seas/Assets/Resources/RawMaps/uhuh.tmx"
+        "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Black.tmx",
+        "scream-seas/Assets/Resources/RawMaps/uhuh.tmx",
+        "scream-seas/Assets/Resources/RawMaps/uhhhidek.tmx",
+        "scream-seas/Assets/Resources/RawMaps/oogabooga.tmx",
+        "scream-seas/Assets/Resources/RawMaps/Lounge.tmx",
+        "scream-seas/Assets/Resources/RawMaps/ScifiBitch.tmx",
+        "scream-seas/Assets/Resources/RawMaps/seconddaystart.tmx",
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
+        "scream-seas/Assets/Resources/RawMaps/deck2.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",

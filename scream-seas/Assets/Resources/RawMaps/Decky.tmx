@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="30">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="34">
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="20" height="15">
   <properties>
@@ -26,7 +26,7 @@
   <object id="4" name="ari" type="Character" x="288" y="176" width="16" height="16">
    <properties>
     <property name="appearance" value="ari"/>
-    <property name="face" value="EAST"/>
+    <property name="face" value="WEST"/>
     <property name="hide" value="return getSwitch('begin_night_1')"/>
    </properties>
   </object>
@@ -56,7 +56,7 @@
    <properties>
     <property name="appearance" value="arrow"/>
     <property name="face" value="NORTH"/>
-    <property name="hide" value="return getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')"/>
+    <property name="hide" value="return (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="proximity" type="float" value="1"/>
    </properties>
   </object>
@@ -64,14 +64,14 @@
    <properties>
     <property name="appearance" value="arrow"/>
     <property name="face" value="NORTH"/>
-    <property name="hide" value="return getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')"/>
+    <property name="hide" value="return (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="proximity" type="float" value="1"/>
    </properties>
   </object>
   <object id="14" name="door1" type="Target" x="48" y="176" width="16" height="16"/>
   <object id="15" name="tele" type="Event" x="32" y="160" width="32" height="16">
    <properties>
-    <property name="hide" value="return getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')"/>
+    <property name="hide" value="return (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="onCollide" value="play('door'); targetTele('thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx', 'stair', 'WEST')"/>
    </properties>
   </object>
@@ -91,7 +91,7 @@
   </object>
   <object id="18" name="trigger" type="Event" x="192" y="176" width="16" height="16">
    <properties>
-    <property name="hide" value="return getSwitch('night1_bridge')"/>
+    <property name="hide" value="return getSwitch('night1_bridge') or not getSwitch('begin_night_1')"/>
     <property name="onCollide" value="play('night1_bridge')"/>
    </properties>
   </object>
@@ -105,35 +105,35 @@
    <properties>
     <property name="appearance" value="shawn"/>
     <property name="face" value="EAST"/>
-    <property name="hide" value="return not getSwitch('night1_chaser')"/>
+    <property name="hide" value="return not getSwitch('night1_chaser') or getSwitch('night1_conclusion03')"/>
     <property name="onInteract" value="play('night1_conclusion02')"/>
    </properties>
   </object>
   <object id="22" name="Locked" type="Event" x="160" y="192" width="16" height="16">
    <properties>
     <property name="appearance" value="locked"/>
-    <property name="hide" value="return getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02'))"/>
+    <property name="hide" value="return getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="proximity" type="float" value="2"/>
    </properties>
   </object>
   <object id="24" name="Unlocked" type="Event" x="160" y="192" width="16" height="16">
    <properties>
     <property name="appearance" value="unlocked"/>
-    <property name="hide" value="return not getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02'))"/>
+    <property name="hide" value="return not getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="proximity" type="float" value="2"/>
    </properties>
   </object>
   <object id="26" name="Locked" type="Event" x="176" y="192" width="16" height="16">
    <properties>
     <property name="appearance" value="locked"/>
-    <property name="hide" value="return getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02'))"/>
+    <property name="hide" value="return getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="proximity" type="float" value="2"/>
    </properties>
   </object>
   <object id="27" name="Unlocked" type="Event" x="176" y="192" width="16" height="16">
    <properties>
     <property name="appearance" value="unlocked"/>
-    <property name="hide" value="return not getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02'))"/>
+    <property name="hide" value="return not getSwitch('item_keyring') or (getSwitch('night1_conclusion') and not getSwitch('night1_conclusion02')) or getSwitch('night2_conclusion01')"/>
     <property name="proximity" type="float" value="2"/>
    </properties>
   </object>
@@ -144,6 +144,32 @@
    </properties>
   </object>
   <object id="29" name="door2" type="Target" x="176" y="176" width="16" height="16"/>
+  <object id="30" name="auto" type="Event" x="48" y="96" width="16" height="16">
+   <properties>
+    <property name="hide" value="return getSwitch('night2_conclusion01') or not getSwitch('night2_chaser')"/>
+    <property name="onEnter" value="play('night2_conclusion01')"/>
+   </properties>
+  </object>
+  <object id="31" name="ari2" type="Character" x="256" y="176" width="16" height="16">
+   <properties>
+    <property name="appearance" value="ari"/>
+    <property name="face" value="WEST"/>
+    <property name="hide" value="return not getSwitch('night2_chaser')"/>
+   </properties>
+  </object>
+  <object id="32" name="leo2" type="Character" x="208" y="160" width="16" height="16">
+   <properties>
+    <property name="appearance" value="leo"/>
+    <property name="face" value="EAST"/>
+    <property name="hide" value="return not getSwitch('night2_chaser')"/>
+   </properties>
+  </object>
+  <object id="33" name="trigger" type="Event" x="176" y="176" width="16" height="16">
+   <properties>
+    <property name="hide" value="return not getSwitch('night2_chaser')"/>
+    <property name="onCollide" value="play('night2_conclusion02')"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="5" name="Foreground" width="20" height="15">
   <properties>

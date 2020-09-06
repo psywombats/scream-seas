@@ -34,7 +34,7 @@ speak('shawn', "Well put, well put.")
 clear()
 speak('cy', "Hey, you...")
 speak('you', "...")
-speak('cy', "Shawn might try pretty hard to play the the ship idiot, but I've known him forever and bailed him out more than once. He's just the sort of guy that doesn't know how to repay his favors.")
+speak('cy', "Shawn might try pretty hard to play the the ship idiot, but he's got his talents. Just don't rely on him in a pinch.")
 speak('shawn', "Slander! Come on, Silence! This is my cue -- time to leave!")
 exitNVL()
 

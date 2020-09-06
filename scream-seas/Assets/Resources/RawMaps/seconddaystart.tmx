@@ -86,7 +86,7 @@
   <object id="66" name="entry" type="Target" x="256" y="128" width="16" height="16"/>
   <object id="67" name="tele" type="Event" x="272" y="128" width="16" height="16">
    <properties>
-    <property name="onCollide" value="play('door'); targetTele('ScifiBitch', 'left')"/>
+    <property name="onCollide" value="play('door'); targetTele('ScifiBitch', 'left'); if getSwitch('chaser_active') then play('night2_chaser2') end"/>
     <property name="passable" value="IMPASSABLE"/>
    </properties>
   </object>

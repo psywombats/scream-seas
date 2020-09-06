@@ -1,5 +1,6 @@
 playBGM('abovedeck')
 setBG('trans')
+enterNVL()
 enter('shawn', 'c')
 enter('cy', 'a')
 enter('leo', 'e')

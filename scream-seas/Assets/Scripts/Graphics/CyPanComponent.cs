@@ -54,7 +54,7 @@ public class CyPanComponent : MonoBehaviour {
         }
 
         foreach (var item in turnOffLater) {
-            item.SetActive(true);
+            item.SetActive(false);
         }
 
         yield return CoUtils.Wait(1.0f);

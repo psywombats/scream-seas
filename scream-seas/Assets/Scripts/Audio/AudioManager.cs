@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour {
     private const string NoChangeBGMKey = "no_change";
     private const float FadeSeconds = 0.5f;
 
-    private AudioSource sfxSource;
-    private AudioSource bgmSource;
+    public AudioSource sfxSource;
+    public AudioSource bgmSource;
 
     private float baseVolume = 1.0f;
     private float bgmVolumeMult = 1.0f;

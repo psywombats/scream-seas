@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShantyComponent : MonoBehaviour {
 
     public ExpanderComponent expander;
+    public Image backer;
 
     [Space]
     public TextAutotyper line1;
@@ -19,14 +20,17 @@ public class ShantyComponent : MonoBehaviour {
     [Space]
     public float delay = 0.5f;
 
-    public IEnumerator StartRoutine() {
+    public IEnumerator StartRoutine(bool finale = false) {
         Clear();
         MapOverlayUI.Instance().nvl.Wipe();
         yield return MapOverlayUI.Instance().nvl.backer.HideRoutine();
+        if (finale) {
+            backer.color = new Color(0, 0, 0, 0);
+        }
         yield return expander.ShowRoutine();
         Global.Instance().Audio.PlayBGM("shanty");
         yield return Global.Instance().Audio.AwaitBGMLoad();
-        StartCoroutine(ParallelRoutine());
+        StartCoroutine(ParallelRoutine(finale));
     }
 
     public IEnumerator PlayRoutine(string[] lines) {
@@ -55,25 +59,48 @@ public class ShantyComponent : MonoBehaviour {
         }
     }
 
-    private IEnumerator ParallelRoutine() {
-        CharaEvent.disableStep = true;
-        var anchor = FindObjectOfType<ShantyMapAnchorComponent>();
-        anchor.globalEnable.SetActive(true);
-        var time = 30f;
-        var nvl = MapOverlayUI.Instance().nvl;
-        yield return CoUtils.RunParallel(new IEnumerator[] {
-            CoUtils.RunTween(nvl.background.DOFade(0.0f, time)),
-            CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(-3, time)),
-            CoUtils.RunTween(anchor.panMoon.transform.DOLocalMoveY(-1.5f, time)),
-        }, this);
-        yield return CoUtils.Wait(17);
-        yield return CoUtils.RunParallel(new IEnumerator[] {
-            CoUtils.RunTween(anchor.panShip.transform.DOLocalMoveY(0, time)),
-            CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(0, time)),
-            CoUtils.RunTween(anchor.panMoon.transform.DOLocalMoveY(0, time)),
-        }, this);
-        yield return nvl.HideRoutine();
-        CharaEvent.disableStep = false;
+    private IEnumerator ParallelRoutine(bool finale) {
+        if (!finale) {
+            CharaEvent.disableStep = true;
+            var anchor = FindObjectOfType<ShantyMapAnchorComponent>();
+            anchor.globalEnable.SetActive(true);
+            var time = 30f;
+            var nvl = MapOverlayUI.Instance().nvl;
+            yield return CoUtils.RunParallel(new IEnumerator[] {
+                    CoUtils.RunTween(nvl.background.DOFade(0.0f, time)),
+                    CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(-3, time)),
+                    CoUtils.RunTween(anchor.panMoon.transform.DOLocalMoveY(-1.5f, time)),
+            }, this);
+            yield return CoUtils.Wait(17);
+            yield return CoUtils.RunParallel(new IEnumerator[] {
+                    CoUtils.RunTween(anchor.panShip.transform.DOLocalMoveY(0, time)),
+                    CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(0, time)),
+                    CoUtils.RunTween(anchor.panMoon.transform.DOLocalMoveY(0, time)),
+            }, this);
+            yield return nvl.HideRoutine();
+            CharaEvent.disableStep = false;
+        } else {
+            CharaEvent.disableStep = true;
+            Global.Instance().Maps.Camera.track = false;
+            var anchor = FindObjectOfType<ShantyMapAnchorComponent>();
+            anchor.globalEnable.SetActive(true);
+            var time = 50f;
+            var nvl = MapOverlayUI.Instance().nvl;
+            yield return CoUtils.RunParallel(new IEnumerator[] {
+                    CoUtils.RunTween(anchor.panShip.transform.DOLocalMoveY(-11, time)),
+                    CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(3, time)),
+            }, this);
+            yield return CoUtils.Wait(5);
+            var time2 = time / 2f;
+            Global.Instance().Data.SetSwitch("finale_boat", true);
+            yield return CoUtils.RunParallel(new IEnumerator[] {
+                    CoUtils.RunTween(anchor.finaleMoon.DOColor(new Color(1, 1, 1, 0), time2)),
+                    CoUtils.RunTween(anchor.finaleBoat.DOColor(new Color(1, 1, 1, 1), time2)),
+                    CoUtils.RunTween(anchor.finaleUnderlay.DOColor(new Color(1, 1, 1, 1), time2)),
+            }, this);
+            yield return nvl.HideRoutine();
+            CharaEvent.disableStep = false;
+        }
     }
 
     private void Clear() {

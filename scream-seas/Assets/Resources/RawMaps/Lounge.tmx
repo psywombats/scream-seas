@@ -28,16 +28,19 @@
  <objectgroup id="5" name="Object Layer 1">
   <object id="51" name="HallLight" type="Light" x="160" y="96" width="32">
    <properties>
+    <property name="hide" value="return getSwitch('chaser_active')"/>
     <property name="lighting" value="hallway"/>
    </properties>
   </object>
   <object id="52" name="HallLight" type="Light" x="256" y="96" width="32">
    <properties>
+    <property name="hide" value="return getSwitch('chaser_active')"/>
     <property name="lighting" value="hallway"/>
    </properties>
   </object>
   <object id="54" name="HallLight" type="Light" x="64" y="96" width="32">
    <properties>
+    <property name="hide" value="return getSwitch('chaser_active')"/>
     <property name="lighting" value="hallway"/>
    </properties>
   </object>

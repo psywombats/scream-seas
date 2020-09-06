@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using MoonSharp.Interpreter;
+using UnityEngine.SceneManagement;
 
 public class LuaCutsceneContext : LuaContext {
 
@@ -51,6 +52,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["slowtype"] = (Action<DynValue>)Slowtype;
         lua.Globals["cyPan"] = (Action)CyPan;
         lua.Globals["cyEat"] = (Action)CyEat;
+        lua.Globals["dim"] = (Action)Dim;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
@@ -68,6 +70,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
         lua.Globals["cs_setBG"] = (Action<DynValue>)SetBG;
         lua.Globals["cs_shanty"] = (Action)Shanty;
+        lua.Globals["cs_shanty2"] = (Action)Shanty2;
         lua.Globals["cs_beginMessage"] = (Action)BeginMessage;
         lua.Globals["cs_message"] = (Action<DynValue>)Message;
         lua.Globals["cs_endMessage"] = (Action)EndMessage;
@@ -337,6 +340,69 @@ public class LuaCutsceneContext : LuaContext {
         yield return MapOverlayUI.Instance().shanty.FinishRoutine();
     }
 
+    private void Shanty2() {
+        RunRoutineFromLua(Shanty2Routine());
+    }
+    private IEnumerator Shanty2Routine() {
+        yield return MapOverlayUI.Instance().shanty.StartRoutine(true);
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "If the ocean ever finds the haul",
+            "That's hidden in your chest",
+            "She'll return it to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "Well, I found a wayward soul",
+            "As they was driftin' far away",
+            "Well, I found a wayward soul",
+            "As they was driftin' far away",
+            "Lord, help me save their soul",
+            "Afore they go too far astray",
+            "And surrender to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "O Confiteor Deo",
+            "Let me tell thee what I know",
+            "O Confiteor Deo",
+            "Let me tell thee what I know",
+            "If thou deign to save my soul",
+            "Then I shall tell thee all I know",
+            "Pray return it to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "Well, I went and crossed me brother",
+            "Though he trust me with his life",
+            "Well, I went and crossed me brother",
+            "Though he trust me with his life",
+            "There'll be plenty time to think upon it",
+            "In the afterlife,",
+            "When I come home to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "O Sailors, keep your secrets",
+            "Hid inside your treasure chest",
+            "If the ocean ever finds the haul",
+            "That's hidden in your chest",
+            "She'll return it to the sea"
+        });
+        yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
+            "Scream Seas 2020",
+            "Jen - characters",
+            "Frogge - environments",
+            "Jamie Obeso - music",
+            "psyw - script",
+            "Return to the Sea",
+            "Thanks"
+        });
+        yield return CoUtils.Wait(2);
+        SceneManager.LoadScene("Title");
+    }
+
     private void ChaserGameOver() {
     }
 
@@ -362,5 +428,20 @@ public class LuaCutsceneContext : LuaContext {
 
     public void CyEat() {
         RunRoutineFromLua(UnityEngine.Object.FindObjectOfType<CyPanComponent>().EatRoutine());
+    }
+
+    public void Dim() {
+        Global.Instance().StartCoroutine(DimRoutine());
+    }
+    private IEnumerator DimRoutine() {
+        var elapsed = 0f;
+        var old = RenderSettings.ambientIntensity;
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+        while (elapsed < 5) {
+            elapsed += Time.deltaTime;
+            var t = elapsed / 5f;
+            RenderSettings.ambientIntensity = old * (1f-t);
+            yield return null;
+        }
     }
 }

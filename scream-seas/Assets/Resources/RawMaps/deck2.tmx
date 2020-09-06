@@ -3,6 +3,7 @@
  <tileset firstgid="1" source="Tilesets/Debug2d.tsx"/>
  <layer id="1" name="Background" width="24" height="15">
   <properties>
+   <property name="CheckPassability" type="bool" value="true"/>
    <property name="z" value="1"/>
   </properties>
   <data encoding="base64">
@@ -52,7 +53,7 @@
     <property name="onInteract" value="play('night2_cy')"/>
    </properties>
   </object>
-  <object id="34" name="restart" type="Target" x="224" y="176" width="16" height="16"/>
+  <object id="34" name="restart" type="Target" x="176" y="176" width="16" height="16"/>
  </objectgroup>
  <layer id="5" name="Foreground" width="24" height="15">
   <properties>

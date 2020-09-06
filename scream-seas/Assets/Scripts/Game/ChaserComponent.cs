@@ -33,11 +33,13 @@ public class ChaserComponent : MonoBehaviour {
         Global.Instance().Audio.PlaySFX("chaser_howl");
         Global.Instance().Audio.PlayBGM("none");
         string map;
-        if (!Global.Instance().Data.GetSwitch("day2")) {
+        if (!Global.Instance().Data.GetSwitch("begin_night_2")) {
             map = "RadioRoom";
             Global.Instance().Data.SetSwitch("night1_chaser", false);
         } else {
             map = "deck2";
+            Global.Instance().Data.SetSwitch("chaser_redux", false);
+            Global.Instance().Data.SetSwitch("redux_once", false);
         }
         yield return MapOverlayUI.Instance().go.GameOverRoutine();
         yield return Global.Instance().Maps.TeleportRoutine(map, "restart");
