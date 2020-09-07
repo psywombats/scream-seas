@@ -6,6 +6,7 @@ public class SwitchComponent : MonoBehaviour {
     [SerializeField] private string switchName = "";
     [SerializeField] private bool invert = false;
     [SerializeField] private List<GameObject> toToggle = null;
+    [SerializeField] private List<MonoBehaviour> componentsToToggle = null;
 
     private bool switched;
 
@@ -31,6 +32,9 @@ public class SwitchComponent : MonoBehaviour {
         switched = CheckCondition();
         foreach (var obj in toToggle) {
             obj.SetActive(switched ^ invert);
+        }
+        foreach (var cop in componentsToToggle) {
+            cop.enabled = switched ^ invert;
         }
     }
 }

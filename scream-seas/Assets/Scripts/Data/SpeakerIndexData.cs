@@ -10,4 +10,5 @@ public class SpeakerIndexData : GenericIndex<SpeakerData> {
 public class SpeakerData : GenericDataObject {
 
     public Sprite image;
+    public Sprite altimage;
 }

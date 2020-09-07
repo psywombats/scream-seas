@@ -1,6 +1,5 @@
 setBG('radioroom')
 playBGM('morse')
-targetTele('Black', 'target')
 enterNVL()
 enter('leo', 'a')
 enter('cy', 'b')

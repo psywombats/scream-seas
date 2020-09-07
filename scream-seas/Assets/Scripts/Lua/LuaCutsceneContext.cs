@@ -67,7 +67,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_exitNVL"] = (Action)ExitNVL;
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
-        lua.Globals["cs_enter"] = (Action<DynValue, DynValue>)Enter;
+        lua.Globals["cs_enter"] = (Action<DynValue, DynValue, DynValue>)Enter;
         lua.Globals["cs_setBG"] = (Action<DynValue>)SetBG;
         lua.Globals["cs_shanty"] = (Action)Shanty;
         lua.Globals["cs_shanty2"] = (Action)Shanty2;
@@ -257,13 +257,14 @@ public class LuaCutsceneContext : LuaContext {
         yield return MapOverlayUI.Instance().nvl.SpeakRoutine(speaker, message);
     }
 
-    public void Enter(DynValue speakerNameLua, DynValue slotLua) {
+    public void Enter(DynValue speakerNameLua, DynValue slotLua, DynValue altLua) {
         var speaker = IndexDatabase.Instance().Speakers.GetData(speakerNameLua.String);
         var slot = slotLua.String;
-        RunRoutineFromLua(EnterRoutine(speaker, slot));
+        var alt = altLua.IsNotNil() && altLua.Boolean;
+        RunRoutineFromLua(EnterRoutine(speaker, slot, alt));
     }
-    private IEnumerator EnterRoutine(SpeakerData speaker, string slot) {
-        yield return MapOverlayUI.Instance().nvl.EnterRoutine(speaker, slot);
+    private IEnumerator EnterRoutine(SpeakerData speaker, string slot, bool alt = false) {
+        yield return MapOverlayUI.Instance().nvl.EnterRoutine(speaker, slot, alt);
     }
 
     public void Exit(DynValue speakerNameLua) {
@@ -315,7 +316,7 @@ public class LuaCutsceneContext : LuaContext {
             "Let me tell thee what I know",
             "O Confiteor Deo",
             "Let me tell thee what I know",
-            "If thou deign to save my soul",
+            "If thou deign to save me soul",
             "Then I shall tell thee all I know",
             "Pray return it to the sea"
         });
@@ -368,7 +369,7 @@ public class LuaCutsceneContext : LuaContext {
             "Let me tell thee what I know",
             "O Confiteor Deo",
             "Let me tell thee what I know",
-            "If thou deign to save my soul",
+            "If thou deign to save me soul",
             "Then I shall tell thee all I know",
             "Pray return it to the sea"
         });
@@ -392,14 +393,14 @@ public class LuaCutsceneContext : LuaContext {
         });
         yield return MapOverlayUI.Instance().shanty.PlayRoutine(new string[] {
             "Scream Seas 2020",
-            "Jen - characters",
+            "nerdiko - characters",
             "Frogge - environments",
             "Jamie Obeso - music",
             "psyw - script",
-            "Return to the Sea",
+            "MARE DEO",
             "Thanks"
         });
-        yield return CoUtils.Wait(2);
+        yield return CoUtils.Wait(5);
         SceneManager.LoadScene("Title");
     }
 

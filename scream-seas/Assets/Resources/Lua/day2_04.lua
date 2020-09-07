@@ -26,6 +26,6 @@ speak('leo', "Dammit. Never mind. We need to focus on this storm, or whatever it
 exitNVL()
 
 setSwitch('begin_night_2', true)
-playBGM('retribution')
+playBGM('retribution2')
 targetTele('Decky', 'warp')
 setSwitch('enable_inventory', true)

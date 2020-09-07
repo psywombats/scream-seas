@@ -50,7 +50,7 @@ public class Oscillator : MonoBehaviour {
         }
     }
 
-    protected float CalcVectorMult() {
+    protected virtual float CalcVectorMult() {
         if (durationSeconds == 0.0f) {
             return 1.0f;
         }

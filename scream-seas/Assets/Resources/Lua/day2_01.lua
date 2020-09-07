@@ -24,6 +24,7 @@ exit('you')
 exit('cy')
 exit('leo')
 exit('ari')
+targetTele('Black', 'target')
 exitNVL()
 
 play('day2_02')

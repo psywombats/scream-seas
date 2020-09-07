@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class ShantyComponent : MonoBehaviour {
 
@@ -22,8 +23,6 @@ public class ShantyComponent : MonoBehaviour {
 
     public IEnumerator StartRoutine(bool finale = false) {
         Clear();
-        MapOverlayUI.Instance().nvl.Wipe();
-        yield return MapOverlayUI.Instance().nvl.backer.HideRoutine();
         if (finale) {
             backer.color = new Color(0, 0, 0, 0);
         }
@@ -65,9 +64,7 @@ public class ShantyComponent : MonoBehaviour {
             var anchor = FindObjectOfType<ShantyMapAnchorComponent>();
             anchor.globalEnable.SetActive(true);
             var time = 30f;
-            var nvl = MapOverlayUI.Instance().nvl;
             yield return CoUtils.RunParallel(new IEnumerator[] {
-                    CoUtils.RunTween(nvl.background.DOFade(0.0f, time)),
                     CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(-3, time)),
                     CoUtils.RunTween(anchor.panMoon.transform.DOLocalMoveY(-1.5f, time)),
             }, this);
@@ -77,28 +74,32 @@ public class ShantyComponent : MonoBehaviour {
                     CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(0, time)),
                     CoUtils.RunTween(anchor.panMoon.transform.DOLocalMoveY(0, time)),
             }, this);
-            yield return nvl.HideRoutine();
             CharaEvent.disableStep = false;
         } else {
             CharaEvent.disableStep = true;
             Global.Instance().Maps.Camera.track = false;
             var anchor = FindObjectOfType<ShantyMapAnchorComponent>();
             anchor.globalEnable.SetActive(true);
-            var time = 50f;
-            var nvl = MapOverlayUI.Instance().nvl;
+            var timex = 78f;
+            var twn = anchor.panOcean.transform.DOLocalMoveY(2.2f, timex);
+            twn.SetEase(Ease.Linear);
             yield return CoUtils.RunParallel(new IEnumerator[] {
-                    CoUtils.RunTween(anchor.panShip.transform.DOLocalMoveY(-11, time)),
-                    CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(3, time)),
+                    CoUtils.RunTween(anchor.panShip.transform.DOLocalMoveY(-11, timex)),
+                    CoUtils.RunTween(twn),
             }, this);
-            yield return CoUtils.Wait(5);
-            var time2 = time / 2f;
+            var time2 = 17f;
+            Global.Instance().Audio.PlayBGM("redsky");
             Global.Instance().Data.SetSwitch("finale_boat", true);
+            anchor.finaleParticle.gameObject.SetActive(false);
             yield return CoUtils.RunParallel(new IEnumerator[] {
+                    CoUtils.RunTween(anchor.finaleCloud1.DOColor(new Color(0, 0, 0, 0), time2)),
+                    CoUtils.RunTween(anchor.finaleCould2.DOColor(new Color(0, 0, 0, 0), time2)),
                     CoUtils.RunTween(anchor.finaleMoon.DOColor(new Color(1, 1, 1, 0), time2)),
-                    CoUtils.RunTween(anchor.finaleBoat.DOColor(new Color(1, 1, 1, 1), time2)),
+                    CoUtils.RunTween(anchor.finaleBoat.DOColor(new Color(1, 1, 1, 1), 0.2f)),
                     CoUtils.RunTween(anchor.finaleUnderlay.DOColor(new Color(1, 1, 1, 1), time2)),
+                    CoUtils.RunTween(anchor.panOcean.transform.DOLocalMoveY(4.1f, time2 *2f / 3f)),
             }, this);
-            yield return nvl.HideRoutine();
+            Global.Instance().Audio.PlaySFX("foghorn");
             CharaEvent.disableStep = false;
         }
     }

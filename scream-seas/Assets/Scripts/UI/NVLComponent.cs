@@ -61,9 +61,9 @@ public class NVLComponent : MonoBehaviour {
         }
     }
 
-    public IEnumerator EnterRoutine(SpeakerData speaker, string slot) {
+    public IEnumerator EnterRoutine(SpeakerData speaker, string slot, bool alt = false) {
         var portrait = GetPortrait(slot);
-        yield return portrait.EnterRoutine(speaker);
+        yield return portrait.EnterRoutine(speaker, alt);
     }
 
     public IEnumerator ExitRoutine(SpeakerData speaker) {

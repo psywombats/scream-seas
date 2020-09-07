@@ -11,4 +11,7 @@ public class ShantyMapAnchorComponent : MonoBehaviour {
     public SpriteRenderer finaleMoon;
     public SpriteRenderer finaleUnderlay;
     public SpriteRenderer finaleBoat;
+    public ParticleSystem finaleParticle;
+    public SpriteRenderer finaleCloud1;
+    public SpriteRenderer finaleCould2;
 }

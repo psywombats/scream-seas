@@ -4,6 +4,10 @@ using UnityEngine;
 public class ChaserComponent : MonoBehaviour {
 
     private MapEvent @event;
+    public SpriteRenderer backer;
+    public float range = 2.5f;
+    public float min = .3f;
+    public float scale = 2.0f;
 
     public void Start() {
         @event = GetComponent<MapEvent>();
@@ -22,6 +26,15 @@ public class ChaserComponent : MonoBehaviour {
         if (@event.Position == Global.Instance().Maps.Avatar.Event.Position && !going) {
             going = true;
             Global.Instance().StartCoroutine(GameOverRoutine());
+        }
+
+        var dist = (Global.Instance().Maps.Avatar.Event.PositionPx - @event.PositionPx).magnitude;
+        var r = 1.0f - (dist / range);
+        if (r > 1) r = 1;
+        if (r <= min) {
+            backer.transform.localScale = new Vector3(min * scale, min * scale, 1);
+        } else {
+            backer.transform.localScale = new Vector3( r* scale, r * scale, 1);
         }
     }
 

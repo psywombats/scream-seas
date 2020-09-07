@@ -126,7 +126,6 @@ public class LuaMapEvent {
         if (CharaEvent.disableStalk) return;
         OrthoDir dir;
         var dist = (mapEvent.Position - Global.Instance().Maps.Avatar.Event.Position).magnitude;
-        if (dist > 12) return;
         var tooClose = false;
         if (mapEvent.Position.x > Global.Instance().Maps.Avatar.Event.Position.x ^ tooClose) {
             dir = OrthoDir.West;

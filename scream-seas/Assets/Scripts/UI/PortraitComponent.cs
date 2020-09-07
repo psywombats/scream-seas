@@ -20,12 +20,17 @@ public class PortraitComponent : MonoBehaviour {
         IsHighlighted = false;
     }
 
-    public IEnumerator EnterRoutine(SpeakerData speaker) {
+    public IEnumerator EnterRoutine(SpeakerData speaker, bool alt = false) {
         if (this.Speaker != null) {
             yield return ExitRoutine();
         }
         this.Speaker = speaker;
-        sprite.sprite = speaker.image;
+        if (alt) {
+            sprite.sprite = speaker.altimage;
+        } else {
+            sprite.sprite = speaker.image;
+        }
+        
         sprite.SetNativeSize();
         sprite.color = new Color(1, 1, 1, 0);
         IsHighlighted = true;
