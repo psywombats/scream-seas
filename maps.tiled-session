@@ -4090,7 +4090,7 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 191.75,
+                "x": 192,
                 "y": 141
             }
         },
@@ -4162,7 +4162,7 @@
             "scale": 3,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 179.99999999999997,
+                "x": 179.66666666666669,
                 "y": 166.66666666666666
             }
         },
@@ -4178,7 +4178,7 @@
             "scale": 1.5776785714285715,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 265.2631578947368,
+                "x": 265.5800792303339,
                 "y": 120.43010752688171
             }
         },
@@ -4202,7 +4202,7 @@
             "scale": 2.3724184782608697,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 168.6043181948342,
+                "x": 169.0258289903213,
                 "y": 120.13057671381937
             }
         },
@@ -4235,6 +4235,8 @@
     "project": "maps.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "scream-seas/Assets/Resources/RawMaps/Lounge.tmx",
+        "scream-seas/Assets/Resources/RawMaps/oogabooga.tmx",
         "scream-seas/Assets/Resources/RawMaps/Storaj.tmx",
         "scream-seas/Assets/Resources/RawMaps/Black.tmx",
         "scream-seas/Assets/Resources/RawMaps/seconddaystart.tmx",
@@ -4244,9 +4246,7 @@
         "scream-seas/Assets/Resources/RawMaps/CrewCabinsBitch.tmx",
         "scream-seas/Assets/Resources/RawMaps/Decky.tmx",
         "scream-seas/Assets/Resources/RawMaps/YourCabin.tmx",
-        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx",
-        "scream-seas/Assets/Resources/RawMaps/thisshouldbethefirstmaptoteachtheplayeryoucanenterhallwaysthanksloveyouxx.tmx",
-        "scream-seas/Assets/Resources/RawMaps/uhuh.tmx"
+        "C:/Users/aking_2/Dropbox/scream-seas/scream-seas/Assets/Resources/RawMaps/Debug2D.tmx"
     ],
     "tileset.embedInMap": false,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx)",

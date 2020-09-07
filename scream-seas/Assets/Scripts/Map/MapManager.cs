@@ -112,9 +112,9 @@ public class MapManager : MonoBehaviour {
         Global.Instance().Data.SetSwitch("chaser_stealth", false);
 
         Debug.Log("Going to spawn chaser at " + x + "," + y + " in " + delay + " on " + map.InternalName);
-        ChaserSpawnsAt = Time.time + delay;
+        ChaserSpawnsAt = Time.time + delay + 0.5f;
         yield return CoUtils.Wait(delay);
-        if (!Global.Instance().Data.GetSwitch("chaser_spawning") || map != ActiveMap) {
+        if (!Global.Instance().Data.GetSwitch("chaser_spawning") || map != ActiveMap || Chaser != null) {
             Debug.Log("Canceling spawn as active map " + map.InternalName + " is not " + ActiveMap.InternalName);
             yield break;
         }
