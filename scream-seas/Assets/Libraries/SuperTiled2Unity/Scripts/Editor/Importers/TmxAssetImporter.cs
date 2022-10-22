@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using UnityEditor;
-using UnityEditor.Experimental.AssetImporters;
+
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 
 namespace SuperTiled2Unity.Editor
 {
-    [ScriptedImporter(ImporterConstants.MapVersion, ImporterConstants.MapExtension, ImporterConstants.MapImportOrder)]
+    [UnityEditor.AssetImporters.ScriptedImporter(ImporterConstants.MapVersion, ImporterConstants.MapExtension, ImporterConstants.MapImportOrder)]
     public partial class TmxAssetImporter : TiledAssetImporter
     {
         private SuperMap m_MapComponent;

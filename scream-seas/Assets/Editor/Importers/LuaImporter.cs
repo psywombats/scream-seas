@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using UnityEditor.Experimental.AssetImporters;
+
 using System.IO;
 
-[ScriptedImporter(1, new string[] { "scene", "lua" })]
-public class LuaImporter : ScriptedImporter {
+[UnityEditor.AssetImporters.ScriptedImporter(1, new string[] { "scene", "lua" })]
+public class LuaImporter : UnityEditor.AssetImporters.ScriptedImporter {
 
-    public override void OnImportAsset(AssetImportContext context) {
+    public override void OnImportAsset(UnityEditor.AssetImporters.AssetImportContext context) {
         var script = ScriptableObject.CreateInstance<LuaSerializedScript>();
         var text = File.ReadAllText(context.assetPath);
         script.luaString = text;

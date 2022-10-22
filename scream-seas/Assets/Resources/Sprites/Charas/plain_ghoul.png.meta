@@ -57,7 +57,7 @@ TextureImporter:
       213: 7228705731874120569
     second: plain_ghoul_2_5
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -77,6 +77,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -86,8 +88,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -108,11 +110,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,6 +129,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -132,7 +139,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 160
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -141,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3bd2973e7cfbe242900005a3df154a9
+      spriteID: 9ce4698771fbebbe0800000000000000
       internalID: -1459519121693192503
       vertices: []
       indices: 
@@ -151,9 +158,9 @@ TextureImporter:
       name: plain_ghoul_1_0
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 160
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -162,7 +169,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be3ffc170481bad4a994c33cfee25e11
+      spriteID: 669f1b37d3d60b3c0800000000000000
       internalID: -4345853529711052442
       vertices: []
       indices: 
@@ -172,9 +179,9 @@ TextureImporter:
       name: plain_ghoul_2_0
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 160
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -183,8 +190,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b28693cc5e446924bba9078b8ede3b71
+      spriteID: f537ec7cdb51a7b00800000000000000
       internalID: 826997386421105503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_3_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_4_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_5_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -195,7 +265,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 128
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -204,7 +274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fde0845cb1a3204f959d3f6b78ebdff
+      spriteID: 410a472ef4da4aa10800000000000000
       internalID: 1919849899779989524
       vertices: []
       indices: 
@@ -214,9 +284,9 @@ TextureImporter:
       name: plain_ghoul_1_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 128
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -225,7 +295,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc6e17d2985f2f448b66ea14ccd92948
+      spriteID: 69bcafa4bdde08d30800000000000000
       internalID: 4431803559444138902
       vertices: []
       indices: 
@@ -235,9 +305,9 @@ TextureImporter:
       name: plain_ghoul_2_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 128
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -246,8 +316,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4d3f26620eecc764292dbc15866f3dd6
+      spriteID: 4994d8ef4a9a558d0800000000000000
       internalID: -2858191862386308716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_3_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_4_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_5_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -258,7 +391,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -267,7 +400,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0012810a70a64804f9e15505b384272d
+      spriteID: b715cc4f7329fcd00800000000000000
       internalID: 995174811700056443
       vertices: []
       indices: 
@@ -277,9 +410,9 @@ TextureImporter:
       name: plain_ghoul_1_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 96
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -288,7 +421,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c72bbda0e48ba1499de613381f2db03
+      spriteID: ac0710fc535c65820800000000000000
       internalID: 2906727444411150538
       vertices: []
       indices: 
@@ -298,9 +431,9 @@ TextureImporter:
       name: plain_ghoul_2_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 96
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -309,8 +442,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00faea914886b3646a4612d96bde3f24
+      spriteID: 20235748bf46ecef0800000000000000
       internalID: -86020311451618814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_3_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_4_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_5_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -321,7 +517,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -330,7 +526,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c9842f025189ea24396e37a3f5ffb917
+      spriteID: 5b501caf3d271c930800000000000000
       internalID: 4161733785437668789
       vertices: []
       indices: 
@@ -340,9 +536,9 @@ TextureImporter:
       name: plain_ghoul_1_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 64
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -351,7 +547,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: efb1a72f8afb08d469a03cab23c903e9
+      spriteID: ccc04198af89a9260800000000000000
       internalID: 7105159563939417292
       vertices: []
       indices: 
@@ -361,9 +557,9 @@ TextureImporter:
       name: plain_ghoul_2_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -372,8 +568,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff25e24d043ebef45ade4d56761ec4b0
+      spriteID: 9cd37d232bbec4410800000000000000
       internalID: 1462803129578241481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_3_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_4_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_5_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -384,7 +643,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -393,7 +652,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 60e2fcc123c1d9742b2fd4036b861ce8
+      spriteID: a558c5d9413fffb10800000000000000
       internalID: 2017598427950253402
       vertices: []
       indices: 
@@ -403,9 +662,9 @@ TextureImporter:
       name: plain_ghoul_1_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 32
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -414,7 +673,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 956741f32d828ea4cb3a9c3cc067f951
+      spriteID: 4796b6fc956ef20f0800000000000000
       internalID: -1139438907295045260
       vertices: []
       indices: 
@@ -424,9 +683,9 @@ TextureImporter:
       name: plain_ghoul_2_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 32
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -435,8 +694,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdcb521724993a34d9166c1ff7e920f8
+      spriteID: 2295a3bab8541cc40800000000000000
       internalID: 5530778283563178274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_3_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_4_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_5_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -447,7 +769,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -456,7 +778,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a78c82f570500343a034abccc981726
+      spriteID: e236045aab0e6de40800000000000000
       internalID: 5680975072215458606
       vertices: []
       indices: 
@@ -466,9 +788,9 @@ TextureImporter:
       name: plain_ghoul_1_5
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -477,7 +799,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ea0b0691285e7eb4ba10dbac4ef47e3f
+      spriteID: 4a2e40da05dafdd60800000000000000
       internalID: 7917237231952388772
       vertices: []
       indices: 
@@ -487,9 +809,9 @@ TextureImporter:
       name: plain_ghoul_2_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -498,8 +820,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 572ea4558edd8cb4e9920c959b3950cc
+      spriteID: 973ef265095815460800000000000000
       internalID: 7228705731874120569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_3_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_4_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plain_ghoul_5_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -514,6 +899,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      plain_ghoul_1_0: -4345853529711052442
+      plain_ghoul_3_0: 0
+      plain_ghoul_0_5: 5680975072215458606
+      plain_ghoul_5_0: 0
+      plain_ghoul_3_2: 0
+      plain_ghoul_1_4: -1139438907295045260
+      plain_ghoul_4_4: 0
+      plain_ghoul_4_1: 0
+      plain_ghoul_2_3: 1462803129578241481
+      plain_ghoul_1_1: 4431803559444138902
+      plain_ghoul_4_3: 0
+      plain_ghoul_1_2: 2906727444411150538
+      plain_ghoul_0_1: 1919849899779989524
+      plain_ghoul_0_2: 995174811700056443
+      plain_ghoul_4_0: 0
+      plain_ghoul_5_4: 0
+      plain_ghoul_0_4: 2017598427950253402
+      plain_ghoul_5_2: 0
+      plain_ghoul_4_2: 0
+      plain_ghoul_4_5: 0
+      plain_ghoul_3_1: 0
+      plain_ghoul_2_4: 5530778283563178274
+      plain_ghoul_0_0: -1459519121693192503
+      plain_ghoul_1_3: 7105159563939417292
+      plain_ghoul_5_1: 0
+      plain_ghoul_2_1: -2858191862386308716
+      plain_ghoul_3_4: 0
+      plain_ghoul_3_3: 0
+      plain_ghoul_0_3: 4161733785437668789
+      plain_ghoul_1_5: 7917237231952388772
+      plain_ghoul_3_5: 0
+      plain_ghoul_2_5: 7228705731874120569
+      plain_ghoul_5_3: 0
+      plain_ghoul_5_5: 0
+      plain_ghoul_2_0: 826997386421105503
+      plain_ghoul_2_2: -86020311451618814
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

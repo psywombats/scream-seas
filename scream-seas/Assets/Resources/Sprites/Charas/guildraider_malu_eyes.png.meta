@@ -39,7 +39,7 @@ TextureImporter:
       213: -5595613241538087472
     second: guildraider_malu_eyes_2_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -59,6 +59,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -68,8 +70,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -90,11 +92,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -105,6 +111,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -123,7 +130,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 43f656e7ffbc1d24f9e8796a705d5863
+      spriteID: c706c8dedf45ed3a0800000000000000
       internalID: -6638775351108673412
       vertices: []
       indices: 
@@ -144,7 +151,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b85aefc32b271c846af9be08c9c3c328
+      spriteID: 4105c5c15a2022ea0800000000000000
       internalID: -5899149653733257196
       vertices: []
       indices: 
@@ -165,7 +172,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b3767ab6c11fc4409647e6f34ea3d3a
+      spriteID: e69f162853d73e0e0800000000000000
       internalID: -2241810520726177426
       vertices: []
       indices: 
@@ -186,7 +193,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74754b51132dbf54f979ffb6fdc96805
+      spriteID: 157fed43167706990800000000000000
       internalID: -7394779328759793839
       vertices: []
       indices: 
@@ -207,7 +214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e2ad275cb838914a83992040b3004c0
+      spriteID: a9177ddafd52b1b60800000000000000
       internalID: 7717804029053989274
       vertices: []
       indices: 
@@ -228,7 +235,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11f56c05bc08bae47b86b9e82493644a
+      spriteID: 8edc4d18336ecd2f0800000000000000
       internalID: -946628712758719000
       vertices: []
       indices: 
@@ -249,7 +256,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 311bbdcd24d650044b4c86b3a6322f7d
+      spriteID: 3137ed11f9f8843f0800000000000000
       internalID: -916324610807532781
       vertices: []
       indices: 
@@ -270,7 +277,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9baec78d9876acb4fbf452f499b54b18
+      spriteID: 056a8e82f69936690800000000000000
       internalID: -7610070242619251120
       vertices: []
       indices: 
@@ -291,7 +298,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 59b37d9b252e76948aa7865d0c355245
+      spriteID: 0ff4091e43b4f95a0800000000000000
       internalID: -6512403845659734032
       vertices: []
       indices: 
@@ -312,7 +319,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b30556e9525b55048bf57fb590636eca
+      spriteID: be1f3692abfe74d90800000000000000
       internalID: -7113453503571037717
       vertices: []
       indices: 
@@ -333,7 +340,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1fc7f0360e1f1f409770ef497f372fe
+      spriteID: b59e03e5ba6c0c2c0800000000000000
       internalID: -4413309195501115045
       vertices: []
       indices: 
@@ -354,7 +361,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cf0e1d93301750f4788f97007f87a941
+      spriteID: 0d576a557636852b0800000000000000
       internalID: -5595613241538087472
       vertices: []
       indices: 
@@ -370,6 +377,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      guildraider_malu_eyes_0_3: -7113453503571037717
+      guildraider_malu_eyes_0_2: -916324610807532781
+      guildraider_malu_eyes_1_2: -7610070242619251120
+      guildraider_malu_eyes_0_1: -7394779328759793839
+      guildraider_malu_eyes_1_0: -5899149653733257196
+      guildraider_malu_eyes_1_3: -4413309195501115045
+      guildraider_malu_eyes_0_0: -6638775351108673412
+      guildraider_malu_eyes_2_3: -5595613241538087472
+      guildraider_malu_eyes_2_0: -2241810520726177426
+      guildraider_malu_eyes_1_1: 7717804029053989274
+      guildraider_malu_eyes_2_1: -946628712758719000
+      guildraider_malu_eyes_2_2: -6512403845659734032
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

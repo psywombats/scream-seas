@@ -57,7 +57,7 @@ TextureImporter:
       213: -5864363670703192792
     second: ghoul_body_2_5
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -77,6 +77,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -86,8 +88,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -108,11 +110,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,6 +129,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -132,7 +139,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 160
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -141,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a42a81f0935c6a43bb11e1aef97f85e
+      spriteID: f747208788d939660800000000000000
       internalID: 7391424622899655807
       vertices: []
       indices: 
@@ -151,9 +158,9 @@ TextureImporter:
       name: ghoul_body_1_0
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 160
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -162,7 +169,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99038ffac62f006498d06005a678e62d
+      spriteID: 38f5d806be4f13fa0800000000000000
       internalID: -5822603551438971005
       vertices: []
       indices: 
@@ -172,9 +179,9 @@ TextureImporter:
       name: ghoul_body_2_0
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 160
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -183,8 +190,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a3404d57c0eb1d45b049e96ccebac81
+      spriteID: e3f482059094f1a80800000000000000
       internalID: -8493990067849113794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_3_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_4_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_5_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -195,7 +265,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 128
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -204,7 +274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94f7703e1bdfe8a44b1924ed3d87f550
+      spriteID: c2a3db423041ae790800000000000000
       internalID: -7500160225698301396
       vertices: []
       indices: 
@@ -214,9 +284,9 @@ TextureImporter:
       name: ghoul_body_1_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 128
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -225,7 +295,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e63a2877c5ef434f8d1421b0f2d9085
+      spriteID: 1877aadcb5d167390800000000000000
       internalID: -7821031422752557183
       vertices: []
       indices: 
@@ -235,9 +305,9 @@ TextureImporter:
       name: ghoul_body_2_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 128
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -246,8 +316,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2d82be0f7224c845b903c55d832d14c
+      spriteID: 7a17d4328adfada70800000000000000
       internalID: 8852666916138742183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_3_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_4_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_5_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -258,7 +391,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -267,7 +400,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d97193c60ea628488c3551881ef6bf4
+      spriteID: 33c6e93417956c710800000000000000
       internalID: 1713155051261684787
       vertices: []
       indices: 
@@ -277,9 +410,9 @@ TextureImporter:
       name: ghoul_body_1_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 96
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -288,7 +421,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d956889864400a94594e1877a267655d
+      spriteID: 15f379d935b04e450800000000000000
       internalID: 6117026647630102353
       vertices: []
       indices: 
@@ -298,9 +431,9 @@ TextureImporter:
       name: ghoul_body_2_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 96
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -309,8 +442,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 201a2d1d419dc4f41a48ee9d0569800b
+      spriteID: d56b3c136e6501c80800000000000000
       internalID: -8354081762094893475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_3_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_4_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_5_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -321,7 +517,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -330,7 +526,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8dec134af25d2264dad8ebd6eee4a73d
+      spriteID: cd369d12376686d40800000000000000
       internalID: 5577820783173526492
       vertices: []
       indices: 
@@ -340,9 +536,9 @@ TextureImporter:
       name: ghoul_body_1_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 64
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -351,7 +547,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be8bbfe10fffd904fbd623232386018d
+      spriteID: f1e41bd976798bb20800000000000000
       internalID: 3150434410628730399
       vertices: []
       indices: 
@@ -361,9 +557,9 @@ TextureImporter:
       name: ghoul_body_2_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -372,8 +568,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d624abbc534c7c4793e425906b9fbf7
+      spriteID: f2b3a005330edc8f0800000000000000
       internalID: -518511871086937297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_3_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_4_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_5_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -384,7 +643,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -393,7 +652,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 46e8f6ef388131c4284f55277e2516a9
+      spriteID: fc6ad08ca0f96a8e0800000000000000
       internalID: -1682482542121474353
       vertices: []
       indices: 
@@ -403,9 +662,9 @@ TextureImporter:
       name: ghoul_body_1_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 32
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -414,7 +673,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c8ed74b9d46dd942aac371dba590537
+      spriteID: f785f8d0113393b80800000000000000
       internalID: -8414638280430102401
       vertices: []
       indices: 
@@ -424,9 +683,9 @@ TextureImporter:
       name: ghoul_body_2_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 32
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -435,8 +694,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f20821b16c429bb4dacd5116ceea4a17
+      spriteID: fd30902ed9f4e7890800000000000000
       internalID: -7458436393358261281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_3_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_4_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_5_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -447,7 +769,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -456,7 +778,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a3db1b0b0d08fbc46a04052fef2fdf99
+      spriteID: 58eca7eaab090cbc0800000000000000
       internalID: -3764850157016134011
       vertices: []
       indices: 
@@ -466,9 +788,9 @@ TextureImporter:
       name: ghoul_body_1_5
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -477,7 +799,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca033c81929cfc54fb0f9b1098d92f2a
+      spriteID: a9527e4310aef6990800000000000000
       internalID: -7390431172588264038
       vertices: []
       indices: 
@@ -487,9 +809,9 @@ TextureImporter:
       name: ghoul_body_2_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -498,8 +820,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: feaa3ba7db7a6cd40be0f2790ba26381
+      spriteID: 825c70eef489d9ea0800000000000000
       internalID: -5864363670703192792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_3_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_4_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghoul_body_5_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00000000000000000800000000000000
+      internalID: 0
       vertices: []
       indices: 
       edges: []
@@ -514,6 +899,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      ghoul_body_0_0: 7391424622899655807
+      ghoul_body_4_0: 0
+      ghoul_body_1_3: 3150434410628730399
+      ghoul_body_3_5: 0
+      ghoul_body_4_2: 0
+      ghoul_body_4_3: 0
+      ghoul_body_2_2: -8354081762094893475
+      ghoul_body_4_5: 0
+      ghoul_body_3_0: 0
+      ghoul_body_3_3: 0
+      ghoul_body_0_3: 5577820783173526492
+      ghoul_body_3_4: 0
+      ghoul_body_3_1: 0
+      ghoul_body_5_3: 0
+      ghoul_body_1_2: 6117026647630102353
+      ghoul_body_5_0: 0
+      ghoul_body_2_1: 8852666916138742183
+      ghoul_body_2_3: -518511871086937297
+      ghoul_body_3_2: 0
+      ghoul_body_0_4: -1682482542121474353
+      ghoul_body_4_1: 0
+      ghoul_body_1_4: -8414638280430102401
+      ghoul_body_5_2: 0
+      ghoul_body_1_0: -5822603551438971005
+      ghoul_body_5_5: 0
+      ghoul_body_1_5: -7390431172588264038
+      ghoul_body_1_1: -7821031422752557183
+      ghoul_body_4_4: 0
+      ghoul_body_2_5: -5864363670703192792
+      ghoul_body_0_1: -7500160225698301396
+      ghoul_body_2_4: -7458436393358261281
+      ghoul_body_2_0: -8493990067849113794
+      ghoul_body_0_5: -3764850157016134011
+      ghoul_body_5_4: 0
+      ghoul_body_5_1: 0
+      ghoul_body_0_2: 1713155051261684787
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
