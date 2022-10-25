@@ -10,6 +10,7 @@ public class PortraitComponent : MonoBehaviour {
     private static readonly float inactiveAlpha = 0.5f;
 
     public Image sprite;
+    public bool moveSibling;
 
     public SpeakerData Speaker { get; private set; }
     public bool IsHighlighted { get; private set; }
@@ -46,6 +47,9 @@ public class PortraitComponent : MonoBehaviour {
             yield return CoUtils.RunTween(tween);
             Clear();
         }
+        if (moveSibling) {
+            //transform.SetAsFirstSibling();
+        }
     }
 
     public IEnumerator HighlightRoutine() {
@@ -53,6 +57,9 @@ public class PortraitComponent : MonoBehaviour {
             yield break;
         }
         var tween = sprite.DOColor(new Color(1, 1, 1, 1), highlightTime);
+        if (moveSibling) {
+            //transform.SetAsLastSibling();
+        }
         yield return CoUtils.RunTween(tween);
 
         IsHighlighted = true;
@@ -64,6 +71,9 @@ public class PortraitComponent : MonoBehaviour {
         }
         var tween = sprite.DOColor(new Color(inactiveAlpha, inactiveAlpha, inactiveAlpha, 1), highlightTime);
         yield return CoUtils.RunTween(tween);
+        if (moveSibling) {
+            //transform.SetAsFirstSibling();
+        }
 
         IsHighlighted = false;
     }

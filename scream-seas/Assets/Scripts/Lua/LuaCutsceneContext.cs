@@ -53,6 +53,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cyPan"] = (Action)CyPan;
         lua.Globals["cyEat"] = (Action)CyEat;
         lua.Globals["dim"] = (Action)Dim;
+        lua.Globals["name"] = (Action<DynValue, DynValue>)SetName;
         lua.Globals["cs_teleport"] = (Action<DynValue, DynValue, DynValue, DynValue>)TargetTeleport;
         lua.Globals["cs_fadeOutBGM"] = (Action<DynValue>)FadeOutBGM;
         lua.Globals["cs_fade"] = (Action<DynValue>)Fade;
@@ -63,7 +64,7 @@ public class LuaCutsceneContext : LuaContext {
         lua.Globals["cs_pathEvent"] = (Action<DynValue, DynValue, DynValue>)PathEvent;
         //lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_awaitBGMLoad"] = (Action)AwaitBGM;
-        lua.Globals["cs_enterNVL"] = (Action)EnterNVL;
+        lua.Globals["cs_enterNVL"] = (Action<DynValue>)EnterNVL;
         lua.Globals["cs_exitNVL"] = (Action)ExitNVL;
         lua.Globals["cs_speak"] = (Action<DynValue, DynValue>)Speak;
         lua.Globals["cs_exit"] = (Action<DynValue>)Exit;
@@ -235,11 +236,12 @@ public class LuaCutsceneContext : LuaContext {
         yield return Global.Instance().Maps.SpawnChaserRoutine(map, target.Position.x, target.Position.y, (float)delay);
     }
 
-    public void EnterNVL() {
-        RunRoutineFromLua(EnterNVLRoutine());
+    public void EnterNVL(DynValue dontClearLua) {
+        var dontClear = dontClearLua.IsNil() || dontClearLua.Boolean;
+        RunRoutineFromLua(EnterNVLRoutine(dontClear));
     }
-    private IEnumerator EnterNVLRoutine() {
-        yield return MapOverlayUI.Instance().nvl.ShowRoutine();
+    private IEnumerator EnterNVLRoutine(bool dontClear) {
+        yield return MapOverlayUI.Instance().nvl.ShowRoutine(dontClear);
     }
 
     public void ExitNVL() {
@@ -444,5 +446,10 @@ public class LuaCutsceneContext : LuaContext {
             RenderSettings.ambientIntensity = old * (1f-t);
             yield return null;
         }
+    }
+
+    private void SetName(DynValue speakerLua, DynValue nameLua) {
+        var speaker = IndexDatabase.Instance().Speakers.GetData(speakerLua.String);
+        MapOverlayUI.Instance().nvl.speakerNames[speaker] = nameLua.String;
     }
 }

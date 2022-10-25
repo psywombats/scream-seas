@@ -38,8 +38,15 @@ public class AvatarEvent : MonoBehaviour, IInputListener {
 
     public void Start() {
         Global.Instance().Maps.Avatar = this;
-        Global.Instance().Input.PushListener(this);
         pauseCount = 0;
+    }
+
+    public void OnEnable() {
+        Global.Instance().Input.PushListener(this);
+    }
+
+    public void OnDisable() {
+        Global.Instance().Input.RemoveListener(this);
     }
 
     public virtual void Update() {

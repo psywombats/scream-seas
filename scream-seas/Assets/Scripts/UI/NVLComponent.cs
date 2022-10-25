@@ -16,20 +16,29 @@ public class NVLComponent : MonoBehaviour {
 
     public ExpanderComponent backer;
     public LineAutotyper text;
+    public Text nameText;
     public CanvasGroup fader;
     public Image background;
 
+    public Dictionary<SpeakerData, string> speakerNames = new Dictionary<SpeakerData, string>();
+
     public void Wipe() {
         text.Clear();
+        nameText.text = "";
     }
 
-    public IEnumerator ShowRoutine() {
+    public IEnumerator ShowRoutine(bool dontClear = false) {
         backer.Hide();
         fader.alpha = 0.0f;
         background.color = new Color(1, 1, 1, 0);
-        foreach (var portrait in GetPortraits()) {
-            portrait.Clear();
+        if (!dontClear)
+        {
+            foreach (var portrait in GetPortraits())
+            {
+                portrait.Clear();
+            }
         }
+
         StartCoroutine(CoUtils.RunTween(background.DOColor(new Color(1, 1, 1, 1), bgTime)));
         yield return backer.ShowRoutine();
         text.Clear();
@@ -75,6 +84,9 @@ public class NVLComponent : MonoBehaviour {
     }
 
     public IEnumerator SpeakRoutine(SpeakerData speaker, string message) {
+        Wipe();
+        var name = speakerNames.ContainsKey(speaker) ? speakerNames[speaker] : "????";
+
         var portrait = GetPortrait(speaker);
         if (speaker != null) {
             var routines = new List<IEnumerator>();
@@ -89,14 +101,14 @@ public class NVLComponent : MonoBehaviour {
             yield return CoUtils.RunParallel(routines.ToArray(), this);
         }
 
-        string toType;
-        if (speaker.Key != "????") {
+        string toType = message;
+        /*if (speaker.Key != "????") {
             toType = "\"" + message + "\"";
         } else {
             toType = message + "";
-        }
+        }*/
+        nameText.text = name;
         yield return text.WriteLineRoutine(toType);
-        yield return text.WriteLineRoutine("");
         yield return Global.Instance().Input.ConfirmRoutine();
     }
 

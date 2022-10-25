@@ -42,7 +42,12 @@ public class LightOscillator : Oscillator {
         } else {
             light.intensity = originalIntensity + intensityOffset * vectorMult;
             light.range = originalRange + rangeOffset * vectorMult;
-            light.color = originalColor * (1.0f - vectorMult) + newColor * vectorMult;
+            var tempColor = originalColor * (1.0f - vectorMult) + newColor * vectorMult;
+            light.color = new Color(
+                Mathf.Clamp01(tempColor.r),
+                Mathf.Clamp01(tempColor.g),
+                Mathf.Clamp01(tempColor.b),
+                Mathf.Clamp01(tempColor.a));
         }
     }
 }
