@@ -135,8 +135,6 @@ public class LuaContext {
         lua.Globals["cs_play"] = (Action<DynValue, DynValue>)Play;
         lua.Globals["getSwitch"] = (Func<DynValue, DynValue>)GetSwitch;
         lua.Globals["setSwitch"] = (Action<DynValue, DynValue>)SetSwitch;
-        lua.Globals["eventNamed"] = (Func<DynValue, LuaMapEvent>)EventNamed;
-        lua.Globals["getAvatar"] = (Func<DynValue>)GetAvatar;
         lua.Globals["rand"] = (Func<DynValue, DynValue>)Rand;
         lua.Globals["isBigRoom"] = (Func<DynValue>)IsBigMap;
     }
@@ -151,15 +149,6 @@ public class LuaContext {
     protected DynValue IsBigMap() {
         var map = Global.Instance().Maps.ActiveMap;
         return Marshal(map.size.x >= 10 && map.size.x <= 20);
-    }
-
-    protected LuaMapEvent EventNamed(DynValue eventName) {
-        MapEvent mapEvent = Global.Instance().Maps.ActiveMap.GetEventNamed(eventName.String);
-        if (mapEvent == null) {
-            return null;
-        } else {
-            return mapEvent.LuaObject;
-        }
     }
 
     protected DynValue GetSwitch(DynValue switchName) {
@@ -197,10 +186,5 @@ public class LuaContext {
                 Global.Instance().StartCoroutine(RunRoutineFromFile(filename.String));
             }));
         }
-    }
-
-    protected DynValue GetAvatar() {
-        var obj = Global.Instance().Maps.Avatar.Event.LuaObject;
-        return UserData.Create(obj);
     }
 }

@@ -115,7 +115,7 @@ public abstract class MapEvent : MonoBehaviour {
     protected abstract bool UsesSnap();
 
     protected abstract void DrawGizmoSelf();
-
+    
     public void Awake() {
         LuaObject = new LuaMapEvent(this);
     }
