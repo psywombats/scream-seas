@@ -378,7 +378,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ari_1_2: -3827152503523903297
+      ari_2_2: 8994464583696016354
       ari_2_0: 1546367621428329635
       ari_0_2: -4328552057717934176
       ari_0_0: -1254910827982414298
@@ -389,7 +389,7 @@ TextureImporter:
       ari_1_3: -5618321912825780021
       ari_0_3: 3451652974531807374
       ari_2_1: -3630989572099670084
-      ari_2_2: 8994464583696016354
+      ari_1_2: -3827152503523903297
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

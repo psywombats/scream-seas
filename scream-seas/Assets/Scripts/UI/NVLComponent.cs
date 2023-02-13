@@ -58,6 +58,7 @@ public class NVLComponent : MonoBehaviour {
         routines.Add(CoUtils.RunTween(fader.DOFade(0.0f, backer.duration)));
         routines.Add(CoUtils.RunTween(background.DOColor(new Color(1, 1, 1, 0), bgTime)));
         yield return CoUtils.RunParallel(routines.ToArray(), this);
+        Wipe();
     }
 
     public IEnumerator SetBGRoutine(Sprite bg) {

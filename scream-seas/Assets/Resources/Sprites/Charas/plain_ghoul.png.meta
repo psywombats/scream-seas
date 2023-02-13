@@ -902,7 +902,6 @@ TextureImporter:
     nameFileIdTable:
       plain_ghoul_1_0: -4345853529711052442
       plain_ghoul_3_0: 0
-      plain_ghoul_5_3: 0
       plain_ghoul_5_0: 0
       plain_ghoul_3_2: 0
       plain_ghoul_1_4: -1139438907295045260
@@ -916,6 +915,7 @@ TextureImporter:
       plain_ghoul_0_2: 995174811700056443
       plain_ghoul_4_0: 0
       plain_ghoul_5_4: 0
+      plain_ghoul_2_0: 826997386421105503
       plain_ghoul_0_4: 2017598427950253402
       plain_ghoul_5_2: 0
       plain_ghoul_4_2: 0
@@ -932,9 +932,9 @@ TextureImporter:
       plain_ghoul_1_5: 7917237231952388772
       plain_ghoul_3_5: 0
       plain_ghoul_2_5: 7228705731874120569
+      plain_ghoul_5_3: 0
       plain_ghoul_2_2: -86020311451618814
       plain_ghoul_5_5: 0
-      plain_ghoul_2_0: 826997386421105503
       plain_ghoul_0_5: 5680975072215458606
   spritePackingTag: 
   pSDRemoveMatte: 0

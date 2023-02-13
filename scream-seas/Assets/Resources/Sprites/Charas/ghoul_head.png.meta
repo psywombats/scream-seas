@@ -900,7 +900,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ghoul_head_3_0: 0
+      ghoul_head_2_5: -6401126167740057541
       ghoul_head_1_1: -6455045611600291289
       ghoul_head_0_3: 862142115486851594
       ghoul_head_2_4: -8777925774182468594
@@ -935,7 +935,7 @@ TextureImporter:
       ghoul_head_4_1: 0
       ghoul_head_2_0: -7737975256849686888
       ghoul_head_1_2: 5155551894931020424
-      ghoul_head_2_5: -6401126167740057541
+      ghoul_head_3_0: 0
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
